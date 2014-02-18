@@ -12,16 +12,22 @@
       </div>
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="menu nav navbar-nav">
-          <li><a href="#">Home</a><span class="border-right-img"></span></li>
+          <li><a href="/">Home</a><span class="border-right-img"></span></li>
           <li><a href="#">About Us</a><span class="border-right-img"></span></li>
           <li><a href="#">Careers</a><span class="border-right-img"></span></li>
           <li><a href="#">Restaurant Qwners</a><span class="border-right-img"></span></li>
           <li><a href="#">Contact Us</a></li>
         </ul>
+        
         <ul class="login nav navbar-nav navbar-right">
-          <li class="sign-in"><a href="#">Sign In</a><span class="border-right-img"></span></li>
-          <li class="sign-up"><a href="#">Sign Up</a></li>
+          <% if current_user.blank? %>
+            <li class="sign-in"><%= link_to "Sign In" , new_user_session_path %><span class="border-right-img"></span></li>
+            <li class="sign-up"><%= link_to "Sign Up",  new_user_registration_path %></li>
+          <% else  %>
+            <li class="sign-up"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %> <span class="border-right-img"></span></li>
+          <% end %>  
         </ul>
+        
       </div>
     </div>
   </nav>
