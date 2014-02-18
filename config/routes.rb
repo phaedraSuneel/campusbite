@@ -25,6 +25,13 @@ Ordering::Application.routes.draw do
   #     end
   #   end
 
+  resources :welcome do 
+    collection do 
+      get 'result'
+      get 'menu'
+    end
+  end
+
   # Sample resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
