@@ -1,0 +1,23 @@
+<div class="row">
+	<div class="container">
+		<p>
+		  <b>School name:</b>
+		  <%= @school.school_name %>
+		</p>
+
+		<p>
+		  <b>School address:</b>
+		  <%= @school.school_address %>
+		</p>
+
+		<p>
+		  <b>Branch name:</b>
+		  <%= @school.branch_name %>
+		</p>	
+
+		<%= link_to "View Restaurants", school_restaurants_path(@school) %>  |
+		<%= link_to 'Add More Restaurant', new_school_restaurant_path(@school) %> |
+		<%= link_to 'Edit', edit_school_path(@school) %> |
+		<%= link_to 'Back', schools_path %>
+	</div>
+</div>	

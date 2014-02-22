@@ -10,7 +10,9 @@ gem 'omniauth'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-
+gem "rolify"
+gem 'cancan'
+gem 'simple_form'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -24,6 +26,11 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+gem 'sunspot_rails'
+gem 'sunspot_solr'
+
+gem 'progress_bar'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

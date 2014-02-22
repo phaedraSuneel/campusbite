@@ -1,0 +1,26 @@
+<%= form_for [@school, @restaurant, @menu ] do |f| %>
+  <% if @menu.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@menu.errors.count, "error") %> prohibited this menu from being saved:</h2>
+
+      <ul>
+      <% @menu.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <label> Select MenuCategory </label>
+  <div class="control-group">
+    <%= hidden_field_tag ",menu[menu_categories_ids][]", nil %>
+    <div class="controls">
+      <% MenuCategory.all.each do |cat| %>
+        <%= check_box_tag "menu[menu_categories_ids][]", cat.id, @menu.menu_categories_ids.include?(cat.id), id: dom_id(cat), :class => 'pull-left' %>
+        <%= label_tag dom_id(cat), cat.category_name %> <br />
+      <% end %>
+    </div>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

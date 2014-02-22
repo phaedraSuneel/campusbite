@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  item_name: MyString
+  menu_category_id: 1
+  price: 1.5
+  short_description: MyString
+
+two:
+  item_name: MyString
+  menu_category_id: 1
+  price: 1.5
+  short_description: MyString

@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Item name:</b>
+  <%= @menu_item.item_name %>
+</p>
+
+<p>
+  <b>Menu category:</b>
+  <%= @menu_item.menu_category_id %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @menu_item.price %>
+</p>
+
+<p>
+  <b>Short description:</b>
+  <%= @menu_item.short_description %>
+</p>
+
+
+<%= link_to 'Edit', edit_school_restaurant_menu_menu_category_menu_item_path(@school,@restaurant,@menu,@menu_category,@menu_item) %> |
+<%= link_to 'Back', school_restaurant_menu_index_path(@school, @restaurant) %>

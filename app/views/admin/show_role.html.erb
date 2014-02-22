@@ -1,0 +1,25 @@
+<div class="container">
+<div class="row">
+	<table class="table table-striped user-result">
+	  <thead>
+	    <tr>
+	      <th>Name</th>
+	      <th>Created at</th>
+	      <th>Action</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <tr>
+	      <td><%= @role.name %></td>
+	       <td><%= @role.created_at %></td>
+	       <td>
+	      		<%= link_to "edit", edit_role_admin_path(@role) %>
+	      		<%= link_to "delete",destroy_role_admin_path(@role),
+                      :method => :delete,:data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) } %>
+	      		<%= link_to "back", role_admin_index_path %>
+		      </td>
+	    </tr>
+	  </tbody>
+	</table>
+	</div>	
+</div>	

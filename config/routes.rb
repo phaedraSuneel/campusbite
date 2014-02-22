@@ -1,5 +1,22 @@
 Ordering::Application.routes.draw do
 
+  resources :schools do 
+    resources :restaurants do
+      resources :restaurant_categories
+      resources :menu do
+        resources :menu_categories do 
+          resources :menu_items
+        end
+      end
+    end    
+  end  
+
+  resources :restaurants
+  resources :restaurant_categories
+  resources :menu
+  resources :menu_categories    
+  resources :menu_items
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
   devise_for :users , :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
@@ -25,6 +42,26 @@ Ordering::Application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+  resources :admin do
+    collection do
+      get 'user'
+      post 'create_user'
+      get 'new_user'
+      get 'role'
+      post 'create_role'
+      get 'new_role'
+    end
+    member do
+      get 'edit_user'
+      get 'show_user'
+      put 'update_user'
+      delete 'destroy_user'
+      get 'edit_role'
+      get 'show_role'
+      put 'update_role'
+      delete 'destroy_role'
+    end
+  end  
 
   resources :welcome do 
     collection do 

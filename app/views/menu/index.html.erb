@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="container">
+    <h3>View <%= link_to @school.school_name , @school%> / 
+      <%= link_to @restaurant.restaurant_name, [@school, @restaurant]  %> / Menu 
+    </h3>
+    <% unless @menu.menu_categories.blank? %>
+      <h4> Menu Categories with Menu Item </h4>
+      <ul>
+        <%@menu.menu_categories.each do |category| %>
+          <li>
+            <span> <%= link_to category.category_name, [@school, @restaurant, @menu, category] %></span> ( <%= link_to "edit", edit_school_restaurant_menu_menu_category_path(@school, @restaurant, @menu, category) %>   | <%=link_to "remove", [@school, @restaurant, @menu, category] , :method => :delete , :confirm => "are you sure ?"%> | <%= link_to "add  more menu item ", new_school_restaurant_menu_menu_category_menu_item_path(@school, @restaurant, @menu, category) %> )
+            <ul>
+                <% unless category.menu_items.blank? %>
+                  <% category.menu_items.each do |item|%>
+                    <li>
+                      <label> <%= item.item_name %> </label> ($<%= item.price %>) <br >
+                      <span><%= item.short_description %></span> <br >
+                      <span><%= link_to "edit", edit_school_restaurant_menu_menu_category_menu_item_path(@school, @restaurant, @menu, category, item) %> </span> |  
+                      <span><%= link_to "delete", [@school, @restaurant, @menu, category, item], :method => :delete , :confirm => "are you sure ?" %> </span> 
+                    </li>
+                  <% end %>
+
+                <% else %>
+                    <li>
+                        <label> No Item exist in this category </label> 
+                        <label><%= link_to "add menu item", new_school_restaurant_menu_menu_category_menu_item_path(@school, @restaurant, @menu, category) %> </label>
+                    </li>
+                <% end %>  
+            </ul>
+          </li>  
+        <% end%>
+      </ul>  
+    <% else %>
+      <span> No Menu Category Existed </span>
+      <%= link_to "Add  menu category",  new_school_restaurant_menu_menu_category_path(@school, @restaurant, @menu) %>
+    <% end %> 
+    <br />
+    <%= link_to "back to Restaurant" , [@school, @restaurant] %> | 
+    <%= link_to "Add more menu category",  new_school_restaurant_menu_menu_category_path(@school, @restaurant, @menu) %> | 
+  </div>

@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="container">  
+    <p>
+      <b>Restaurant name:</b>
+      <%= @restaurant.restaurant_name %>
+    </p>
+
+    <p>
+      <b>Restaurant phone:</b>
+      <%= @restaurant.restaurant_phone %>
+    </p>
+
+    <p>
+      <b>Restaurant website:</b>
+      <%= @restaurant.restaurant_website %>
+    </p>
+
+    <p>
+      <b>Restaurant street address:</b>
+      <%= @restaurant.restaurant_street_address %>
+    </p>
+
+    <p>
+      <b>State:</b>
+      <%= @restaurant.state %>
+    </p>
+
+    <p>
+      <b>City:</b>
+      <%= @restaurant.city %>
+    </p>
+
+    <p>
+      <b>Zip code:</b>
+      <%= @restaurant.zip_code %>
+    </p>
+
+    <p>
+      <b>About restaurant:</b>
+      <%= @restaurant.about_restaurant %>
+    </p>
+
+    <p>
+      <b>Is pick up:</b>
+      <%= @restaurant.is_pick_up %>
+    </p>
+
+    <p>
+      <b>Is deliver:</b>
+      <%= @restaurant.is_deliver %>
+    </p>
+
+    <p>
+      <b>Min delivery:</b>
+      <%= @restaurant.min_delivery %>
+    </p>
+
+    <p>
+      <b>Delivery eta:</b>
+      <%= @restaurant.delivery_eta %>
+    </p>
+
+    <p>
+      <b>Featured:</b>
+      <%= @restaurant.is_featured %>
+    </p>
+
+    <%= link_to 'View Restaurant Menu', school_restaurant_menu_index_path(@school, @restaurant) %> |
+    
+    <%= link_to 'View Restaurant Categories', school_restaurant_restaurant_categories_path(@school, @restaurant) %> |
+    <%= link_to 'Add More Restaurant Category', new_school_restaurant_restaurant_category_path(@school, @restaurant) %> |
+    <%= link_to 'Edit', edit_school_restaurant_path(@school,@restaurant) %> |
+    <%= link_to 'Back', school_restaurants_path(@school) %>
+  </div>
+</div>

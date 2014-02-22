@@ -1,0 +1,9 @@
+
+<p>
+  <b>Category name:</b>
+  <%= @restaurant_category.category_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_school_restaurant_restaurant_category_path(@school,@restaurant,@restaurant_category) %> |
+<%= link_to 'Back', school_restaurant_restaurant_categories_path(@school,@restaurant) %>

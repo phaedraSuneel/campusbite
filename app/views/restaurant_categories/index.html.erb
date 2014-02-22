@@ -1,0 +1,24 @@
+<h4>Listing of <%= link_to @school.school_name, @school %> / <%= link_to @restaurant.restaurant_name, [@school,@restaurant] %>  Restaurant Categories </h4>
+
+<table>
+  <tr>
+    <th>Category name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @restaurant_categories.each do |restaurant_category| %>
+  <tr>
+    <td><%= restaurant_category.category_name %></td>
+    <td><%= link_to 'Show', [@school, @restaurant, restaurant_category] %></td>
+    <td><%= link_to 'Edit', edit_school_restaurant_restaurant_category_path(@school, @restaurant,restaurant_category) %></td>
+    <td><%= link_to 'Destroy', [@school, @restaurant, restaurant_category], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Restaurant category', new_school_restaurant_restaurant_category_path(@school,@restaurant) %> | 
+<%= link_to 'Back to Restaurant', [@school, @restaurant] %>
