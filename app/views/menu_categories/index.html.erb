@@ -13,13 +13,13 @@
   <tr>
     <td><%= menu_category.category_name %></td>
     <td><%= menu_category.menu_id %></td>
-    <td><%= link_to 'Show', [@school, @restaurant, @menu, menu_category] %></td>
-    <td><%= link_to 'Edit', edit_school_restaurant_menu_menu_category_path(@school,@restaurant,@menu,menu_category) %></td>
-    <td><%= link_to 'Destroy', [@school, @restaurant, @menu, menu_category], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to 'Show', [@menu, menu_category] %></td>
+    <td><%= link_to 'Edit', edit_menu_menu_category_path(@menu,menu_category) %></td>
+    <td><%= link_to 'Destroy', [@menu, menu_category], method: :delete, data: { confirm: 'Are you sure?' } %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to "Add New Menu Category",  new_school_restaurant_menu_menu_category_path(@school, @restaurant, @menu) %>
+<%= link_to "Add New Menu Category",  new_menu_menu_category_path(@menu) %>

@@ -14,10 +14,17 @@
 		  <b>Branch name:</b>
 		  <%= @school.branch_name %>
 		</p>	
-
-		<%= link_to "View Restaurants", school_restaurants_path(@school) %>  |
-		<%= link_to 'Add More Restaurant', new_school_restaurant_path(@school) %> |
-		<%= link_to 'Edit', edit_school_path(@school) %> |
-		<%= link_to 'Back', schools_path %>
+		<% if can? :read, Restaurant %>  
+			<%= link_to "View Restaurants", school_restaurants_path(@school) %> 
+		<% end %>	
+		<% if can? :create, Restaurant %>	
+			| <%= link_to 'Add More Restaurant', new_school_restaurant_path(@school) %> |
+		<% end %>	
+		<% if can? :update, Restaurant %>
+			| <%= link_to 'Edit', edit_school_path(@school) %> |
+		<% end %>	
+		<% if can? :read, School %>	
+			<%= link_to 'Back', schools_path %>
+		<% end %>
 	</div>
 </div>	

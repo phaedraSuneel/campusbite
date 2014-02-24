@@ -1,18 +1,41 @@
 class SchoolsController < ApplicationController
 
   def index
-    @schools = School.all
+    authorize! :read, School
+    unless params[:keyword].blank?
+      @search = School.search do
+        fulltext params[:keyword] do 
+          fields(:school_name)
+        end
+      end  
+      @schools = @search.results
+    else
+      @schools = School.all
+    end  
+  end
+
+  def search
+    @search = School.search do
+      fulltext params[:keyword] do 
+        fields(:school_name)
+      end
+    end  
+    @schools = @search.results
+    render :partial => 'schools/search_result', :@schools => @school, :layout => false
   end
 
   def show
+    authorize! :read, School
     @school = School.find(params[:id])
   end
   
   def new
+    authorize! :create, School
     @school = School.new
   end
 
   def edit
+    authorize! :update, School
     @school = School.find(params[:id])
   end
 
@@ -37,6 +60,7 @@ class SchoolsController < ApplicationController
   end
 
   def destroy
+    authorize! :deleted, School
     @school = School.find(params[:id])
     @school.destroy
     flash[:notice] = 'School was successfully deleted.'

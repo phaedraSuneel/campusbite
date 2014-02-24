@@ -1,6 +1,6 @@
 <div class="row">
   <div class="container"> 
-    <h4>Listing of <%= link_to @school.school_name, @school %>  Restaurants </h4>
+    <h4>Listing of  Restaurants </h4>
     <table class="table" >
       <tr>
         <th>Restaurant name</th>
@@ -11,15 +11,37 @@
       <% @restaurants.each do |restaurant| %>
         <tr>
           <td><%= restaurant.restaurant_name %></td>
-          <td><%= link_to 'Show', [@school,restaurant] %></td>
-          <td><%= link_to 'Edit', edit_school_restaurant_path(@school,restaurant) %></td>
-          <td><%= link_to 'Destroy', [@school,restaurant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <% unless params[:school_id].blank? %>
+            <% if can? :read, Restaurant %>
+              <td><%= link_to 'Show', [@school,restaurant] %></td>
+            <% elsif can? :update, Restaurant %>  
+              <td><%= link_to 'Edit', edit_school_restaurant_path(@school,restaurant) %></td>
+            <% elsif can? :delete, Restaurant %>  
+              <td><%= link_to 'Destroy', [@school,restaurant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>  
+          <% else %>  
+            <% if can? :read, Restaurant %>
+              <td><%= link_to 'Show', restaurant %></td>
+            <% elsif can? :update, Restaurant %>   
+              <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+            <% elsif can? :delete, Restaurant %>
+              <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>  
+          <% end %>  
         </tr>
       <% end %>
     </table>
     <br />
-
-    <%= link_to 'New Restaurant', new_school_restaurant_path(@school) %> | 
-    <%= link_to 'Back to school', @school %>
+    <% unless params[:school_id].blank? %>
+      <% if can? :create, Restaurant %>  
+        <%= link_to 'New Restaurant', new_school_restaurant_path(@school) %> | 
+      <% elsif can? :read, Restaurant %>
+        <%= link_to 'Back', school_path(@school) %> 
+      <% end %>  
+    <%else %>
+      <% if can? :create, Restaurant %>  
+        <%= link_to 'New Restaurant', new_restaurant_path %>
+      <% end %>  
+    <% end %>  
   </div>
 </div>

@@ -1,53 +1,102 @@
 class RestaurantsController < ApplicationController
 
   def index
-    @school = School.find(params[:school_id])
-    @restaurants = @school.restaurants
+    authorize! :read, Restaurant
+    unless params[:school_id].blank?
+      @school = School.find(params[:school_id])
+      @restaurants = @school.restaurants
+    else
+      @restaurants = Restaurant.all
+    end  
   end
 
   def show
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.find(params[:id])
+    authorize! :read, Restaurant
+    unless params[:school_id].blank?
+      @school = School.find(params[:school_id])
+      @restaurant = @school.restaurants.find(params[:id])
+    else
+      @restaurant = Restaurant.find(params[:id])
+    end
   end
 
   def new
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.build
+    authorize! :create, Restaurant
+    unless params[:school_id].blank?
+      @school = School.find(params[:school_id])
+      @restaurant = @school.restaurants.build
+    else
+      @restaurant = Restaurant.new
+    end
+
   end
 
   def edit
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.find(params[:id])
+    authorize! :update, Restaurant
+    unless params[:school_id].blank?
+      @school = School.find(params[:school_id])
+      @restaurant = @school.restaurants.find(params[:id])
+    else
+      @restaurant = Restaurant.find(params[:id])
+    end
   end
 
   def create
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.build(params[:restaurant])
-    if @restaurant.save
+    unless params[:school_id].blank?
+      @school = School.find(params[:school_id])
+      @restaurant = @school.restaurants.build(params[:restaurant])
+      if @restaurant.save
       flash[:notice] = 'Restaurant was successfully created.'
-      redirect_to [@school, @restaurant]
-    else
-      render action: "new"
-    end
+      redirect_to [@school, @restaurant]  
+      else
+        render action: "new"
+      end
+    else 
+      @restaurant = Restaurant.new(params[:restaurant])
+      if @restaurant.save
+        flash[:notice] = 'Restaurant was successfully created.'
+        redirect_to @restaurant  
+      else
+        render action: "new"
+      end  
+    end  
   end
 
   def update
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.find(params[:id])
-    if @restaurant.update_attributes(params[:restaurant])
-      flash[:notice] = 'Restaurant was successfully updated.'
-      redirect_to [@school, @restaurant]
+    unless params[:school_id].blank?
+      @school = School.find(params[:school_id])
+      @restaurant = @school.restaurants.find(params[:id])
+      if @restaurant.update_attributes(params[:restaurant])
+        flash[:notice] = 'Restaurant was successfully updated.'
+        redirect_to [@school, @restaurant]
+      else
+        render action: "edit"
+      end
     else
-      render action: "edit"
-    end
+      @restaurant = Restaurant.find(params[:id])
+      if @restaurant.update_attributes(params[:restaurant])
+        flash[:notice] = 'Restaurant was successfully updated.'
+        redirect_to @restaurant
+      else
+        render action: "edit"
+      end
+    end  
   end
 
   def destroy
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.find(params[:id])
-    @restaurant.destroy
-    flash[:notice] = 'Restaurant was successfully deleted.'
-    redirect_to [@school, @restaurant]
-  end
+    authorize! :delete, Restaurant
+    unless params[:school_id].blank?
+      @school = School.find(params[:school_id])
+      @restaurant = @school.restaurants.find(params[:id])
+      @restaurant.destroy
+      flash[:notice] = 'Restaurant was successfully deleted.'
+      redirect_to [@school, @restaurant]
+    else
+      @restaurant = Restaurant.find(params[:id])
+      @restaurant.destroy
+      flash[:notice] = 'Restaurant was successfully deleted'
+      redirect_to @restaurant
+    end
+  end  
 
 end

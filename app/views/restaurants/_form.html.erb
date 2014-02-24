@@ -62,7 +62,18 @@
   <div class="field">
     <%= f.label :delivery_eta %><br />
     <%= f.time_select :delivery_eta %>
-  </div> 
+  </div> <br>
+ <label> Select Categories of Restaurant</label>
+  <div class="control-group">
+    <%= hidden_field_tag "restaurant[restaurant_category_ids][]", nil %>
+    <div class="controls">
+      <% RestaurantCategory.all.each do |cat| %>
+        <%= check_box_tag "restaurant[restaurant_category_ids][]", cat.id, @restaurant.restaurant_category_ids.include?(cat.id), id: dom_id(cat), :class => 'pull-left' %>
+        <%= label_tag dom_id(cat), cat.category_name %> <br >
+      <% end %>
+    </div>
+  </div>
+
 
   <div class="actions">
     <%= f.submit %>

@@ -1,68 +1,59 @@
 class MenuCategoriesController < ApplicationController
 
   def index
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.find(params[:restaurant_id])
-    @menu = @restaurant.menu
+    authorize! :read, MenuCategory
+    @menu = Menu.find(params[:menu_id])
     @menu_categories = @menu.menu_categories
   end
 
   def show
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.find(params[:restaurant_id])
-    @menu = @restaurant.menu
+    authorize! :read, MenuCategory
+    @menu = Menu.find(params[:menu_id])
     @menu_category= @menu.menu_categories.find(params[:id])
   end
 
   def new
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.find(params[:restaurant_id])
-    @menu = @restaurant.menu
+    authorize! :create, MenuCategory
+    @menu = Menu.find(params[:menu_id])
     @menu_category = @menu.menu_categories.build
   end
 
   def edit
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.find(params[:restaurant_id])
-    @menu = @restaurant.menu
+    authorize! :update, MenuCategory
+    @menu = Menu.find(params[:menu_id])
     @menu_category = @menu.menu_categories.find(params[:id])
   end
 
   def create
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.find(params[:restaurant_id])
-    @menu = @restaurant.menu
+    @menu = Menu.find(params[:menu_id])
     @menu_category = @menu.menu_categories.build(params[:menu_category])
 
     if @menu_category.save
       flash[:notice] = 'Menu category was successfully created.'
-      redirect_to school_restaurant_menu_index_path(@school, @restaurant)
+      redirect_to @menu
     else
       render action: "new"
     end
   end
 
   def update
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.find(params[:restaurant_id])
-    @menu = @restaurant.menu
+    @menu = Menu.find(params[:menu_id])
     @menu_category = @menu.menu_categories.find(params[:id])
     
     if @menu_category.update_attributes(params[:menu_category])
       flash[:notice] = 'Menu category was successfully updated.'
-      redirect_to [@school,@restaurant,@menu,@menu_category]
+      redirect_to @menu
     else
       render action: "edit"
     end
   end
 
   def destroy
-    @school = School.find(params[:school_id])
-    @restaurant = @school.restaurants.find(params[:restaurant_id])
-    @menu = @restaurant.menu
+    authorize! :delete, MenuCategory
+    @menu = Menu.find(params[:menu_id])
     @menu_category = @menu.menu_categories.find(params[:id])
     @menu_category.destroy
     flash[:notice] = 'Menu category was successfully deleted.'
-    redirect_to school_restaurant_menu_index_path(@school, @restaurant)
+    redirect_to @menu
   end
 end

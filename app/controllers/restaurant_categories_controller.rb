@@ -1,25 +1,28 @@
 class RestaurantCategoriesController < ApplicationController
  
   def index
+    authorize! :read, RestaurantCategory
     @school = School.find(params[:school_id])
     @restaurant = @school.restaurants.find(params[:restaurant_id])
     @restaurant_categories = @restaurant.restaurant_categories
   end
 
   def show
-    params[:school_id]
+    authorize! :read, RestaurantCategory
     @school = School.find(params[:school_id])
     @restaurant = @school.restaurants.find(params[:restaurant_id])
     @restaurant_category = @restaurant.restaurant_categories.find(params[:id])
   end
 
   def new
+    authorize! :create, RestaurantCategory
     @school = School.find(params[:school_id])
     @restaurant = @school.restaurants.find(params[:restaurant_id])
     @restaurant_category = @restaurant.restaurant_categories.build
   end
 
   def edit
+    authorize! :update, RestaurantCategory
     @school = School.find(params[:school_id])
     @restaurant = @school.restaurants.find(params[:restaurant_id])
     @restaurant_category = @restaurant.restaurant_categories.find(params[:id])
@@ -50,6 +53,7 @@ class RestaurantCategoriesController < ApplicationController
   end
 
   def destroy
+    authorize! :delete, RestaurantCategory
     @school = School.find(params[:school_id])
     @restaurant = @school.restaurants.find(params[:restaurant_id])
     @restaurant_category = @restaurant.restaurant_categories.find(params[:id])

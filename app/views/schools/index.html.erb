@@ -1,4 +1,13 @@
 <h1>Listing schools</h1>
+  
+<div class="search-form pull-right">
+  <%= form_for "search", :url => schools_path, :method => 'get'  do |f| %>
+    <%= text_field_tag "keyword", nil, :class => "search-keyword"   %>
+    <%= f.submit "search" %>
+  <% end %> 
+  <div class="result">
+  </div>
+</div>
 
 <table>
   <tr>
@@ -15,13 +24,20 @@
     <td><%= school.school_name %></td>
     <td><%= school.school_address %></td>
     <td><%= school.branch_name %></td>
-    <td><%= link_to 'Show', school %></td>
-    <td><%= link_to 'Edit', edit_school_path(school) %></td>
-    <td><%= link_to 'Destroy', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if can? :read, School %>
+      <td><%= link_to 'Show', school %></td>
+    <% end %>  
+    <% if can? :update, School %>  
+      <td><%= link_to 'Edit', edit_school_path(school) %></td>
+    <% end %>   
+    <% if can? :delete, School %>  
+      <td><%= link_to 'Destroy', school, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>  
   </tr>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New School', new_school_path %>
+<% if can? :create, School %>  
+  <%= link_to 'New School', new_school_path %>
+<% end %>  

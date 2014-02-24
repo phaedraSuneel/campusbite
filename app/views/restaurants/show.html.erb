@@ -65,11 +65,29 @@
       <%= @restaurant.is_featured %>
     </p>
 
-    <%= link_to 'View Restaurant Menu', school_restaurant_menu_index_path(@school, @restaurant) %> |
-    
-    <%= link_to 'View Restaurant Categories', school_restaurant_restaurant_categories_path(@school, @restaurant) %> |
-    <%= link_to 'Add More Restaurant Category', new_school_restaurant_restaurant_category_path(@school, @restaurant) %> |
-    <%= link_to 'Edit', edit_school_restaurant_path(@school,@restaurant) %> |
-    <%= link_to 'Back', school_restaurants_path(@school) %>
+    <p>
+      <label>Restaurant Categories</label> <br>
+      <% @restaurant.restaurant_categories.each do |cat| %>
+        <span><%= cat.category_name%> </span> <br>
+      <% end %> 
+    </p>
+    <p>
+      <%= link_to "View Menu" , menu_path(@restaurant.menu) %>  
+    </p>  
+    <% unless params[:school_id].blank? %>
+      <% if can? :update, Restaurant %>  
+        <%= link_to 'Edit', edit_school_restaurant_path(@school, @restaurant) %> |
+      <% end %>   
+      <% if can? :read, Restaurant %>    
+        <%= link_to 'Back', school_restaurants_path(@school) %> 
+      <% end %>  
+    <% else %>
+      <% if can? :update, Restaurant %>  
+        <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+      <% end %>   
+      <% if can? :read, Restaurant %>    
+        <%= link_to 'Back', restaurants_path %>
+      <% end %>  
+    <% end %>  
   </div>
 </div>

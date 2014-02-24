@@ -3,8 +3,9 @@
 		<h1>Editing restaurant</h1>
 
 		<%= render 'form' %>
-
-		<%= link_to 'Show', [@school, @restaurant] %> |
-		<%= link_to 'Back', school_restaurants_path(@school) %>
+		<% if can? :read, Restaurant %>  
+			<%= link_to 'Show', [@school, @restaurant] %> |
+			<%= link_to 'Back', school_restaurants_path(@school) %>
+		<% end %>	
 	</div>
 </div>		

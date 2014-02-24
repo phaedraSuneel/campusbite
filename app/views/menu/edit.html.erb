@@ -1,6 +1,7 @@
 <h1>Editing menu</h1>
 
 <%= render 'form' %>
-
-<%= link_to 'Show', @menu %> |
-<%= link_to 'Back', menu_path %>
+<% if can? :read, Menu %>
+	<%= link_to 'Show', @menu %> |
+	<%= link_to 'Back', menu_path %>
+<% end %>	

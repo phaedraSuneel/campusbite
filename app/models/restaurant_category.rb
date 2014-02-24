@@ -1,5 +1,5 @@
 class RestaurantCategory < ActiveRecord::Base
-  belongs_to :restaurant
+  has_many :restaurants
   attr_accessible :category_name, :restaurant_id
 
 end

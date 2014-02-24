@@ -1,15 +1,18 @@
 Ordering::Application.routes.draw do
 
   resources :schools do 
-    resources :restaurants do
-      resources :restaurant_categories
-      resources :menu do
-        resources :menu_categories do 
-          resources :menu_items
-        end
-      end
-    end    
+    collection do 
+      get "search"
+    end  
+    resources :restaurants   
   end  
+
+  resources :restaurants 
+
+  resources :menu do
+    resources :menu_categories 
+    resources :menu_items
+  end
 
   resources :restaurants
   resources :restaurant_categories
