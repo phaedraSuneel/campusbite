@@ -2,19 +2,7 @@ class SchoolsController < ApplicationController
 
   def index
     authorize! :read, School
-    unless params[:keyword].blank?
-      @search = School.search do
-        with(:is_pick_up, params[:is_pick_up].to_s)
-        with(:is_deliver, params[:is_deliver].to_s)
-        fulltext params[:keyword] do 
-          fields(:school_name)
-        end
-
-      end  
-      @schools = @search.results
-    else
-      @schools = School.all
-    end  
+    @schools = School.all 
   end
 
   def search
