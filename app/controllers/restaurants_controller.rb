@@ -42,9 +42,11 @@ class RestaurantsController < ApplicationController
   end
 
   def create
+    p params
     unless params[:school_id].blank?
       @school = School.find(params[:school_id])
       @restaurant = @school.restaurants.build(params[:restaurant])
+      @restaurant.delivery_eta = params[:from_eta] + "-" +  params[:to_eta] + "Minutes" unless params[:from_eta].blank? and params[:to_eta].blank?
       if @restaurant.save
       flash[:notice] = 'Restaurant was successfully created.'
       redirect_to [@school, @restaurant]  
@@ -53,6 +55,7 @@ class RestaurantsController < ApplicationController
       end
     else 
       @restaurant = Restaurant.new(params[:restaurant])
+      @restaurant.delivery_eta = params[:from_eta] + "-" +  params[:to_eta] + "Minutes" unless params[:from_eta].blank? and params[:to_eta].blank?
       if @restaurant.save
         flash[:notice] = 'Restaurant was successfully created.'
         redirect_to @restaurant  

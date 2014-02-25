@@ -4,9 +4,12 @@ class SchoolsController < ApplicationController
     authorize! :read, School
     unless params[:keyword].blank?
       @search = School.search do
+        with(:is_pick_up, params[:is_pick_up].to_s)
+        with(:is_deliver, params[:is_deliver].to_s)
         fulltext params[:keyword] do 
           fields(:school_name)
         end
+
       end  
       @schools = @search.results
     else
@@ -21,7 +24,9 @@ class SchoolsController < ApplicationController
       end
     end  
     @schools = @search.results
-    render :partial => 'schools/search_result', :@schools => @school, :layout => false
+    respond_to do |format|
+      format.json { render :json => @schools.collect(&:school_name) }  
+    end                          
   end
 
   def show

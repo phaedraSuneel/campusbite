@@ -16,8 +16,8 @@
       <div class="col-md-10 menu-block">
         <div class="row">
           <div class="col-md-6 comment-ground">
-            <h2>Comment Ground</h2>
-            <p>2891 Hempstead Ave, Long Island NY, 11223</p>
+            <h2><%= @restaurant.restaurant_name%></h2>
+            <p><%= @restaurant.restaurant_street_address%></p>
           </div>
           <div class="col-md-6 online-orders">
             <h3>10% off online orders</h3>
@@ -31,23 +31,33 @@
               </div>
               <div class="col-md-2 delivery-field">
                 <label>TYPE OF FOOD:</label>
-                <p>Italian, French,and Specialty</p>
+                <p>
+                    <% @restaurant.restaurant_categories.each do |category| %>
+                      <%= category.category_name %>
+                    <% end %>
+                </p>
               </div>
               <div class="col-md-2 delivery-field">
                 <label>DELIVERY FEE:</label>
-                <p>free</p>
+                <p>
+                  <% if @restaurant.delivery_charges == 0.00 %>
+                    free
+                  <% else %>
+                    $<%= @restaurant.delivery_charges %>
+                  <% end %> 
+                </p>
               </div>
               <div class="col-md-2 delivery-field">
                 <label>DELIVERY MIN:</label>
-                <p>$5.00</p>
+                <p>$ <%= @restaurant.min_delivery %></p>
               </div>
               <div class="col-md-2 delivery-field">
                 <label>ESTIMATED TIME:</label>
-                <p>45-55 Minutes</p>
+                <p><%= @restaurant.delivery_eta %></p>
               </div>
               <div class="col-md-2 delivery-field">
-                <label class="del-yes">DELIVERY:</label><a class="yes-no" href="#">yes</a>
-                <label class="pic-no">PICKUP:</label><a class="yes-no" href="#">No</a>   
+                <label class="del-yes">DELIVERY:</label><a class="yes-no" href="#"><%= @restaurant.is_deliver ? "Yes" : "No"%></a>
+                <label class="pic-no">PICKUP:</label><a class="yes-no" href="#"><%= @restaurant.is_pick_up ? "Yes" : "No" %></a>   
               </div>
             </div>                        
           </div>

@@ -60,8 +60,12 @@
     <%= f.text_field :min_delivery %>
   </div>
   <div class="field">
+    <%= f.label :delivery_charges %><br />
+    <%= f.text_field :delivery_charges %>
+  </div>
+  <div class="field">
     <%= f.label :delivery_eta %><br />
-    <%= f.time_select :delivery_eta %>
+      <%= number_field_tag :from_eta %> to <%= number_field_tag :to_eta %> 
   </div> <br>
  <label> Select Categories of Restaurant</label>
   <div class="control-group">

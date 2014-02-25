@@ -3,16 +3,18 @@
 </div>
 <div class="col-md-9 add-side">
   <div class="main-search-bar">
-    <div class="search-botton">
-      <div class="delivery"><input type="checkbox" />DELIVERY</div>
-      <div class="pickup"><input type="checkbox" />PICKUP</div>
-    </div>
-    <div class="search-field">
-      <input type="text" placeholder="School Name or Campus" />
-    </div>
-    <div class="search">
-      <button class="search-b">Search</button>
-    </div>
+    <%= form_for "search", :url => result_welcome_index_path, :method => 'get'  do |f| %>
+      <div class="search-botton">
+        <div class="delivery"><%= check_box_tag :is_deliver, true %>DELIVERY</div>
+        <div class="pickup"><%= check_box_tag :is_pick_up, true %>PICKUP</div>
+      </div>
+      <div class="search-field">
+        <input type="text" name = "keyword",  placeholder="School Name or Campus", class = "search-keyword", value = <%= params[:keyword] %> >
+      </div>
+      <div class="search">
+        <button class="search-b">Search</button>
+      </div>
+    <% end -%> 
   </div>
 </div>
 <div class="row school-campus-img">

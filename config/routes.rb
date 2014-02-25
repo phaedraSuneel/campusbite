@@ -69,9 +69,13 @@ Ordering::Application.routes.draw do
   resources :welcome do 
     collection do 
       get 'result'
-      get 'menu'
+    end
+    member do
+      get "menu"
     end
   end
+
+  
 
   # Sample resource route with sub-resources:
   #   resources :products do

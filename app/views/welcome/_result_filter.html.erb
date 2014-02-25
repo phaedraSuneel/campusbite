@@ -5,16 +5,10 @@
     <div class="category">
       <label>Choose a category:</label>
       <ul class="chooses">
-        <li><a href="#">All categories(19)</a></li>
-        <li><a href="#">American (4)</a></li>
-        <li><a href="#">Breakfast (5)</a></li>
-        <li><a href="#">Chicken (3)</a></li>
-        <li><a href="#">English(4)</a></li>
-        <li><a href="#">Healthy(4)</a></li>
-        <li><a href="#">Italian (5)</a></li>
-        <li><a href="#">Korean (8)</a></li>
-        <li><a href="#">Lebanese (4)</a></li>
-        <li><a href="#">Pizza (4)</a></li>
+        <li><a href="#">All categories(<%= school.restaurants.collect(&:restaurant_categories).flatten.count%>)</a></li>
+        <% school.restaurants.collect(&:restaurant_categories).flatten.each do |category|%>
+          <li><a href="#"><%= category.category_name %></a></li>
+        <% end %>  
       </ul>
     </div>
   </div>

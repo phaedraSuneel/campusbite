@@ -8,184 +8,42 @@
   <div class="row collapse-container">
     <p class="select-bar-menu">
       <select class="form-control">
-        <option>Menu Categories</option>
-        <option>Menu Categories</option>
-        <option>Menu Categories</option>
-        <option>Menu Categories</option>
-        <option>Menu Categories</option>
+        <% @menu.menu_categories.each do |category| %>
+          <option><%= category.category_name %></option>
+        <% end %>  
+        
       </select>
     </p>
-    <div class="col-md-12 daily-special-container">
-      <div class="panel-group" id="accordion">
-        <div class="panel food-price-panel">
-            <h4 class="panel-title">
-              Daily Special
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                +
-              </a>
-            </h4>
-          <div id="collapseOne" class="panel-collapse collapse in lunch-collapse-even">
-            <div class="panel-body inner-panel">
-              <div class="color-odd-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-even-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-odd-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-even-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-odd-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
+    <% @menu.menu_categories.each do |category| %>
+      <div class="col-md-12 daily-special-container">
+        <div class="panel-group" id="accordion">
+          <div class="panel food-price-panel">
+              <h4 class="panel-title">
+                <%= category.category_name %>
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%=category.id%>">
+                  +
+                </a>
+              </h4>
+            <div id="collapse_<%=category.id%>" class="panel-collapse collapse in lunch-collapse-even">
+              <div class="panel-body inner-panel">
+                <% category.menu_items.each do |item| %>
+                  <div class="color-odd-pink" >
+                    <div class="content-fries">
+                      <label><%= item.item_name%></label>
+                      <p><%= item.short_description%></p>
+                    </div>
+                    <div class="rupees-in">$<%= item.price%></div>
+                    <div class="add-button"><button>+</button></div>
+                  </div>
+                <% end %>  
               </div>
             </div>
           </div>
         </div>
+        <img class="shadow-image-1" alt="Smiley face" src="/assets/shadow.png" />
       </div>
-      <img class="shadow-image-1" alt="Smiley face" src="/assets/shadow.png" />
-    </div>
-    <div class="col-md-12 daily-special-container">
-      <div class="panel-group" id="accordion">
-        <div class="panel food-price-panel">
-            <h4 class="panel-title">
-              Lunch Special
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapsetwo">
-                +
-              </a>
-            </h4>
-          <div id="collapsetwo" class="panel-collapse collapse in lunch-collapse-even">
-            <div class="panel-body inner-panel">
-              <div class="color-odd-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-even-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-odd-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-even-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-odd-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <img class="shadow-image-1" alt="Smiley face" src="/assets/shadow.png" />
-    </div>
-    <div class="col-md-12 daily-special-container">
-      <div class="panel-group" id="accordion">
-        <div class="panel food-price-panel">
-            <h4 class="panel-title">
-              Dinner Menu
-              <a data-toggle="collapse" data-parent="#accordion" href="#collapsethree">
-                +
-              </a>
-            </h4>
-          <div id="collapsethree" class="panel-collapse collapse in lunch-collapse-even">
-            <div class="panel-body inner-panel">
-              <div class="color-odd-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-even-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-odd-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-even-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-              <div class="color-odd-pink">
-                <div class="content-fries">
-                  <label>Wildberry/hurricone Smoothie</label>
-                  <p>Assorted peppers with tomatoes and french fries</p>
-                </div>
-                <div class="rupees-in">$ 3.70</div>
-                <div class="add-button"><button>+</button></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <img class="shadow-image-1" alt="Smiley face" src="/assets/shadow.png" />
-    </div>
+    <% end %>  
+    
   </div>
   <div class="col-md-12 note-line">
     <p>Did you notice a difference? Please report it to us: Click Here</p>

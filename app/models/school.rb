@@ -6,6 +6,12 @@ class School < ActiveRecord::Base
 
   searchable do
   	text :school_name
+  	boolean :is_pick_up, :multiple => true  do
+      restaurants.map(&:is_pick_up)
+    end
+    boolean :is_deliver, :multiple => true  do
+      restaurants.map(&:is_deliver)
+    end
   end
 
 end

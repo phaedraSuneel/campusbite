@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140221104416) do
+ActiveRecord::Schema.define(:version => 20140225124250) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -63,12 +63,13 @@ ActiveRecord::Schema.define(:version => 20140221104416) do
     t.text     "about_restaurant"
     t.boolean  "is_pick_up"
     t.boolean  "is_deliver"
-    t.float    "min_delivery"
-    t.time     "delivery_eta"
+    t.float    "min_delivery",              :default => 0.0
+    t.string   "delivery_eta"
     t.datetime "created_at",                                   :null => false
     t.datetime "updated_at",                                   :null => false
     t.integer  "school_id"
     t.boolean  "is_featured",               :default => false
+    t.float    "delivery_charges",          :default => 0.0
   end
 
   create_table "roles", :force => true do |t|

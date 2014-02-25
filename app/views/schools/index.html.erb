@@ -1,14 +1,4 @@
 <h1>Listing schools</h1>
-  
-<div class="search-form pull-right">
-  <%= form_for "search", :url => schools_path, :method => 'get'  do |f| %>
-    <%= text_field_tag "keyword", nil, :class => "search-keyword"   %>
-    <%= f.submit "search" %>
-  <% end %> 
-  <div class="result">
-  </div>
-</div>
-
 <table>
   <tr>
     <th>School name</th>

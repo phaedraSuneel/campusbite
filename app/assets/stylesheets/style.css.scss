@@ -465,7 +465,6 @@ box-shadow: 0px 7px 5px -2px rgba(87,84,87,1);
 }
 .search-field input{
   height: 75px;
-  width: 98.5%;
   font-size: 24px;
   color: #b0b0b0;
   border: none;
@@ -1369,3 +1368,92 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   .user-result {
     margin-top: 50px;
   }
+
+
+/********** Typeahead css********************/
+  .twitter-typeahead {
+    width: 98.7%;
+  }
+  .twitter-typeahead .tt-query,
+  .twitter-typeahead .tt-hint {
+          margin-bottom: 0px;
+          margin-top: 0px;
+          padding-left: 14px;
+          padding-right: 14px;
+          display: block;
+          width: 100%;
+  }
+
+  .twitter-typeahead .tt-query:focus,
+  .twitter-typeahead .tt-hint:focus {
+          background-color: #fff ! important;
+  }
+  .navbar .search-query, .navbar .tt-hint {
+          width: 200px;
+  }
+
+  .tt-dropdown-menu {
+    width: 100%;
+    margin-top: 2px;
+    padding: 5px 0;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0,0,0,.2);
+    *border-right-width: 2px;
+    *border-bottom-width: 2px;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+            border-radius: 3px;
+    -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+       -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+            box-shadow: 0 5px 10px rgba(0,0,0,.2);
+    -webkit-background-clip: padding-box;
+       -moz-background-clip: padding;
+            background-clip: padding-box;
+    left: 4px !important;        
+  }
+
+  .tt-suggestion {
+    display: block;
+    padding: 3px 20px;
+  }
+
+  .tt-suggestion.tt-is-under-cursor {
+    color: #fff;
+    background-color: #ffd245;
+    background-image: -moz-linear-gradient(top, #ffd245, #ffd245);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+    background-image: -webkit-linear-gradient(top, #ffd245, #ffd245);
+    background-image: -o-linear-gradient(top, #ffd245, #0077b3);
+    background-image: linear-gradient(to bottom, #ffd245, #ffd245);
+    background-repeat: repeat-x;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0)
+  }
+
+  .tt-suggestion.tt-is-under-cursor a {
+    color: #fff;
+  }
+
+  .tt-suggestion p {
+    margin: 0;
+    font-weight: bold;
+    color: black;
+  }
+
+
+.result-page .view-menu a:focus, .result-page .view-menu a:active {
+  background: linear-gradient(to bottom, #57af0a 0%, #79cf33 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+
+.result-page .view-menu a {
+  background: linear-gradient(to bottom, #79cf33 0%, #57af0a 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #919191;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-family: 'bignoodletitlingregular';
+  font-size: 23px;
+  width: 100%;
+  height: 50px;
+  line-height: 50px;
+  margin: 10px 0;
+}
