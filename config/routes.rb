@@ -20,6 +20,12 @@ Ordering::Application.routes.draw do
   resources :menu_categories    
   resources :menu_items
 
+  resources :carts do
+    collection do 
+      get "add_item"
+      get "checkout"
+    end
+  end  
   # The priority is based upon order of creation:
   # first created -> highest priority.
   devise_for :users , :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
@@ -69,6 +75,7 @@ Ordering::Application.routes.draw do
   resources :welcome do 
     collection do 
       get 'result'
+      get 'order'
     end
     member do
       get "menu"

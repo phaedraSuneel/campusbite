@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
   has_many :authentications, :dependent => :destroy
+  has_many :orders, :dependent => :destroy
+  has_one :cart, :dependent => :destroy
 
   before_create :add_default_role
 
@@ -31,5 +33,18 @@ class User < ActiveRecord::Base
 
   def name
     self.first_name + " " + self.last_name
+  end
+
+  def get_cart
+    self.cart ||= self.create_cart
+  end
+
+  def self.get_cart(token,current_user)
+    cart = current_user.get_cart unless current_user.nil?
+    cart = Cart.find_by_token(token) unless token.nil?
+    if cart.nil?
+      cart = Cart.create :token => SecureRandom.urlsafe_base64(nil, false)
+    end
+    return cart
   end
 end

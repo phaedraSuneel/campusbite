@@ -1,7 +1,7 @@
 class WelcomeController < ApplicationController
  
  	def result
- 		unless params.blank?
+ 		unless params[:keyword].blank?
       @search = School.search do
         with(:is_pick_up, params[:is_pick_up]) unless params[:is_pick_up].blank?
         with(:is_deliver, params[:is_deliver]) unless params[:is_deliver].blank?
@@ -19,4 +19,9 @@ class WelcomeController < ApplicationController
  		@restaurant =  Restaurant.find(params[:id])
  		@menu = @restaurant.menu
  	end
+
+  def order
+    
+  end 
+
 end

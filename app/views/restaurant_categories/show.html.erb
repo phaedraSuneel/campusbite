@@ -4,6 +4,9 @@
   <%= @restaurant_category.category_name %>
 </p>
 
-
-<%= link_to 'Edit', edit_school_restaurant_restaurant_category_path(@school,@restaurant,@restaurant_category) %> |
-<%= link_to 'Back', school_restaurant_restaurant_categories_path(@school,@restaurant) %>
+<% if can? :update, RestaurantCategory %>
+	<%= link_to 'Edit', edit_restaurant_category_path(@restaurant_category) %> |
+<% end %>	
+<% if can? :read, RestaurantCategory %>
+	<%= link_to 'Back', restaurant_categories_path %>
+<% end -%>	

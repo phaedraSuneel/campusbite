@@ -82,5 +82,8 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>
-  
+<% if can? :create, RestaurantCategory %>
+  <%= link_to 'Add New Restaurant category', new_restaurant_category_path %>
+<% end %>

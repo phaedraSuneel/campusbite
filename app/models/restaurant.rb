@@ -2,6 +2,7 @@ class Restaurant < ActiveRecord::Base
 
   belongs_to :school
   has_many  :restaurant_categories
+  has_many  :orders, :dependent => :destroy
   has_one :menu, :dependent => :destroy
 
   attr_accessible :about_restaurant, :city, :delivery_eta, :is_deliver, :is_pick_up, :min_delivery, 

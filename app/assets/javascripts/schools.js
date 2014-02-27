@@ -11,4 +11,9 @@ $(document).ready(function(){
   	console.log($(this).parent().parent().parent());
     $(this).parent().parent().parent().submit();
   });
+
+  $(".checkout-btn-link").click(function(){
+    $(".order-form").submit();
+  });
+  
 });

@@ -27,14 +27,17 @@
             <div id="collapse_<%=category.id%>" class="panel-collapse collapse in lunch-collapse-even">
               <div class="panel-body inner-panel">
                 <% category.menu_items.each do |item| %>
-                  <div class="color-odd-pink" >
-                    <div class="content-fries">
-                      <label><%= item.item_name%></label>
-                      <p><%= item.short_description%></p>
+                  <a href="#" class="menu-item-modal" data-toggle="modal" data-target="#menu_item_<%= item.id %>">
+                    <div class="color-odd-pink"> 
+                      <div class="content-fries">
+                        <label><%= item.item_name%></label>
+                        <p><%= item.short_description%></p>
+                      </div>
+                      <div class="rupees-in">$<%= item.price%></div>
+                      <div class="add-button"><button>+</button></div>
                     </div>
-                    <div class="rupees-in">$<%= item.price%></div>
-                    <div class="add-button"><button>+</button></div>
-                  </div>
+                  </a>  
+                  <%= render :partial => "menu_item_popup", :locals => {:item => item } %>
                 <% end %>  
               </div>
             </div>
@@ -43,8 +46,8 @@
         <img class="shadow-image-1" alt="Smiley face" src="/assets/shadow.png" />
       </div>
     <% end %>  
-    
   </div>
+
   <div class="col-md-12 note-line">
     <p>Did you notice a difference? Please report it to us: Click Here</p>
   </div>

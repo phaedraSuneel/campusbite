@@ -1,5 +1,7 @@
 <h1>New restaurant_category</h1>
 
 <%= render 'form' %>
+<% if can? :read, RestaurantCategory %>
+	<%= link_to 'Back', restaurant_categories_path %>
 
-<%= link_to 'Back', school_restaurant_restaurant_categories_path(@school,@restaurant) %>
+<% end %>

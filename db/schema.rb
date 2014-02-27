@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140225124250) do
+ActiveRecord::Schema.define(:version => 20140226131709) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -23,11 +23,34 @@ ActiveRecord::Schema.define(:version => 20140225124250) do
     t.datetime "updated_at",            :null => false
   end
 
+  create_table "cart_menu_items", :force => true do |t|
+    t.integer  "cart_id"
+    t.integer  "menu_item_id"
+    t.integer  "quantity"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "carts", :force => true do |t|
+    t.string   "token"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "menu_categories", :force => true do |t|
     t.string   "category_name"
     t.integer  "menu_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "menu_item_orders", :force => true do |t|
+    t.integer  "menu_item_id"
+    t.integer  "order_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+    t.integer  "quantity"
   end
 
   create_table "menu_items", :force => true do |t|
@@ -37,12 +60,22 @@ ActiveRecord::Schema.define(:version => 20140225124250) do
     t.string   "short_description"
     t.datetime "created_at",        :null => false
     t.datetime "updated_at",        :null => false
+    t.text     "description"
   end
 
   create_table "menus", :force => true do |t|
     t.integer  "restaurant_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "orders", :force => true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "delievery_address"
+    t.string   "order_type"
+    t.string   "request_time"
   end
 
   create_table "restaurant_categories", :force => true do |t|
