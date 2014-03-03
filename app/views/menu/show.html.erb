@@ -18,6 +18,8 @@
                   <% unless category.menu_items.blank? %>
                     <% category.menu_items.each do |item |%>
                       <li><label> <%= item.item_name %> </label> ($<%= item.price %>) 
+                         <% if can? :read, MenuItem %>
+                       (<%= link_to "show" ,[@menu, item] %> | <% end %>
                         <% if can? :delete, MenuItem %>
                        (<%= link_to "delete" ,[@menu, item], :method => :delete, :confirm => "are you 
                        sure?" %> | <% end %>

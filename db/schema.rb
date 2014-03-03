@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140303111002) do
+ActiveRecord::Schema.define(:version => 20140303142408) do
+
+  create_table "addons", :force => true do |t|
+    t.string   "name"
+    t.float    "count"
+    t.integer  "restaurant_id"
+    t.integer  "menu_category_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -89,14 +98,30 @@ ActiveRecord::Schema.define(:version => 20140303111002) do
     t.integer  "quantity"
   end
 
+  create_table "menu_item_properties", :force => true do |t|
+    t.string   "name"
+    t.float    "price"
+    t.integer  "menu_item_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "menu_items", :force => true do |t|
     t.string   "item_name"
     t.integer  "menu_category_id"
     t.float    "price"
     t.string   "short_description"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.text     "description"
+    t.string   "menu_item_type"
+    t.boolean  "addons"
+    t.boolean  "instruction"
+    t.boolean  "popluar_dish"
+    t.boolean  "spicy_dish"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
   create_table "menus", :force => true do |t|

@@ -1,0 +1,29 @@
+<h1>Listing addons</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Count</th>
+    <th>Restuarant</th>
+    <th>Menu category</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @addons.each do |addon| %>
+  <tr>
+    <td><%= addon.name %></td>
+    <td><%= addon.count %></td>
+    <td><%= Restaurant.find(addon.restaurant_id).contact_info.restaurant_name %></td>
+    <td><%= addon.menu_category.category_name %></td>
+    <td><%= link_to 'Show', addon %></td>
+    <td><%= link_to 'Edit', edit_addon_path(addon) %></td>
+    <td><%= link_to 'Destroy', addon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Addon', new_addon_path %>

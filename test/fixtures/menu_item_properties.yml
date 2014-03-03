@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: 
+  price: 1.5
+  menu_item_id: 1
+
+two:
+  name: 
+  price: 1.5
+  menu_item_id: 1

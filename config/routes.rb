@@ -1,12 +1,18 @@
 Ordering::Application.routes.draw do
 
+  resources :addons do
+    collection do 
+      get "category_field"
+    end
+  end  
+
   resources :schools do 
     collection do 
       get "search"
     end  
     resources :restaurants   
   end  
-  resources :restaurants 
+
   
 
   resources :menu do
@@ -18,7 +24,11 @@ Ordering::Application.routes.draw do
   resources :restaurant_categories
   resources :menu
   resources :menu_categories    
-  resources :menu_items
+  resources :menu_items do
+    collection do 
+      get "property_field"
+    end  
+  end 
 
   resources :carts do
     collection do 

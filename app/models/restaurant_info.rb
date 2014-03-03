@@ -14,5 +14,5 @@ class RestaurantInfo < ActiveRecord::Base
                     :default_url => '/assets/default.png'
   accepts_nested_attributes_for :restaurant_opening_closing_times
                     
-  validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/                  
+  validates_attachment_content_type :logo, :content_type => /\Aimage\/.*\Z/
 end

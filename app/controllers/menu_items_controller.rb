@@ -3,22 +3,20 @@ class MenuItemsController < ApplicationController
   def index
     authorize! :read, MenuItem
     @menu = Menu.find(params[:menu_id])
-    @menu_category = @menu.menu_categories
-    @menu_items = @menu_category.menu_items
+    @menu_items = MenuItem.all
   end
 
   def show
     authorize! :read, MenuItem
     @menu = Menu.find(params[:menu_id])
-    @menu_category = @menu.menu_categories.find(params[:menu_category_id])
-    @menu_item = @menu_category.menu_items.find(params[:id])
+    @menu_item = MenuItem.find(params[:id])
   end
 
   def new
     authorize! :create, MenuItem
     @menu = Menu.find(params[:menu_id])
     @menu_category = @menu.menu_categories.all
-    @menu_item = MenuItem.new 
+    @menu_item = MenuItem.new
   end
 
   def edit
@@ -57,4 +55,9 @@ class MenuItemsController < ApplicationController
     flash[:notice] =  'Menu item was successfully delete.'
     redirect_to @menu
   end
+
+  def property_field
+    render(:partial => "/menu_items/get_property_field", :locals => {:length => params[:length].to_i})
+  end
+
 end

@@ -7,19 +7,60 @@
 
 <p>
   <b>Menu category:</b>
-  <%= @menu_item.menu_category_id %>
+  <%= @menu_item.menu_category.category_name %>
+</p>
+<p>
+  <b>Type:</b>
+  <%= @menu_item.menu_item_type %>
 </p>
 
+<p>
+  <b>Addons:</b>
+  <%= @menu_item.addons %>
+</p>
 <p>
   <b>Price:</b>
   <%= @menu_item.price %>
 </p>
 
 <p>
+	<b>Properties </b>
+	<% unless @menu_item.menu_item_properties.blank? %>
+		<% @menu_item.menu_item_properties.each do |property| %>
+			Name : <%= property.name %>    Price : $<%= property.price %>
+		<% end -%>
+	<% end -%>
+
+</p>	
+
+<p>
   <b>Short description:</b>
   <%= @menu_item.short_description %>
 </p>
 
+<p>
+  <b>Special Instructions:</b>
+  <%= @menu_item.instruction %>
+</p>
 
-<%= link_to 'Edit', edit_school_restaurant_menu_menu_category_menu_item_path(@school,@restaurant,@menu,@menu_category,@menu_item) %> |
-<%= link_to 'Back', school_restaurant_menu_index_path(@school, @restaurant) %>
+<p>
+  <b>Description:</b>
+  <%= @menu_item.description %>
+</p>
+
+<p>
+	<b>Photo</b>
+	<%= image_tag(@menu_item.photo(:small)) %>
+</p>
+
+<p>
+  <b>Popular Dish:</b>
+  <%= @menu_item.popluar_dish %>
+</p>
+<p>
+  <b>Spicy Dish:</b>
+  <%= @menu_item.spicy_dish %>
+</p>
+
+<%= link_to 'Edit', edit_menu_menu_item_path(@menu,@menu_item) %> |
+<%= link_to 'Back', menu_path(@menu) %>

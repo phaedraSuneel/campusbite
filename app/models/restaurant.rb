@@ -2,6 +2,7 @@ class Restaurant < ActiveRecord::Base
 
   belongs_to :school
   has_many  :restaurant_categories
+  has_many :addons, :dependent => :destroy
   #has_many  :orders, :dependent => :destroy
   has_one :menu, :dependent => :destroy
   has_one :contact_info, :dependent => :destroy
@@ -20,5 +21,9 @@ class Restaurant < ActiveRecord::Base
 
  	def create_menu
  	  self.build_menu
- 	end 								
+ 	end
+
+  def restaurant_name
+    self.contact_info.restaurant_name
+  end 								
 end
