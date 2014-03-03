@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  email_order: MyString
+  fax_number: 1
+  gprs: false
+  cloud_printer_email: MyString
+  cloud_printer_password: MyString
+  sms_option: 
+  order_pending_alert_ring_tone: false
+  restaurant_id: 1
+
+two:
+  email_order: MyString
+  fax_number: 1
+  gprs: false
+  cloud_printer_email: MyString
+  cloud_printer_password: MyString
+  sms_option: 
+  order_pending_alert_ring_tone: false
+  restaurant_id: 1

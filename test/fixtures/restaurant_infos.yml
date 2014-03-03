@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  about_restaurant: MyText
+  is_pick_up: false
+  is_delivery: false
+  is_featured: false
+  min_order: 1.5
+  restaurant_id: 1
+
+two:
+  about_restaurant: MyText
+  is_pick_up: false
+  is_delivery: false
+  is_featured: false
+  min_order: 1.5
+  restaurant_id: 1

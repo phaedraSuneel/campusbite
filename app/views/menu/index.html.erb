@@ -15,7 +15,7 @@
             </span>  
             <span>
               <% if can? :read, Restaurant %>  
-                <%= link_to Restaurant.find(menu.restaurant.id).restaurant_name, restaurant_path(menu.restaurant.id) %>
+                <%= link_to Restaurant.find(menu.restaurant.id).contact_info.restaurant_name, restaurant_path(menu.restaurant.id) %>
               <% end %>  
             </span>
           </li>

@@ -6,8 +6,8 @@ Ordering::Application.routes.draw do
     end  
     resources :restaurants   
   end  
-
   resources :restaurants 
+  
 
   resources :menu do
     resources :menu_categories 

@@ -2,67 +2,67 @@
   <div class="container">  
     <p>
       <b>Restaurant name:</b>
-      <%= @restaurant.restaurant_name %>
+      <%= @restaurant.contact_info.restaurant_name %>
     </p>
 
     <p>
       <b>Restaurant phone:</b>
-      <%= @restaurant.restaurant_phone %>
+      <%= @restaurant.contact_info.restaurant_phone %>
     </p>
 
     <p>
       <b>Restaurant website:</b>
-      <%= @restaurant.restaurant_website %>
+      <%= @restaurant.contact_info.restaurant_website %>
     </p>
 
     <p>
       <b>Restaurant street address:</b>
-      <%= @restaurant.restaurant_street_address %>
+      <%= @restaurant.contact_info.restaurant_street_address %>
     </p>
 
     <p>
       <b>State:</b>
-      <%= @restaurant.state %>
+      <%= @restaurant.contact_info.state %>
     </p>
 
     <p>
       <b>City:</b>
-      <%= @restaurant.city %>
+      <%= @restaurant.contact_info.city %>
     </p>
 
     <p>
       <b>Zip code:</b>
-      <%= @restaurant.zip_code %>
+      <%= @restaurant.contact_info.zip_code %>
     </p>
 
     <p>
       <b>About restaurant:</b>
-      <%= @restaurant.about_restaurant %>
+      <%= @restaurant.restaurant_info.about_restaurant %>
     </p>
 
     <p>
       <b>Is pick up:</b>
-      <%= @restaurant.is_pick_up %>
+      <%= @restaurant.restaurant_info.is_pick_up %>
     </p>
 
     <p>
       <b>Is deliver:</b>
-      <%= @restaurant.is_deliver %>
+      <%= @restaurant.delivery_info.is_delivery %>
     </p>
 
     <p>
       <b>Min delivery:</b>
-      <%= @restaurant.min_delivery %>
+      <%= @restaurant.restaurant_info.min_order %>
     </p>
 
     <p>
-      <b>Delivery eta:</b>
-      <%= @restaurant.delivery_eta %>
+      <b>Delivery Estimate Time:</b>
+      <%= @restaurant.delivery_info.delivery_estimated_time %>
     </p>
 
     <p>
       <b>Featured:</b>
-      <%= @restaurant.is_featured %>
+      <%= @restaurant.restaurant_info.is_featured %>
     </p>
 
     <p>

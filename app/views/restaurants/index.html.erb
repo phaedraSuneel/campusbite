@@ -10,21 +10,25 @@
       </tr>
       <% @restaurants.each do |restaurant| %>
         <tr>
-          <td><%= restaurant.restaurant_name %></td>
+          <td><%= restaurant.contact_info.restaurant_name %></td>
           <% unless params[:school_id].blank? %>
             <% if can? :read, Restaurant %>
-              <td><%= link_to 'Show', [@school,restaurant] %></td>
-            <% elsif can? :update, Restaurant %>  
+              <td><%= link_to 'Show', [@school,restaurant] %></td> 
+            <% end %>  
+            <% if can? :update, Restaurant %>  
               <td><%= link_to 'Edit', edit_school_restaurant_path(@school,restaurant) %></td>
-            <% elsif can? :delete, Restaurant %>  
+            <% end %>  
+            <% if can? :delete, Restaurant %>  
               <td><%= link_to 'Destroy', [@school,restaurant], method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>  
           <% else %>  
             <% if can? :read, Restaurant %>
               <td><%= link_to 'Show', restaurant %></td>
-            <% elsif can? :update, Restaurant %>   
+            <% end %>  
+            <% if can? :update, Restaurant %>   
               <td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
-            <% elsif can? :delete, Restaurant %>
+            <% end %>  
+            <% if can? :delete, Restaurant %>
               <td><%= link_to 'Destroy', restaurant, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>  
           <% end %>  

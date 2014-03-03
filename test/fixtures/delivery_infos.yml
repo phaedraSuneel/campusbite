@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  delivery: false
+  delivery_estimated_time: MyString
+  delivery_charges: 1.5
+  delivery_distance: 1.5
+
+two:
+  delivery: false
+  delivery_estimated_time: MyString
+  delivery_charges: 1.5
+  delivery_distance: 1.5

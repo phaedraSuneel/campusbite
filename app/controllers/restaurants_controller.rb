@@ -28,6 +28,19 @@ class RestaurantsController < ApplicationController
     else
       @restaurant = Restaurant.new
     end
+    @restaurant.build_contact_info
+    @restaurant.build_delivery_info
+    @restaurant.build_order_info
+    @restaurant.build_bank_info
+    restaurant_info = @restaurant.build_restaurant_info
+    restaurant_info.restaurant_opening_closing_times.build :day => "Monday"
+    restaurant_info.restaurant_opening_closing_times.build :day => "Tuesday"
+    restaurant_info.restaurant_opening_closing_times.build :day => "Wednesday"
+    restaurant_info.restaurant_opening_closing_times.build :day => "Thursday"
+    restaurant_info.restaurant_opening_closing_times.build :day => "Friday"
+    restaurant_info.restaurant_opening_closing_times.build :day => "Saturday"
+    restaurant_info.restaurant_opening_closing_times.build :day => "Sunday"
+    
 
   end
 
@@ -42,11 +55,9 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    p params
     unless params[:school_id].blank?
       @school = School.find(params[:school_id])
       @restaurant = @school.restaurants.build(params[:restaurant])
-      @restaurant.delivery_eta = params[:from_eta] + "-" +  params[:to_eta] + "Minutes" unless params[:from_eta].blank? and params[:to_eta].blank?
       if @restaurant.save
       flash[:notice] = 'Restaurant was successfully created.'
       redirect_to [@school, @restaurant]  

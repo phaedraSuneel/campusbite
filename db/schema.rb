@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140226131709) do
+ActiveRecord::Schema.define(:version => 20140303111002) do
 
   create_table "authentications", :force => true do |t|
     t.string   "provider"
@@ -21,6 +21,16 @@ ActiveRecord::Schema.define(:version => 20140226131709) do
     t.datetime "token_expiration_date"
     t.datetime "created_at",            :null => false
     t.datetime "updated_at",            :null => false
+  end
+
+  create_table "bank_infos", :force => true do |t|
+    t.string   "bank_name"
+    t.string   "bank_account_number"
+    t.string   "routine_number"
+    t.string   "swift_code"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "cart_menu_items", :force => true do |t|
@@ -36,6 +46,32 @@ ActiveRecord::Schema.define(:version => 20140226131709) do
     t.integer  "user_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "contact_infos", :force => true do |t|
+    t.string   "restaurant_name"
+    t.string   "restaurant_phone"
+    t.string   "restaurant_website"
+    t.string   "restaurant_street_address"
+    t.string   "state"
+    t.string   "city"
+    t.integer  "zip_code"
+    t.string   "contact_name"
+    t.integer  "contact_phone"
+    t.string   "contact_email"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+  end
+
+  create_table "delivery_infos", :force => true do |t|
+    t.boolean  "is_delivery"
+    t.string   "delivery_estimated_time"
+    t.float    "delivery_charges"
+    t.float    "delivery_distance"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
   end
 
   create_table "menu_categories", :force => true do |t|
@@ -69,6 +105,19 @@ ActiveRecord::Schema.define(:version => 20140226131709) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "order_infos", :force => true do |t|
+    t.string   "email_order"
+    t.integer  "fax_number"
+    t.boolean  "gprs"
+    t.string   "cloud_printer_email"
+    t.string   "cloud_printer_password"
+    t.boolean  "sms_option"
+    t.boolean  "order_pending_alert_ring_tone"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
     t.datetime "created_at",        :null => false
@@ -85,24 +134,33 @@ ActiveRecord::Schema.define(:version => 20140226131709) do
     t.integer  "restaurant_id"
   end
 
-  create_table "restaurants", :force => true do |t|
-    t.string   "restaurant_name"
-    t.integer  "restaurant_phone"
-    t.string   "restaurant_website"
-    t.string   "restaurant_street_address"
-    t.string   "state"
-    t.string   "city"
-    t.integer  "zip_code"
+  create_table "restaurant_infos", :force => true do |t|
     t.text     "about_restaurant"
     t.boolean  "is_pick_up"
-    t.boolean  "is_deliver"
-    t.float    "min_delivery",              :default => 0.0
-    t.string   "delivery_eta"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.boolean  "is_featured"
+    t.float    "min_order"
+    t.integer  "restaurant_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.float    "sale_tax"
+  end
+
+  create_table "restaurant_opening_closing_times", :force => true do |t|
+    t.time     "opening_time"
+    t.time     "closing_time"
+    t.string   "day"
+    t.integer  "restaurant_info_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
+  create_table "restaurants", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "school_id"
-    t.boolean  "is_featured",               :default => false
-    t.float    "delivery_charges",          :default => 0.0
   end
 
   create_table "roles", :force => true do |t|

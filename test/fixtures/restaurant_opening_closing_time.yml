@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  opening_time: 2014-03-03 12:47:19
+  closing_time: 2014-03-03 12:47:19
+  day: MyString
+  restaurant_info_id: 1
+
+two:
+  opening_time: 2014-03-03 12:47:19
+  closing_time: 2014-03-03 12:47:19
+  day: MyString
+  restaurant_info_id: 1

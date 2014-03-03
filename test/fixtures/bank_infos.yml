@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  bank_name: MyString
+  bank_account_number: MyString
+  routine_number: MyString
+  swift_code: MyString
+  restaurant_id: 1
+
+two:
+  bank_name: MyString
+  bank_account_number: MyString
+  routine_number: MyString
+  swift_code: MyString
+  restaurant_id: 1

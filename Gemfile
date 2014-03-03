@@ -13,6 +13,7 @@ gem 'omniauth-twitter'
 gem "rolify"
 gem 'cancan'
 gem 'simple_form'
+gem 'paperclip', '~> 3.0'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do

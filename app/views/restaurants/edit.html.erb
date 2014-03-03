@@ -4,8 +4,8 @@
 
 		<%= render 'form' %>
 		<% if can? :read, Restaurant %>  
-			<%= link_to 'Show', [@school, @restaurant] %> |
-			<%= link_to 'Back', school_restaurants_path(@school) %>
+			<%= link_to 'Show', @restaurant %> |
+			<%= link_to 'Back', restaurants_path%>
 		<% end %>	
 	</div>
 </div>		
