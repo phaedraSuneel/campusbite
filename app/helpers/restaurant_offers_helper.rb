@@ -1,0 +1,2 @@
+module RestaurantOffersHelper
+end

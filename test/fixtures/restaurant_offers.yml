@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  restuarant_id: 1
+  description: MyString
+  offer_package: 1.5
+  offer_price: 1.5
+  valid_from: 2014-03-04 00:06:02
+  valid_to: 2014-03-04 00:06:02
+
+two:
+  restuarant_id: 1
+  description: MyString
+  offer_package: 1.5
+  offer_price: 1.5
+  valid_from: 2014-03-04 00:06:02
+  valid_to: 2014-03-04 00:06:02

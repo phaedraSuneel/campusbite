@@ -4,7 +4,7 @@
       <div class="comment-main-container">
       <div class="row comment-block odd">
         <div class="col-md-2 comment-images">
-          <% if restaurant.is_featured? %>
+          <% if restaurant.restaurant_info.is_featured? %>
             <button class="feature">Featured</button>
           <% end %>  
           <img class="logo-image" alt="Smiley face" src="/assets/lunch.png" />
@@ -12,11 +12,11 @@
         <div class="col-md-10 menu-block">
           <div class="row">
             <div class="col-md-6 comment-ground">
-              <h2><%= restaurant.restaurant_name %></h2>
-              <p><%= restaurant.restaurant_street_address   %></p>
+              <h2><%= restaurant.contact_info.restaurant_name %></h2>
+              <p><%= restaurant.contact_info.restaurant_street_address   %></p>
             </div>
             <div class="col-md-6 online-orders">
-              <h3>10% off online orders</h3>
+              <h3><%= "#{restaurant.restaurant_offers.first.offer_percentage}" + "%  " + "#{restaurant.restaurant_offers.first.description}" %></h3>
             </div>
           </div>
           <div class="row">
@@ -36,20 +36,20 @@
                 <div class="col-md-2 delivery-field">
                   <label>DELIVERY FEE:</label>
                   <p>
-                    <% if restaurant.delivery_charges == 0.00 %>
+                    <% if restaurant.delivery_info.delivery_charges == 0.00 %>
                       free
                     <% else %>
-                      $<%= restaurant.delivery_charges %>
+                      $<%= restaurant.delivery_info.delivery_charges %>
                     <% end %>  
                   </p>
                 </div>
                 <div class="col-md-2 delivery-field">
                   <label>DELIVERY MIN:</label>
-                  <p>$ <%= restaurant.min_delivery %></p>
+                  <p>$ <%= restaurant.restaurant_info.min_order %></p>
                 </div>
                 <div class="col-md-2 delivery-field">
                   <label>ESTIMATED TIME:</label>
-                  <p><%= restaurant.delivery_eta %></p>
+                  <p><%= restaurant.delivery_info.delivery_estimated_time %></p>
                 </div>
                 <div class="col-md-2 delivery-field">
                   <label>REVIEWS:</label>
@@ -58,7 +58,6 @@
               </div>                        
             </div>
             <div class="col-md-2 view-menu">
-              <!-- <button class="view-button"> VIEW MENU </button> -->
               <%= link_to "VIEW MENU", menu_welcome_path(restaurant), :class => "view-button btn" %>
 
             </div>

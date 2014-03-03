@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140303164512) do
+ActiveRecord::Schema.define(:version => 20140303190602) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -80,6 +80,16 @@ ActiveRecord::Schema.define(:version => 20140303164512) do
     t.datetime "updated_at",                :null => false
   end
 
+  create_table "cuisines", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+  end
+
   create_table "delivery_infos", :force => true do |t|
     t.boolean  "is_delivery"
     t.string   "delivery_estimated_time"
@@ -129,6 +139,7 @@ ActiveRecord::Schema.define(:version => 20140303164512) do
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+    t.integer  "cuisine_id"
   end
 
   create_table "menus", :force => true do |t|
@@ -178,6 +189,17 @@ ActiveRecord::Schema.define(:version => 20140303164512) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.float    "sale_tax"
+  end
+
+  create_table "restaurant_offers", :force => true do |t|
+    t.integer  "restaurant_id"
+    t.string   "description"
+    t.float    "offer_percentage"
+    t.float    "offer_price"
+    t.datetime "valid_from"
+    t.datetime "valid_to"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "restaurant_opening_closing_times", :force => true do |t|

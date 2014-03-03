@@ -32,6 +32,11 @@
   </div> <br>
 
   <div class="field">
+    <%= f.label :cuisine_id, "Menu Cuisine (Not mandatory Field)" %> 
+    <%= f.collection_select :cuisine_id, Cuisine.all,:id,:name , :include_blank => :true%>
+  </div> <br>
+
+  <div class="field">
     <%= f.label :addons, "Addons" %>
     <%= f.label :addons, "Yes", :value => "true"  %>
     <%= f.radio_button :addons, true %>

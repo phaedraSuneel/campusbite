@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Restuarant:</b>
+  <%= Restaurant.find(@restaurant_offer.restaurant_id).contact_info.restaurant_name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @restaurant_offer.description %>
+</p>
+
+<p>
+  <b>Offer package:</b>
+  <%= @restaurant_offer.offer_percentage %>
+</p>
+
+<p>
+  <b>Offer price:</b>
+  <%= @restaurant_offer.offer_price %>
+</p>
+
+<p>
+  <b>Valid from:</b>
+  <%= @restaurant_offer.valid_from %>
+</p>
+
+<p>
+  <b>Valid to:</b>
+  <%= @restaurant_offer.valid_to %>
+</p>
+
+
+<%= link_to 'Edit', edit_restaurant_offer_path(@restaurant_offer) %> |
+<%= link_to 'Back', restaurant_offers_path %>

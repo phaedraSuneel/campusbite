@@ -1,13 +1,14 @@
 class MenuItem < ActiveRecord::Base
 
   belongs_to :menu_category
+  belongs_to :cuisine
   has_many :orders, through: :menu_item_orders
   has_many :carts, through: :cart_menu_items
   has_many :cart_menu_items
   has_many :menu_item_orders
   has_many :menu_item_properties, :dependent => :destroy
   
-  attr_accessible :item_name, :menu_category_id, :price, :short_description, :description, :menu_item_type, :addons, :instruction, :popluar_dish, :spicy_dish, :photo, :menu_item_properties_attributes
+  attr_accessible :item_name, :menu_category_id, :price, :short_description, :description, :menu_item_type, :addons, :instruction, :popluar_dish, :spicy_dish, :photo, :menu_item_properties_attributes, :cuisine_id
   has_attached_file :photo,
                     :styles => {
                         :thumb => "75x75#",

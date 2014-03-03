@@ -1,0 +1,41 @@
+<%= form_for(@restaurant_offer) do |f| %>
+  <% if @restaurant_offer.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@restaurant_offer.errors.count, "error") %> prohibited this restaurant_offer from being saved:</h2>
+
+      <ul>
+      <% @restaurant_offer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field restaurant_selector">
+    <%= f.label :restaurant_id, "Restaurant" %> 
+    <%= f.collection_select :restaurant_id, Restaurant.all,:id,:restaurant_name%>
+  </div>
+  <div class="field">
+    <%= f.label :description %><br />
+    <%= f.text_field :description %>
+  </div>
+  <div class="field">
+    <%= f.label :offer_percentage %><br />
+    <%= f.text_field :offer_percentage %>
+  </div>
+  <div class="field">
+    <%= f.label :offer_price %><br />
+    <%= f.text_field :offer_price %>
+  </div>
+  <div class="field">
+    <%= f.label :valid_from %><br />
+    <%= f.date_select :valid_from %>
+  </div>
+  <div class="field">
+    <%= f.label :valid_to %><br />
+    <%= f.date_select :valid_to %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

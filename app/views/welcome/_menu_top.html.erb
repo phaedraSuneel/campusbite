@@ -17,10 +17,10 @@
         <div class="row">
           <div class="col-md-6 comment-ground">
             <h2><%= @restaurant.restaurant_name%></h2>
-            <p><%= @restaurant.restaurant_street_address%></p>
+            <p><%= @restaurant.contact_info.restaurant_street_address%></p>
           </div>
           <div class="col-md-6 online-orders">
-            <h3>10% off online orders</h3>
+            <h3><%= "#{@restaurant.restaurant_offers.first.offer_percentage}" + "%  " + "#{@restaurant.restaurant_offers.first.description}" %></h3>
           </div>
         </div>
         <div class="row">
@@ -40,24 +40,24 @@
               <div class="col-md-2 delivery-field">
                 <label>DELIVERY FEE:</label>
                 <p>
-                  <% if @restaurant.delivery_charges == 0.00 %>
+                  <% if @restaurant.delivery_info.delivery_charges == 0.00 %>
                     free
                   <% else %>
-                    $<%= @restaurant.delivery_charges %>
+                    $<%= @restaurant.delivery_info.delivery_charges %>
                   <% end %> 
                 </p>
               </div>
               <div class="col-md-2 delivery-field">
                 <label>DELIVERY MIN:</label>
-                <p>$ <%= @restaurant.min_delivery %></p>
+                <p>$ <%= @restaurant.restaurant_info.min_order %></p>
               </div>
               <div class="col-md-2 delivery-field">
                 <label>ESTIMATED TIME:</label>
-                <p><%= @restaurant.delivery_eta %></p>
+                <p><%= @restaurant.delivery_info.delivery_estimated_time %></p>
               </div>
               <div class="col-md-2 delivery-field">
-                <label class="del-yes">DELIVERY:</label><a class="yes-no" href="#"><%= @restaurant.is_deliver ? "Yes" : "No"%></a>
-                <label class="pic-no">PICKUP:</label><a class="yes-no" href="#"><%= @restaurant.is_pick_up ? "Yes" : "No" %></a>   
+                <label class="del-yes">DELIVERY:</label><a class="yes-no" href="#"><%= @restaurant.delivery_info.is_delivery ? "Yes" : "No"%></a>
+                <label class="pic-no">PICKUP:</label><a class="yes-no" href="#"><%= @restaurant.restaurant_info.is_pick_up ? "Yes" : "No" %></a>   
               </div>
             </div>                        
           </div>

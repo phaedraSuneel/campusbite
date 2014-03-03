@@ -1,5 +1,11 @@
 Ordering::Application.routes.draw do
 
+  resources :restaurant_offers
+
+
+  resources :cuisines
+
+
   resources :addons do
     collection do 
       get "category_field"
