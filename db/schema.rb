@@ -11,7 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140303142408) do
+ActiveRecord::Schema.define(:version => 20140303164512) do
+
+  create_table "addon_subcategories", :force => true do |t|
+    t.string   "name"
+    t.integer  "addon_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "addons", :force => true do |t|
     t.string   "name"

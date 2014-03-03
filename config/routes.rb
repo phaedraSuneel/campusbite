@@ -3,6 +3,7 @@ Ordering::Application.routes.draw do
   resources :addons do
     collection do 
       get "category_field"
+      get "sub_addon_field"
     end
   end  
 

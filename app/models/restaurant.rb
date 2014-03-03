@@ -16,7 +16,6 @@ class Restaurant < ActiveRecord::Base
   accepts_nested_attributes_for :contact_info, :restaurant_info, :delivery_info, :order_info, :bank_info
 
   before_save :create_menu
- 	
 
 
  	def create_menu

@@ -25,7 +25,6 @@ class AddonsController < ApplicationController
   # GET /addons/new.json
   def new
     @addon = Addon.new
-    @addon.build_menu_category
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @addon }
@@ -86,5 +85,9 @@ class AddonsController < ApplicationController
     @menu = @restaurant.menu
     @menu_categories = @menu.menu_categories
     render(:partial => "/addons/get_category_field", :locals => {:@menu_categories => @menu_categories })
+  end
+
+  def sub_addon_field
+    render(:partial => "/addons/get_sub_addon_field", :locals => {:length => params[:length].to_i }, :layout => false)
   end
 end

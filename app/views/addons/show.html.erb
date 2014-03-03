@@ -20,6 +20,17 @@
   <%= @addon.menu_category.category_name %>
 </p>
 
+<p>
+	<b> Sub Addons </b>
+	<ul>
+		<% if !@addon.addon_subcategories.blank? %>
+			<% @addon.addon_subcategories.each do |sub_add| %>
+				<li> <%= sub_add.name %></li>
+			<% end %>
+		<% end %>
+	</ul>
+</p>
+
 
 <%= link_to 'Edit', edit_addon_path(@addon) %> |
 <%= link_to 'Back', addons_path %>

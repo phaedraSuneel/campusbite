@@ -26,7 +26,19 @@
     <%= f.label :count %><br />
     <%= f.text_field :count %>
   </div>
-  
+
+  <%= link_to "Add Sub-Addon", '#', :remote => true , :class => "add_sub_addon" %>
+
+    
+  <div class="field sub-addon">
+    <label class="Add-on-label hide"> Add Sub Addons</label>
+    <% if !@addon.addon_subcategories.blank? %>
+      <%= f.fields_for :addon_subcategories do |f|%>
+        <%= f.text_field :name %>
+      <% end %>
+    <% end %>
+  </div>  
+
   <div class="actions">
     <%= f.submit %>
   </div>
