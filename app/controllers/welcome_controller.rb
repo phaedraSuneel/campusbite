@@ -2,14 +2,7 @@ class WelcomeController < ApplicationController
  
  	def result
  		unless params[:keyword].blank?
-      @search = School.search do
-        with(:is_pick_up, params[:is_pick_up]) unless params[:is_pick_up].blank?
-        with(:is_deliver, params[:is_deliver]) unless params[:is_deliver].blank?
-        fulltext params[:keyword] do 
-          fields(:school_name)
-        end
-      end  
-      @schools = @search.results
+      @schools = School.search(params[:keyword])
     else
       @schools = School.all
     end 

@@ -26,11 +26,11 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
+
+
 gem 'jquery-rails'
 
-gem 'sunspot_rails', '2.0.0'  
-gem 'sunspot_solr', '2.0.0'
-
+gem 'thinking-sphinx', '3.1.0'
 gem 'progress_bar'
 
 # To use ActiveModel has_secure_password
