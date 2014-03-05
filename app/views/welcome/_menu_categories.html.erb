@@ -138,7 +138,7 @@
     </div>
     <div class="row collapse-container writing-container tab-pane" id= "reviews">
       <div class="col-md-4 col-md-offset-4">
-        <button class="review-btn-1 ">write a review</button>
+        <button class="review-btn-1 " data-toggle="modal" data-target="#myModal">write a review</button>
       </div>
       <div class="col-md-12 star-container">
         <div class="border-arround-star">
@@ -263,6 +263,56 @@
           <li><a href="#">next</a></li>
         </ul>
       </div>
+
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header error-title">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel">Your Review</h4>
+            </div>
+            <div class="modal-body modal-body-container">
+              <div class="name-field-container">
+                <div class="row res-name-field">
+                  <div class="col-md-4 col-md-offset-4 name-restarant">
+                    <h4>Rating:</h4>
+                    <ul class="big-star-line">
+                      <li><a href="#">this</a></li>
+                      <li><a href="#">this</a></li>
+                      <li><a href="#">this</a></li>
+                      <li><a href="#">this</a></li>
+                      <li><a href="#">this</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <img class="shadow-modal-img" alt="Smiley face" src="/assets/shadow.png" />
+              </div>
+              <div class="name-field-container">
+                <div class="row res-name-field">
+                  <div class="col-md-12 col-md-offset-0 name-restarant">
+                    <h4>About You (Optional):</h4>
+                    <input type="email" class="form-control your-mail" id="exampleInputEmail2" placeholder="your name">
+                    <input type="email" class="form-control school-name" id="exampleInputEmail2" placeholder="school Name">
+                  </div>
+                </div>
+                <img class="shadow-modal-img" alt="Smiley face" src="/assets/shadow.png" />
+              </div>
+              <div class="name-field-container">
+                <div class="row res-name-field">
+                  <div class="col-md-12 name-restarant">
+                    <h4>Let Us Know Your Experience With This Restaurant:</h4>
+                    <textarea class="area-text"></textarea>
+                  </div>
+                </div>
+                <img class="shadow-modal-img" alt="Smiley face" src="/assets/shadow.png" />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary submit-md">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div> 
     </div>
     <div class="row collapse-container writing-container tab-pane" id= "coupons">
       <div class="col-md-12 coupon-container">
