@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+  $('#restaurant-tab').tab();
 	$(".add_more_property_link").click(function(e){
 		e.preventDefault();
 		parent = $(this).parent().parent().find(".property-field");

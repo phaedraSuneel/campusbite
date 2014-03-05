@@ -1693,3 +1693,273 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     float: left;
     width: 100%;
   }
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<informatin>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+.info-page .border-arround-info {
+  background-color: #FFFFFF;
+  border: 1px solid #EAC689;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-top: 25px;
+}
+.info-page .border-arround-info p.steakhouse{
+  margin: 0px;
+}
+.info-page .border-arround-info p.steakhouse-center{
+  margin: 0px;
+  text-align: center;
+}
+.info-page .border-arround-info p.steakhouse-center label{
+  font-weight: 'PT Sans';
+  font-size: 18px;
+  color: #fd5227;
+  font-weight: bold;
+}
+.info-page .border-arround-info label.contenr-head{
+  color: #52a902;
+  font-family: 'PT Sans';
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0px;
+}
+.info-page .border-arround-info span.content-info{
+  color: #000;
+  font-family: 'PT Sans';
+  font-size: 14px;
+  font-weight: normal;
+  margin-left: 5px;
+}
+.info-page .hours-operation{
+  border: 1px solid #eac689;
+  float: left;
+  width: 100%;
+  border-radius: 5px;
+  text-align: center;
+}
+.info-page .hours-operation img.info-shadow{
+  opacity: 0.7;
+  position: relative;
+  top: -10px;
+  width: 100%;
+}
+.info-page .hours-operation h6{
+  color: #fd5227;
+  font-size: 18px;
+  font-family: 'PT Sans';
+  margin-bottom: 0px;
+  font-weight: bold;
+}
+.info-page .day-items{
+  background-color: #ececec;
+  float: left;
+  width: 100%;
+}
+.info-page .day-items-odd{
+  background: #FFF;
+}
+.info-page .arround-info{
+  text-align: center;
+  padding: 0px !important;
+  float: left;
+  width: 100%;
+}
+.info-page .day-items label.days-head{
+  color: #52a902;
+  font-size: 16px;
+  font-family: 'PT Sans';
+  float: left;
+  width: 30%;
+}
+.info-page .day-items span.dash-word{
+  float: left;
+  width: 10%;
+  color: #fd5227;
+  font-size: 20px;
+  font-family: 'PT Sans';
+  font-weight: bold;
+}
+.info-page .day-items span.closing{
+  float: left;
+  width: 30%;
+  color: #000;
+  font-size: 16px;
+  font-family: 'PT Sans';
+}
+.info-page .arround-info  .pickup-head{
+  color: #52a902;
+  font-size: 16px;
+  font-family: 'PT Sans';
+  font-weight: bold;
+}
+.info-page .mapping-container{
+  text-align: center;
+}
+.info-page .mapping-container label{
+  color: #FD5227;
+  font-family: 'PT Sans';
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 0;
+  margin-top: 15px;
+}
+.info-page .mapping-container img{
+  width: 100%;
+  margin: 10px 0px;
+}
+.info-page .mapping-container a{
+  color: #52a902;
+  font-family: 'PT Sans';
+  font-size: 18px;
+  margin-bottom: 0;
+  float: right;
+}
+
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Coupon-page>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.coupon-container img.coupon{
+  width: 100%;
+  margin-top: 25px;
+}
+.Print-Coupon{
+  text-align: right;
+}
+.Print-Coupon a{
+  font-size: 16px;
+  font-family: 'PT Sans';
+  color: #3f7f05;
+  font-weight: bold;
+}  
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Review>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.review-page .writing-container{
+  margin-bottom: 50px;
+}
+.review-page .writing-container .review-btn-1{
+  background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #919191;
+  border-radius: 3px;
+  color: #fff;
+  font-family: 'bignoodletitlingregular';
+  font-size: 40px;
+  text-transform: uppercase;
+  text-align: center;
+  height: 50px;
+  line-height: 62px;
+  margin: 25px 0px;
+  width: 100%;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+.review-page .writing-container .review-btn-1:hover{
+  background: linear-gradient(to bottom, #57AF0A 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.review-page .writing-container .review-btn-1:active{
+  background: linear-gradient(to bottom, #57AF0A 0%, #79CF33 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.review-page .border-arround-star{
+  border: 1px solid #eac689;
+  border-radius: 5px;
+  background-color: #fff;
+  padding: 22px;
+  text-align: center;
+  position: relative;
+
+}
+.review-page .border-arround-star p{
+  text-align: center;
+  font-size: 14px;
+  font-family: 'PT Sans';
+  color: #555;
+  border-top: 1px solid #eac689;
+  padding: 15px 0px;
+  margin: 0px;
+}
+.review-page .border-arround-star label{
+  font-family: 'PT Sans';
+  color: #fd4c23;
+  font-weight: normal;
+}
+.review-page .star-container img.star-block-shadow{
+  position: relative;
+  top: -7px;
+  width: 100%;
+  opacity: 0.7;
+}
+/*.review-page .stars-images{
+  background: url("../images/Review-stars.png") no-repeat;
+  height: 20px;
+  left: 40%;
+  right: 40%;
+  position: absolute;
+  top: 10px;
+  width: 100%;
+}*/
+.review-page .pagination-container ul.pagination{
+  margin-top: 0px !important;
+}
+.review-page .pagination-container ul.pagination li a{
+  background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #919191;
+  border-radius: 3px;
+  color: #fff;
+  font-family: 'PT Sans';
+  font-weight: bold;
+  font-size: 12px;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+  margin-right: 3px;
+  margin-top: 5px;
+}
+.review-page .pagination-container ul.pagination li a:hover{
+  background: linear-gradient(to bottom, #57AF0A 0%, #57AF0A 100%);
+}
+.review-page .pagination-container ul.pagination li a:active{
+  background: linear-gradient(to bottom, #f4dfbb 0%, #f4dfbb 100%);
+  color: #fd603c;
+}
+.review-page .stars-line-container ul.star-line{
+  background-color: #FFFFFF;
+  float: left;
+  height: 20px;
+  left: 40%;
+  margin: 0;
+  padding: 0 15px;
+  position: absolute;
+  text-align: center;
+  top: 14px;
+}
+.review-page .stars-line-container ul.star-line li{
+  background: url("../images/star-gb.png") no-repeat;
+  height: 15px;
+  width: 13px;
+  text-indent: -9999px;
+  float: left;
+  list-style: none;
+  margin-right: 4px;
+}
+.review-page .stars-line-container ul.star-line li:hover{
+  background: url("../images/star-gb.png") no-repeat;
+  background-position: -14px;
+}
+.big-star-line {
+  float: left;
+  padding: 0px;
+}
+.big-star-line li{
+  background: url("../images/bigstar.png") no-repeat;
+  float: left;
+  list-style: none;
+  margin-left: 5px;
+  height: 26px;
+  width: 26px;
+  text-indent: -9999px;
+}
+.big-star-line li:hover{
+  background: url("../images/bigstar.png") no-repeat;
+  background-position: -37px;
+}
+.star-block-shadow
+{
+  width: 100%;
+}

@@ -5,8 +5,10 @@
   <div class="main-search-bar">
     <%= form_for "search", :url => result_welcome_index_path, :method => 'get'  do |f| %>
       <div class="search-botton">
-        <div class="delivery"><%= check_box_tag :is_deliver, true %>DELIVERY</div>
-        <div class="pickup"><%= check_box_tag :is_pick_up, true %>PICKUP</div>
+        <div class="delivery"><%= check_box_tag :is_delivery, true%>DELIVERY
+        </div>
+        <div class="pickup"><%= check_box_tag :is_pick_up, true  %>PICKUP 
+        </div>
       </div>
       <div class="search-field">
         <input type="text" name = "keyword",  placeholder="School Name or Campus", class = "search-keyword", value = <%= params[:keyword] %> >
