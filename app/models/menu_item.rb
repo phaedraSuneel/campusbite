@@ -21,4 +21,9 @@ class MenuItem < ActiveRecord::Base
               
   accepts_nested_attributes_for :menu_item_properties
 
+
+  def restaurant
+     self.menu_category.menu.restaurant
+  end 
+
 end

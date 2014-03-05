@@ -1,19 +1,24 @@
 class CartsController < ApplicationController
 
   def add_item
-    p params
-    @cart = User.get_cart(cookies[:cart_token],current_user)
-    cookies[:cart_token] = @cart.token
-
-    @cart_menu_item = @cart.cart_menu_items.new(params[:cart])
-    
-    if @cart_menu_item.save
-        flash[:notice] = 'Item was successfully added to cart.'
+    menu_item = MenuItem.find(params[:cart][:menu_item_id])
+    restaurant = menu_item.restaurant
+    if restaurant.open? 
+      @cart = User.get_cart(cookies[:cart_token],current_user)
+      cookies[:cart_token] = @cart.token
+      @cart_menu_item = @cart.cart_menu_items.new(params[:cart])
+      if @cart_menu_item.save
+          flash[:notice] = 'Item was successfully added to cart.'
+          redirect_to :back
+      else
+        flash[:notice] = 'Something going wrong  to add item into cart.'
         redirect_to :back
+      end
     else
-      flash[:notice] = 'Something going wrong  to add item into cart.'
+      flash[:notice] = 'This Restaurant is closed now so you couldnot order'
       redirect_to :back
     end
+
   end
 
   def checkout

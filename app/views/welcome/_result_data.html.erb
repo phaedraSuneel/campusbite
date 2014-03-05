@@ -16,14 +16,26 @@
               <p><%= restaurant.contact_info.restaurant_street_address   %></p>
             </div>
             <div class="col-md-6 online-orders">
-              <h3><%= "#{restaurant.restaurant_offers.first.offer_percentage}" + "%  " + "#{restaurant.restaurant_offers.first.description}" %></h3>
+              <% if !restaurant.offer.blank? %>
+                <h3><%= "#{restaurant.offer.offer_percentage}" + "%  " + "#{restaurant.offer.description}" %></h3>
+              <% end -%>  
             </div>
+            <% if restaurant.phone_oreder? %>
+              <div class="col-md-6 online-orders-gray">
+                <h3>PHONE ORDERS ONLY</h3>
+              </div>
+            <% end %>
           </div>
           <div class="row">
             <div class="col-md-10 food-block">
               <div class="row delivery-block">
                 <div class="col-md-2 delivery-field-img">
-                  <img class="open" alt="Smiley face" src="/assets/open.png" />
+                  <% if restaurant.open? %>
+                    <img class="open" alt="Smiley face" src="/assets/open.png" />
+                  <% else %>  
+                    <img class="open" alt="Smiley face" src="/assets/close.png" />
+                    <span class="open-time"> Opens at <%= restaurant.opening_time %></span>
+                  <% end %>
                 </div>
                 <div class="col-md-2 delivery-field">
                   <label>TYPE OF FOOD:</label>
@@ -58,7 +70,11 @@
               </div>                        
             </div>
             <div class="col-md-2 view-menu">
-              <%= link_to "VIEW MENU", menu_welcome_path(restaurant), :class => "view-button btn" %>
+              <% if restaurant.open? and !restaurant.phone_oreder? %>
+                <%= link_to "VIEW MENU", menu_welcome_path(restaurant), :class => "view-button btn" %>
+              <% else %>  
+                <%= link_to "VIEW MENU", menu_welcome_path(restaurant), :class => "view-button-red btn" %>
+              <% end %>
 
             </div>
           </div>

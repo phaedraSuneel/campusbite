@@ -27,7 +27,11 @@ Ordering::Application.routes.draw do
     resources :menu_items
   end
 
-  resources :restaurants
+  resources :restaurants do
+    member do 
+      get 'add_favorite'
+    end
+  end 
   resources :restaurant_categories
   resources :menu
   resources :menu_categories    

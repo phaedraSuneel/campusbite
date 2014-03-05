@@ -20,14 +20,21 @@
             <p><%= @restaurant.contact_info.restaurant_street_address%></p>
           </div>
           <div class="col-md-6 online-orders">
-            <h3><%= "#{@restaurant.restaurant_offers.first.offer_percentage}" + "%  " + "#{@restaurant.restaurant_offers.first.description}" %></h3>
-          </div>
+              <% if !@restaurant.offer.blank? %>
+                <h3><%= "#{@restaurant.offer.offer_percentage}" + "%  " + "#{@restaurant.offer.description}" %></h3>
+              <% end -%>  
+            </div>
         </div>
         <div class="row">
           <div class="col-md-9 food-block">
             <div class="row delivery-block">
               <div class="col-md-2 delivery-field-img">
-                <img class="open" alt="Smiley face" src="/assets/open.png" />
+               <% if @restaurant.open? %>
+                    <img class="open" alt="Smiley face" src="/assets/open.png" />
+                  <% else %>  
+                    <img class="open" alt="Smiley face" src="/assets/close.png" />
+                    <span class="open-time"> Opens at <%= @restaurant.opening_time %></span>
+                  <% end %>
               </div>
               <div class="col-md-2 delivery-field">
                 <label>TYPE OF FOOD:</label>
@@ -62,7 +69,7 @@
             </div>                        
           </div>
           <div class="col-md-3 view-menu">
-            <button class="view-button">+ Add to favorites</button>
+            <%= link_to "+ Add to favorites", add_favorite_restaurant_path(@restaurant), :class => "btn view-button" %>
           </div>
         </div>
       </div>
