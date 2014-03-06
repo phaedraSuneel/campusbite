@@ -1,0 +1,88 @@
+<div class="col-md-12 star-container">
+  <div class="border-arround-info">
+    <p class="steakhouse-center"><label><%= @restaurant.restaurant_name %></label></p>
+    <p class="steakhouse"><label class="contenr-head">About Us:</label><span class="content-info"><%= @restaurant.restaurant_info.about_restaurant %> </span></p>
+    <p class="steakhouse"><label class="contenr-head">Address: </label><span class="content-info"><%= @restaurant.contact_info.restaurant_street_address %></span></p>
+    <p class="steakhouse"><label class="contenr-head">Telephone:</label><span class="content-info"> <%= @restaurant.contact_info.restaurant_phone %></span></p>
+    <p class="steakhouse"><label class="contenr-head">Type of Food:</label>
+      <span class="content-info"> 
+        <% @restaurant.restaurant_categories.each do |category| %>
+          <%= category.category_name %>
+        <% end %> 
+      </span>
+    </p> 
+    <p class="steakhouse"><label class="contenr-head">Delivery Fee: </label><span class="content-info">
+      <% if @restaurant.delivery_info.delivery_charges == 0.00 %>
+        free
+      <% else %>
+        $<%= @restaurant.delivery_info.delivery_charges %>
+      <% end %>
+    </span></p> 
+    <p class="steakhouse"><label class="contenr-head">Delivery Minimum:</label><span class="content-info">$ <%= @restaurant.restaurant_info.min_order %></span></p> 
+    <p class="steakhouse"><label class="contenr-head">Estimated Time:</label><span class="content-info"> <%= @restaurant.delivery_info.delivery_estimated_time %></span></p> 
+    <p class="steakhouse"><label class="contenr-head">Delivery:</label><span class="content-info"><%= @restaurant.delivery_info.is_delivery ? "Yes" : "No"%></span></p>
+    <p class="steakhouse"><label class="contenr-head">Pickup:</label><span class="content-info"><%= @restaurant.restaurant_info.is_pick_up ? "Yes" : "No" %></span></p>  
+    <p class="steakhouse"><label class="contenr-head">Delivery Area:</label><span class="content-info">Biola University,Hempstead</span></p>
+  </div>
+  <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
+</div>
+<div class="col-md-12">
+  <div class="hours-operation ">
+    <h6>Hours of Operation</h6>
+    <div class="col-md-6 star-container">
+      <div class="border-arround-info arround-info ">
+        <label class="pickup-head">Pickup</label>
+        <div class="day-items day-items-even">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+        <div class="day-items day-items-odd">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+        <div class="day-items day-items-even">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+        <div class="day-items day-items-odd">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+        <div class="day-items day-items-even">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+        <div class="day-items day-items-odd">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+      </div>
+      <img class="info-shadow" src="/assets/shadow.png" alt="Smiley face">
+    </div>
+    <div class="col-md-6 star-container">
+      <div class="border-arround-info arround-info ">
+        <label class="pickup-head">Pickup</label>
+        <div class="day-items day-items-even">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+        <div class="day-items day-items-odd">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+        <div class="day-items day-items-even">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+        <div class="day-items day-items-odd">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+        <div class="day-items day-items-even">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+        <div class="day-items day-items-odd">
+          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
+        </div>
+      </div>
+      <img class="info-shadow" src="/assets/shadow.png" alt="Smiley face" />
+    </div>
+  </div>
+</div>
+<div class="col-md-12 mapping-container">
+  <label>Map</label>
+
+  <%= image_tag(@restaurant.contact_info.map_photo(:large) , class: "info-shadow", :alt => "Smiley face" ) %>
+
+  <a href="#">Get Directions</a>
+</div>

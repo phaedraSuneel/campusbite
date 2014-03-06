@@ -66,4 +66,12 @@ $(document).ready(function(){
     });
   });
 
+  $(".quantity-field").change(function(){ 
+      quantity =  parseInt($(this).val());
+      price = ($(this).parent().parent().parent().find("span").data("price"));
+      new_price = price * quantity; 
+      text =  "$" + new_price 
+      $(this).parent().parent().parent().find("span").text(text);
+  });
+
 });
