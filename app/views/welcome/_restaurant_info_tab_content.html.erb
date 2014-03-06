@@ -32,48 +32,22 @@
     <div class="col-md-6 star-container">
       <div class="border-arround-info arround-info ">
         <label class="pickup-head">Pickup</label>
-        <div class="day-items day-items-even">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
-        <div class="day-items day-items-odd">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
-        <div class="day-items day-items-even">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
-        <div class="day-items day-items-odd">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
-        <div class="day-items day-items-even">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
-        <div class="day-items day-items-odd">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
+        <% @restaurant.pick_up.sechedules.each_with_index do |sechedule, index |%>
+          <div class="day-items <%= index%2 == 0 ? 'day-items-even' : 'day-items-odd' %>">
+            <label class="days-head"><%= sechedule.day %></label><span class="closing"><%= sechedule.opening_time.strftime("%I:%M%p")%></span><span class="dash-word">-</span><span class="closing"><%= sechedule.opening_time.strftime("%I:%M%p") %></span>
+          </div>
+        <% end %>  
       </div>
       <img class="info-shadow" src="/assets/shadow.png" alt="Smiley face">
     </div>
     <div class="col-md-6 star-container">
       <div class="border-arround-info arround-info ">
-        <label class="pickup-head">Pickup</label>
-        <div class="day-items day-items-even">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
-        <div class="day-items day-items-odd">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
-        <div class="day-items day-items-even">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
-        <div class="day-items day-items-odd">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
-        <div class="day-items day-items-even">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
-        <div class="day-items day-items-odd">
-          <label class="days-head">Sunday</label><span class="closing">Cloesed</span><span class="dash-word">-</span><span class="closing">Cloesed</span>
-        </div>
+        <label class="pickup-head">Delivery</label>
+          <% @restaurant.delivery.sechedules.each_with_index do |sechedule, index |%>
+          <div class="day-items <%= index%2 == 0 ? 'day-items-even' : 'day-items-odd' %>">
+            <label class="days-head"><%= sechedule.day %></label><span class="closing"><%= sechedule.opening_time.strftime("%I:%M%p")%></span><span class="dash-word">-</span><span class="closing"><%= sechedule.opening_time.strftime("%I:%M%p") %></span>
+          </div>
+        <% end %>
       </div>
       <img class="info-shadow" src="/assets/shadow.png" alt="Smiley face" />
     </div>

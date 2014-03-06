@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140306103649) do
+ActiveRecord::Schema.define(:version => 20140306121313) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -95,6 +95,12 @@ ActiveRecord::Schema.define(:version => 20140306103649) do
     t.integer  "photo_file_size"
   end
 
+  create_table "deliveries", :force => true do |t|
+    t.integer  "restaurant_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "delivery_infos", :force => true do |t|
     t.boolean  "is_delivery"
     t.string   "delivery_estimated_time"
@@ -160,6 +166,12 @@ ActiveRecord::Schema.define(:version => 20140306103649) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "operations", :force => true do |t|
+    t.integer  "restaurant_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "order_infos", :force => true do |t|
     t.string   "email_order"
     t.integer  "fax_number"
@@ -180,6 +192,12 @@ ActiveRecord::Schema.define(:version => 20140306103649) do
     t.string   "delievery_address"
     t.string   "order_type"
     t.string   "request_time"
+  end
+
+  create_table "pick_ups", :force => true do |t|
+    t.integer  "restaurant_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "restaurant_categories", :force => true do |t|
@@ -246,6 +264,16 @@ ActiveRecord::Schema.define(:version => 20140306103649) do
     t.string   "branch_name"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "sechedules", :force => true do |t|
+    t.string   "day"
+    t.time     "opening_time"
+    t.time     "closing_time"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "sechedulable_id"
+    t.string   "sechedulable_type"
   end
 
   create_table "users", :force => true do |t|

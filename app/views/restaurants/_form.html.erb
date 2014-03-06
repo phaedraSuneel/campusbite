@@ -87,21 +87,7 @@
       <%= f.radio_button :is_featured, false, :checked => true %>
     </div>
     
-    <label> Opening & Closing Time </label>
-    <%= f.fields_for :restaurant_opening_closing_times do |f| %>
-      <div class="field">
-        <%= f.label :day %><br />
-        <%= f.text_field :day,  :readonly => true%>
-      </div>
-      <div class="field">
-        <%= f.label :opening_time %><br />
-        <%= f.time_select :opening_time, {:ampm => true } %>
-      </div>
-      <div class="field">
-        <%= f.label :closing_time %><br />
-        <%= f.time_select :closing_time, {:ampm => true} %>
-      </div> 
-    <% end %>
+    
 
     <div class="field">
       <%= f.label :min_order %><br />
@@ -203,7 +189,67 @@
     </div>
 
   <% end -%>
-
+  <br >
+  <div class="row">
+    <div class="col-md-4">
+      <label> Restaurant Opening & Closing Time </label>
+      
+      <%= f.fields_for :operation do |f| %>
+        <%= f.fields_for :sechedules do |f| %>
+          <div class="field">
+            <%= f.label :day %>
+            <%= f.text_field :day,  :readonly => true%>
+          </div>
+          <div class="field">
+            <%= f.label :opening_time %>
+            <%= f.time_select :opening_time, {:ampm => true } %>
+          </div>
+          <div class="field">
+            <%= f.label :closing_time %>
+            <%= f.time_select :closing_time, {:ampm => true} %>
+          </div> 
+        <% end %>  
+      <% end %>
+    </div>  
+    <div class="col-md-4">
+      <label> Restaurant Order Pick Time </label>
+      <%= f.fields_for :pick_up do |f| %>
+        <%= f.fields_for :sechedules do |f| %>
+          <div class="field">
+            <%= f.label :day %>
+            <%= f.text_field :day,  :readonly => true%>
+          </div>
+          <div class="field">
+            <%= f.label :opening_time %>
+            <%= f.time_select :opening_time, {:ampm => true } %>
+          </div>
+          <div class="field">
+            <%= f.label :closing_time %>
+            <%= f.time_select :closing_time, {:ampm => true} %>
+          </div> 
+        <% end %> 
+      <% end %>
+    </div>  
+    <div class="col-md-4">
+      <label> Restarant Order Deliver Time </label>
+      <%= f.fields_for :delivery do |f| %>
+        <%= f.fields_for :sechedules do |f| %>
+          <div class="field">
+            <%= f.label :day %>
+            <%= f.text_field :day,  :readonly => true%>
+          </div>
+          <div class="field">
+            <%= f.label :opening_time %>
+            <%= f.time_select :opening_time, {:ampm => true } %>
+          </div>
+          <div class="field">
+            <%= f.label :closing_time %>
+            <%= f.time_select :closing_time, {:ampm => true} %>
+          </div> 
+        <% end %> 
+      <% end %>
+    </div>  
+  </div>  
   <br>
  <label> Select Categories of Restaurant</label>
   <div class="control-group">

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  day: MyString
+  open_time: 2014-03-06 16:58:17
+  close: 2014-03-06 16:58:17
+
+two:
+  day: MyString
+  open_time: 2014-03-06 16:58:17
+  close: 2014-03-06 16:58:17

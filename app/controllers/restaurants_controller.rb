@@ -32,16 +32,34 @@ class RestaurantsController < ApplicationController
     @restaurant.build_delivery_info
     @restaurant.build_order_info
     @restaurant.build_bank_info
-    restaurant_info = @restaurant.build_restaurant_info
-    restaurant_info.restaurant_opening_closing_times.build :day => "Monday"
-    restaurant_info.restaurant_opening_closing_times.build :day => "Tuesday"
-    restaurant_info.restaurant_opening_closing_times.build :day => "Wednesday"
-    restaurant_info.restaurant_opening_closing_times.build :day => "Thursday"
-    restaurant_info.restaurant_opening_closing_times.build :day => "Friday"
-    restaurant_info.restaurant_opening_closing_times.build :day => "Saturday"
-    restaurant_info.restaurant_opening_closing_times.build :day => "Sunday"
+    @restaurant.build_restaurant_info
+    operation = @restaurant.build_operation
+    pick_up = @restaurant.build_pick_up
+    delivery = @restaurant.build_delivery
     
+    operation.sechedules.build :day => "Monday"
+    operation.sechedules.build :day => "Tuesday"
+    operation.sechedules.build :day => "Wednesday"
+    operation.sechedules.build :day => "Thursday"
+    operation.sechedules.build :day => "Friday"
+    operation.sechedules.build :day => "Saturday"
+    operation.sechedules.build :day => "Sunday"
 
+    pick_up.sechedules.build :day => "Monday"
+    pick_up.sechedules.build :day => "Tuesday"
+    pick_up.sechedules.build :day => "Wednesday"
+    pick_up.sechedules.build :day => "Thursday"
+    pick_up.sechedules.build :day => "Friday"
+    pick_up.sechedules.build :day => "Saturday"
+    pick_up.sechedules.build :day => "Sunday"
+
+    delivery.sechedules.build :day => "Monday"
+    delivery.sechedules.build :day => "Tuesday"
+    delivery.sechedules.build :day => "Wednesday"
+    delivery.sechedules.build :day => "Thursday"
+    delivery.sechedules.build :day => "Friday"
+    delivery.sechedules.build :day => "Saturday"
+    delivery.sechedules.build :day => "Sunday"
   end
 
   def edit
