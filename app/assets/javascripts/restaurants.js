@@ -74,4 +74,36 @@ $(document).ready(function(){
       $(this).parent().parent().parent().find("span").text(text);
   });
 
+  $(".category-selector select").change(function(e){ 
+    value = $(this).val();
+    if(value == "all")
+    {  
+      $(".daily-special-container").find(".panel-collapse").each(function(){ 
+        $(this).addClass("in");
+      });
+    }
+    else 
+    {
+      $(".daily-special-container").find(".panel-collapse").each(function(){ 
+        $(this).removeClass("in");
+      });
+      $(".daily-special-container").find("#" + value).addClass("in");
+    }
+    change_collapse_sign();
+  });
+
+  $(".collaper").click(function(e) {
+    change_collapse_sign();
+  });
+
 });
+
+function change_collapse_sign(){
+  $(".collaper").each(function(){
+    collapse = $(this).parent().parent().parent().find(".panel-collapse");
+    if(collapse.hasClass("in") == false )
+      $(this).text("-");
+    else
+      $(this).text("+");
+  });
+}

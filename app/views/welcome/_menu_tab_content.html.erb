@@ -1,7 +1,8 @@
-<p class="select-bar-menu">
+<p class="select-bar-menu category-selector">
   <select class="form-control">
+    <option value="all">Menu Categories </option>
     <% @menu.menu_categories.each do |category| %>
-      <option><%= category.category_name %></option>
+      <option value ="collapse_<%=category.id%>"><%= category.category_name %></option>
     <% end %>  
     
   </select>
@@ -12,11 +13,11 @@
       <div class="panel food-price-panel">
           <h4 class="panel-title">
             <%= category.category_name %>
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%=category.id%>">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapse_<%=category.id%>" class="collaper">
               +
             </a>
           </h4>
-        <div id="collapse_<%=category.id%>" class="panel-collapse collapse in lunch-collapse-even">
+        <div id="collapse_<%=category.id%>" class="panel-collapse collapse lunch-collapse-even">
           <div class="panel-body inner-panel">
             <% category.menu_items.each do |item| %>
               <a href="#" class="menu-item-modal" data-toggle="modal" data-target="#menu_item_<%= item.id %>">
@@ -29,7 +30,7 @@
                   <div class="add-button"><button>+</button></div>
                 </div>
               </a>  
-              <%= render :partial => "menu_item_popup", :locals => {:item => item } %>
+              <%= render :partial => "menu_item_popup", :locals => {:item => item , :restaurant => @restaurant} %>
             <% end %>  
           </div>
         </div>
@@ -37,4 +38,4 @@
     </div>
     <img class="shadow-image-1" alt="Smiley face" src="/assets/shadow.png" />
   </div>
-<% end %> 
+<% end %>

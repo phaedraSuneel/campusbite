@@ -120,8 +120,11 @@
             </div>
           <% end %>  
         </div>
+
         <div class="modal-footer order-item">
-          <%= f.submit "Add item to your order", :class => "btn btn-primary submit-md" %>
+          <% if restaurant.open? %>
+            <%= f.submit "Add item to your order", :class => "btn btn-primary submit-md" %>
+          <% end %>
         </div>
       </div>
     <% end -%>
