@@ -5,7 +5,7 @@ class Restaurant < ActiveRecord::Base
   has_many :addons, :dependent => :destroy
   has_many :restaurant_offers, :dependent => :destroy
   has_many :favorites, :dependent => :destroy
-
+  has_many :restaurant_coupons, :dependent => :destroy
   #has_many  :orders, :dependent => :destroy
   has_one :menu, :dependent => :destroy
   has_one :contact_info, :dependent => :destroy

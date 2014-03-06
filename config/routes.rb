@@ -1,5 +1,8 @@
 Ordering::Application.routes.draw do
 
+  resources :restaurant_coupons
+
+
   resources :restaurant_offers
 
 

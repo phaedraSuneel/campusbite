@@ -1,0 +1,29 @@
+<%= form_for(@restaurant_coupon, :html => { :multipart => true}) do |f| %>
+  <% if @restaurant_coupon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@restaurant_coupon.errors.count, "error") %> prohibited this restaurant_coupon from being saved:</h2>
+
+      <ul>
+      <% @restaurant_coupon.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field restaurant_selector">
+    <%= f.label :restaurant_id, "Restaurant" %> 
+    <%= f.collection_select :restaurant_id, Restaurant.all,:id,:restaurant_name%>
+  </div>
+  <div class="field">
+    <%= f.label :coupon_image, "Coupon Image" %>
+    <%= f.file_field :coupon_image %>
+  </div> <br>
+  <div class="field">
+    <%= f.label :expiration_date %><br />
+    <%= f.date_select :expiration_date %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

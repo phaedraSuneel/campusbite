@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140306121313) do
+ActiveRecord::Schema.define(:version => 20140306141444) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -205,6 +205,16 @@ ActiveRecord::Schema.define(:version => 20140306121313) do
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
     t.integer  "restaurant_id"
+  end
+
+  create_table "restaurant_coupons", :force => true do |t|
+    t.integer  "restaurant_id"
+    t.datetime "expiration_date"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.string   "coupon_image_file_name"
+    t.string   "coupon_image_content_type"
+    t.integer  "coupon_image_file_size"
   end
 
   create_table "restaurant_infos", :force => true do |t|

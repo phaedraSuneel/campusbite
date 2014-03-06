@@ -1,20 +1,6 @@
-<div class="col-md-12 coupon-container">
-  <img class="coupon" alt="Smiley face" src="/assets/copoun.png" />
-  <div class="col-md-12 Print-Coupon"><a href="#">Click To Print Coupon</a></div>
-</div>
-<div class="col-md-12 coupon-container">
-  <img class="coupon" alt="Smiley face" src="/assets/copoun.png" />
-  <div class="col-md-12 Print-Coupon"><a href="#">Click To Print Coupon</a></div>
-</div>
-<div class="col-md-12 coupon-container">
-  <img class="coupon" alt="Smiley face" src="/assets/copoun.png" />
-  <div class="col-md-12 Print-Coupon"><a href="#">Click To Print Coupon</a></div>
-</div>
-<div class="col-md-12 coupon-container">
-  <img class="coupon" alt="Smiley face" src="/assets/copoun.png" />
-  <div class="col-md-12 Print-Coupon"><a href="#">Click To Print Coupon</a></div>
-</div>
-<div class="col-md-12 coupon-container">
-  <img class="coupon" alt="Smiley face" src="/assets/copoun.png" />
-  <div class="col-md-12 Print-Coupon"><a href="#">Click To Print Coupon</a></div>
-</div>
+<% @restaurant.restaurant_coupons.each do |coupon| %>
+  <div class="col-md-12 coupon-container">
+    <%= image_tag(coupon.coupon_image(:medium), class: "coupon") %>
+    <div class="col-md-12 Print-Coupon"><a href="#">Click To Print Coupon</a></div>
+  </div>
+<% end %>  
