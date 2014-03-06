@@ -7,7 +7,6 @@ class SchoolsController < ApplicationController
 
   def search
     @schools = School.search(params[:keyword])
-    p @schools
     respond_to do |format|
       format.json { render :json => @schools.map {|a| a.school_name + " (" +  a.branch_name + ")" }    }  
     end                          

@@ -116,8 +116,12 @@ class RestaurantsController < ApplicationController
   def add_favorite
     if user_signed_in?
       restaurant = Restaurant.find(params[:id])
-      favorite = restaurant.favorites.create(:user_id => current_user.id)
-      flash[:notice] = 'This restaurant has been added to your favorites'
+      unless !current_user.favorites.find_by_restaurant_id(params[:id]).blank?
+        favorite = restaurant.favorites.create(:user_id => current_user.id)
+        flash[:notice] = 'This restaurant has been added to your favorites'
+      else   
+        flash[:notice] = 'This restaurant has been already added to your favorites'
+      end   
       redirect_to :back
     else
       flash[:notice] = 'please Sign In than add to favorite'
