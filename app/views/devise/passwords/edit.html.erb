@@ -1,16 +1,41 @@
-<h2>Change your password</h2>
-
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
-
-  <div><%= f.label :password, "New password" %><br />
-  <%= f.password_field :password, :autofocus => true %></div>
-
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Change my password" %></div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+<div class="main-body signup-page">
+	<div class="row search-container">
+    <div class="container">
+      <div class="col-md-12 bits-campus">
+        <img class="logo-image" alt="Smiley face" src="images/campus-bite.png">
+        <p>Forgot Your Password? Thats no issue!</p>
+      </div>
+      <div class="row singup-category">
+        <div class="col-md-8 col-md-offset-2 signup-container">
+          <div class="row signup-field">
+            <div class="page-ring">
+              <img class="single-ring" alt="Smiley face" src="images/single-ring.png">
+            </div>
+            <div class="sign-btn password-position">
+              <p><button class="password-btn">New Password</button></p>
+            </div>
+            <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+             	<%= devise_error_messages! %>
+             	<%= f.hidden_field :reset_password_token %>
+	            <div class="col-md-12 signup-form-container">
+	              <div class="signup-form forget-form">
+	                <h4>Let's get you a brand new password!</h4>
+	                <div class="confoirmation-container">
+	                  <label class="email-name pass-name">Password:</label>
+	                  <%= f.password_field :password, :autofocus => true, :placeholder => "New Password", , :class => "email-input pass-input"  %>
+	                  <label class="email-name pass-name">New Password Confirmation:</label>
+	                  <%= f.password_field :password_confirmation, :placeholder => "New Password Confirmation", :class => "email-input pass-input" %>
+	                </div>
+	                <img class="form-shadow" alt="Smiley face" src="images/shadow.png">
+	              </div>
+	            </div>
+	            <div class="col-md-12 submit-button">
+	              <button>Submit</button>
+	            </div>
+	          <% end %>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> 
