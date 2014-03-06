@@ -1,23 +1,90 @@
-<div class="container">  
-  <h2>Sign up</h2>
-
-  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-    <%= devise_error_messages! %>
-     <div><%= f.label :first_name %><br />
-    <%= f.text_field :first_name, :autofocus => true %></div>
-     <div><%= f.label :last_name %><br />
-    <%= f.text_field :last_name, :autofocus => true %></div>
-    <div><%= f.label :email %><br />
-    <%= f.email_field :email, :autofocus => true %></div>
-
-    <div><%= f.label :password %><br />
-    <%= f.password_field :password %></div>
-
-    <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation %></div>
-
-    <div><%= f.submit "Sign up" %></div>
-  <% end %>
-
-  <%= render "devise/shared/links" %>
+<div class="main-body signup-page">
+  <div class="row search-container">
+    <div class="container">
+      <div class="col-md-12 bits-campus">
+          <img class="logo-image" alt="Smiley face" src="/assets/campus-bite.png">
+          <p>Hungry?tt Order Food Delivery Straight to Your Dorm for Free!</p>
+      </div>
+      <div class="row singup-category">
+        <div class="col-md-5 signup-content">
+          <div class="ring-image">
+            <img class="ring" alt="Smiley face" src="/assets/ring.png">
+          </div>
+          <div class="row compus-content-container">
+            <div class="col-md-12">
+              <p class="order-heading">CampusBite offers a ton of benefits for being a member.Here you can see some of the best ones!</p>
+            </div>
+            <div class="col-md-12 compus-content-even">
+              <p class="green-heading">Easy to Reorder Your Favorites-No Thinking Needed to Order</p>
+              <div class="col-md-3 member-icon">
+                <img class="logo-image" alt="Smiley face" src="/assets/bin.png">
+              </div>
+              <div class="col-md-9 member-content">
+                <p>The CampusBite membership means that your orders are locked into history. If you have a favorite meal, you can just go in and select it quickly. Your favorite munchies, lunches, and dinners are ready to go with the click of a button.</p>
+              </div>
+            </div>
+            <div class="col-md-12 compus-content-odd">
+              <div class="col-md-9 col-md-offset-3 deals-category">
+                <h5>You Get the deals - cha-ching!</h5>
+              </div>
+              <div class="col-md-3 member-icon">
+                <img class="logo-image" alt="Smiley face" src="/assets/sale.png">
+              </div>
+              <div class="col-md-9 member-content">
+                <p>When you are a CampusBite member, you will receive the best in money saving offers including discounts on everything and new coupons as soon as they come out of the marketing teams oven. We know you love saving money, and we want to make sure you do!</p>
+              </div>
+            </div>
+            <div class="col-md-12 compus-content-even">
+              <div class="col-md-9 col-md-offset-3 deals-category">
+                <h5>store your address</h5>
+              </div>
+              <div class="col-md-3 member-icon">
+                <img class="logo-image" alt="Smiley face" src="/assets/sale-1.png">
+              </div>
+              <div class="col-md-9 member-content">
+                <p>Your address for work and home is saved in our secured system, so you do not have to remind us where to go, we already know. This is how we saveyou even more time!</p>
+              </div>
+            </div>
+            <div class="col-md-12 compus-content-odd">
+              <div class="col-md-9 col-md-offset-3 deals-category">
+                <h5>store your payment information</h5>
+              </div>
+              <div class="col-md-3 member-icon">
+                <img class="logo-image" alt="Smiley face" src="/assets/sale3.png">
+              </div>
+              <div class="col-md-9 member-content">
+                <p>You can quickly order without having to find your debitor credit card. We securely store your information so you do not have to worry about it getting out there, just another way we make your life easier.</p>
+              </div>
+            </div>
+          </div>
+        </div> 
+        <div class="col-md-7 signup-container">
+          <div class="row signup-field">
+            <div class="sign-btn">
+              <p><%= link_to raw("<button class='sign-in-btn'>Sign in</button>"), new_session_path(resource_name) %></p>
+              <p><%= link_to raw("<button class='sign-in-btn'>Sign up</button>"), new_registration_path(resource_name)%></p>
+            </div>
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+              <%= devise_error_messages! %>
+              <div class="col-md-12 signup-form-container">
+                <div class="signup-form">
+                  <label><span>First Name:</span><%= f.text_field :first_name, :autofocus => true, :placeholder => "First Name" %></label>
+                  <label><span>Last Name:</span><%= f.text_field :last_name, :autofocus => true, :placeholder => "Last Name" %></label>
+                  <label><span>Email:</span><%= f.email_field :email, :autofocus => true, :placeholder => "Email" %></label>
+                  <label><span>Password:</span><%= f.password_field :password, :placeholder => "Password" %></label>
+                  <label><span>Password Confirmation:</span><%= f.password_field :password_confirmation, :placeholder => "Password Confirmation" %></label>
+                  <label><span>School:</span><%= f.text_field :school_name, :autofocus => true, :placeholder => "School", :class => "search-keyword" %></label>
+                  <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
+                </div>
+                <p class="service">By clicking Sign Up you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+              </div>
+              <div class="col-md-12 signup-button">
+                <button>Sign UP</button>
+              </div>
+            <% end %>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
