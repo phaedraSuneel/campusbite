@@ -1964,3 +1964,498 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 {
   width: 100%;
 }
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<signup-page>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.signup-page .search-container .bits-campus{
+  text-align: center;
+ }
+.signup-page .search-container .bits-campus img{
+   margin: 20px 0;
+}
+.signup-page .search-container .bits-campus p{
+  color: #825f4a;
+  font-family: 'segoe_printregular';
+  font-size: 24px; 
+}
+.signup-page .signup-content{
+  background-color: #fffaf2;
+  border: 1px solid #eac689;
+  border-radius: 5px;
+  position: relative;
+}
+.signup-page .signup-content .ring-image {
+  position: absolute;
+  right: -25px;
+  z-index: 50;
+}
+.signup-container{
+  padding-left: 8px !important;
+}
+@media (max-width: 991px) {
+  .signup-page .signup-container{
+    padding: 0px !important;
+  }
+  .signup-page .signup-content .ring-image {
+    display: none;
+  }
+  .signup-page .deals-category h5{
+    text-align: center;
+  }
+}
+@media (max-width: 630px) {
+  .signup-page .form-shadow{
+  bottom: -6px !important;
+  }
+}
+@media (max-width: 860px) {
+  .signup-page .sign-btn{
+    position: static !important;
+    margin-left: 25px;
+    margin-top: 15px;
+  }
+  .signup-page .sign-btn button.password-btn,
+  .signup-page .sign-btn button.sign-up-btn,
+  .signup-page .sign-btn button.sign-in-btn{
+    background: transparent !important;
+    height: 50px !important;
+    float: left;
+    padding-bottom: 0px !important;
+  }
+  .signup-page .sign-btn button.password-btn{
+    width: 140px !important;
+  }
+  .signup-page .sign-btn button.password-btn:hover,
+  .signup-page .sign-btn button.sign-up-btn:hover,
+  .signup-page .sign-btn button.sign-in-btn:hover{
+    color: #eac689;
+  }
+}
+.signup-page .singup-category{
+  float: left;
+  margin-bottom: 100px;
+  margin-top: 25px;
+  width: 100%;
+}
+.signup-page .compus-content-container p.order-heading{
+  text-align: center;
+  font-size: 14px;
+  font-family: 'PT Sans';
+  color: #424242;
+  font-weight: bold;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+.signup-page .compus-content-container .compus-content-odd p.green-heading,
+.signup-page .compus-content-container .compus-content-even p.green-heading{
+  text-align: center;
+  font-size: 12px;
+  font-family: 'PT Sans';
+  color: #4b9b02;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.signup-page .compus-content-odd,
+.signup-page .compus-content-even,
+.signup-page .signup-content{
+  padding: 4px 0px !important;
+}
+.signup-page .member-content p{
+  font-size: 12px;
+  font-family: 'PT Sans';
+  color: #424242;
+}
+.signup-page .member-icon{
+  text-align: center;
+  padding-top: 5px;
+}
+.signup-page .member-icon{
+  padding-right: 0px !important; 
+}
+.signup-page .compus-content-even{
+  background-color: #fff5e2;
+}
+.signup-page .deals-category{
+  padding-left: 0 !important;
+}
+.signup-page .deals-category h5{
+  font-size: 12px;
+  font-family: 'PT Sans';
+  color: #4b9b02;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.signup-page .sign-btn button.sign-up-btn,
+.signup-page .sign-btn button.sign-in-btn{
+  background: url("../assets/Sign-btn.png") no-repeat;
+  height: 125px;
+  width: 70px;
+  border: none;
+  font-family: 'PT Sans';
+  font-size: 16px;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+}
+.signup-page .sign-btn button.sign-up-btn:hover,
+.signup-page .sign-btn button.sign-in-btn:hover{
+  background: url("../assets/Sign-btn.png") no-repeat 0 -136px;
+  height: 125px;
+  width: 70px;
+  border: none;
+  font-family: 'PT Sans';
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.signup-page .sign-btn{
+  position: absolute;
+  right: -70px;
+  top: 20px;
+}
+.signup-page .signup-field{
+  background-color: #fffaf2;
+  border: 1px solid #eac689;
+  border-radius: 5px;
+  position: relative;
+}
+.signup-page .signup-form{
+  float: left;
+  width: 97%;
+  padding: 40px 20px;
+  background-color: #fff;
+  border: 1px solid #eac689;
+  border-radius: 5px;
+  margin: 30px 10px;
+  position: relative;
+}
+.signup-page .signup-form label{
+  width: 100%;
+  float: left;
+}
+.signup-page .signup-form label span{
+  width: 20%;
+  float: left;
+  padding-top: 5px;
+  font-size: 15px;
+  font-family: 'PT Sans';
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #555;
+  text-align: right;
+  margin-right: 5%;
+}
+.signup-page .signup-form label input{
+  width: 70%;
+  float: left;
+  border-radius: 3px;
+  border: 1px solid #eac689;
+  height: 35px;
+  padding-left: 10px;
+  color: #939393;
+  box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+-moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+-webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+}
+.signup-page .signup-form-container{
+  float: left;
+  width: 100%;
+}
+.signup-page .form-shadow{
+  bottom: -10px;
+  left: 0;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+}
+.signup-page .signup-form-container p.service{
+  font-size: 15px;
+  color: #000;
+  text-align: center;
+  float: left;
+  width: 100%; 
+}
+.signup-page .signup-form-container p.service a{
+  color: #52a902;
+  margin: 0 5px;
+}
+.signup-page .signup-button{
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+.signup-page .signup-button button{
+  background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #919191;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-family: 'bignoodletitlingregular';
+  font-size: 29px;
+  height: 50px;
+  line-height: 56px;
+  margin: 10px 0;
+  width: 50%;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.40);
+  margin-top: 35px;
+  margin-bottom: 80px;
+}
+.signup-page .signup-button button:hover{
+  background: linear-gradient(to bottom, #57AF0A 0%, #57AF0A 100%);
+}
+.signup-page .signup-button button:active{
+  background: linear-gradient(to bottom, #57AF0A 0%, #79CF33 100%);
+}
+.signup-page .signup-form h4{
+  text-align: center;
+  font-size: 19px;
+  font-family: 'PT Sans';
+  font-weight: bold;
+}
+.signup-page  .forget-form{
+  padding: 15px !important;
+}
+.signup-page .signup-form p.issue{
+  font-family: 'PT Sans';
+  color: #555;
+  font-size: 14px;
+}
+.signup-page .signup-form label.email-name{
+  font-family: 'PT Sans';
+  color: #555;
+  font-size: 16px;
+}
+.signup-page .signup-form input.email-input{
+  width: 50%;
+  float: left;
+  border-radius: 3px;
+  border: 1px solid #eac689;
+  height: 35px;
+  padding-left: 10px;
+  color: #939393;
+  box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+-moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+-webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+}
+.signup-page .page-ring{
+  position: absolute;
+  left: -20px;
+  top: 10px;
+}
+.checkout-page .submit-button,
+.signup-page .submit-button{
+  width: 100%;
+  text-align: center;
+  float: left;
+}
+.checkout-page .submit-button button,
+.signup-page .submit-button button{
+  background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #919191;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-family: 'bignoodletitlingregular';
+  font-size: 29px;
+  height: 50px;
+  line-height: 56px;
+  margin: 10px 0;
+  width: 40%;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.40);
+  margin-top: 35px;
+  margin-bottom: 45px;
+}
+.signup-page .submit-button button:hover{
+  background: linear-gradient(to bottom, #57AF0A 0%, #57AF0A 100%);
+}
+.signup-page .submit-button button:active{
+  background: linear-gradient(to bottom, #57AF0A 0%, #79CF33 100%);
+}
+.signup-page .sign-btn button.password-btn{
+  background: url("../assets/password-bg.png") no-repeat;
+  height: 171px;
+  width: 84px;
+  border: none;
+  font-family: 'PT Sans';
+  font-size: 14px;
+  text-transform: uppercase;
+  padding-bottom: 20px;
+  font-weight: bold;
+  padding-left:0px;
+}
+.signup-page .password-position{
+  right: -84px !important;
+}
+.signup-page .confoirmation-container{
+  width: 100%;
+  float: left;
+  padding-top: 25px;
+}
+.signup-page .confoirmation-container label.pass-name{
+  width: 37%;
+  float: left;
+  text-align: right;
+  margin-right: 5%;
+  padding-top: 5px;
+  font-size: 16px;
+  font-weight: bold !important  ;
+  font-family: 'PT Sans' !important;
+  text-transform: uppercase;
+}
+.signup-page .confoirmation-container input{
+  margin-bottom: 7px;
+}
+.signup-page .confoirmation-container p{
+  text-align: center;
+  float: left;
+  width: 100%;
+}
+.signup-page .confoirmation-container p a{
+  color: #5cb312;
+}
+.checkout-page.facebook-button button,
+.signup-page .facebook-button button{
+  margin-top: 0px !important;
+  margin-bottom: 20px !important;
+}
+.checkout-page .facebook-button .forget-password,
+.signup-page .facebook-button .forget-password{
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+.checkout-page .facebook-button .forget-password p a,
+.signup-page .facebook-button .forget-password p a{
+  font-size: 14px;
+  font-family: 'PT Sans';
+  color: #555555;
+}
+.checkout-page .facebook-button .forget-password p a.facebook-icon,
+.signup-page .facebook-button .forget-password p a.facebook-icon{
+  background: url("../assets/fb-like-icon.png") no-repeat;
+  height: 36px;
+  width: 184px;
+  text-indent: -9999px;
+  display: block;
+  margin-left: 36%;
+  margin-top: 2%;
+}
+.forget-form h3,
+.forget-form p.address-category{
+  text-align: center;
+}
+.forget-form h3{
+  font-size: 19px;
+  font-family: 'PT Sans';
+  color: #555;
+  font-weight: bold;
+}
+.thanksnote-container{
+  height: 373px;
+}
+
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<checkout-page>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.checkout-page .checkout-container{
+  background-color: #fffaf2;
+  border: 1px solid #edcd97;
+  position: relative;
+  margin-top: 30px;
+  border-radius: 5px;
+  height: 800px;
+  margin-bottom: 30px;
+}
+.checkout-page .account-sign{
+  height: 30px;
+  width: 200px;
+  background-color: #fffaf2;
+  border: 1px solid #edcd97;
+  border-radius: 5px 5px 0px 0px;
+  position: absolute;
+  top: -30px;
+  left: 16px;
+  border-bottom: 0;
+  text-align: center;
+  padding-top: 5px;
+  font-size: 16px;
+  font-family: 'PT Sans';
+}
+.checkout-page .singin-radio-btn{
+  background-color: #e3e3e3;
+  border: 1px solid #edcd97;
+  border-radius: 3px;
+  margin: 10px 0;
+  font-family: 'PT Sans';
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 0;
+}
+.checkout-page .singin-radio-btn:hover{
+  background-color: #cae5b1;
+}
+.checkout-page .singin-radio-btn span{
+  float: left;
+  margin: 0px 5px;
+}
+.checkout-page .singup-second{
+  background-color: #fff;
+  border: 1px solid #edcd97;
+  border-radius: 0px 0px 5px 5px;
+  position: relative;
+  float: left;
+  width: 100%;
+  margin-bottom: 50px;
+}
+.checkout-page .singup-second label{
+  width: 100%;
+  float: left;
+  margin-top: 10px;
+}
+.checkout-page .singup-second input{
+  width: 100%;
+  float: left;
+  border-radius: 3px;
+  border: 1px solid #eac689;
+  height: 35px;
+  padding-left: 10px;
+  color: #939393;
+  box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+}
+.checkout-page .form-shadow {
+  bottom: -10px;
+  left: 0;
+  opacity: 0.5;
+  position: absolute;
+  width: 100%;
+  }
+
+@media (min-width:860px) {
+  .checkout-page  #singin-radio-btn-1:active,
+  .checkout-page  #singin-radio-btn-1:focus{
+  margin-top: 10px;
+  margin-bottom: 0px;
+  height: 55px;
+  border-bottom: 0px;
+  position: absolute;
+  width: 88%;
+  z-index: 100;
+  background-color: #fff;
+  border-radius: 5px 5px 0 0;
+  }
+}
+.checkout-page .singup-second h3{
+  font-size: 19px;
+  color: #555555;
+  font-family: 'PT Sans';
+  text-align: center;
+  font-weight: bold;
+}
+.checkout-page .singup-second p.address-category{
+  font-size: 16px;
+  color: #555555;
+  font-family: 'PT Sans';
+  text-align: center;
+}
+.checkout-page .padding-bottom-category{
+  padding: 15px 15px 100px 15px;
+}
+.singup-second input.campus-input{
+  width: 50%;
+}
