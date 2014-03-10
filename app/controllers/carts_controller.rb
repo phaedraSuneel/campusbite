@@ -34,13 +34,14 @@ class CartsController < ApplicationController
         @menu_item_order.menu_item = item.menu_item
         @menu_item_order.save 
       end
-      #@cart.destroy
+      @cart.destroy
       flash[:notice] = 'Order was successfully created!'
       redirect_to :back
     else
+
       flash[:notice] = 'Before checkout please Sign In'
-      redirect_to new_user_session_path
+      redirect_to :back
     end
   end
-
+  
 end

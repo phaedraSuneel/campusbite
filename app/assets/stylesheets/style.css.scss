@@ -1998,6 +1998,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   .signup-page .signup-content .ring-image {
     display: none;
   }
+  .SignUpBeforeCheckout .deals-category h5,
   .signup-page .deals-category h5{
     text-align: center;
   }
@@ -2036,6 +2037,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   margin-top: 25px;
   width: 100%;
 }
+.SignUpBeforeCheckout .compus-content-container p.order-heading,
 .signup-page .compus-content-container p.order-heading{
   text-align: center;
   font-size: 14px;
@@ -2045,6 +2047,8 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   margin-top: 10px;
   text-transform: uppercase;
 }
+.SignUpBeforeCheckout .compus-content-container .compus-content-even p.green-heading,
+.SignUpBeforeCheckout .compus-content-container .compus-content-odd p.green-heading,
 .signup-page .compus-content-container .compus-content-odd p.green-heading,
 .signup-page .compus-content-container .compus-content-even p.green-heading{
   text-align: center;
@@ -2054,29 +2058,38 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   font-weight: bold;
   text-transform: uppercase;
 }
+.SignUpBeforeCheckout .compus-content-odd,
+.SignUpBeforeCheckout .compus-content-even,
+.SignUpBeforeCheckout .signup-content,
 .signup-page .compus-content-odd,
 .signup-page .compus-content-even,
 .signup-page .signup-content{
   padding: 4px 0px !important;
 }
+.SignUpBeforeCheckout .member-content p,
 .signup-page .member-content p{
   font-size: 12px;
   font-family: 'PT Sans';
   color: #424242;
 }
+.SignUpBeforeCheckout .member-icon,
 .signup-page .member-icon{
   text-align: center;
   padding-top: 5px;
 }
+.SignUpBeforeCheckout .member-icon,
 .signup-page .member-icon{
   padding-right: 0px !important; 
 }
+.SignUpBeforeCheckout .compus-content-even,
 .signup-page .compus-content-even{
   background-color: #fff5e2;
 }
+.SignUpBeforeCheckout .deals-category,
 .signup-page .deals-category{
   padding-left: 0 !important;
 }
+.SignUpBeforeCheckout .deals-category h5,
 .signup-page .deals-category h5{
   font-size: 12px;
   font-family: 'PT Sans';
@@ -2086,7 +2099,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 }
 .signup-page .sign-btn button.sign-up-btn,
 .signup-page .sign-btn button.sign-in-btn{
-  background: url("../assets/Sign-btn.png") no-repeat;
+  background: url("../assets/sign-btn.png") no-repeat;
   height: 125px;
   width: 70px;
   border: none;
@@ -2097,7 +2110,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 }
 .signup-page .sign-btn button.sign-up-btn:hover,
 .signup-page .sign-btn button.sign-in-btn:hover{
-  background: url("../assets/Sign-btn.png") no-repeat 0 -136px;
+  background: url("../assets/sign-btn.png") no-repeat 0 -136px;
   height: 125px;
   width: 70px;
   border: none;
@@ -2151,8 +2164,8 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   padding-left: 10px;
   color: #939393;
   box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
--moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
--webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
 }
 .signup-page .signup-form-container{
   float: left;
@@ -2325,6 +2338,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   font-family: 'PT Sans';
   color: #555555;
 }
+.checkout-page .facebook-button p a.facebook-icon,
 .checkout-page .facebook-button .forget-password p a.facebook-icon,
 .signup-page .facebook-button .forget-password p a.facebook-icon{
   background: url("../assets/fb-like-icon.png") no-repeat;
@@ -2384,6 +2398,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   font-size: 16px;
   font-weight: bold;
   padding: 10px 0;
+  color: #555;
 }
 .checkout-page .singin-radio-btn:hover{
   background-color: #cae5b1;
@@ -2405,6 +2420,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   width: 100%;
   float: left;
   margin-top: 10px;
+  color: #555;
 }
 .checkout-page .singup-second input{
   width: 100%;
@@ -2460,6 +2476,59 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   width: 50%;
 }
 
+
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<SignInBeforeCheckOut>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.checkout-page .facebook-button p a{
+  color: #555555;
+}
+.checkout-page .checkout-field p{
+  text-align: center;
+  margin-bottom: 0px;
+  margin-top: 10px;
+  float: left;
+  width: 100%;
+}
+.checkout-page .checkout-field p a{
+  color: #52a902;
+}
+.checkout-page .submit-button button.sign-in-btn{
+  margin-top: 10px !important;
+  margin-bottom: 15px !important;
+}
+#singn-in-btn button{
+  background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #919191;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-family: 'bignoodletitlingregular';
+  font-size: 29px;
+  height: 50px;
+  line-height: 56px;
+  margin: 10px 0;
+  width: 40%;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.40);
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.SignUpBeforeCheckout .checkout-container{
+  height: 100% !important;
+}
+.SignUpBeforeCheckout .compus-content-container{
+  border:1px solid #ebc990;
+  border-radius: 5px;
+  float: left;
+  width: 100%;
+}
+.SignUpBeforeCheckout .signup-content{
+  float: left;
+  width: 100%;
+}
+.SignUpBeforeCheckout .checkout-shadow{
+  width: 100%;
+  opacity: 0.7;
+  margin-bottom: 5%;
+}
 /********** Typeahead css for sign-up********************/
   .signup-form{
     .twitter-typeahead {
@@ -2538,4 +2607,12 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   }
   .nav-pills > li.active > a:hover{
     color: #555555 !important;
+  }
+
+  .user-information-tab.nav-pills > li {
+    float: none !important;
+  }
+
+  .user-information-tab.nav-pills > li > a{
+    padding: 0px !important;
   }

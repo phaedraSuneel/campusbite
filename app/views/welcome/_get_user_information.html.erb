@@ -1,0 +1,48 @@
+<div class="col-md-8 menu-tabs">
+  <div class="row checkout-container">
+    <div class="account-sign">Sign in into your account</div>
+    
+    <ul class="nav nav-pills user-information-tab" data-tabs="tabs">
+      <li class="sign-in active">
+        <a href="#sign-in" data-toggle="tab">
+          <div class="col-md-4">
+            <div class="singin-radio-btn" id="singin-radio-btn-1">
+              <span><input type="radio" name="choose-panel"></span>Sign In
+            </div>
+          </div>
+        </a>
+      </li> 
+      <li class="sign-up">
+        <a href="#sign-up" data-toggle="tab">
+          <div class="col-md-4">
+            <div class="singin-radio-btn" id="singin-radio-btn-1">
+              <span><input type="radio" name="choose-panel"></span>Sign Up
+            </div>
+          </div>
+        </a>
+      </li>
+      <li class="guest">
+        <a href="#guest" data-toggle="tab">
+          <div class="col-md-4">
+            <div class="singin-radio-btn" id="singin-radio-btn-1">
+              <span><input type="radio" name="choose-panel"></span>Continue As Guest
+            </div>
+          </div>
+        </a>
+      </li> 
+    </ul>
+
+    <div id="user-tab-content" class="tab-content info-page menupage review-page">
+
+      <div class="col-md-12 tab-pane active" id= "sign-in">
+        <%= render :partial => "sign_in_checkout_form" %>
+      </div>
+      <div class="col-md-12 tab-pane" id= "sign-up">
+        <%= render :partial => "sign_up_checkout_form" %>
+      </div>
+      <div class="col-md-12 tab-pane" id= "guest">
+        <%= render :partial => "guest_checkout_content"%>
+      </div>
+    </div>
+  </div>    
+</div>
