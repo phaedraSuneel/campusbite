@@ -28,7 +28,7 @@ class WelcomeController < ApplicationController
 	 #  	@query = params[:keyword]	
 	 #  end
 	 #  p @restaurants
- 	# end
+ 	 end
 
  	def menu
  		@restaurant =  Restaurant.find(params[:id])
