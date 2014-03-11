@@ -8,7 +8,6 @@ $(document).ready(function(){
   ]);
   
   $(".tt-dropdown-menu").click(function(){
-  	console.log($(this).parent().parent().parent());
     $(this).parent().parent().parent().submit();
   });
 

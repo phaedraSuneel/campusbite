@@ -1,7 +1,7 @@
 class School < ActiveRecord::Base
 
   has_many :restaurants, :dependent => :destroy
-  attr_accessible :branch_name, :school_address, :school_name
+  attr_accessible :branch_name, :school_address, :school_name, :delta
   accepts_nested_attributes_for :restaurants
 
 end

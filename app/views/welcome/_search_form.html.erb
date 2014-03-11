@@ -1,0 +1,14 @@
+<div class="main-search-bar">
+  <%= form_for "search", :url => result_welcome_index_path, :method => 'get'  do |f| %>
+    <div class="search-botton">
+      <div class="delivery"><%= f.check_box :is_delivery , :checked => "checked"%>DELIVERY</div>
+      <div class="pickup"><%= f.check_box :is_pick_up, :checked => "checked" %>PICKUP</div>
+    </div>
+    <div class="search-field">
+      <input type="text" name = "keyword",  placeholder="School Name or Campus", class = "search-keyword", value = <%= params[:keyword] %> >
+    </div>
+    <div class="search">
+      <button class="search-b">Search</button>
+    </div>
+  <% end -%>  
+</div>

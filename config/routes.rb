@@ -99,7 +99,6 @@ Ordering::Application.routes.draw do
   resources :welcome do 
     collection do 
       get 'result'
-      get 'order'
     end
     member do
       get "menu"

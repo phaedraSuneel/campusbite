@@ -55,5 +55,6 @@ class Restaurant < ActiveRecord::Base
 
   def offer
     self.restaurant_offers.select{|a| a.valid_from <= Date.current and a.valid_to >= Date.current}.first  
-  end 
+  end
+  
 end

@@ -6,7 +6,8 @@ class SchoolsController < ApplicationController
   end
 
   def search
-    @schools = School.search(params[:keyword])
+    @restaurants = Restaurant.search(params[:keyword])
+    @schools =  @restaurants.collect(&:school)
     respond_to do |format|
       format.json { render :json => @schools.map {|a| a.school_name + " (" +  a.branch_name + ")" }    }  
     end                          

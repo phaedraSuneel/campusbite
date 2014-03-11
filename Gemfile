@@ -29,8 +29,9 @@ end
 
 
 gem 'jquery-rails'
-
+gem 'delayed_job_active_record'
 gem 'thinking-sphinx', '3.1.0'
+gem 'ts-delayed-delta', '2.0.0', :require => 'thinking_sphinx/deltas/delayed_delta'
 gem 'progress_bar'
 
 # To use ActiveModel has_secure_password

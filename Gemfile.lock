@@ -44,6 +44,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    delayed_job (4.0.0)
+      activesupport (>= 3.0, < 4.1)
+    delayed_job_active_record (4.0.0)
+      activerecord (>= 3.0, < 4.1)
+      delayed_job (>= 3.0, < 4.1)
     devise (3.2.2)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
@@ -171,6 +176,9 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
+    ts-delayed-delta (2.0.0)
+      delayed_job
+      thinking-sphinx
     tzinfo (0.3.38)
     uglifier (2.4.0)
       execjs (>= 0.3.0)
@@ -184,6 +192,7 @@ PLATFORMS
 DEPENDENCIES
   cancan
   coffee-rails (~> 3.2.1)
+  delayed_job_active_record
   devise
   jquery-rails
   mysql2
@@ -198,4 +207,5 @@ DEPENDENCIES
   simple_form
   therubyracer
   thinking-sphinx (= 3.1.0)
+  ts-delayed-delta (= 2.0.0)
   uglifier (>= 1.0.3)

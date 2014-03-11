@@ -8,20 +8,7 @@
   <div class="row school-campus">
     <div class="col-md-10 col-md-offset-1">
       <p class="school-name">Enter your School name or Campus to find local restaurants!</p>
-      <div class="main-search-bar">
-        <%= form_for "search", :url => result_welcome_index_path, :method => 'get'  do |f| %>
-          <div class="search-botton">
-            <div class="delivery"><%= check_box_tag :is_delivery, true %>DELIVERY</div>
-            <div class="pickup"><%= check_box_tag :is_pick_up, true %>PICKUP</div>
-          </div>
-          <div class="search-field">
-            <input type="text" name = "keyword",  placeholder="School Name or Campus", class = "search-keyword", value = <%= params[:keyword] %> >
-          </div>
-          <div class="search">
-            <button class="search-b">Search</button>
-          </div>
-        <% end -%>  
-      </div>
+      <%= render :partial => "search_form" %>
     </div>
   </div>
   <div class="row school-campus-img">
