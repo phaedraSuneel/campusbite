@@ -37,7 +37,7 @@ class Restaurant < ActiveRecord::Base
 
   def open?
     today = Time.now.strftime('%A')
-    #current_time = Time.now.strftime("%I:%M%p") 
+    current_time = Time.now.strftime("%I:%M%p") 
     current_time = Time.parse "2000-01-01 #{current_time}"
     restaurant_info = self.operation.sechedules.where(:day => today)
     opened_info = restaurant_info.where('opening_time  <= ? and closing_time >= ?' , current_time, current_time)

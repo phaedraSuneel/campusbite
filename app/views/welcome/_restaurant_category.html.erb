@@ -33,19 +33,16 @@
     <label class="search-tax"><input type="text" /><button>Search</button></label>
   </div>
 </div>   
-<%= hidden_field_tag "query", @query, :class => "query" %>
 
 <script type="text/javascript">
   $(document).ready(function(){
     $(".restaurant-category a").click(function()
     {
       category_id = $(this).data("id");
-      console.log(category_id)
-      keyword = $('.query').val();
-      console.log(category_id);
+      url = document.URL;
       $.ajax ({
-        url:  '/welcome/result',
-        data: {keyword: keyword, category_id: category_id },
+        url:  url,
+        data: {category_id: category_id },
         success: function(data)
         {
           $(this).addClass("active");
