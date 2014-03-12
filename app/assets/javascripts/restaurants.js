@@ -100,6 +100,10 @@ $(document).ready(function(){
     $(".advance-search-form").submit();
   });
 
+  $(".search-restaurant").click(function(){
+    $(".advance-search-form").submit();
+  });
+
 });
 
 function change_collapse_sign(){

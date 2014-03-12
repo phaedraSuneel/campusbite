@@ -10,29 +10,29 @@
     </ul>
   </div>
 </div>
-<div class="category-by-sort">
-  <div class="padding-around">
-    <label>By Sort:</label>
-    <%= form_for "search", :url => result_welcome_index_path, :method => 'get', :html => {
+<%= form_for "search", :url => result_welcome_index_path, :method => 'get', :html => {
       :class => "advance-search-form " } do |f| %>
+  <div class="category-by-sort">
+    <div class="padding-around">
+      <label>By Sort:</label>
       <ul class="by-sort">
         <%= hidden_field_tag :keyword, params[:keyword], :class => "query" %>
         <li><%= f.check_box :best_match, :checked => "checked" %>Best Match</li>
-        <li><%= f.check_box :delivery_free %>Delivery Fee</li>
-        <li><%= f.check_box :delivery_mini %>Delivery Minimum</li>
+        <li><%= f.check_box :delivery_free, :value => params[:search][:delivery_free] %>Delivery Fee</li>
+        <li><%= f.check_box :delivery_mini, :value => params[:search][:delivery_mini] %>Delivery Minimum</li>
         <li><input type="checkbox">Ratings</li>
-        <li><input type="checkbox">Estimated Time</li>
-        <li><input type="checkbox">Restaurant Name</li>
-      </ul>
-    <% end -%>  
+        <li><%= f.check_box :delivery_eta, :value => params[:search][:delivery_eta] %>Estimated Time</li>
+        <li><%= f.check_box :sort_name, :value => params[:search][:sort_name] %>Restaurant Name</li>
+      </ul>  
+    </div>
   </div>
-</div>
-<div class="category-search">
-  <div class="padding-around">
-    <label>Restaurant Search:</label>
-    <label class="search-tax"><input type="text" /><button>Search</button></label>
+  <div class="category-search">
+    <div class="padding-around">
+      <label>Restaurant Search:</label>
+      <label class="search-tax"><%= f.text_field :restaurant_name, :value => params[:search][:restaurant_name] %><button class="search-restaurant">Search</button></label>
+    </div>
   </div>
-</div>   
+<% end %>     
 
 <script type="text/javascript">
   $(document).ready(function(){

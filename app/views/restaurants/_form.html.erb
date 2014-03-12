@@ -115,7 +115,7 @@
 
     <div class="field">
       <%= f.label :delivery_estimated_time, "Restaurant delivery estimated time" %><br />
-      <%= f.text_field :delivery_estimated_time %> (30-45 mintues)
+      <%= f.number_field  :delivery_estimated_time, :min => 0 %> ( minutes )
     </div>
 
     <div class="field">
