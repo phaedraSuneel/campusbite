@@ -1,59 +1,65 @@
 <div class="col-md-4 cart-container">
   <div class="cart-recored">
     <div class="cart-btn">Your cart</div>
-    <% unless Cart.last.blank? %>
-        <%= form_for "order", :url => checkout_carts_path, :method => :get, :html => {:class => "order-form"} do |f|%>
-          <div class="row asap">
-            <div class="col-md-4 order-type">
-              Order type:
-            </div>
-            <div class="col-md-4 delivery-type">
-              <div class="delivery-btn">
-                <%= f.radio_button :order_type , "delivery"%> Delivery
-              </div>
-            </div>
-            <div class="col-md-4 pickup-type">
-              <div class="pick-btn">
-                <%= f.radio_button :order_type , "pickup" %> Pickup</div>
-            </div>
-            <div class="col-md-12 request-order">
-              <label>Order Requested For:<span>ASAP</span><a href="#">Eidt</a></label>
-              <%= f.hidden_field :request_time, :value => "ASAP" %>
-            </div>
-            <% Cart.last.cart_menu_items.each do |cart| %>
-              <div class="col-md-12 Qty-container">
-                <div class="back-border">
-                  <label class="edit-cloes"><a href="#">Eidt</a><span><a class="cloesing" href="#">X</a></span></label>
-                  <label class="dolor-heading"><%= cart.menu_item.item_name %><span>$<%= cart.menu_item.price %></span></label>
-                  <label class="details">20 oz.<span>$0.75</span></label>
-                  <label class="details">Add Double Espresso Shot<span>$1.20</span></label>
-                  <label class="details">Caramel<span>+$0.40</span></label>
-                  <label class="details">Instructions:  <%= cart.instruction %></label>
-                  <label class="total-amount"><img class="line-1" alt="Smiley face" src="/assets/t-line.png" /><span>$4.40</span></label>
-                  <label class="qty-amount">QTY:<span>-</span>1+</label>
-                </div>
-              </div>
-            <% end %>  
-            <div class="col-md-12 subtotal-container">
-              <div class="subtotal-head">
-                <label>Subtotal:</label>
-                <label>Tax:</label>
-                <label>Delivery Fee:</label>
-              </div>
-              <div class="subtotal-amount">
-                <label>$43.50</label>
-                <label>$1.43</label>
-                <label>$4.00</label>
-              </div>
-            </div>
-            <div class="col-md-12 grandtotal-container">
-              <label>TOTAL:<span>$48.50</span></label>
-            </div>
-            <div class="col-md-8 col-md-offset-2 checkout-btn">
-              <%= link_to raw("<button>CHECKOUT</button>"), "#", :class => "checkout-btn-link" %>
+    <% if user_signed_in? %>
+      <% cart=current_user.cart %>
+    <% else %>
+      <% cart=Cart.find_by_token(cookies[:cart_token]) %>
+    <% end %>
+
+    <% unless cart.blank? %>
+      <%= form_for "order", :url => checkout_carts_path, :method => :get, :html => {:class => "order-form"} do |f|%>
+        <div class="row asap">
+          <div class="col-md-4 order-type">
+            Order type:
+          </div>
+          <div class="col-md-4 delivery-type">
+            <div class="delivery-btn">
+              <%= f.radio_button :order_type , "delivery"%> Delivery
             </div>
           </div>
-        <% end %>  
+          <div class="col-md-4 pickup-type">
+            <div class="pick-btn">
+              <%= f.radio_button :order_type , "pickup" %> Pickup</div>
+          </div>
+          <div class="col-md-12 request-order">
+            <label>Order Requested For:<span>ASAP</span><a href="#">Eidt</a></label>
+            <%= f.hidden_field :request_time, :value => "ASAP" %>
+          </div>
+          <% cart.cart_menu_items.each do |cart| %>
+            <div class="col-md-12 Qty-container">
+              <div class="back-border">
+                <label class="edit-cloes"><a href="#">Eidt</a><span><a class="cloesing" href="#">X</a></span></label>
+                <label class="dolor-heading"><%= cart.menu_item.item_name %><span>$<%= cart.menu_item.price %></span></label>
+                <label class="details">20 oz.<span>$0.75</span></label>
+                <label class="details">Add Double Espresso Shot<span>$1.20</span></label>
+                <label class="details">Caramel<span>+$0.40</span></label>
+                <label class="details">Instructions:  <%= cart.instruction %></label>
+                <label class="total-amount"><img class="line-1" alt="Smiley face" src="/assets/t-line.png" /><span>$4.40</span></label>
+                <label class="qty-amount">QTY:<span>-</span>1+</label>
+              </div>
+            </div>
+          <% end %>  
+          <div class="col-md-12 subtotal-container">
+            <div class="subtotal-head">
+              <label>Subtotal:</label>
+              <label>Tax:</label>
+              <label>Delivery Fee:</label>
+            </div>
+            <div class="subtotal-amount">
+              <label>$43.50</label>
+              <label>$1.43</label>
+              <label>$4.00</label>
+            </div>
+          </div>
+          <div class="col-md-12 grandtotal-container">
+            <label>TOTAL:<span>$48.50</span></label>
+          </div>
+          <div class="col-md-8 col-md-offset-2 checkout-btn">
+            <%= link_to raw("<button>CHECKOUT</button>"), "#", :class => "checkout-btn-link" %>
+          </div>
+        </div>
+      <% end %>  
     <% else %>
       <div class="text-center"> Your Cart is Empty</div>
     <% end %>    

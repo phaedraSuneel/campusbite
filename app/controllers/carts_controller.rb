@@ -23,11 +23,9 @@ class CartsController < ApplicationController
 
   def checkout
     if user_signed_in?
-      @user = current_user
-      @cart = Cart.last
-      @cart.user = @user if @cart.user.blank?
-      @cart.save
-      @order = @user.orders.new(params[:order])
+      @cart = current_user.cart
+      @order = Order.new params[:order]
+      @order.user_id = @cart.user_id
       @order.save
       @cart.cart_menu_items.each do |item|
         @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity 
@@ -38,9 +36,8 @@ class CartsController < ApplicationController
       flash[:notice] = 'Order was successfully created!'
       redirect_to :back
     else
-
       flash[:notice] = 'Before checkout please Sign In'
-      redirect_to :back
+      redirect_to new_user_session_path
     end
   end
   
