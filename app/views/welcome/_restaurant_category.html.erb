@@ -13,11 +13,11 @@
 <div class="category-by-sort">
   <div class="padding-around">
     <label>By Sort:</label>
-    <%= form_for "advance_search", :url => result_welcome_index_path, :method => 'get', :html => {
+    <%= form_for "search", :url => result_welcome_index_path, :method => 'get', :html => {
       :class => "advance-search-form " } do |f| %>
       <ul class="by-sort">
         <%= hidden_field_tag :keyword, params[:keyword], :class => "query" %>
-        <li><%= f.check_box :best_match%>Best Match</li>
+        <li><%= f.check_box :best_match, :checked => "checked" %>Best Match</li>
         <li><%= f.check_box :delivery_free %>Delivery Fee</li>
         <li><%= f.check_box :delivery_mini %>Delivery Minimum</li>
         <li><input type="checkbox">Ratings</li>
@@ -45,7 +45,7 @@
         data: {category_id: category_id },
         success: function(data)
         {
-          $(this).addClass("active");
+          //$(this).addClass("active");
           $("body").html(data); //just for test
         }
       });

@@ -8,7 +8,8 @@ ThinkingSphinx::Index.define :restaurant, :with => :active_record do
   has restaurant_categories(:id), :as => :restaurant_category_ids, :facet => true
   
   indexes delivery_info(:delivery_charges), :as => :delivery_charges, :type => :float
-  indexes delivery_info(:delivery_charges), :as => :delivery_mini, :type => :float 
   
+  has delivery_info(:delivery_charges), :as => :delivery_mini, :type => :float
+
   set_property :min_infix_len => 1
 end

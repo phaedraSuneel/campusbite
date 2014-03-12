@@ -96,9 +96,9 @@ $(document).ready(function(){
     change_collapse_sign();
   });
 
-  // $(".advance-search-form input[type='checkbox']").change(function(){
-  //   $(".advance-search-form").submit();
-  // });
+  $(".advance-search-form input[type='checkbox']").change(function(){
+    $(".advance-search-form").submit();
+  });
 
 });
 
