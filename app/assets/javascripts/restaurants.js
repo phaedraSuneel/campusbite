@@ -160,6 +160,11 @@ $(document).ready(function(){
         data: {keyword: keyword, input: radio_input },
         success: function(data)
         {
+          $(".chooses li").each(function()
+          {
+            $(this).removeClass("active");
+          });
+          $(".chooses li.all").addClass("active"); 
           $(".restaurants-result").html(data);
           $(this).checked = false;
         }
