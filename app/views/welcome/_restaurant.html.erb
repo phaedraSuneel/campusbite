@@ -17,7 +17,7 @@
             <h3><%= "#{restaurant.offer.offer_percentage}" + "%  " + "#{restaurant.offer.description}" %></h3>
           <% end -%>  
         </div>
-        <% if restaurant.phone_oreder? %>
+        <% if restaurant.phone_order? %>
           <div class="col-md-6 online-orders-gray">
             <h3>PHONE ORDERS ONLY</h3>
           </div>
@@ -67,7 +67,7 @@
           </div>                        
         </div>
         <div class="col-md-2 view-menu">
-          <% if restaurant.open? and !restaurant.phone_oreder? %>
+          <% if restaurant.open? and !restaurant.phone_order? %>
             <%= link_to "VIEW MENU", menu_welcome_path(restaurant), :class => "view-button btn" %>
           <% else %>  
             <%= link_to "VIEW MENU", menu_welcome_path(restaurant), :class => "view-button-red btn" %>

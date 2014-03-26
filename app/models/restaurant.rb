@@ -20,6 +20,7 @@ class Restaurant < ActiveRecord::Base
 
   attr_accessible :school_id, :restaurant_category_ids, :contact_info_attributes, :restaurant_info_attributes, :delivery_info_attributes, :order_info_attributes, :bank_info_attributes,
                   :operation_attributes, :delivery_attributes, :pick_up_attributes
+                 
   accepts_nested_attributes_for :restaurant_categories
   accepts_nested_attributes_for :favorites
   accepts_nested_attributes_for :contact_info, :restaurant_info, :delivery_info, :order_info, :bank_info, :operation, :delivery, :pick_up
@@ -49,12 +50,12 @@ class Restaurant < ActiveRecord::Base
     self.operation.sechedules.where(:day => Time.now.strftime("%A")).first.opening_time.strftime("%I:%M%p")
   end
 
-  def phone_oreder? 
+  def phone_order? 
     self.delivery_info.is_delivery? ? false : true 
   end
 
   def offer
     self.restaurant_offers.select{|a| a.valid_from <= Date.current and a.valid_to >= Date.current}.first  
   end
-  
+
 end

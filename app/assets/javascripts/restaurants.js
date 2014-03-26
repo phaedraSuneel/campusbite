@@ -96,14 +96,6 @@ $(document).ready(function(){
     change_collapse_sign();
   });
 
-  $(".advance-search-form input[type='checkbox']").change(function(){
-    $(".advance-search-form").submit();
-  });
-
-  $(".search-restaurant").click(function(){
-    $(".advance-search-form").submit();
-  });
-    
   $(".main-search-form input").change(function(){
     child = $(this).is(':checked');
     parent = $(this).parent();
@@ -139,7 +131,53 @@ $(document).ready(function(){
       $(this).addClass("checked");
     }  
   });
+
+  $(".restaurant-category a").click(function()
+    {
+      category_id = $(this).data("id");
+      keyword = $(".query").val();
+      parent = $(this).parent();
+      $.ajax ({
+        url:  '/welcome/restaurant_search',
+        data: {keyword: keyword, category_id: category_id },
+        success: function(data)
+        {
+          parent.addClass("active");
+          $(".restaurants-result").html(data);
+        }
+      });
+    });
+
+    $(".advance-search-form input").change(function(){
+      radio_input = $(this).val()
+      keyword = $(".query").val();
+      $.ajax ({
+        url:  '/welcome/restaurant_search',
+        data: {keyword: keyword, input: radio_input },
+        success: function(data)
+        {
+          $(".restaurants-result").html(data);
+          $(this).checked = false;
+        }
+      });
+    });
+
+    $(".search-restaurant").click(function(e){
+      e.preventDefault();
+      radio_input = $(this).parent.find("input[type='text']").val();
+      keyword = $(".query").val();
+      $.ajax ({
+        url:  '/welcome/restaurant_search',
+        data: {keyword: keyword, input: radio_input },
+        success: function(data)
+        {
+          $(".restaurants-result").html(data);
+          $(this).checked = false;
+        }
+      });
+    })
 });
+
 function change_collapse_sign(){
   $(".collaper").each(function(){
     collapse = $(this).parent().parent().parent().find(".panel-collapse");

@@ -631,6 +631,10 @@ box-shadow: 0px 7px 5px -2px rgba(87,84,87,1);
 .result-page .category ul.chooses li:hover{
   background-color: #cae5b1;
 }
+
+.result-page .category ul.chooses li.active{
+  background-color: #cae5b1;
+}
 .result-page .category ul.chooses li a{
   font-family: 'PT Sans';
   font-size: 14px;
@@ -2623,4 +2627,9 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   /** fixing changes **/
   .search-keyword {
     color: black !important; 
+  }
+
+  .no-font-weight
+  {
+    font-weight: normal !important;
   }

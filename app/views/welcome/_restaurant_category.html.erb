@@ -3,52 +3,85 @@
   <div class="category">
     <label>Choose a category:</label>
     <ul class="chooses">
-      <li class="restaurant-category"><a href="#">All categories(<%= RestaurantCategory.count%>)</a></li>
+      <li class="restaurant-category active"><a href="#" data-id = "">All categories(<%= RestaurantCategory.count%>)</a></li>
       <% RestaurantCategory.all.each do |category|%>
         <li class="restaurant-category"><a href="#" data-id = "<%= category.id %>" remote = "true"><%= category.category_name %></a></li>
+        
       <% end %>  
+      <%= hidden_field_tag :keyword, params[:keyword], :class => "query" %>
     </ul>
   </div>
 </div>
-<%= form_for "search", :url => result_welcome_index_path, :method => 'get', :html => {
+<%= form_for "search", :url => restaurant_search_welcome_index_path, :method => 'get', :html => {
       :class => "advance-search-form " } do |f| %>
   <div class="category-by-sort">
     <div class="padding-around">
       <label>Sort By:</label>
       <ul class="by-sort">
-        <%= hidden_field_tag :keyword, params[:keyword], :class => "query" %>
-        <li><%= f.check_box :best_match, :checked => "checked" %>Best Match</li>
-        <li><%= f.check_box :delivery_free, :value => params[:search][:delivery_free] %>Delivery Fee</li>
-        <li><%= f.check_box :delivery_mini, :value => params[:search][:delivery_mini] %>Delivery Minimum</li>
-        <li><input type="checkbox">Ratings</li>
-        <li><%= f.check_box :delivery_eta, :value => params[:search][:delivery_eta] %>Estimated Time</li>
-        <li><%= f.check_box :sort_name, :value => params[:search][:sort_name] %>Restaurant Name</li>
+        <li><label class="no-font-weight"> <%= f.radio_button :sort, 'best_match'%>Best Match</label></li>
+        <li><label class="no-font-weight"><%= f.radio_button :sort, 'delivery_free' %>Delivery Fee</label></li>
+        <li><label class="no-font-weight"><%= f.radio_button :sort, 'delivery_mini'%>Delivery Minimum</label></li>
+        <li><label class="no-font-weight"><%= f.radio_button :sort, 'ratings'%>Ratings</label></li>
+        <li><label class="no-font-weight"><%= f.radio_button :sort, 'delivery_eta' %>Estimated Time</label></li>
+        <li><label class="no-font-weight"><%= f.radio_button :sort, 'sort_name' %>Restaurant Name</label></li>
       </ul>  
     </div>
   </div>
   <div class="category-search">
     <div class="padding-around">
       <label>Restaurant Search:</label>
-      <label class="search-tax"><%= f.text_field :restaurant_name, :value => params[:search][:restaurant_name] %><button class="search-restaurant">Search</button></label>
+      <label class="search-tax"><%= f.text_field :restaurant_name %><%= link_to  raw("<button class='search-restaurant' >Search</button>"), "#" %></label>
     </div>
   </div>
-<% end %>     
+<% end %> 
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $(".restaurant-category a").click(function()
-    {
-      category_id = $(this).data("id");
-      url = document.URL;
-      $.ajax ({
-        url:  url,
-        data: {category_id: category_id },
-        success: function(data)
-        {
-          //$(this).addClass("active");
-          $("body").html(data); //just for test
-        }
-      });
-    });
+    
+    // $(".restaurant-category a").click(function()
+    // {
+    //   category_id = $(this).data("id");
+    //   keyword = $(".query").val();
+    //   parent = $(this).parent();
+    //   $.ajax ({
+    //     url:  '/welcome/restaurant_search',
+    //     data: {keyword: keyword, category_id: category_id },
+    //     success: function(data)
+    //     {
+    //       parent.addClass("active");
+    //       $(".restaurants-result").html(data);
+    //     }
+    //   });
+    // });
+
+    // $(".advance-search-form input").change(function(){
+    //   radio_input = $(this).val()
+    //   keyword = $(".query").val();
+    //   $.ajax ({
+    //     url:  '/welcome/restaurant_search',
+    //     data: {keyword: keyword, input: radio_input },
+    //     success: function(data)
+    //     {
+    //       $(".restaurants-result").html(data);
+    //       $(this).checked = false;
+    //     }
+    //   });
+    // });
+
+    // $(".search-restaurant").click(function(e){
+    //   e.preventDefault();
+    //   radio_input = $(this).parent.find("input[type='text']").val();
+    //   keyword = $(".query").val();
+    //   $.ajax ({
+    //     url:  '/welcome/restaurant_search',
+    //     data: {keyword: keyword, input: radio_input },
+    //     success: function(data)
+    //     {
+    //       $(".restaurants-result").html(data);
+    //       $(this).checked = false;
+    //     }
+    //   });
+    // })
+
   });
 </script>
