@@ -103,7 +103,7 @@ $(document).ready(function(){
   $(".search-restaurant").click(function(){
     $(".advance-search-form").submit();
   });
-
+    
   $(".main-search-form input").change(function(){
     child = $(this).is(':checked');
     parent = $(this).parent();
@@ -126,8 +126,20 @@ $(document).ready(function(){
     }  
   });
 
+  $(".delivery, .pickup").click(function(){
+    input =  $(this).find("input[type=checkbox]");
+    if(input.is(':checked'))
+    {
+      input.prop('checked', false);
+      $(this).removeClass("checked");
+    }  
+    else
+    {
+      input.prop('checked', true);
+      $(this).addClass("checked");
+    }  
+  });
 });
-
 function change_collapse_sign(){
   $(".collaper").each(function(){
     collapse = $(this).parent().parent().parent().find(".panel-collapse");

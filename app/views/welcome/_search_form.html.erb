@@ -1,9 +1,22 @@
 <div class="main-search-bar">
   <%= form_for "search", :url => result_welcome_index_path, :method => 'get', :html => { :class => "main-search-form" } do |f| %>
-    <div class="search-botton">
-      <div class="delivery"><%= f.check_box :is_delivery %>DELIVERY</div>
-      <div class="pickup"><%= f.check_box :is_pick_up  %>PICKUP</div>
-    </div>
+      <div class="search-botton">
+        <% unless params[:search].blank? %>
+          <% unless params[:search][:is_delivery].blank? %> 
+            <div class="delivery"><%= check_box_tag 'search[is_delivery]', '', :checked => (params[:search][:is_delivery] ? 'checked' : '') %>DELIVERY</div>
+          <% else %>  
+            <div class="delivery"><%= check_box_tag 'search[is_delivery]' %>DELIVERY</div>
+          <% end -%> 
+          <% unless params[:search][:is_pick_up].blank? %> 
+            <div class="pickup"><%= check_box_tag 'search[is_pick_up]', '', :checked => (params[:search][:is_pick_up] ? 'checked' : '')  %>PICKUP</div>
+          <% else %>
+            <div class="pickup"><%= check_box_tag 'search[is_pick_up]'%>PICKUP</div>    
+          <% end -%>
+        <% else %>
+          <div class="delivery"><%= check_box_tag 'search[is_delivery]' %>DELIVERY</div>
+          <div class="pickup"><%= check_box_tag 'search[is_pick_up]'%>PICKUP</div>
+        <% end %>  
+      </div>
     <div class="search-field">
       <input type="text" name = "keyword",  placeholder="School Name or Campus", class = "search-keyword", value = <%= params[:keyword] %> >
     </div>
