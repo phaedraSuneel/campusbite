@@ -142,6 +142,10 @@ $(document).ready(function(){
         data: {keyword: keyword, category_id: category_id },
         success: function(data)
         {
+          $(".chooses li").each(function()
+          {
+            $(this).removeClass("active");
+          });
           parent.addClass("active");
           $(".restaurants-result").html(data);
         }
