@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
       delivery = params[:search][:is_delivery] == "1" ? 1 : nil
       if params[:keyword].blank?
         @restaurants = Restaurant.search :with => {:pick_up => pick_up } unless pick_up.nil?
-        @restaurants = @restaurants.search :with => {:delivery => delivery } unless delivery.nil?
+        @restaurants = Restaurant.search :with => {:delivery => delivery } unless delivery.nil?
       elsif !params[:keyword].blank?
         @restaurants = Restaurant.search params[:keyword]
         @restaurants = @restaurants.search :with => {:pick_up => pick_up } unless pick_up.nil?
@@ -37,7 +37,6 @@ class WelcomeController < ApplicationController
         @restaurants = Restaurant.search params[:keyword]
       elsif params[:input] == "delivery_free"
         @restaurants = @restaurants.search :conditions => {:delivery_charges =>  0.0}
-        p @restaurants
       elsif params[:input] == "delivery_mini"
         @restaurants = @restaurants.search :sort_mode => :expr, :order => :min_order 
       elsif params[:input] == "delivery_eta"
