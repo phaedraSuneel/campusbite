@@ -104,6 +104,28 @@ $(document).ready(function(){
     $(".advance-search-form").submit();
   });
 
+  $(".main-search-form input").change(function(){
+    child = $(this).is(':checked');
+    parent = $(this).parent();
+    if(child){
+      parent.addClass("checked");
+    }  
+    else{
+      parent.removeClass("checked");
+    }  
+  });
+
+  $(".main-search-form input").each(function(){
+    child = $(this).is(':checked');
+    parent = $(this).parent();
+    if(child){
+      parent.addClass("checked");
+    }  
+    else{
+      parent.removeClass("checked");
+    }  
+  });
+
 });
 
 function change_collapse_sign(){

@@ -1,5 +1,5 @@
 <div class="all-categories">
-  <div class="result-label">Result</div>
+  <div class="result-label">Results</div>
   <div class="category">
     <label>Choose a category:</label>
     <ul class="chooses">
@@ -14,7 +14,7 @@
       :class => "advance-search-form " } do |f| %>
   <div class="category-by-sort">
     <div class="padding-around">
-      <label>By Sort:</label>
+      <label>Sort By:</label>
       <ul class="by-sort">
         <%= hidden_field_tag :keyword, params[:keyword], :class => "query" %>
         <li><%= f.check_box :best_match, :checked => "checked" %>Best Match</li>

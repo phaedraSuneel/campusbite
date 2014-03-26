@@ -48,11 +48,10 @@ class WelcomeController < ApplicationController
        @restaurants = Restaurant.search :order => :restaurant_name
       elsif !eta.nil?
         @restaurants = Restaurant.search :sort_mode => :desc, :order => :delivery_eta
-    	else
-    		@restaurants = Restaurant.all
+      else
+    	 @restaurants = Restaurant.all
   		end
-	  end 	
-	  p @restaurants
+	  end
  	end
 
  	def menu

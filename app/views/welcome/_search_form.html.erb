@@ -1,7 +1,7 @@
 <div class="main-search-bar">
-  <%= form_for "search", :url => result_welcome_index_path, :method => 'get'  do |f| %>
+  <%= form_for "search", :url => result_welcome_index_path, :method => 'get', :html => { :class => "main-search-form" } do |f| %>
     <div class="search-botton">
-      <div class="delivery"><%= f.check_box :is_delivery  %>DELIVERY</div>
+      <div class="delivery"><%= f.check_box :is_delivery %>DELIVERY</div>
       <div class="pickup"><%= f.check_box :is_pick_up  %>PICKUP</div>
     </div>
     <div class="search-field">
