@@ -1,0 +1,47 @@
+<div class="row search-container account-setting-page favorite-Restaurant-page  favorite-Restaurant-page-1  order-history-page  node-reviews">
+  <div class="container">
+  	<div class="row">
+    	<%= render :partial => 'welcome/result_top' %>
+    </div>
+    <div class="row account-container">
+     <%= render :partial => "reward_point" %>
+  	</div>
+    <div class="row setting-info-container">
+    	<div class="col-md-11 info-main-container">
+    		<div class="order-history-left">
+    			<div class="ring"></div>
+    			<div class="account-bar nav nav-pills user-information-tab" data-tabs="tabs">
+            <div class="account-tabs active">
+              <a href="#order_history" data-toggle="tab" >ORDER HISTORY</a>
+            </div>
+            <div class="account-tabs">
+              <a href="#favorite" data-toggle="tab">FAVORITE RESTAURANTS</a>
+            </div>
+            <div class="account-tabs">
+              <a href="#review" data-toggle="tab">MY REVIEWS</a>
+            </div>
+            <div class="account-tabs">
+              <a href="#setting" data-toggle="tab">account settings</a>
+            </div>
+          </div>
+          <div id="account-tab-content" class="tab-content">
+          	<div class="tab-pane active" id= "order_history">
+          		<%= render :partial => 'order_history'%>
+          	</div>
+          	<div class="tab-pane" id= "favorite">
+          		<%= render :partial => 'favorite_restaurnats'%>
+          	</div>
+          	<div class="tab-pane" id= "review">
+          		<%= render :partial => 'my_reviews'%>
+          	</div>	
+          	<div class="tab-pane" id= "setting">
+          		<%= render :partial => 'account_setting'%>
+          	</div>
+          </div>	
+    		</div>	
+    	</div>
+    	<div class="col-md-1 order-history-right">
+      </div>
+    </div>	
+  </div>
+</div>    

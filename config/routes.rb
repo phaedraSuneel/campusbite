@@ -8,6 +8,12 @@ Ordering::Application.routes.draw do
 
   resources :cuisines
 
+  resources :dashboard do 
+    collection do
+      get 'account'
+    end
+  end
+
 
   resources :addons do
     collection do 
