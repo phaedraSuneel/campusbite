@@ -2633,3 +2633,16 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   {
     font-weight: normal !important;
   }
+
+  .order-view-btn{
+    background: linear-gradient(to bottom, #79cf33 0%, #57af0a 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: 1px solid #919191;
+    border-radius: 5px;
+    color: #FFFFFF;
+    font-family: 'bignoodletitlingregular';
+    font-size: 23px;
+    height: 50px;
+    line-height: 50px;
+    margin: 50px 0;
+    text-align: center;
+  }

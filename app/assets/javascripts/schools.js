@@ -12,7 +12,13 @@ $(document).ready(function(){
   });
 
   $(".checkout-btn-link").click(function(){
-    $(".order-form").submit();
+    $.ajax ({
+        url:  '/carts/checkout',
+        success: function(data)
+        {
+          $(".cart-response").html(data);
+        }
+      });
   });
   
 });

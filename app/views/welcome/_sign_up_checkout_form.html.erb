@@ -1,30 +1,36 @@
+<div id="confirmation"></div>
 <div class="singup-second">
-  <div class="col-md-6 checkout-field">
-    <label>First Name:</label>
-    <input type="text" placeholder="First Name" />
-  </div>
-  <div class="col-md-6 checkout-field">
-    <label>Last Name:</label>
-    <input type="text" placeholder="Last Name:" />
-  </div>
+  <%= form_for("user", :url => user_registration_path, :html => {:id => "sign_up", :class => "sign-up-form"}) do |f| %>
     <div class="col-md-6 checkout-field">
-    <label>Email:</label>
-    <input type="text" placeholder="Email" />
-  </div>
-  <div class="col-md-6 checkout-field">
-    <label>Password:</label>
-    <input type="text" placeholder="Password" />
-  </div>
-  <div class="col-md-12 checkout-field">
-    <label>Your School:</label>
-    <input type="text" placeholder="Your School" />
-    <p>By clicking Sign Up you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
-  </div>
-  <div class="col-md-12 submit-button facebook-button" id="singn-in-btn">
-    <button>Sign in</button>
-    <p><a class="facebook-icon" href="#">Forgot your password?</a></p>
-  </div> 
-  <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
+      <label>First Name:</label>
+      <%= f.text_field :first_name, :autofocus => true, :placeholder => "First Name" %>
+    </div>
+    <div class="col-md-6 checkout-field">
+      <label>Last Name:</label>
+      <%= f.text_field :last_name, :autofocus => true, :placeholder => "Last Name" %>
+    </div>
+      <div class="col-md-6 checkout-field">
+      <label>Email:</label>
+      <%= f.email_field :email, :autofocus => true, :placeholder => "Email" %>
+    </div>
+    <div class="col-md-6 checkout-field">
+      <label>Password:</label>
+      <%= f.password_field :password, :placeholder => "Password" %>
+    </div>
+    <div class="col-md-6 checkout-field">
+      <label>Password Confirmation:</label>
+      <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation" %>
+    </div>
+    <div class="col-md-6 checkout-field">
+      <label>Your School:</label>
+      <%= f.text_field :school_name, :autofocus => true, :placeholder => "Your School", :class => "search-keyword" %>
+      <p>By clicking Sign Up you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+    </div>
+    <div class="col-md-12 submit-button" id="singn-in-btn">
+      <button>Sign up</button>
+    </div> 
+    <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
+  <% end -%>
 </div>
 <div class="col-md-12 signup-content">
   <div class="row compus-content-container">
@@ -76,3 +82,30 @@
   </div>
   <img class="checkout-shadow" alt="Smiley face" src="/assets/shadow.png">
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $(".search-keyword").typeahead([
+      {
+        name: 'Schools',
+        remote: '/schools/search.json?keyword=%QUERY'
+      }
+    ]);
+    $(".sign-up-form").on('submit', function(e) {
+      e.preventDefault(); // prevent native submit
+      $(this).ajaxSubmit({
+          target: '#confirmation',
+          dataType: 'html', 
+          success: function(result) {
+            $(".checkout-btn-link").click();
+          },
+          error: function(jqxhr) {
+            $("#confirmation").html("<div class='alert'>" +jqxhr.responseText+"</div>");
+            $("#confirmation").hide();
+            $("#confirmation").fadeIn(500);
+          }
+      });
+    });
+  });
+</script>

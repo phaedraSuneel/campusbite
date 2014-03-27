@@ -2,8 +2,9 @@
   <div class="container">
     <%= render :partial => "menu_top" %>
       <div class="row menu-tab-container">
-          <%= render :partial => "menu_order" %>  
-          <%#= render :partial => "get_user_information" %>
+          <div class="cart-response">
+          	<%= render :partial => "menu_order" %>  
+          </div>
         <%= render :partial => "menu_cart" %>
       </div>
     </div>

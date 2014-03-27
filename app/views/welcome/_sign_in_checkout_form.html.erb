@@ -1,6 +1,6 @@
-<div id="myResultsDiv"></div>
+<div id="confirmation"></div>
 <div class="singup-second padding-bottom-category">
-  <%= form_for("user", :url => user_session_path, :html => {:id => "sign_in", :class => "sign-in-form"}, :format => :json) do |f| %>
+  <%= form_for("user", :url => user_session_path, :html => {:id => "sign_in", :class => "sign-in-form"}) do |f| %>
     <div class="col-md-6 checkout-field">
       <label>Email:</label>
       <%= f.text_field :email , :class=> "email-input pass-input", :placeholder=>"Email" %>
@@ -12,7 +12,7 @@
     <div class="col-md-12 submit-button facebook-button">
       <button>Sign in</button>
       <p><%= link_to "Forgot your password?", new_password_path('user') %></p>
-      <p><a class="facebook-icon" href="/users/auth/facebook"></p>
+      <p><a class="facebook-icon" href="/users/auth/facebook"></a></p>
     </div> 
   <% end -%>  
   <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
@@ -23,14 +23,17 @@
     $(".sign-in-form").on('submit', function(e) {
       e.preventDefault(); // prevent native submit
       $(this).ajaxSubmit({
-          target: '#myResultsDiv',
-          error : show_form_error
+          target: '#confirmation',
+          dataType: 'html', 
+          success: function(result) {
+            $(".checkout-btn-link").click();
+          },
+          error: function(jqxhr) {
+            $("#confirmation").html("<div class='alert'>" +jqxhr.responseText+"</div>");
+            $("#confirmation").hide();
+            $("#confirmation").fadeIn(500);
+          }
       });
     });
   });
-
-  function show_form_error(responseText,status,xhr){
-    alert(responseText);
-
-  }
 </script>
