@@ -2717,3 +2717,471 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     margin: 50px 0;
     text-align: center;
   }
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<last-page>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+
+.last-page .order-complete-container{
+  float: left;
+  width: 100%;
+  background-color: #cae5b1;
+  border: 1px solid #638f1f;
+  border-radius: 3px;
+  margin-top: 20px;
+}
+.last-page .thanks-order h3{
+  text-align: center;
+  font-family: 'PT Sans';
+  font-size: 21px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.last-page .thanks-order p{
+  text-align: center;
+  font-family: 'PT Sans';
+  font-size: 19px;
+  font-weight: bold;
+  width: 100%;
+}
+.last-page .green-tick{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-top: 25px;
+  text-align: center;
+}
+.last-page .order-restaurant-container{
+  padding: 0px !important;
+  float: left;
+  width: 100%;
+}
+.last-page .order-restaurant-container .order-detail{
+  background-color: #fffaf2;
+  border-radius: 3px;
+  border: 1px solid #638f1f;
+  padding: 0px 0px 10px 0px !important;
+  float: left;
+  margin-right: 0.6%;
+  width: 49.7% !important;
+  margin-top: 8px;
+}
+.last-page .order-restaurant-container .restaurant-detail{
+  height: 235px;
+}
+.restaurant-detail{
+  margin-right: 0px !important;
+}
+.last-page .order-restaurant-container .order-detail h3{
+  background-color: #cae5b1;
+  padding: 10px 0;
+  margin: 0px 0px 10px 0px;
+  border-radius: 3px 3px 0px 0px;
+  text-align: center;
+  font-family: 'PT Sans';
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 1px solid #638f1f;
+}
+.last-page .order-restaurant-container .order-detail label{
+  width: 100%;
+  float: left;
+  margin: 0px;
+  border-radius: 3px 3px 0px 0px;
+  font-family: 'PT Sans';
+  font-size: 20px;
+  font-weight: bold;
+}
+.last-page .order-restaurant-container .order-detail label span{
+  width: 47%;
+  float: left;
+  margin-right: 3%;
+  text-align: right;
+  /*white-space:nowrap;*/
+}
+.last-page .order-restaurant-container .order-detail label span.value {
+  width: 44%;
+  float: left;
+  margin-right: 0px;
+  text-align: left;
+}
+.last-page .order-restaurant-container .your-detail label span{
+  width: 22%;
+  float: left;
+  margin-right: 3%;
+  text-align: right;
+  /*white-space:nowrap;*/
+}
+.last-page .order-restaurant-container .your-detail label span.value {
+  width: 44%;
+  float: left;
+  margin-right: 0px;
+  text-align: left;
+}
+.last-page .order-restaurant-container .campusbite-container{
+  width: 49.7% !important;
+  padding: 0px !important;
+}
+.last-page .campusbite-container .about-fnd{
+  padding-bottom: 15px;
+  margin-top: 8px;
+  border-radius: 3px;
+  background-color: #fffaf2;
+  border: 1px solid #638f1f;
+  float: left;
+  width: 100%;
+}
+.last-page .campusbite-container .about-fnd h3{
+  background-color: #daa941;
+  padding: 10px 0;
+  margin: 0px 0px 20px 0px;
+  border-radius: 3px 3px 0px 0px;
+  text-align: center;
+  font-family: 'PT Sans';
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-bottom: 1px solid #638f1f;
+}
+.last-page .campusbite-container .about-fnd .email-id input{
+  width: 100%;
+  float: left;
+  border-radius: 3px;
+  border: 1px solid #eac689;
+  height: 40px;
+  padding-left: 10px;
+  color: #939393;
+  margin-bottom: 10px;
+  box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+}
+.last-page .campusbite-container .about-fnd .submit-btn{
+  padding: 0 10px !important;
+}
+.last-page .campusbite-container .about-fnd .submit-btn button{
+  background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #919191;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-family: 'bignoodletitlingregular';
+  font-size: 29px;
+  height: 40px;
+  line-height: 50px;
+  width: 100%;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.40);
+}
+.last-page .campusbite-container .about-fnd .submit-btn button:hover{
+  background: linear-gradient(to bottom, #57AF0A 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.last-page .campusbite-container .about-fnd .submit-btn button:active{
+  background: linear-gradient(to bottom, #57AF0A  0%, #79CF33 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.last-page .social-icons{
+  text-align: center;
+}
+.order-history-page .receipt-container,
+.last-page .receipt-container{
+  padding: 0px !important;
+}
+.last-page .receipt-container .receipt{
+  background-color: #cae5b1;
+  border: 1px solid #638f1f;
+  border-radius: 3px 3px 0px 0px;
+  margin-top: 8px;
+  float: left;
+  width: 100%;
+}
+.order-history-page .receipt-container .receipt .printer-img a,
+.last-page .receipt-container .receipt .printer-img a,
+.order-history-page .receipt-container .receipt .print-head h3,
+.last-page .receipt-container .receipt .print-head h3{
+  text-align: center;
+  font-size: 20px;
+  font-family: 'PT Sans';
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.order-history-page .receipt-container .receipt .printer-img a,
+.last-page .receipt-container .receipt .printer-img a{
+  float: left;
+  padding: 15px 0 0 20px;
+  text-align: left;
+  width: 100%;
+  color: #2b5308;
+  text-transform: capitalize;
+}
+.order-history-page .receipt-container .receipt .printer-img a span,
+.last-page .receipt-container .receipt .printer-img a span{
+  background: url(../images/printer.png) no-repeat;
+  float: left;
+  height: 26px;
+  width: 40px;
+}
+.order-history-page .receipt-container .receipt-info,
+.last-page .receipt-container .receipt-info{
+  float: left;
+  width: 100%;
+  background-color: #fffaf2;
+  border: 1px solid #638f1f;
+  border-top: 0px;
+  border-radius: 0px 0px 3px 3px;
+  margin-bottom: 8px;
+}
+.order-history-page .receipt-container .receipt-info .order-detail,
+.last-page .receipt-container .receipt-info .order-detail{
+  float: left;
+  padding:10px 0px 10px 20px;
+}
+.order-history-page .receipt-container .receipt-info .order-detail label,
+.last-page .receipt-container .receipt-info .order-detail label{
+  width: 100%;
+  float: left;
+  font-family: 'PT Sans';
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px;
+}
+.order-history-page .receipt-container .receipt-info .order-detail label.center-text,
+.last-page .receipt-container .receipt-info .order-detail label.center-text{
+  width: 100%;
+  float: left;
+  font-family: 'PT Sans';
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0px;
+  text-align: center;
+}
+.order-history-page .receipt-container .receipt-info .order-detail span,
+.last-page .receipt-container .receipt-info .order-detail span{
+  width: 47%;
+  float: left;
+  margin-right: 3%;
+  text-align: right;
+}
+.order-history-page .receipt-container .receipt-info .order-detail span.value,
+.last-page .receipt-container .receipt-info .order-detail span.value{
+  width: 50%;
+  float: left;
+  margin-right: 0px;
+  text-align: left;
+}
+.order-history-page .receipt-container .receipt-table,
+.last-page .receipt-container .receipt-table{
+  float: left;
+  width: 100%;
+}
+.order-history-page .receipt-container .receipt-table .credit-table,
+.last-page .receipt-container .receipt-table .credit-table{
+  padding: 0px !important;
+}
+.order-history-page .receipt-container .receipt-table table,
+.last-page .receipt-container .receipt-table table{
+  width: 100%;
+  font-family: 'PT Sans';
+  font-size: 18px;
+  font-weight: bold;
+}
+.order-history-page .receipt-container .receipt-table table h3,
+.last-page .receipt-container .receipt-table table h3{
+  font-family: 'PT Sans';
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0px 0px 0px;
+}
+.order-history-page .receipt-container .receipt-table table p,
+.last-page .receipt-container .receipt-table table p{
+  font-family: 'PT Sans';
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 25px;
+}
+.order-history-page .receipt-container .receipt-table table label,
+.last-page .receipt-container .receipt-table table label{
+  font-family: 'PT Sans';
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0px;
+  width: 100%;
+}
+.order-history-page .receipt-container .receipt-table table tr.heading th,
+.last-page .receipt-container .receipt-table table tr.heading th{
+  font-family: 'PT Sans';
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid #638f1f;
+  border-left: 0px;
+  border-right: 0px;
+  background-color: #e3e3e3;
+  height: 50px;
+  padding-left: 10px;
+}
+.order-history-page .receipt-container .receipt-table table tr td.first,
+.last-page .receipt-container .receipt-table table tr td.first,
+.order-history-page .receipt-container .receipt-table table tr.heading th.first,
+.last-page .receipt-container .receipt-table table tr.heading th.first{
+  border-right: 5px solid #fffaf2;
+}
+.order-history-page .receipt-container .receipt-table table tr.odd,
+.last-page .receipt-container .receipt-table table tr.odd{
+  background-color: #e3e3e3; 
+}
+.order-history-page .receipt-container .receipt-table table tr.odd td,
+.last-page .receipt-container .receipt-table table tr.odd td,
+.order-history-page .receipt-container .receipt-table table tr.even td,
+.last-page .receipt-container .receipt-table table tr.even td{
+  padding-left: 10px;
+}
+.order-history-page .receipt-container .receipt-table table tr.even,
+.last-page .receipt-container .receipt-table table tr.even{
+  background-color: #cae5b1; 
+}
+.order-history-page .special-instructions,
+.last-page .special-instructions{
+  float: left;
+  width: 100%;
+  padding-top: 20px;
+}
+.order-history-page .special-instructions h3,
+.last-page .special-instructions h3{
+  font-family: 'PT Sans';
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 0px;
+}
+.order-history-page .special-instructions .note,
+.last-page .special-instructions .note{
+  width: 100%;
+  border-radius: 5px;
+  background-color: #e3e3e3;
+  border: 1px solid #638f1f;
+  height: 150px;
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-family: 'PT Sans';
+  padding: 10px;
+}
+.order-history-page .special-instructions .subtotal label,
+.last-page .special-instructions .subtotal label{
+  width: 100%;
+  float: left;
+  font-family: 'PT Sans';
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0px 0px 3px 0px;
+}
+.order-history-page  .special-instructions .subtotal label.green,
+.last-page .special-instructions .subtotal label.green{
+  color: #52a902;
+}
+.order-history-page .special-instructions .subtotal span,
+.last-page .special-instructions .subtotal span{
+  width: 70%;
+  float: left;
+  text-align: right;
+}
+.order-history-page .special-instructions .subtotal span.value,
+.last-page .special-instructions .subtotal span.value{
+  float: left;
+  margin-right: 0;
+  text-align: right;
+  width: 15%;
+}
+.order-history-page .special-instructions .subtotal label.larg-size,
+.last-page .special-instructions .subtotal label.larg-size{
+  font-size: 18px;
+}
+@media (max-width: 991px) {
+  .last-page .order-restaurant-container .campusbite-container,
+  .last-page .order-restaurant-container .order-detail{
+  width: 100% !important;
+  }
+  .last-page .social-icons{
+  padding-top: 10px;
+  }
+  .last-page .submit-btn{
+    float: left;
+    width: 100%;
+  }
+  .account-setting-page  .office-container{
+  padding-left: 0px !important;
+  }
+  .account-setting-page .room-container{
+  padding-right: 0px !important;
+  }
+}
+.last-page .status-tweet{
+  float: left;
+  width: 100%;
+  background-color: #fffaf2;
+  border:1px solid #638f1f;
+  border-radius: 3px;
+  margin-bottom: 8px;
+}
+.last-page .status-tweet h3{
+  font-family: 'PT Sans';
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+.last-page .status-tweet p{
+  font-family: 'PT Sans';
+  font-size: 18px;
+  font-weight: bold;
+  color: #2b5308;
+  margin: 0px;
+}
+.last-page .status-tweet .give-me{
+  float: left;
+}
+.last-page .status-tweet .give-me a{
+  width: 100%;
+  float: left;
+  font-family: 'PT Sans';
+  font-size: 16px;
+  font-weight: bold;
+  color: #2b5308;
+  text-transform: uppercase;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+.last-page .status-tweet .give-me a span{
+  background: url(../images/newpage-arrow.png) no-repeat;
+  float: left;
+  height: 32px;
+  width: 32px;
+}
+.last-page .live-chat-container{
+  float: left;
+  width: 100%;
+}
+.last-page .faq-contact{
+  background-color: #E3E3E3;
+  border: 1px solid #638F1F;
+  border-radius: 5px;
+  font-family: 'PT Sans';
+  font-size: 16px;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.last-page .question-place{
+  padding-left: 0px !important;
+  padding-right: 8px !important;
+}
+.last-page .live-chat-container{
+  padding: 0px !important;
+}
+.last-page .faq-contact p{
+  font-family: 'PT Sans';
+  font-size: 18px;
+  font-weight: bold;
+  color: #2b5308;
+  margin: 0px;
+}
+.last-page .faq-contact p.black-text{
+  color: #000;
+}
+.last-page .faq-page p a{
+  color: #2b5308;
+}
+.last-page .faq-page p{
+  margin: 25px 0 50px 0;
+}

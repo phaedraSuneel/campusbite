@@ -23,7 +23,6 @@ Ordering::Application.routes.draw do
     resources :restaurants   
   end  
 
-  
 
   resources :menu do
     resources :menu_categories 
