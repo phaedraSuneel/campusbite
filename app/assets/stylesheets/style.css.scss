@@ -2012,7 +2012,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 }
 @media (max-width: 630px) {
   .signup-page .form-shadow{
-  bottom: -6px !important;
+    display: none;
   }
 }
 @media (max-width: 860px) {
@@ -2106,7 +2106,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 }
 .signup-page .sign-btn button.sign-up-btn,
 .signup-page .sign-btn button.sign-in-btn{
-  background: url("../assets/sign-btn.png") no-repeat;
+  background: url("/assets/sign-btn.png") no-repeat;
   height: 125px;
   width: 70px;
   border: none;
@@ -2117,7 +2117,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 }
 .signup-page .sign-btn button.sign-up-btn:hover,
 .signup-page .sign-btn button.sign-in-btn:hover{
-  background: url("../assets/sign-btn.png") no-repeat 0 -136px;
+  background: url("/assets/sign-btn.png") no-repeat 0 -136px;
   height: 125px;
   width: 70px;
   border: none;
@@ -2179,11 +2179,11 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   width: 100%;
 }
 .signup-page .form-shadow{
-  bottom: -10px;
-  left: 0;
+  bottom: 19px;
+  left: 25px;
   opacity: 0.5;
   position: absolute;
-  width: 100%;
+  width: 94%;
 }
 .signup-page .signup-form-container p.service{
   font-size: 15px;
@@ -2214,7 +2214,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   width: 50%;
   text-shadow: 0 2px 1px rgba(0, 0, 0, 0.40);
   margin-top: 35px;
-  margin-bottom: 80px;
+  margin-bottom: 24px;
 }
 .signup-page .signup-button button:hover{
   background: linear-gradient(to bottom, #57AF0A 0%, #57AF0A 100%);
@@ -2594,7 +2594,9 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
       background-image: -o-linear-gradient(top, #ffd245, #0077b3);
       background-image: linear-gradient(to bottom, #ffd245, #ffd245);
       background-repeat: repeat-x;
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0)
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
+      width: 100%;
+      float:left;
     }
 
     .tt-suggestion.tt-is-under-cursor a {
@@ -2609,6 +2611,75 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     }
   }
 
+  .sign-up-form
+  {
+    .twitter-typeahead .tt-query,
+    .twitter-typeahead .tt-hint {
+            margin-bottom: 0px;
+            margin-top: 0px;
+            padding-left: 14px;
+            padding-right: 14px;
+            display: block;
+            width: 100%;
+    }
+
+    .twitter-typeahead .tt-query:focus,
+    .twitter-typeahead .tt-hint:focus {
+            background-color: #fff ! important;
+    }
+    .navbar .search-query, .navbar .tt-hint {
+            width: 200px;
+    }
+
+    .tt-dropdown-menu {
+      width: 100% !important;
+      margin-top: 2px;
+      padding: 5px 0;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border: 1px solid rgba(0,0,0,.2);
+      *border-right-width: 2px;
+      *border-bottom-width: 2px;
+      -webkit-border-radius: 3px;
+         -moz-border-radius: 3px;
+              border-radius: 3px;
+      -webkit-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+         -moz-box-shadow: 0 5px 10px rgba(0,0,0,.2);
+              box-shadow: 0 5px 10px rgba(0,0,0,.2);
+      -webkit-background-clip: padding-box;
+         -moz-background-clip: padding;
+              background-clip: padding-box;
+      left: 0px !important;        
+    }
+
+    .tt-suggestions {
+      display: block;
+      width: 100% !important;
+    }
+
+    .tt-suggestions.tt-is-under-cursor {
+      color: #fff;
+      background-color: #ffd245;
+      background-image: -moz-linear-gradient(top, #ffd245, #ffd245);
+      background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0077b3));
+      background-image: -webkit-linear-gradient(top, #ffd245, #ffd245);
+      background-image: -o-linear-gradient(top, #ffd245, #0077b3);
+      background-image: linear-gradient(to bottom, #ffd245, #ffd245);
+      background-repeat: repeat-x;
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0)
+    }
+
+    .tt-suggestion.tt-is-under-cursor a {
+      color: #fff;
+    }
+
+    .tt-suggestions p {
+      margin: 0;
+      font-weight: bold;
+      color: black;
+      text-align: left;
+    }
+  }
   .nav-pills > li.active > a{
     background: none !important;
   }

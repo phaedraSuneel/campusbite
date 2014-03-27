@@ -48,6 +48,7 @@ Ordering::Application.routes.draw do
     collection do 
       get "add_item"
       get "checkout"
+      get "create_order"
     end
   end  
   # The priority is based upon order of creation:
@@ -103,6 +104,7 @@ Ordering::Application.routes.draw do
     end
     member do
       get "menu"
+      get "order"
     end
   end
 

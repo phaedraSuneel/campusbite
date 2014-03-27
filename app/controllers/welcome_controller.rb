@@ -26,6 +26,10 @@ class WelcomeController < ApplicationController
  		@menu = @restaurant.menu
  	end
 
+  def order
+    @order = Order.find params[:id]
+  end
+
   def restaurant_search
     if !params[:category_id].blank?
       @restaurants = Restaurant.search params[:keyword], :with => {:restaurant_category_ids =>  [params[:category_id].to_i] }

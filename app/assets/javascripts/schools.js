@@ -13,12 +13,13 @@ $(document).ready(function(){
 
   $(".checkout-btn-link").click(function(){
     $.ajax ({
-        url:  '/carts/checkout',
-        success: function(data)
-        {
-          $(".cart-response").html(data);
-        }
-      });
-  });
+      url:  '/carts/checkout',
+      success: function(data)
+      {
+        $(".cart-response").html(data);
+      }
+    });
+    
+   });
   
 });

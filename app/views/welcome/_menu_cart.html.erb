@@ -8,7 +8,7 @@
     <% end %>
 
     <% unless cart.blank? %>
-      <%= form_for "order", :url => checkout_carts_path, :method => :get, :html => {:class => "order-form"} do |f|%>
+      <%= form_for "order", :url => create_order_carts_path, :method => :get, :html => {:class => "order-form"} do |f|%>
         <div class="row asap">
           <div class="col-md-4 order-type">
             Order type:

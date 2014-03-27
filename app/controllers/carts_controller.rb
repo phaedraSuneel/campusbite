@@ -25,16 +25,6 @@ class CartsController < ApplicationController
     if user_signed_in?
       @cart = current_user.cart
       unless @cart.blank?
-        @order = Order.new params[:order]
-        @order.user_id = current_user.id
-        @order.save
-        @cart.cart_menu_items.each do |item|
-          @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity 
-          @menu_item_order.menu_item = item.menu_item
-          @menu_item_order.save 
-        end
-        @cart.destroy
-        flash[:notice] = 'Order was successfully created!'
         render :partial => "welcome/order_view_option"
       else
         render :partial => "welcome/menu_item_option" 
@@ -44,4 +34,22 @@ class CartsController < ApplicationController
       render :partial => "welcome/get_user_information"
     end
   end
+
+  def create_order
+    @cart = current_user.cart
+    @order = Order.new params[:order]
+    @order.user_id = current_user.id
+    @order.status = "pending"
+    @order.restaurant = @cart.menu_items.last.restaurant
+    @order.save
+    @cart.cart_menu_items.each do |item|
+      @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id  
+      @menu_item_order.menu_item = item.menu_item
+      @menu_item_order.save 
+    end
+    @cart.destroy
+    flash[:notice] = 'Order was successfully created'
+    redirect_to order_welcome_path(@order)
+  end
+
 end
