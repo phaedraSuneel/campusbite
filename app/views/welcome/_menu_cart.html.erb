@@ -38,10 +38,10 @@
                 <label class="details">Instructions:  <%= cart.instruction %></label>
                 <label class="total-amount"><img class="line-1" alt="Smiley face" src="/assets/t-line.png" /><span class="item-total" id="cart_menu_item_<%=cart.id%>">$ <%= (cart.menu_item.price + cart_extra_charges) * cart.quantity %></span></label>
                 <label class="qty-amount">QTY:<span><%= link_to '-', 'javascript:void(0)', :class => "minus-quantiy", :remote => true %></span><span class="quantity" data-cart = "<%= cart.id %>"><%= cart.quantity %></span><%= link_to '+', 'javascript:void(0)', :class => "plus-quantiy", :remote => true%></label>
-                  <div class="result"></div>
               </div>
             </div>
           <% end %>  
+          <%= hidden_field_tag :restaurant_id , @restaurant.id %>
           <div class="col-md-12 subtotal-container">
             <div class="subtotal-head">
               <label>Subtotal:</label>
@@ -49,13 +49,13 @@
               <label>Delivery Fee:</label>
             </div>
             <div class="subtotal-amount">
-              <label>$43.50</label>
-              <label>$1.43</label>
-              <label>$4.00</label>
+              <label class="sub-total">$<%= cart.sub_total %></label>
+              <label class="sale-tax">$<%= cart.sale_tax(@restaurant) %></label>
+              <label class="delivery-charges">$<%= cart.delivery_charges(@restaurant) %></label>
             </div>
           </div>
           <div class="col-md-12 grandtotal-container">
-            <label>TOTAL:<span>$48.50</span></label>
+            <label>TOTAL:<span class="total-bill">$<%= cart.total_bill(@restaurant) %></span></label>
           </div>
           <div class="col-md-8 col-md-offset-2 checkout-btn">
             <%= link_to raw("<button>CHECKOUT</button>"), "#", :class => "checkout-btn-link", :remote => true %>
@@ -72,57 +72,5 @@
 <script type="text/javascript">
 
   $(document).ready(function(){
-
-    $(".edit-order-link").click(function(){
-      $(".order_request_field").attr("disabled", false);
-      $(".order_request_field").css("border", "2px inset");
-    });
-
-    $(".plus-quantiy").click(function(){
-      quantity_area =  $(this).parent().find(".quantity");
-      id = quantity_area.data("cart");
-      quantity = parseInt(quantity_area.text());
-      quantity ++;  
-      quantity_area.text(quantity);
-      $.ajax ({
-        url:  '/carts/update_cart_item_quantity',
-        data: {id: id, quantity: quantity },
-        success: function(data)
-        {
-          quantity_area.text(quantity);
-          $(".item-total").text(data.html);
-        }
-      });
-    });
-
-    $(".minus-quantiy").click(function(){
-      quantity_area =  $(this).parent().parent().find(".quantity");
-      id = quantity_area.data("cart");
-      quantity = parseInt(quantity_area.text());
-      if(quantity!=0)
-        quantity --;  
-      $.ajax ({
-        url:  '/carts/update_cart_item_quantity',
-        data: {id: id, quantity: quantity },
-        success: function(data)
-        {
-          quantity_area.text(quantity);
-          $(".item-total").text(data.html);
-        }
-      });
-    });
-
-    $(".remove-cart-item-link").click(function(){
-      id = $(this).parent().parent().data("cart");
-      parent = $("#cart_" + id);
-      $.ajax ({
-        url:  '/carts/delete_cart_item',
-        data: {id: id}
-        // success: function(data)
-        // {
-         
-        // }
-      });
-    });
-  });
+  });  
 </script>

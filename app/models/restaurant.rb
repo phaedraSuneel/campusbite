@@ -58,4 +58,15 @@ class Restaurant < ActiveRecord::Base
     self.restaurant_offers.select{|a| a.valid_from <= Date.current and a.valid_to >= Date.current}.first  
   end
 
+  def sale_tax
+    self.restaurant_info.sale_tax
+  end
+
+  def delivery_charges
+    self.delivery_info.delivery_charges
+  end
+
+  def min_delivery
+    self.restaurant_info.min_order
+  end
 end

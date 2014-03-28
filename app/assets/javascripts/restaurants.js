@@ -184,7 +184,57 @@ $(document).ready(function(){
           $(this).checked = false;
         }
       });
-    })
+    });
+
+    $(".edit-order-link").click(function(){
+      $(".order_request_field").attr("disabled", false);
+      $(".order_request_field").css("border", "2px inset");
+    });
+
+    $(".plus-quantiy").click(function(){
+      quantity_area =  $(this).parent().find(".quantity");
+      id = quantity_area.data("cart");
+      restaurant_id = $("#restaurant_id").val();
+      quantity = parseFloat(quantity_area.text());
+      quantity ++;  
+      quantity_area.text(quantity);
+      $.ajax ({
+        url:  '/carts/update_cart_item_quantity',
+        data: {id: id, quantity: quantity, restaurant_id: restaurant_id },
+        success: function(data)
+        {
+          quantity_area.text(quantity);
+        }
+      });
+    });
+
+    $(".minus-quantiy").click(function(){
+      quantity_area =  $(this).parent().parent().find(".quantity");
+      id = quantity_area.data("cart");
+      restaurant_id = $("#restaurant_id").val();
+      quantity = parseFloat(quantity_area.text());
+      if(quantity!=0)
+        quantity --;  
+      $.ajax ({
+        url:  '/carts/update_cart_item_quantity',
+        data: {id: id, quantity: quantity, restaurant_id: restaurant_id },
+        success: function(data)
+        {
+          quantity_area.text(quantity);
+        }
+      });
+    });
+
+    $(".remove-cart-item-link").click(function(){
+      id = $(this).parent().parent().data("cart");
+      restaurant_id = $("#restaurant_id").val();
+      parent = $("#cart_" + id);
+      $.ajax ({
+        url:  '/carts/delete_cart_item',
+        data: {id: id, restaurant_id: restaurant_id}
+      });
+    });
+  
 });
 
 function change_collapse_sign(){

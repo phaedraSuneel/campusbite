@@ -1,1 +1,4 @@
 $("#cart_<%= @cart_menu_item.id%>").remove();
+$(".sub-total").text("$" + <%= @sub_total %>);
+$(".sale-tax").text("$" + <%= @sale_tax %>);
+$(".total-bill").text("$" + <%= @total_bill%>)

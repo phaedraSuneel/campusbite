@@ -58,9 +58,15 @@ class CartsController < ApplicationController
     else
       cart=Cart.find_by_token(cookies[:cart_token])
     end
+    
+
     @cart_menu_item =  cart.cart_menu_items.find(params[:id])
     respond_to do |format|
       if @cart_menu_item.update_attributes(:quantity => params[:quantity]) 
+        @restaurant = Restaurant.find(params[:restaurant_id])
+        @sub_total = cart.sub_total
+        @sale_tax = cart.sale_tax(@restaurant)
+        @total_bill =  cart.total_bill(@restaurant)  
         format.js
       else
         format.js
@@ -77,6 +83,10 @@ class CartsController < ApplicationController
     @cart_menu_item =  cart.cart_menu_items.find(params[:id])
     respond_to do |format|
       if @cart_menu_item.destroy 
+        @restaurant = Restaurant.find(params[:restaurant_id])
+        @sub_total = cart.sub_total
+        @sale_tax = cart.sale_tax(@restaurant)
+        @total_bill =  cart.total_bill(@restaurant)  
         format.js
       else
         format.js

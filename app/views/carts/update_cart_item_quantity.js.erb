@@ -2,6 +2,10 @@
 <% if @cart_menu_item.menu_item_property_id %>
 	<% extra =  @cart_menu_item.property_price(@cart_menu_item.menu_item_property_id) %>
 <% end %>	
-price = "$ " +  <%= (@cart_menu_item.menu_item.price + extra ) * @cart_menu_item.quantity   %>
+price = "$" +  parseFloat(<%= (@cart_menu_item.menu_item.price + extra ) * @cart_menu_item.quantity   %>)
  
 $("#cart_menu_item_<%= @cart_menu_item.id%>").text(price);
+
+$(".sub-total").text("$" + <%= @sub_total %>);
+$(".sale-tax").text("$" + <%= @sale_tax %>);
+$(".total-bill").text("$" + <%= @total_bill%>)
