@@ -11,6 +11,7 @@ Ordering::Application.routes.draw do
   resources :dashboard do 
     collection do
       get 'account'
+      post 'change_user_information'
     end
   end
 

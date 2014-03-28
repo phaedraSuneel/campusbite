@@ -3751,7 +3751,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     height: 130px;
     width: 130px;
   }
-  .account-setting-page .account-tabs:hover{
+  .user-information-tab .account-tabs.active{
     background: url("/assets/AccountSettings_hover-tab.png") no-repeat;
   }
   .account-setting-page .account-tabs:hover a{
@@ -3934,6 +3934,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     margin: 15px 0;
     height: 55px;
     line-height: 55px;
+    text-decoration: none;
   }
 
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<favorite-Restaurant-page>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -4386,4 +4387,12 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     z-index: 5555;
     top: 45px;
     left: 25%;
+  }
+
+  .change_user_information_form .tt-suggestion p {
+    text-align: left !important;
+  }
+  .change_user_information_form .tt-dropdown-menu {
+    margin-top: 0px !important;
+    left: 0px !important;
   }

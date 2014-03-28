@@ -1,0 +1,39 @@
+<%= form_for("user" , :url => change_user_information_dashboard_index_path, :html => {:class => "change_user_information_form"}) do |f| %>
+  <div class="col-md-6">
+    <div class="row account-form-field">
+      <div class="col-md-3">
+        <label>First Name:</label>
+      </div>
+      <div class="col-md-9 account-form-items">
+        <%= f.text_field :first_name, :value => current_user.first_name, :disabled => true  %>
+      </div>
+    </div>
+    <div class="row account-form-field">
+      <div class="col-md-3">
+        <label>Email:</label>
+      </div>
+      <div class="col-md-9 account-form-items">
+        <%= f.text_field :email, :value => current_user.email, :disabled => true  %>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="row account-form-field">
+      <div class="col-md-3">
+        <label>Last Name:</label>
+      </div>
+      <div class="col-md-9 account-form-items">
+        <%= f.text_field :last_name, :value => current_user.last_name, :disabled => true  %>
+      </div>
+    </div>
+    <div class="row account-form-field">
+      <div class="col-md-3">
+        <label>School:</label>
+      </div>
+      <div class="col-md-9 account-form-items">
+        <%= f.text_field :school_name, :value => current_user.school_name, :disabled => true, :class => "search-keyword"  %>
+        <p><a href="javascript:void(0)" class="edit-action-link">Edit Information</a></p>
+        <p><a href="javascript:void(0)" class="save-btn hide">Save</a></p>
+      </div>
+    </div>
+<% end -%> 
