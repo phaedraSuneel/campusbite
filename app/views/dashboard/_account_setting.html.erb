@@ -1,8 +1,8 @@
-<div class="row">
+<div class="row error-modal account-modal">
   <div class="col-md-12">
     <div class="row password-changer">
       <div class="col-md-3"><h3>Your Information</h3></div>
-      <div class="col-md-3"><button class="green">Change My Password</button></div>
+      <div class="col-md-3"><button class="green" data-toggle="modal" data-target="#change_password_modal">Change My Password</button></div>
       <div class="col-md-6"></div>
     </div>
     <div class="row password-changer">
@@ -97,3 +97,5 @@
     </div>
   </div>
 </div>
+  
+<%= render :partial => "change_password_modal" %>  

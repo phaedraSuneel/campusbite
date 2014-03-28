@@ -42,4 +42,8 @@ $(document).ready(function(){
     $(".change_user_information_form").submit();
   });
   
+  $(".update-btn").click(function(){
+    $(".change_user_password_form").submit();
+  });
+
 });

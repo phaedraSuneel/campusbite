@@ -12,6 +12,7 @@ Ordering::Application.routes.draw do
     collection do
       get 'account'
       post 'change_user_information'
+      post 'change_user_password'
     end
   end
 
