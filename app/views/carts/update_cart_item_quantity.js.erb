@@ -1,0 +1,2 @@
+price = "$ " +  <%= (@cart_menu_item.menu_item.price + @cart_menu_item.property_price(@cart_menu_item.menu_item_property_id) ) * @cart_menu_item.quantity   %>
+$(".item-total").text(price);

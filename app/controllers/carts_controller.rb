@@ -52,4 +52,20 @@ class CartsController < ApplicationController
     redirect_to order_welcome_path(@order)
   end
 
+  def update_cart_item_quantity
+    if user_signed_in?
+      cart=current_user.cart
+    else
+      cart=Cart.find_by_token(cookies[:cart_token])
+    end
+    @cart_menu_item =  cart.cart_menu_items.find(params[:id])
+    respond_to do |format|
+      if @cart_menu_item.update_attributes(:quantity => params[:quantity]) 
+        format.js
+      else
+        format.js
+      end
+    end   
+  end
+
 end

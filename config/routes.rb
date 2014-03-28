@@ -56,6 +56,7 @@ Ordering::Application.routes.draw do
       get "add_item"
       get "checkout"
       get "create_order"
+      get "update_cart_item_quantity"
     end
   end  
   # The priority is based upon order of creation:

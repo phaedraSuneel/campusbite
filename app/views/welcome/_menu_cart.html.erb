@@ -24,19 +24,21 @@
           </div>
           <div class="col-md-12 request-order">
             <label>Order Requested For:<span><%= f.text_field :request_time, :value => "ASAP",  :disabled => "disabled", :class => "order_request_field" %></span><a href="javascript:void(0)" class="edit-order-link" >Edit</a></label>
-            <%#= f.hidden_field :request_time, :value => "ASAP" %>
           </div>
           <% cart.cart_menu_items.each do |cart| %>
             <div class="col-md-12 Qty-container">
               <div class="back-border">
                 <label class="edit-cloes"><a href="#">Eidt</a><span><a class="cloesing" href="#">X</a></span></label>
                 <label class="dolor-heading"><%= cart.menu_item.item_name %><span>$<%= cart.menu_item.price %></span></label>
-                <label class="details">20 oz.<span>$0.75</span></label>
-                <label class="details">Add Double Espresso Shot<span>$1.20</span></label>
-                <label class="details">Caramel<span>+$0.40</span></label>
+                <% cart_extra_charges = 0 %>
+                <% if cart.menu_item_property_id %>
+                  <% cart_extra_charges = cart.property_price(cart.menu_item_property_id) %>
+                  <label class="details"><%= cart.property_name(cart.menu_item_property_id)%><span>$<%= cart_extra_charges %></span></label>
+                <% end %>
                 <label class="details">Instructions:  <%= cart.instruction %></label>
-                <label class="total-amount"><img class="line-1" alt="Smiley face" src="/assets/t-line.png" /><span>$4.40</span></label>
-                <label class="qty-amount">QTY:<span>-</span>1+</label>
+                <label class="total-amount"><img class="line-1" alt="Smiley face" src="/assets/t-line.png" /><span class="item-total">$ <%= (cart.menu_item.price + cart_extra_charges) * cart.quantity %></span></label>
+                <label class="qty-amount">QTY:<span><%= link_to '-', 'javascript:void(0)', :class => "minus-quantiy", :remote => true %></span><span class="quantity" data-cart = "<%= cart.id %>"><%= cart.quantity %></span><%= link_to '+', 'javascript:void(0)', :class => "plus-quantiy", :remote => true%></label>
+                  <div class="result"></div>
               </div>
             </div>
           <% end %>  
@@ -73,5 +75,38 @@
       $(".order_request_field").attr("disabled", false);
       $(".order_request_field").css("border", "2px inset");
     });
+
+    $(".plus-quantiy").click(function(){
+      id = $(".quantity").data("cart");
+      quantity = parseInt($(".quantity").text());
+      quantity ++;  
+      $(".quantity").text(quantity);
+      $.ajax ({
+        url:  '/carts/update_cart_item_quantity',
+        data: {id: id, quantity: quantity },
+        success: function(data)
+        {
+          $(".quantity").text(quantity);
+        }
+      });
+
+
+    });
+
+    $(".minus-quantiy").click(function(){
+      id = $(".quantity").data("cart");
+      quantity = parseInt($(".quantity").text());
+      if(quantity!=0)
+        quantity --;  
+      $.ajax ({
+        url:  '/carts/update_cart_item_quantity',
+        data: {id: id, quantity: quantity },
+        success: function(data)
+        {
+          $(".quantity").text(quantity);
+        }
+      });
+    });
+
   });
 </script>
