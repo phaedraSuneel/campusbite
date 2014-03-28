@@ -20,7 +20,7 @@ class Cart < ActiveRecord::Base
 
   def sale_tax(restaurant)
   	restaurant = Restaurant.find(restaurant.id)
-  	sale_tax = restaurant.sale_tax
+  	sale_tax = restaurant.sale_tax || 0
   	sub_total =  self.sub_total
   	tax = ( sub_total * sale_tax ) / 100
   end
