@@ -36,7 +36,7 @@
                   <label class="details"><%= cart.property_name(cart.menu_item_property_id)%><span>$<%= cart_extra_charges %></span></label>
                 <% end %>
                 <label class="details">Instructions:  <%= cart.instruction %></label>
-                <label class="total-amount"><img class="line-1" alt="Smiley face" src="/assets/t-line.png" /><span class="item-total">$ <%= (cart.menu_item.price + cart_extra_charges) * cart.quantity %></span></label>
+                <label class="total-amount"><img class="line-1" alt="Smiley face" src="/assets/t-line.png" /><span class="item-total" id="cart_menu_item_<%=cart.id%>">$ <%= (cart.menu_item.price + cart_extra_charges) * cart.quantity %></span></label>
                 <label class="qty-amount">QTY:<span><%= link_to '-', 'javascript:void(0)', :class => "minus-quantiy", :remote => true %></span><span class="quantity" data-cart = "<%= cart.id %>"><%= cart.quantity %></span><%= link_to '+', 'javascript:void(0)', :class => "plus-quantiy", :remote => true%></label>
                   <div class="result"></div>
               </div>
@@ -77,16 +77,18 @@
     });
 
     $(".plus-quantiy").click(function(){
-      id = $(".quantity").data("cart");
-      quantity = parseInt($(".quantity").text());
+      quantity_area =  $(this).parent().find(".quantity");
+      id = quantity_area.data("cart");
+      quantity = parseInt(quantity_area.text());
       quantity ++;  
-      $(".quantity").text(quantity);
+      quantity_area.text(quantity);
       $.ajax ({
         url:  '/carts/update_cart_item_quantity',
         data: {id: id, quantity: quantity },
         success: function(data)
         {
-          $(".quantity").text(quantity);
+          quantity_area.text(quantity);
+          $(".item-total").text(data.html);
         }
       });
 
@@ -94,8 +96,9 @@
     });
 
     $(".minus-quantiy").click(function(){
-      id = $(".quantity").data("cart");
-      quantity = parseInt($(".quantity").text());
+      quantity_area =  $(this).parent().parent().find(".quantity");
+      id = quantity_area.data("cart");
+      quantity = parseInt(quantity_area.text());
       if(quantity!=0)
         quantity --;  
       $.ajax ({
@@ -103,7 +106,8 @@
         data: {id: id, quantity: quantity },
         success: function(data)
         {
-          $(".quantity").text(quantity);
+          quantity_area.text(quantity);
+          $(".item-total").text(data.html);
         }
       });
     });
