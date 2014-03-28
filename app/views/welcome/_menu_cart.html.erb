@@ -26,9 +26,9 @@
             <label>Order Requested For:<span><%= f.text_field :request_time, :value => "ASAP",  :disabled => "disabled", :class => "order_request_field" %></span><a href="javascript:void(0)" class="edit-order-link" >Edit</a></label>
           </div>
           <% cart.cart_menu_items.each do |cart| %>
-            <div class="col-md-12 Qty-container">
+            <div class="col-md-12 Qty-container" id= "cart_<%= cart.id%>">
               <div class="back-border">
-                <label class="edit-cloes"><a href="#">Eidt</a><span><a class="cloesing" href="#">X</a></span></label>
+                <label class="edit-cloes" data-cart="<%= cart.id %>"><a href="javascript:void(0">Eidt</a><span><a class="cloesing remove-cart-item-link" href="javascript:void(0)">X</a></span></label>
                 <label class="dolor-heading"><%= cart.menu_item.item_name %><span>$<%= cart.menu_item.price %></span></label>
                 <% cart_extra_charges = 0 %>
                 <% if cart.menu_item_property_id %>
@@ -70,7 +70,9 @@
 
 
 <script type="text/javascript">
+
   $(document).ready(function(){
+
     $(".edit-order-link").click(function(){
       $(".order_request_field").attr("disabled", false);
       $(".order_request_field").css("border", "2px inset");
@@ -91,8 +93,6 @@
           $(".item-total").text(data.html);
         }
       });
-
-
     });
 
     $(".minus-quantiy").click(function(){
@@ -112,5 +112,17 @@
       });
     });
 
+    $(".remove-cart-item-link").click(function(){
+      id = $(this).parent().parent().data("cart");
+      parent = $("#cart_" + id);
+      $.ajax ({
+        url:  '/carts/delete_cart_item',
+        data: {id: id}
+        // success: function(data)
+        // {
+         
+        // }
+      });
+    });
   });
 </script>
