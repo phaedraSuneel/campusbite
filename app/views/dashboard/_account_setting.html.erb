@@ -14,56 +14,51 @@
         
       <div class="row password-changer">
         <div class="col-md-3"><h3>Address Book</h3></div>
-        <div class="col-md-3"><button class="green">Add New Address</button></div>
+        <div class="col-md-3"><button class="green" data-toggle="modal" data-target="#add_new_address_model">Add New Address</button></div>
         <div class="col-md-6"></div>
       </div>
       <div class="row">
-        <div class="col-md-6 room-container">
-          <div class="edit-container">
-            <div class="row room-head">
-              <div class="col-md-6"><label>My Dorm Room</label></div>
-              <div class="col-md-3"><button class="green-ful">Edit</button></div>
-              <div class="col-md-3"><button class="red-ful">Delete</button></div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 account-info-field">
-                <div class="info-values">
-                  <label class="value-left">Saved Address Name:</label><label class="value">My Dorm Room</label>
-                  <label class="value-left">Address Type:</label><label class="value">On Campus</label> 
-                  <label class="value-left">Campus Name:</label><label class="value">Harvard University</label> 
-                  <label class="value-left">Building Name:</label><label class="value">Academic Hall </label>   
-                  <label class="value-left">Room Number:</label><label class="value">203</label> 
-                  <label class="value-left">Address:</label><label class="value">123 East 18th Street</label> 
-                  <label class="value-left">City/State/Zip:</label><label class="value">Brooklyn, NY 11229</label> 
-                  <label class="value-left">Phone:</label><label class="value">718-246-9823</label> 
-                </div>
+        <% current_user.addresses.each do |address| %>
+          <div class="col-md-6 room-container" id = "address_<%=address.id%>">
+            <div class="edit-container">
+              <div class="row room-head">
+                <div class="col-md-6"><label><%= address.address_name %></label></div>
+                <div class="col-md-3"><button class="green-ful">Edit</button></div>
+                <div class="col-md-3"><button class="red-ful delete-address-btn" data-address = "<%= address.id %>">Delete</button></div>
               </div>
+              <% if address.address_type == "On Campus" %>
+                <div class="row">
+                  <div class="col-md-12 account-info-field">
+                    <div class="info-values">
+                      <label class="value-left">Saved Address Name:</label><label class="value"><%= address.address_name %></label>
+                      <label class="value-left">Address Type:</label><label class="value"><%= address.address_type %></label> 
+                      <label class="value-left">Campus Name:</label><label class="value"> <%= address.school.school_name %></label> 
+                      <label class="value-left">Building Name:</label><label class="value"><%= address.building.building_name %> </label>   
+                      <label class="value-left">Room Number:</label><label class="value"><%= address.room_number %></label> 
+                      <label class="value-left">Address:</label><label class="value"><%= address.building.street_adress %></label> 
+                      <label class="value-left">City/State/Zip:</label><label class="value"><%= address.building.city %>, <%= address.building.state %> <%= address.building.zip_code %></label> 
+                      <label class="value-left">Phone:</label><label class="value"><%= address.phone_number %></label> 
+                    </div>
+                  </div>
+                </div>
+              <% else %>
+                <div class="row">
+                  <div class="col-md-12 account-info-field off">
+                    <div class="info-values">
+                      <label class="value-left">Saved Address Name:</label><label class="value"><%= address.address_name %></label>
+                      <label class="value-left">Address Type:</label><label class="value"><%= address.address_type %></label> 
+                      <label class="value-left">Address:</label><label class="value"><%= address.street_adress%></label>   
+                      <label class="value-left">Room Number:</label><label class="value"><%= address.room_number%></label> 
+                      
+                      <label class="value-left">City/State/Zip:</label><label class="value"><%= address.city %>, <%= address.state %> <%= address.zip_code %></label> 
+                      <label class="value-left">Phone:</label><label class="value"><%= address.phone_number %></label> 
+                    </div>
+                  </div>
+                </div>
+              <% end -%>  
             </div>
           </div>
-        </div>
-        <div class="col-md-6 office-container">
-          <div class="edit-container">
-            <div class="row room-head">
-              <div class="col-md-6"><label>My Office</label></div>
-              <div class="col-md-3"><button class="green-ful">Edit</button></div>
-              <div class="col-md-3"><button class="red-ful">Delete</button></div>
-            </div>
-            <div class="row">
-              <div class="col-md-12 account-info-field">
-                <div class="info-values">
-                  <label class="value-left">Saved Address Name:</label><label class="value">My Dorm Room</label>
-                  <label class="value-left">Address Type:</label><label class="value">On Campus</label> 
-                  <label class="value-left">Campus Name:</label><label class="value">Harvard University</label> 
-                  <label class="value-left">Building Name:</label><label class="value">Academic Hall </label>   
-                  <label class="value-left">Room Number:</label><label class="value">203</label> 
-                  <label class="value-left">Address:</label><label class="value">123 East 18th Street</label> 
-                  <label class="value-left">City/State/Zip:</label><label class="value">Brooklyn, NY 11229</label> 
-                  <label class="value-left">Phone:</label><label class="value">718-246-9823</label> 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <% end %>
       </div>
       <div class="row password-changer">
         <div class="col-md-3"><h3>Payment Information</h3></div>
@@ -99,3 +94,25 @@
 </div>
   
 <%= render :partial => "change_password_modal" %>  
+
+<%= render :partial => "add_new_address_model"%>
+
+
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+    $(".delete-address-btn").click(function(){
+      id = $(this).data("address");
+      parent = $("#address_"+id);
+      $.ajax ({
+        url:  '/dashboard/delete_address',
+        data: {id: id },
+        success: function(data)
+        {
+          $(parent).remove();
+        }
+      });
+    });
+  });
+
+</script>

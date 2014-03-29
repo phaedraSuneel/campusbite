@@ -22,4 +22,28 @@ class DashboardController < ApplicationController
 			redirect_to :back
 		end
 	end
+
+	def add_user_address
+		@user = current_user
+		@address = current_user.addresses.build(params[:address])
+		if @address.save
+			flash[:notice] = "Address successfully created"
+			redirect_to :back
+		else
+			flash[:warning] = "Something wrong address not created"
+			redirect_to :back
+		end
+	end 
+
+	def building_field
+    @school = School.find(params[:id])
+    @builings = @school.buildings
+    render(:partial => "/dashboard/get_building_field", :locals => {:@builings => @builings })
+  end
+
+  def delete_address
+  	@address = Address.find params[:id]
+  	@address.destroy
+  	render :text => 'successfully'
+  end
 end

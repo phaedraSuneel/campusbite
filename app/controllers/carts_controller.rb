@@ -7,6 +7,7 @@ class CartsController < ApplicationController
       @cart = User.get_cart(cookies[:cart_token],current_user)
       cookies[:cart_token] = @cart.token
       @cart_menu_item = @cart.cart_menu_items.new(params[:cart])
+      @cart_menu_item.restaurant_id = restaurant.id
       if @cart_menu_item.save
           flash[:notice] = 'Item was successfully added to cart.'
           redirect_to :back
@@ -40,10 +41,9 @@ class CartsController < ApplicationController
     @order = Order.new params[:order]
     @order.user_id = current_user.id
     @order.status = "pending"
-    @order.restaurant = @cart.menu_items.last.restaurant
     @order.save
     @cart.cart_menu_items.each do |item|
-      @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id  
+      @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id   
       @menu_item_order.menu_item = item.menu_item
       @menu_item_order.save 
     end

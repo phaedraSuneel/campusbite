@@ -23,6 +23,7 @@
               <%= f.radio_button :order_type , "pickup" %> Pickup</div>
           </div>
           <div class="col-md-12 request-order">
+            <%= f.hidden_field :request_time, :value => "ASAP" , :class => "hidden_field_request_time"%>
             <label>Order Requested For:<span><%= f.text_field :request_time, :value => "ASAP",  :disabled => "disabled", :class => "order_request_field" %></span><a href="javascript:void(0)" class="edit-order-link" >Edit</a></label>
           </div>
           <% cart.cart_menu_items.each do |cart| %>
@@ -67,10 +68,3 @@
     <% end %>    
   </div>
 </div>
-
-
-<script type="text/javascript">
-
-  $(document).ready(function(){
-  });  
-</script>

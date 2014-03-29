@@ -13,6 +13,9 @@ Ordering::Application.routes.draw do
       get 'account'
       post 'change_user_information'
       post 'change_user_password'
+      post 'add_user_address'
+      get 'building_field'
+      get 'delete_address'
     end
   end
 
@@ -27,7 +30,12 @@ Ordering::Application.routes.draw do
   resources :schools do 
     collection do 
       get "search"
+      post "create_building"
     end  
+    member do 
+      get "new_building"
+      get "buildings"
+    end
     resources :restaurants   
   end  
 

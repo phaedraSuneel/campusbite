@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140327103145) do
+ActiveRecord::Schema.define(:version => 20140329123815) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -27,6 +27,22 @@ ActiveRecord::Schema.define(:version => 20140327103145) do
     t.integer  "menu_category_id"
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
+  end
+
+  create_table "addresses", :force => true do |t|
+    t.string   "address_type"
+    t.string   "address_name"
+    t.string   "street_adress"
+    t.integer  "school_id"
+    t.integer  "building_id"
+    t.integer  "room_number"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip_code"
+    t.integer  "user_id"
+    t.integer  "phone_number"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
   end
 
   create_table "authentications", :force => true do |t|
@@ -49,6 +65,17 @@ ActiveRecord::Schema.define(:version => 20140327103145) do
     t.datetime "updated_at",          :null => false
   end
 
+  create_table "buildings", :force => true do |t|
+    t.string   "building_name"
+    t.string   "street_adress"
+    t.integer  "school_id"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip_code"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "cart_menu_items", :force => true do |t|
     t.integer  "cart_id"
     t.integer  "menu_item_id"
@@ -57,6 +84,7 @@ ActiveRecord::Schema.define(:version => 20140327103145) do
     t.datetime "updated_at",            :null => false
     t.integer  "menu_item_property_id"
     t.text     "instruction"
+    t.integer  "restaurant_id"
   end
 
   create_table "carts", :force => true do |t|
@@ -148,6 +176,7 @@ ActiveRecord::Schema.define(:version => 20140327103145) do
     t.datetime "updated_at",            :null => false
     t.integer  "quantity"
     t.integer  "menu_item_property_id"
+    t.integer  "restaurant_id"
   end
 
   create_table "menu_item_properties", :force => true do |t|
@@ -209,7 +238,6 @@ ActiveRecord::Schema.define(:version => 20140327103145) do
     t.string   "delievery_address"
     t.string   "order_type"
     t.string   "request_time"
-    t.integer  "restaurant_id"
     t.string   "status"
   end
 

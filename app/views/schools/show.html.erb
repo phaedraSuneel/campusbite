@@ -20,7 +20,13 @@
 		<% if can? :create, Restaurant %>	
 			| <%= link_to 'Add More Restaurant', new_school_restaurant_path(@school) %> |
 		<% end %>	
-		<% if can? :update, Restaurant %>
+		<% if can? :read, Building %>  
+			<%= link_to "View Buildings", buildings_school_path(@school) %> 
+		<% end %>	
+		<% if can? :create, Building %>	
+			| <%= link_to 'Add More Building', new_building_school_path(@school) %> |
+		<% end %>
+		<% if can? :update, School %>
 			| <%= link_to 'Edit', edit_school_path(@school) %> |
 		<% end %>	
 		<% if can? :read, School %>	

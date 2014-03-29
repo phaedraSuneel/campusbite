@@ -189,6 +189,7 @@ $(document).ready(function(){
     $(".edit-order-link").click(function(){
       $(".order_request_field").attr("disabled", false);
       $(".order_request_field").css("border", "2px inset");
+      $(".hidden_field_request_time").remove();
     });
 
     $(".plus-quantiy").click(function(){

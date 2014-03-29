@@ -55,4 +55,29 @@ class SchoolsController < ApplicationController
     flash[:notice] = 'School was successfully deleted.'
     redirect_to schools_url
   end
+
+
+  def new_building
+    authorize! :create, Building
+    school = School.find(params[:id])
+    @building = school.buildings.build
+  end
+
+  def create_building
+    @school = School.find(params[:school_id])
+    @building = @school.buildings.build(params[:building])
+    if @building.save
+      flash[:notice] = "Building was successfully created"
+      redirect_to school_path(@school)
+    else
+      flash[:notice] = "Building was not created"
+      redirect_to school_path(@school)
+    end  
+  end
+
+  def buildings
+    authorize! :read, Building
+    @school = School.find(params[:id])
+    @buildings = @school.buildings
+  end
 end

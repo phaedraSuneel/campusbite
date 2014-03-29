@@ -3105,7 +3105,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   padding-left: 0px !important;
   }
   .account-setting-page .room-container{
-  padding-right: 0px !important;
+    padding-right: 0px !important;
   }
 }
 .last-page .status-tweet{
@@ -4401,4 +4401,17 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     border: none;
     background: none;
     width: 20%;
+  }
+
+
+  .account-modal .campus-on.active {
+    background-color: #cae5b1;
+  }
+  
+  .account-info-field.off {
+    height: 180px; 
+  } 
+
+  .room-container {
+    margin-bottom: 15px !important;
   }
