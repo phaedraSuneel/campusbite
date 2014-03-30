@@ -17,6 +17,9 @@ Ordering::Application.routes.draw do
       get 'building_field'
       get 'delete_address'
     end
+    member do 
+      get "edit_user_address"
+    end
   end
 
 

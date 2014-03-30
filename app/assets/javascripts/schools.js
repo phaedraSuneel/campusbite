@@ -46,4 +46,66 @@ $(document).ready(function(){
     $(".change_user_password_form").submit();
   });
 
+  $(".on input[type=radio]").attr("checked", true);
+    $(".address_type_field").val("On Campus");
+
+      
+
+    $(".on").click(function(){
+      $(".address_type_field").val("On Campus");
+      $(".off-campus-portion").addClass("hide");
+      $(".on-campus-potion").removeClass("hide");
+      $(".on").addClass("active");
+      $(".off").removeClass("active");
+      $(".off input[type=radio]").attr("checked", false);
+      $(".on input[type=radio]").attr("checked", true);
+    });
+
+    $(".off").click(function(){
+      $(".address_type_field").val("Off Campus");
+      $(".off-campus-portion").removeClass("hide");
+      $(".on-campus-potion").addClass("hide");
+      $(".off").addClass("active");
+      $(".on").removeClass("active");
+      $(".on input[type=radio]").attr("checked", false);
+      $(".off input[type=radio]").attr("checked", true);
+    });
+
+
+   $(".school_selector select").change(function(e){
+      id = $(this).val();
+      building_content = $(".building-selector");
+      $.ajax ({
+        url:  '/dashboard/building_field',
+        data: {id: id },
+        success: function(data)
+        {
+          building_content.html(data);
+          $(".building-selector select").addClass("Select-Campus");
+        }
+      });
+    });  
+
+    $(".add-new-address-btn").click(function(){
+      $(".add-new-address-form").submit();
+    });
+
+    $(".delete-address-btn").click(function(){
+      r = confirm('Are you sure you want to delete this address?');
+      if(r == true)
+      {
+        id = $(this).data("address");
+        parent = $("#address_"+id);
+        $.ajax ({
+          url:  '/dashboard/delete_address',
+          data: {id: id },
+          success: function(data)
+          {
+            $(parent).remove();
+          }
+        });
+      }
+      else
+       return false  
+    });
 });

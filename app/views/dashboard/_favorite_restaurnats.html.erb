@@ -6,151 +6,26 @@
       <div class="col-md-2 heading-favorite"><label>Actions</label></div>
       <div class="col-md-2 heading-favorite"><label>Order Again</label></div>
     </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite"><h3><a href="#">Cafe Biola</a></h3></div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <p>Delivery: $20.00</p>
-          <p>Pickup: None</p>
+    <% @favorites_restaurants.each do |favorite|%>
+      <div class="row favorite-order">
+        <div class="col-md-4 heading-favorite"><h3><a href="#"><%= favorite.restaurant.restaurant_name %></a></h3></div>
+        <div class="col-md-4 heading-favorite">
+          <div class="pic-delivery">
+            <p>Delivery: $<%= favorite.restaurant.delivery_charges %> </p>
+            <p>Pickup: <%= favorite.restaurant.phone_order? == true ? "Yes" : "None" %></p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p><a href="#">Rate Remove</a></p>
+        <div class="col-md-2 heading-favorite">
+          <div class="pic-delivery">
+            <p><a href="#">Rate Remove</a></p>
+          </div>
         </div>
+        <div class="col-md-2 heading-favorite"><button class="order-again">Order Again</button></div>
+        <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
       </div>
-      <div class="col-md-2 heading-favorite"><button class="order-again">Order Again</button></div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite"><h3><a href="#">Cafe Biola</a></h3></div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <p>Delivery: $20.00</p>
-          <p>Pickup: None</p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p><a href="#">Rate Remove</a></p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite"><button class="order-again">Order Again</button></div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite"><h3><a href="#">Cafe Biola</a></h3></div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <p>Delivery: $20.00</p>
-          <p>Pickup: None</p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p><a href="#">Rate Remove</a></p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite"><button class="order-again">Order Again</button></div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite"><h3><a href="#">Cafe Biola</a></h3></div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <p>Delivery: $20.00</p>
-          <p>Pickup: None</p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p><a href="#">Rate Remove</a></p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite"><button class="order-again">Order Again</button></div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite"><h3><a href="#">Cafe Biola</a></h3></div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <p>Delivery: $20.00</p>
-          <p>Pickup: None</p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p><a href="#">Rate Remove</a></p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite"><button class="order-again">Order Again</button></div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite"><h3><a href="#">Cafe Biola</a></h3></div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <p>Delivery: $20.00</p>
-          <p>Pickup: None</p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p><a href="#">Rate Remove</a></p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite"><button class="order-again">Order Again</button></div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite"><h3><a href="#">Cafe Biola</a></h3></div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <p>Delivery: $20.00</p>
-          <p>Pickup: None</p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p><a href="#">Rate Remove</a></p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite"><button class="order-again">Order Again</button></div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite"><h3><a href="#">Cafe Biola</a></h3></div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <p>Delivery: $20.00</p>
-          <p>Pickup: None</p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p><a href="#">Rate Remove</a></p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite"><button class="order-again">Order Again</button></div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite"><h3><a href="#">Cafe Biola</a></h3></div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <p>Delivery: $20.00</p>
-          <p>Pickup: None</p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p><a href="#">Rate Remove</a></p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite"><button class="order-again">Order Again</button></div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row pagination-container">
+    <% end -%>
+    <%= paginate @favorites_restaurants %>
+    <!-- <div class="row pagination-container">
       <div class="col-md-8 col-md-offset-4">
         <ul class="pagination">
           <li><a href="#">PREVIOUS</a></li>
@@ -162,6 +37,6 @@
           <li><a href="#">next</a></li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

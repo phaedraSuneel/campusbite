@@ -1,5 +1,9 @@
 class DashboardController < ApplicationController
 	
+	def account
+		@favorites_restaurants = current_user.favorites.page(params[:page]).per(10)
+	end
+
 	def change_user_information
 		@user = current_user
 		if @user.update_attributes(params[:user])
@@ -46,4 +50,8 @@ class DashboardController < ApplicationController
   	@address.destroy
   	render :text => 'successfully'
   end
+
+  def edit_user_address
+  	@address = Address.find(params[:id])
+  end 
 end
