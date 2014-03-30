@@ -33,10 +33,10 @@
                       <label class="value-left">Saved Address Name:</label><label class="value"><%= address.address_name %></label>
                       <label class="value-left">Address Type:</label><label class="value"><%= address.address_type %></label> 
                       <label class="value-left">Campus Name:</label><label class="value"> <%= address.school.school_name %></label> 
-                      <label class="value-left">Building Name:</label><label class="value"><%= address.building.building_name %> </label>   
+                      <label class="value-left">Building Name:</label><label class="value"><%= address.building.try(:building_name) %> </label>   
                       <label class="value-left">Room Number:</label><label class="value"><%= address.room_number %></label> 
-                      <label class="value-left">Address:</label><label class="value"><%= address.building.street_adress %></label> 
-                      <label class="value-left">City/State/Zip:</label><label class="value"><%= address.building.city %>, <%= address.building.state %> <%= address.building.zip_code %></label> 
+                      <label class="value-left">Address:</label><label class="value"><%= address.building.try(:street_adress) %></label> 
+                      <label class="value-left">City/State/Zip:</label><label class="value"><%= address.building.try(:city) %>, <%= address.building.try(:state) %> <%= address.building.try(:zip_code) %></label> 
                       <label class="value-left">Phone:</label><label class="value"><%= address.phone_number %></label> 
                     </div>
                   </div>
