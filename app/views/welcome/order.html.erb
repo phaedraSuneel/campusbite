@@ -8,33 +8,33 @@
     </div>
     
     <div class="col-md-12 order-complete-container">
-    <div class="row">
-      <div class="col-md-1 green-tick">
-        <img class="liner-3" alt="Smiley face" src="/assets/green-tick.png" />
+      <div class="row">
+        <div class="col-md-1 green-tick">
+          <img class="liner-3" alt="Smiley face" src="/assets/green-tick.png" />
+        </div>
+        <div class="col-md-11 thanks-order">
+          <h3>Thank You for your order</h3>
+          <p>Your order has has been sent to Restaurant Name. Our team of professionals will take it from here.You can now just sit back and relax.</p>
+        </div>
       </div>
-      <div class="col-md-11 thanks-order">
-        <h3>Thank You for your order</h3>
-        <p>Your order has has been sent to Restaurant Name. Our team of professionals will take it from here.You can now just sit back and relax.</p>
-      </div>
-    </div>
     </div>
 
     <div class="col-md-12 order-restaurant-container">
       <div class="row">
         <div class="col-md-6 order-detail">
           <h3>Order Details</h3>
-          <label><span>Order Number:</span><span class="value">65465161</span></label>
-          <label><span>Order Time:</span><span class="value">09/18/2014 12:09 PM</span></label>
-          <label><span>Order Type:</span><span class="value">Delivery</span></label>
-          <label><span>Requested For:</span><span class="value">ASAP</span></label>
-          <label><span>Estimated Delivery Time:</span><span class="value">40-45 Minutes</span></label>
+          <label><span>Order Number:</span><span class="value"><%= @order.id %></span></label>
+          <label><span>Order Time:</span><span class="value"><%= @order.created_at %></span></label>
+          <label><span>Order Type:</span><span class="value"><%= @order.order_type %></span></label>
+          <label><span>Requested For:</span><span class="value"><%= @order.request_time %></span></label>
+          <label><span>Estimated Delivery Time:</span><span class="value"><%= @order.restaurant.estimated_time %> minutes</span></label>
           <label><span>Payment Method:</span>Credit Card</label>
         </div>
         <div class="col-md-6 order-detail restaurant-detail">
           <h3>Restaurant Details</h3>
-          <label><span>Restaurant Name:</span><span class="value">Peter Steakhouse</span></label>
-          <label><span>Restaurant Address:</span><span class="value">8943 Maple Street Brooklyn, NY 11229 Harvard University</span></label>
-          <label><span>Restaurant Telephone:</span><span class="value">(718)-894-2413</span></label>
+          <label><span>Restaurant Name:</span><span class="value"><%= @order.restaurant.restaurant_name %></span></label>
+          <label><span>Restaurant Address:</span><span class="value"><%= @order.restaurant.address %></span></label>
+          <label><span>Restaurant Telephone:</span><span class="value"><%= @order.restaurant.phone %></span></label>
         </div>
       </div>
     </div>
@@ -42,9 +42,9 @@
       <div class="row">
         <div class="col-md-6 order-detail your-detail">
           <h3>Your Details</h3>
-          <label><span>Name:</span><span class="value">Jim Smith</span></label>
+          <label><span>Name:</span><span class="value"><%= @order.user.name %></span></label>
           <label><span>Telephone:</span><span class="value">(718)-419-2143</span></label>
-          <label><span>Email:</span><span class="value">jim_smith@aol.com</span></label>
+          <label><span>Email:</span><span class="value"><%= @order.user.email %></span></label>
           <label><span>Address:</span><span class="value">On Campus Biola University Academic Hall 204 1892 East 34th Street Brooklyn, NY 11229</span></label>
         </div>
         <div class="col-md-6 campusbite-container">
@@ -88,26 +88,23 @@
       </div>
       <div class="row receipt-info">
         <div class="col-md-4 order-detail">
-          <label><span>Order Number:</span><span class="value">65465161</span></label>
-          <label><span>Order Time:</span><span class="value">09/18/2014 12:09 PM</span></label>
-          <label><span>Order Type:</span><span class="value">Delivery</span></label>
-          <label><span>Requested For:</span><span class="value">ASAP</span></label>
-          <label><span>Estimated Delivery Time:</span><span class="value">40-45 Minutes</span></label>
+          <label><span>Order Number:</span><span class="value"><%= @order.id %></span></label>
+          <label><span>Order Time:</span><span class="value"><%= @order.created_at %></span></label>
+          <label><span>Order Type:</span><span class="value"><%= @order.order_type %></span></label>
+          <label><span>Requested For:</span><span class="value"><%= @order.request_time %></span></label>
+          <label><span>Estimated Delivery Time:</span><span class="value"><%= @order.restaurant.estimated_time %> minutes</span></label>
           <label><span>Payment Method:</span>Credit Card</label>
         </div>
         <div class="col-md-3 col-md-offset-1 order-detail">
           <label>Restaurant</label>
-          <label>Peter Steakhouse</label>
-          <label>8943 Maple Street</label>
-          <label>Brooklyn, NY 11229</label>
-          <label>Harvard University</label>
-          <label>(718)-894-2413</label>
+          <label><%= @order.restaurant.restaurant_name %></label>
+          <label>8<%= @order.restaurant.address %></label>
         </div>
         <div class="col-md-3 col-md-offset-1 order-detail">
           <label>You</label>
-          <label>Jim Smith</label>
+          <label><%= @order.user.name %></label>
           <label>(718)-419-2143</label>
-          <label>jim_smith@aol.com</label>
+          <label><%= @order.user.email %></label>
           <label>On Campus</label>
           <label>Biola University</label>
           <label>Academic Hall</label>
@@ -124,17 +121,24 @@
                 <th class="first">Quantity</th>
                 <th>Total</th>
               </tr>
-              <tr class="odd">
-                <td class="first">
-                  <h3>Chicken Roll</h3>
-                  <label>Extra Toppings: Mushrooms, Tomato, Onion</label>
-                  <p>Instructions: Please add extra blue cheese</p>
-                </td>
-                <td class="first">$100</td>
-                <td class="first">1</td>
-                <td>$100</td>
-              </tr>
-              <tr class="even">
+              <% @order.menu_item_orders.each_with_index do |item, index | %>
+                <tr class="odd">
+                  <td class="first">
+                    <h3><%= item.menu_item.item_name %></h3>
+                    <% extra = 0 %>
+                    <% if item.menu_item_property_id %>
+                      <label>Size: <%= @order.property_name(item.menu_item_property_id) %> </label>
+                      <% extra += @order.property_price(item.menu_item_property_id) %>
+                    <% end -%>  
+                    <label>Extra Toppings: Mushrooms, Tomato, Onion</label>
+                    <p>Instructions: <%= item.instruction %></p>
+                  </td>
+                  <td class="first">$<%= extra + item.menu_item.price %></td>
+                  <td class="first"><%= item.quantity %></td>
+                  <td>$ <%= (extra + item.menu_item.price) * item.quantity  %></td>
+                </tr>
+              <% end %>
+              <!-- <tr class="even">
                 <td class="first">
                   <h3>Brocolli Soup</h3>
                   <p></p>
@@ -165,7 +169,7 @@
                 <td class="first">$80</td>
                 <td class="first">1</td>
                 <td>$100</td>
-              </tr>
+              </tr> -->
             </table>
           </div>
         </div>
@@ -175,13 +179,13 @@
             <div class="note">Please ring the bell downstairs because it doesnt work upstairs! Thank You so much!</div>
           </div>
           <div class="col-md-6 subtotal">
-            <label><span>Subtotal:</span><span class="value">$31.75</span></label>
-            <label class="green"><span>Online Discount(10% off):</span><span class="value">- $4.35</span></label>
-            <label class="green"><span>Coupon (Ketchup):</span><span class="value">-$4.43</span></label>
-            <label><span>Tax:</span><span class="value">$4.43</span></label>
-            <label><span>Delivery Fee:</span><span class="value">$4.000</span></label>
-            <label><span>Tip:</span><span class="value">$40.00</span></label>
-            <label class="larg-size"><span>Total:</span><span class="value">$37.97</span></label>
+            <label><span>Subtotal:</span><span class="value">$<%= @order.sub_total%></span></label>
+            <label class="green"><span>Online Discount(10% off):</span><span class="value">- $0</span></label>
+            <label class="green"><span>Coupon (Ketchup):</span><span class="value">-$0</span></label>
+            <label><span>Tax:</span><span class="value">$<%= @order.sale_tax %></span></label>
+            <label><span>Delivery Fee:</span><span class="value">$<%= @order.delivery_charges %></span></label>
+            <label><span>Tip:</span><span class="value">$0</span></label>
+            <label class="larg-size"><span>Total:</span><span class="value">$<%= @order.total_bill %></span></label>
           </div>
         </div>
       </div>

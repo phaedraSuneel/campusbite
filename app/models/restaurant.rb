@@ -6,8 +6,7 @@ class Restaurant < ActiveRecord::Base
   has_many :restaurant_offers, :dependent => :destroy
   has_many :favorites, :dependent => :destroy
   has_many :restaurant_coupons, :dependent => :destroy
-  has_many  :orders, through: :menu_item_orders
-  has_many :menu_item_orders, :dependent => :destroy
+  has_many  :orders, :dependent => :destroy
 
   has_one :menu, :dependent => :destroy
   has_one :contact_info, :dependent => :destroy
@@ -26,7 +25,7 @@ class Restaurant < ActiveRecord::Base
   accepts_nested_attributes_for :favorites
   accepts_nested_attributes_for :contact_info, :restaurant_info, :delivery_info, :order_info, :bank_info, :operation, :delivery, :pick_up
 
-  before_save :create_menu
+  before_create :create_menu
 
 
  	def create_menu
@@ -35,6 +34,14 @@ class Restaurant < ActiveRecord::Base
 
   def restaurant_name
     self.contact_info.restaurant_name
+  end
+
+  def address
+    self.contact_info.restaurant_street_address
+  end
+
+  def phone
+    self.contact_info.contact_phone
   end
 
   def open?
@@ -69,5 +76,9 @@ class Restaurant < ActiveRecord::Base
 
   def min_delivery
     self.restaurant_info.min_order
+  end
+
+  def estimated_time
+    self.delivery_info.delivery_estimated_time
   end
 end

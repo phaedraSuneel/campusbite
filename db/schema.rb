@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140329123815) do
+ActiveRecord::Schema.define(:version => 20140331071426) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -177,6 +177,7 @@ ActiveRecord::Schema.define(:version => 20140329123815) do
     t.integer  "quantity"
     t.integer  "menu_item_property_id"
     t.integer  "restaurant_id"
+    t.text     "instruction"
   end
 
   create_table "menu_item_properties", :force => true do |t|
@@ -239,6 +240,7 @@ ActiveRecord::Schema.define(:version => 20140329123815) do
     t.string   "order_type"
     t.string   "request_time"
     t.string   "status"
+    t.integer  "restaurant_id"
   end
 
   create_table "pick_ups", :force => true do |t|

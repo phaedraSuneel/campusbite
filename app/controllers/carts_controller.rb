@@ -41,9 +41,10 @@ class CartsController < ApplicationController
     @order = Order.new params[:order]
     @order.user_id = current_user.id
     @order.status = "pending"
+    @order.restaurant = @cart.menu_items.last.restaurant
     @order.save
     @cart.cart_menu_items.each do |item|
-      @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id   
+      @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   
       @menu_item_order.menu_item = item.menu_item
       @menu_item_order.save 
     end
