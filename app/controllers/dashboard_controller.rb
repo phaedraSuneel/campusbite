@@ -2,6 +2,7 @@ class DashboardController < ApplicationController
 	
 	def account
 		@favorites_restaurants = current_user.favorites.page(params[:page]).per(10)
+		@orders = current_user.orders.page(params[:page]).per(10	)
 	end
 
 	def change_user_information
@@ -39,6 +40,8 @@ class DashboardController < ApplicationController
 		end
 	end 
 
+
+
 	def building_field
     @school = School.find(params[:id])
     @builings = @school.buildings
@@ -53,5 +56,12 @@ class DashboardController < ApplicationController
 
   def edit_user_address
   	@address = Address.find(params[:id])
+  	if @address.update_attributes(params[:address])
+  		flash[:notice] = "Address was successfully updated"
+			redirect_to :back
+  	else
+  		flash[:warning] = "Something wrong address not updated"
+			redirect_to :back
+  	end
   end 
 end

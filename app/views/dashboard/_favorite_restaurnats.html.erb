@@ -8,7 +8,7 @@
     </div>
     <% @favorites_restaurants.each do |favorite|%>
       <div class="row favorite-order">
-        <div class="col-md-4 heading-favorite"><h3><a href="#"><%= favorite.restaurant.restaurant_name %></a></h3></div>
+        <div class="col-md-4 heading-favorite"><h3><%= link_to favorite.restaurant.restaurant_name, menu_welcome_path(favorite.restaurant)%></h3></div>
         <div class="col-md-4 heading-favorite">
           <div class="pic-delivery">
             <p>Delivery: $<%= favorite.restaurant.delivery_charges %> </p>
@@ -20,7 +20,7 @@
             <p><a href="#">Rate Remove</a></p>
           </div>
         </div>
-        <div class="col-md-2 heading-favorite"><button class="order-again">Order Again</button></div>
+        <div class="col-md-2 heading-favorite"><%= link_to raw("<button class='order-again'>Order Again</button>"), menu_welcome_path(favorite.restaurant)%></div>
         <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
       </div>
     <% end -%>

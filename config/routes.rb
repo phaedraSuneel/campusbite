@@ -18,7 +18,7 @@ Ordering::Application.routes.draw do
       get 'delete_address'
     end
     member do 
-      get "edit_user_address"
+      post "edit_user_address"
     end
   end
 

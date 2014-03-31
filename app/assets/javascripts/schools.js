@@ -89,6 +89,10 @@ $(document).ready(function(){
     $(".add-new-address-btn").click(function(){
       $(".add-new-address-form").submit();
     });
+    $(".edit-address-btn").click(function(){
+      id = $(this).data("address");
+      $("#address_form_"+id).submit();
+    });
 
     $(".delete-address-btn").click(function(){
       r = confirm('Are you sure you want to delete this address?');

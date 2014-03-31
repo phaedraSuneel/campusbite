@@ -24,7 +24,7 @@
         <div class="col-md-6 order-detail">
           <h3>Order Details</h3>
           <label><span>Order Number:</span><span class="value"><%= @order.id %></span></label>
-          <label><span>Order Time:</span><span class="value"><%= @order.created_at %></span></label>
+          <label><span>Order Time:</span><span class="value"><%= @order.created_at.strftime("%m/%d/%Y %H:%M %p") %></span></label>
           <label><span>Order Type:</span><span class="value"><%= @order.order_type %></span></label>
           <label><span>Requested For:</span><span class="value"><%= @order.request_time %></span></label>
           <label><span>Estimated Delivery Time:</span><span class="value"><%= @order.restaurant.estimated_time %> minutes</span></label>
@@ -89,7 +89,7 @@
       <div class="row receipt-info">
         <div class="col-md-4 order-detail">
           <label><span>Order Number:</span><span class="value"><%= @order.id %></span></label>
-          <label><span>Order Time:</span><span class="value"><%= @order.created_at %></span></label>
+          <label><span>Order Time:</span><span class="value"><%= @order.created_at.strftime("%m/%d/%Y %H:%M %p") %></span></label>
           <label><span>Order Type:</span><span class="value"><%= @order.order_type %></span></label>
           <label><span>Requested For:</span><span class="value"><%= @order.request_time %></span></label>
           <label><span>Estimated Delivery Time:</span><span class="value"><%= @order.restaurant.estimated_time %> minutes</span></label>
