@@ -22,7 +22,7 @@
             <div class="edit-container">
               <div class="row room-head">
                 <div class="col-md-6"><label><%= address.address_name %></label></div>
-                <div class="col-md-3"><button class="green-ful" data-toggle="modal" data-target="#edit_address_model">Edit</button></div>
+                <div class="col-md-3"><button class="green-ful" data-toggle="modal" data-target="#edit_address_model_<%= address.id%>">Edit</button></div>
                 <div class="col-md-3"><button class="red-ful delete-address-btn" data-address = "<%= address.id %>">Delete</button></div>
                 <%= render :partial => "edit_user_address_model", :locals => { :@address => address} %>
               </div>
