@@ -5,7 +5,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Your Review</h4>
       </div>
-      <%= form_for("review", :url => new_review_restaurant_path(@restaurant), :html => {:class => "review-form"}) do |f| %>
+      <%= form_for("review", :url => new_review_restaurant_path(@restaurant), :html => {:class => "review-form", :id => "review_form_#{@restaurant.id}" }) do |f| %>
         <div class="modal-body modal-body-container">
           <div class="name-field-container">
             <div class="row res-name-field">
@@ -46,7 +46,7 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary submit-md review-submit-btn">Submit</button>
+          <button type="button" class="btn btn-primary submit-md new-review-submit-btn", data-review = "<%=@restaurant.id%>" >Submit</button>
         </div>
       <% end %>  
     </div>

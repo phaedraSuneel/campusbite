@@ -18,10 +18,13 @@
        
           <div class="col-md-2 heading-favorite">
             <div class="pic-delivery">
-               <% unless current_user.can_review?(favorite.restaurant) %>
-                  <% review = Review.select{|a| a.restaurant.id = favorite.restaurant.id and a.user_id = current_user.id}.first%> 
-                  <p><%= link_to "Rate Remove", remove_review_dashboard_path(review) %></p>  
-                <% end %>
+               <%# if !current_user.can_review?(favorite.restaurant) %>
+                  <%# unless Review.all.blank? %>
+                    <%# review = Review.select{|a| a.restaurant.id = favorite.restaurant.id and a.user_id = current_user.id}.first%> 
+                    <%#= review.id %>
+                    <p><%#= link_to "Rate Remove", remove_review_dashboard_path(review)  unless review.nil? %></p>  
+                  <%# end %>  
+                <%# end %>
             </div>
           </div>
           

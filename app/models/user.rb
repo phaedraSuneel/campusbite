@@ -59,7 +59,11 @@ class User < ActiveRecord::Base
   end 
   
   def review?(restaurant)
-    self.reviews.find_by_restaurant_id(restaurant.id).blank?
+    unless self.reviews.blank?
+      self.reviews.find_by_restaurant_id(restaurant.id).blank? 
+    else
+      true
+    end  
   end  
 
 

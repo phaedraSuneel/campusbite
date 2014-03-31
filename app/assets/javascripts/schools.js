@@ -99,6 +99,11 @@ $(document).ready(function(){
       $("#edit_review_form_"+id).submit();
     })
 
+    $(".new-review-submit-btn").click(function(){
+      id = $(this).data("review");
+      $("#review_form_"+id).submit();
+    })
+
     $(".edit-item-submit").click(function(){
       id = $(this).data("cart");
       console.log(id);
