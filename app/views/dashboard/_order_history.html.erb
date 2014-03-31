@@ -27,9 +27,18 @@
         </div>
         <div class="col-md-2 heading-favorite">
           <div class="pic-delivery">
-            <p><a href="#">Rate</a></p>
+            <% if current_user.can_review?(order.restaurant) %>
+              <p><%= link_to "Rate","#", "data-toggle" => "modal", "data-target" => "#review_modal_#{order.restaurant.id}" %></p>
+            <% else %>  
+              <p><%= link_to "Edit Rating","#", "data-toggle" => "modal", "data-target" => "#edit_review_modal_#{order.restaurant.id}" %></p>
+            <% end %>  
             <p><%= link_to "View Reciept", order_welcome_path(order) %></p>
             <p><%= link_to "Add To Favorites", add_favorite_restaurant_path(order.restaurant)%></p>
+            <% if current_user.can_review?(order.restaurant) %>
+              <%= render :partial => "new_review_modal", :locals => {:@restaurant => order.restaurant} %>
+            <% else %>
+              <%= render :partial => "edit_review_modal", :locals => {:@review => Review.where(:restaurant_id => order.restaurant.id, :user_id => current_user.id ).first, :@restaurant => order.restaurant } %>
+            <% end %>
           </div>
         </div>
         <div class="col-md-2 heading-favorite">

@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
   has_one :cart, :dependent => :destroy
   has_many :addresses, :dependent => :destroy 
   has_many :favorites, :dependent => :destroy
-  
+  has_many :reviews, :dependent => :destroy  
   before_create :add_default_role
 
   def add_default_role
@@ -49,4 +49,18 @@ class User < ActiveRecord::Base
     end
     return cart
   end
+
+  def can_review?(restaurant)
+    !self.ordered?(restaurant) and self.review?(restaurant)
+  end
+
+  def ordered?(restaurant)
+    self.orders.find_by_restaurant_id(restaurant.id).blank? 
+  end 
+  
+  def review?(restaurant)
+    self.reviews.find_by_restaurant_id(restaurant.id).blank?
+  end  
+
+
 end

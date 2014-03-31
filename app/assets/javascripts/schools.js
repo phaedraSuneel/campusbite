@@ -94,6 +94,12 @@ $(document).ready(function(){
       $("#address_form_"+id).submit();
     });
 
+    $(".edit-review-submit-btn").click(function(){
+      id = $(this).data("review");
+      console.log(id);
+      $("#edit_review_form_"+id).submit();
+    })
+
     $(".delete-address-btn").click(function(){
       r = confirm('Are you sure you want to delete this address?');
       if(r == true)
@@ -102,6 +108,25 @@ $(document).ready(function(){
         parent = $("#address_"+id);
         $.ajax ({
           url:  '/dashboard/delete_address',
+          data: {id: id },
+          success: function(data)
+          {
+            $(parent).remove();
+          }
+        });
+      }
+      else
+       return false  
+    });
+
+    $(".delete-review-btn").click(function(){
+      r = confirm('Are you sure you want to delete this review?');
+      if(r == true)
+      {
+        id = $(this).data("review");
+        parent = $("#review_"+id);
+        $.ajax ({
+          url:  '/dashboard/delete_review',
           data: {id: id },
           success: function(data)
           {

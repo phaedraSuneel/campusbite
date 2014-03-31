@@ -1,119 +1,28 @@
-<div class="col-md-4 col-md-offset-4">
-  <button class="review-btn-1 " data-toggle="modal" data-target="#myModal">write a review</button>
-</div>
-<div class="col-md-12 star-container">
-  <div class="border-arround-star">
-    <div class="stars-line-container">
-      <ul class="star-line">
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-      </ul>
-    </div>
-    <p>Great food delivered in 25 mins we were pleasantly surprised. We will defiantly be ordering from both golden dragon place and the eat now app again. </p>
-    <label>Remo, Norwood University</label>          
+<% if current_user.can_review?(@restaurant) %>
+  <div class="col-md-4 col-md-offset-4">
+    <button class="review-btn-1 " data-toggle="modal" data-target="#myModal">write a review</button>
   </div>
-  <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
-</div>
-<div class="col-md-12 star-container">
-  <div class="border-arround-star">
-    <div class="stars-line-container">
-      <ul class="star-line">
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-      </ul>
+<% end -%>
+<% @restaurant.reviews.each do |review|%>
+  <%p review.rating %>
+  <div class="col-md-12 star-container">
+    <div class="border-arround-star">
+      <div class="stars-line-container">
+          <form class="star-line">
+            <input name="rating" type="radio" class="star-read" value="1" <%= 'checked' if review.rating ==1  %> /> 
+            <input name="rating" type="radio" class="star-read" value="2" <%= 'checked' if review.rating ==2  %> /> 
+            <input name="rating" type="radio" class="star-read" value="3" <%= 'checked' if review.rating ==3  %> /> 
+            <input name="rating" type="radio" class="star-read" value="4" <%= 'checked' if review.rating ==4  %> /> 
+            <input name="rating" type="radio" class="star-read" value="5" <%= 'checked' if review.rating ==5  %> />
+          </form>  
+      </div>  
+      <p><%= review.description %> </p>
+      <label><%= review.user.name %>,<%= review.user.school_name %> </label>          
     </div>
-    <p>Great food delivered in 25 mins we were pleasantly surprised. We will defiantly be ordering from both golden dragon place and the eat now app again. </p>
-    <label>Remo, Norwood University</label>          
+    <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
   </div>
-  <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
-</div>
-<div class="col-md-12 star-container">
-  <div class="border-arround-star">
-    <div class="stars-line-container">
-      <ul class="star-line">
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-      </ul>
-    </div>
-    <p>Great food delivered in 25 mins we were pleasantly surprised. We will defiantly be ordering from both golden dragon place and the eat now app again. </p>
-    <label>Remo, Norwood University</label>          
-  </div>
-  <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
-</div>
-<div class="col-md-12 star-container">
-  <div class="border-arround-star">
-    <div class="stars-line-container">
-      <ul class="star-line">
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-      </ul>
-    </div>
-    <p>Great food delivered in 25 mins we were pleasantly surprised. We will defiantly be ordering from both golden dragon place and the eat now app again. </p>
-    <label>Remo, Norwood University</label>          
-  </div>
-  <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
-</div>
-<div class="col-md-12 star-container">
-  <div class="border-arround-star">
-    <div class="stars-line-container">
-      <ul class="star-line">
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-      </ul>
-    </div>
-    <p>Great food delivered in 25 mins we were pleasantly surprised. We will defiantly be ordering from both golden dragon place and the eat now app again. </p>
-    <label>Remo, Norwood University</label>          
-  </div>
-  <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
-</div>
-<div class="col-md-12 star-container">
-  <div class="border-arround-star">
-    <div class="stars-line-container">
-      <ul class="star-line">
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-      </ul>
-    </div>
-    <p>Great food delivered in 25 mins we were pleasantly surprised. We will defiantly be ordering from both golden dragon place and the eat now app again. </p>
-    <label>Remo, Norwood University</label>          
-  </div>
-  <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
-</div>
-<div class="col-md-12 star-container">
-  <div class="border-arround-star">
-    <div class="stars-line-container">
-      <ul class="star-line">
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-        <li><a href="#">this</a></li>
-      </ul>
-    </div>
-    <p>Great food delivered in 25 mins we were pleasantly surprised. We will defiantly be ordering from both golden dragon place and the eat now app again. </p>
-    <label>Remo, Norwood University</label>          
-  </div>
-  <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
-</div>
-<div class="col-md-6 col-md-offset-3 pagination-container">
+<% end %>  
+<!-- <div class="col-md-6 col-md-offset-3 pagination-container">
   <ul class="pagination">
     <li><a href="#">PREVIOUS</a></li>
     <li><a href="#">1</a></li>
@@ -123,54 +32,5 @@
     <li><a href="#">5</a></li>
     <li><a href="#">next</a></li>
   </ul>
-</div>
-
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header error-title">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Your Review</h4>
-      </div>
-      <div class="modal-body modal-body-container">
-        <div class="name-field-container">
-          <div class="row res-name-field">
-            <div class="col-md-4 col-md-offset-4 name-restarant">
-              <h4>Rating:</h4>
-              <ul class="big-star-line">
-                <li><a href="#">this</a></li>
-                <li><a href="#">this</a></li>
-                <li><a href="#">this</a></li>
-                <li><a href="#">this</a></li>
-                <li><a href="#">this</a></li>
-              </ul>
-            </div>
-          </div>
-          <img class="shadow-modal-img" alt="Smiley face" src="/assets/shadow.png" />
-        </div>
-        <div class="name-field-container">
-          <div class="row res-name-field">
-            <div class="col-md-12 col-md-offset-0 name-restarant">
-              <h4>About You (Optional):</h4>
-              <input type="email" class="form-control your-mail" id="exampleInputEmail2" placeholder="your name">
-              <input type="email" class="form-control school-name" id="exampleInputEmail2" placeholder="school Name">
-            </div>
-          </div>
-          <img class="shadow-modal-img" alt="Smiley face" src="/assets/shadow.png" />
-        </div>
-        <div class="name-field-container">
-          <div class="row res-name-field">
-            <div class="col-md-12 name-restarant">
-              <h4>Let Us Know Your Experience With This Restaurant:</h4>
-              <textarea class="area-text"></textarea>
-            </div>
-          </div>
-          <img class="shadow-modal-img" alt="Smiley face" src="/assets/shadow.png" />
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary submit-md">Submit</button>
-      </div>
-    </div>
-  </div>
-</div>
+</div> -->
+<%= render :partial => "new_review_modal" %>

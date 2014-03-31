@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+  $('.star').rating(); 
+  $('.star-read').rating({readOnly: true});
+  
 	$(".add_more_property_link").click(function(e){
 		e.preventDefault();
 		parent = $(this).parent().parent().find(".property-field");
@@ -234,6 +237,10 @@ $(document).ready(function(){
         url:  '/carts/delete_cart_item',
         data: {id: id, restaurant_id: restaurant_id}
       });
+    });
+
+    $(".review-submit-btn").click(function(){
+      $(".review-form").submit();
     });
   
 });

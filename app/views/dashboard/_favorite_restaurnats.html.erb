@@ -15,11 +15,16 @@
             <p>Pickup: <%= favorite.restaurant.phone_order? == true ? "Yes" : "None" %></p>
           </div>
         </div>
-        <div class="col-md-2 heading-favorite">
-          <div class="pic-delivery">
-            <p><a href="#">Rate Remove</a></p>
+       
+          <div class="col-md-2 heading-favorite">
+            <div class="pic-delivery">
+               <% unless current_user.can_review?(favorite.restaurant) %>
+                  <% review = Review.select{|a| a.restaurant.id = favorite.restaurant.id and a.user_id = current_user.id}.first%> 
+                  <p><%= link_to "Rate Remove", remove_review_dashboard_path(review) %></p>  
+                <% end %>
+            </div>
           </div>
-        </div>
+          
         <div class="col-md-2 heading-favorite"><%= link_to raw("<button class='order-again'>Order Again</button>"), menu_welcome_path(favorite.restaurant)%></div>
         <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
       </div>

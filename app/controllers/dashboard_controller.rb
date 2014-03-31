@@ -2,7 +2,8 @@ class DashboardController < ApplicationController
 	
 	def account
 		@favorites_restaurants = current_user.favorites.page(params[:page]).per(10)
-		@orders = current_user.orders.page(params[:page]).per(10	)
+		@orders = current_user.orders.page(params[:page]).per(10)
+		@reviews = current_user.reviews.page(params[:page]).per(10)
 	end
 
 	def change_user_information
@@ -64,4 +65,21 @@ class DashboardController < ApplicationController
 			redirect_to :back
   	end
   end 
+
+  def delete_review
+  	@review = Review.find(params[:id])
+  	@review.destroy
+  	render :text => 'successfully'
+  end
+
+  def remove_review
+  	@review = Review.find(params[:id])
+  	if @review.destroy
+  		flash[:notice] = "Rating remove successfully"
+  		redirect_to :back
+  	else
+  		flash[:warning] = "Rating not remove"
+  		redirect_to :back
+  	end
+  end
 end

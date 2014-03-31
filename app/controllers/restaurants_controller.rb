@@ -146,4 +146,32 @@ class RestaurantsController < ApplicationController
       redirect_to new_user_session_path
     end   
   end
+
+  def new_review
+    if user_signed_in?
+      restaurant = Restaurant.find(params[:id])
+      @review = restaurant.reviews.new(params[:review])
+      if @review.save
+        flash[:notice] = 'You Successfully review this restaurant'
+        redirect_to :back
+      else 
+        flash[:notice] = 'Sorry you can not review this restaurant'
+        redirect_to :back
+      end
+    else
+      flash[:notice] = 'please Sign In than review this restaurant'
+      redirect_to new_user_session_path
+    end
+  end
+
+  def edit_review
+    @review = Review.find(params[:id])
+    if @review.update_attributes(params[:review])
+      flash[:notice] = 'Review successfully updated'
+      redirect_to :back
+    else
+      flash[:notice] = 'Review not updated'
+      redirect_to :back
+    end  
+  end
 end

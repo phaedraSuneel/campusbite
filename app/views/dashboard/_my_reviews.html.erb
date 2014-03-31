@@ -2,101 +2,42 @@
   <div class="col-md-12">
     <div class="row password-changer">
       <div class="col-md-4 heading-favorite"><label>Restaurant</label></div>
-      <div class="col-md-4 heading-favorite"><label>Review</label></div>
+      <div class="col-md-4 heading-favorite"><label class="margin-review">Review</label></div>
       <div class="col-md-2 heading-favorite"><label>Date</label></div>
       <div class="col-md-2 heading-favorite"><label>Actions</label></div>
     </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <h3><a href="#">Cafe Biola</a></h3>
+    <% @reviews.each do |review| %>
+      <div class="row favorite-order" id="review_<%=review.id%>">
+        <div class="col-md-4 heading-favorite">
+          <div class="pic-delivery">
+            <h3><%= link_to review.restaurant.restaurant_name, menu_welcome_path(review.restaurant)%></h3>
+          </div>
         </div>
-      </div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <ul class="star">
-            <li>this</li>
-            <li>this</li>
-            <li>this</li>
-            <li>this</li>
-            <li>this</li>
-          </ul>
-          <p>
-            This restaurant was really the best in pizza and the sauce was really nice.There should be more coupons for this restuaruant.
-          </p>                
+        <div class="col-md-4 heading-favorite">
+          <div class="pic-delivery star-display">
+            <form class="star-line">
+              <input name="rating" type="radio" class="star-read" value="1" <%= 'checked' if review.rating ==1  %> /> 
+              <input name="rating" type="radio" class="star-read" value="2" <%= 'checked' if review.rating ==2  %> /> 
+              <input name="rating" type="radio" class="star-read" value="3" <%= 'checked' if review.rating ==3  %> /> 
+              <input name="rating" type="radio" class="star-read" value="4" <%= 'checked' if review.rating ==4  %> /> 
+              <input name="rating" type="radio" class="star-read" value="5" <%= 'checked' if review.rating ==5  %> />
+            </form>
+            
+          </div>
+          <div class="pic-delivery reviews-description-margin"><p class="pull-left"><%= review.description %></p> </div>
         </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p>04/08/2013</p>
+        <div class="col-md-2 heading-favorite">
+          <div class="pic-delivery">
+            <p><%= review.created_at.strftime("%m/%d/%Y") %></p>
+          </div>
         </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <button class="red-ful height-ful">Delete Review</button>
-      </div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <h3><a href="#">Cafe Biola</a></h3>
+        <div class="col-md-2 heading-favorite">
+          <button class="red-ful height-ful delete-review-btn" data-review= "<%= review.id %>">Delete Review</button>
         </div>
+        <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
       </div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <ul class="star">
-            <li>this</li>
-            <li>this</li>
-            <li>this</li>
-            <li>this</li>
-            <li>this</li>
-          </ul>
-          <p>
-            This restaurant was really the best in pizza and the sauce was really nice.There should be more coupons for this restuaruant.
-          </p>                
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p>04/08/2013</p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <button class="red-ful height-ful">Delete Review</button>
-      </div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row favorite-order">
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <h3><a href="#">Cafe Biola</a></h3>
-        </div>
-      </div>
-      <div class="col-md-4 heading-favorite">
-        <div class="pic-delivery">
-          <ul class="star">
-            <li>this</li>
-            <li>this</li>
-            <li>this</li>
-            <li>this</li>
-            <li>this</li>
-          </ul>
-          <p>
-            This restaurant was really the best in pizza and the sauce was really nice.There should be more coupons for this restuaruant.
-          </p>                
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <div class="pic-delivery">
-          <p>04/08/2013</p>
-        </div>
-      </div>
-      <div class="col-md-2 heading-favorite">
-        <button class="red-ful height-ful">Delete Review</button>
-      </div>
-      <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-    </div>
-    <div class="row pagination-container">
+    <% end %>  
+    <!-- <div class="row pagination-container">
       <div class="col-md-8 col-md-offset-4">
         <ul class="pagination">
           <li><a href="#">PREVIOUS</a></li>
@@ -108,6 +49,6 @@
           <li><a href="#">next</a></li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </div>
 </div>

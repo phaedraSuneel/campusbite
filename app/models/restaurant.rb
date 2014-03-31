@@ -7,7 +7,8 @@ class Restaurant < ActiveRecord::Base
   has_many :favorites, :dependent => :destroy
   has_many :restaurant_coupons, :dependent => :destroy
   has_many  :orders, :dependent => :destroy
-
+  has_many :reviews, :dependent => :destroy
+  
   has_one :menu, :dependent => :destroy
   has_one :contact_info, :dependent => :destroy
   has_one :restaurant_info, :dependent => :destroy
@@ -24,7 +25,7 @@ class Restaurant < ActiveRecord::Base
   accepts_nested_attributes_for :restaurant_categories
   accepts_nested_attributes_for :favorites
   accepts_nested_attributes_for :contact_info, :restaurant_info, :delivery_info, :order_info, :bank_info, :operation, :delivery, :pick_up
-
+  accepts_nested_attributes_for :reviews
   before_create :create_menu
 
 

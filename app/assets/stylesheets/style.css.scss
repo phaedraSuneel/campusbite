@@ -1926,7 +1926,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   background: linear-gradient(to bottom, #f4dfbb 0%, #f4dfbb 100%);
   color: #fd603c;
 }
-.review-page .stars-line-container ul.star-line{
+.review-page .stars-line-container .star-line{
   background-color: #FFFFFF;
   float: left;
   height: 20px;
@@ -1937,8 +1937,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   text-align: center;
   top: 14px;
 }
-.review-page .stars-line-container ul.star-line li{
-  background: url("../assets/star-gb.png") no-repeat;
+.review-page .stars-line-container .star-line input{
   height: 15px;
   width: 13px;
   text-indent: -9999px;
@@ -1946,16 +1945,12 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   list-style: none;
   margin-right: 4px;
 }
-.review-page .stars-line-container ul.star-line li:hover{
-  background: url("../assets/star-gb.png") no-repeat;
-  background-position: -14px;
-}
+
 .big-star-line {
   float: left;
   padding: 0px;
 }
 .big-star-line li{
-  background: url("../assets/bigstar.png") no-repeat;
   float: left;
   list-style: none;
   margin-left: 5px;
@@ -1964,7 +1959,6 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   text-indent: -9999px;
 }
 .big-star-line li:hover{
-  background: url("../assets/bigstar.png") no-repeat;
   background-position: -37px;
 }
 .star-block-shadow
@@ -1972,6 +1966,10 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   width: 100%;
 }
 
+.rating-stars{
+  float: left;
+  padding: 15px;
+}
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<signup-page>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 .signup-page .search-container .bits-campus{
   text-align: center;
@@ -4415,4 +4413,16 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 
   .room-container {
     margin-bottom: 15px !important;
+  }
+
+  .star-display{
+    margin-left: 30px;
+  }
+
+  .reviews-description-margin{
+    margin-top: 10px;
+  }
+
+  .margin-review{
+    margin-left: 50px;
   }

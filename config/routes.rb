@@ -16,9 +16,11 @@ Ordering::Application.routes.draw do
       post 'add_user_address'
       get 'building_field'
       get 'delete_address'
+      get 'delete_review'
     end
     member do 
       post "edit_user_address"
+      get 'remove_review'
     end
   end
 
@@ -51,6 +53,8 @@ Ordering::Application.routes.draw do
   resources :restaurants do
     member do 
       get 'add_favorite'
+      post 'new_review'
+      post 'edit_review'
     end
   end 
   resources :restaurant_categories
