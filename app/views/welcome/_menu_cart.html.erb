@@ -65,7 +65,7 @@
         </div>
       <% end %>  
       <% cart.cart_menu_items.each do |item| %>
-        <%= render :partial => "edit_menu_item_popup", :locals => {:item => item.menu_item , :restaurant => @restaurant, :cart => item } %>
+        <%#= render :partial => "edit_menu_item_popup", :locals => {:item => item.menu_item , :restaurant => @restaurant, :cart => item } %>
       <% end %>
     <% else %>
       <div class="text-center"> Your Cart is Empty</div>
