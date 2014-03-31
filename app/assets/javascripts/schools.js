@@ -96,9 +96,14 @@ $(document).ready(function(){
 
     $(".edit-review-submit-btn").click(function(){
       id = $(this).data("review");
-      console.log(id);
       $("#edit_review_form_"+id).submit();
     })
+
+    $(".edit-item-submit").click(function(){
+      id = $(this).data("cart");
+      console.log(id);
+      $("#edit_menu_item_form_"+id).submit();
+    });
 
     $(".delete-address-btn").click(function(){
       r = confirm('Are you sure you want to delete this address?');

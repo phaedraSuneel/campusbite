@@ -22,6 +22,18 @@ class CartsController < ApplicationController
 
   end
 
+  def edit_item
+    @cart_menu_item = CartMenuItem.find(params[:id])
+    if @cart_menu_item.update_attributes(params[:cart])
+      flash[:notice] = 'cart updated successfully'
+      redirect_to :back
+    else
+      flash[:notice] = 'cart not updated.'
+      redirect_to :back
+    end
+
+  end
+
   def checkout
     if user_signed_in?
       @cart = current_user.cart

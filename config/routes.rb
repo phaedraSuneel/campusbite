@@ -74,6 +74,9 @@ Ordering::Application.routes.draw do
       get "update_cart_item_quantity"
       get "delete_cart_item"
     end
+    member do
+      post 'edit_item'
+    end
   end  
   # The priority is based upon order of creation:
   # first created -> highest priority.

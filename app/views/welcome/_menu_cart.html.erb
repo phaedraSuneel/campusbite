@@ -29,7 +29,7 @@
           <% cart.cart_menu_items.each do |cart| %>
             <div class="col-md-12 Qty-container" id= "cart_<%= cart.id%>">
               <div class="back-border">
-                <label class="edit-cloes" data-cart="<%= cart.id %>"><a href="javascript:void(0">Eidt</a><span><a class="cloesing remove-cart-item-link" href="javascript:void(0)">X</a></span></label>
+                <label class="edit-cloes" data-cart="<%= cart.id %>"> <a href="#" data-toggle = "modal" data-target= "#edit_menu_item_<%= cart.id %>">Eidt</a><span><a class="cloesing remove-cart-item-link" href="javascript:void(0)">X</a></span></label>
                 <label class="dolor-heading"><%= cart.menu_item.item_name %><span>$<%= cart.menu_item.price %></span></label>
                 <% cart_extra_charges = 0 %>
                 <% if cart.menu_item_property_id %>
@@ -41,6 +41,7 @@
                 <label class="qty-amount">QTY:<span><%= link_to '-', 'javascript:void(0)', :class => "minus-quantiy", :remote => true %></span><span class="quantity" data-cart = "<%= cart.id %>"><%= cart.quantity %></span><%= link_to '+', 'javascript:void(0)', :class => "plus-quantiy", :remote => true%></label>
               </div>
             </div>
+            
           <% end %>  
           <%= hidden_field_tag :restaurant_id , @restaurant.id %>
           <div class="col-md-12 subtotal-container">
@@ -63,6 +64,9 @@
           </div>
         </div>
       <% end %>  
+      <% cart.cart_menu_items.each do |item| %>
+        <%= render :partial => "edit_menu_item_popup", :locals => {:item => item.menu_item , :restaurant => @restaurant, :cart => item } %>
+      <% end %>
     <% else %>
       <div class="text-center"> Your Cart is Empty</div>
     <% end %>    

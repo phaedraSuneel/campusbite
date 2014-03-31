@@ -82,4 +82,17 @@ class Restaurant < ActiveRecord::Base
   def estimated_time
     self.delivery_info.delivery_estimated_time
   end
+
+  def avarage_rating
+    sum = 0
+    count = self.reviews.count
+    if count>0
+      self.reviews.each do |review|
+        sum += review.rating
+      end  
+      (sum/count).to_i
+    else
+      0
+    end
+  end
 end

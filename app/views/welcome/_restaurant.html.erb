@@ -62,7 +62,15 @@
             </div>
             <div class="col-md-2 delivery-field">
               <label>REVIEWS:</label>
-              <p><img class="stars" alt="Smiley face" src="/assets/stars.png" /></p>
+                <div>
+                  <form class="star-line">
+                    <input name="rating" type="radio" class="star-read" value="1" <%= 'checked' if restaurant.avarage_rating ==1  %> /> 
+                    <input name="rating" type="radio" class="star-read" value="2" <%= 'checked' if restaurant.avarage_rating ==2  %> /> 
+                    <input name="rating" type="radio" class="star-read" value="3" <%= 'checked' if restaurant.avarage_rating ==3  %> /> 
+                    <input name="rating" type="radio" class="star-read" value="4" <%= 'checked' if restaurant.avarage_rating ==4  %> /> 
+                    <input name="rating" type="radio" class="star-read" value="5" <%= 'checked' if restaurant.avarage_rating ==5  %> />
+                  </form>
+                </div>
             </div>
           </div>                        
         </div>
