@@ -1,0 +1,93 @@
+<%= javascript_include_tag "application" %>
+<div class="detail-req detail-req-node">
+  <h3>Delivery Details<span>* Required fields</span></h3>
+  <div class="row">
+    <div class="col-md-6 req-field">
+      <div class="campus-on stored-address-btn address-option active">
+        <span><input type="radio" name="address_type" value = "stored-address"></span>Stored Address
+      </div>
+    </div>
+    <div class="col-md-6 req-field">
+      <div class="campus-on new-address-btn address-option">
+        <span><input type="radio" name="address_type" value = "new-address"></span>Enter New Address
+      </div>
+    </div>
+  </div>
+  <div class="stored-address">
+    <% current_user.addresses.each do |address| %>
+      <div class="row">
+        <div class="col-md-12 req-field error-modal account-modal">
+          <div class="campus-on" id="office-job-1">
+            <div class="campus-room"><input type="radio" name= "order[address_id]" value = "<%= address.id  %>"></div>
+            <div class="campus-room-note">
+              <p><%= address.address_name %> <a href="#", data-toggle="modal", data-target="#edit_address_model_<%= address.id%>">Edit</a></p>
+              <p><%= address.address_type %> </p>
+              <% if address.address_type == "On Campus" %>
+                <p><%= address.school.school_name %></p>
+                <p><%= address.building.try(:building_name) %></p>
+                <p><%= address.building.try(:street_adress) %></p>
+                <p>Room No. <%= address.room_number %></p>
+                <p><%= address.building.try(:city) %>, <%= address.building.try(:state) %> <%= address.building.try(:zip_code) %></p>
+              <% else %>
+                <p><%= address.street_adress%> </p>
+                <p> Apt <%= address.room_number %></p>
+                <p><%= address.city %>, <%= address.state %> <%= address.zip_code %></p>
+              <% end -%>  
+              <p><%= address.phone_number %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= render :partial => "dashboard/edit_user_address_model", :locals => { :@address => address} %>
+    <% end %>
+  </div>
+  <div class="new-address hide">
+    <%= render :partial => "welcome/new_address_user_form"%>
+  </div>
+  <div class="row">
+    <div class="col-md-12 req-field">
+      <div class="req-field-items">
+        <label>Delivery Instructions:</label>
+        <textarea palceholder="E.g. I need extra napkins, etc" name= "order[delivery_instruction]"></textarea>
+        <%= hidden_field_tag "order[order_type]",  "delivery" %>
+        <%= hidden_field_tag "order[request_time]",  nil, :class => "request_time" %>
+        <%= hidden_field_tag "restaurant_id", nil, :class => "restaurant_order" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+  request_time = $(".hidden_field_request_time").val();
+  restaurant = $(".restaurant").val();
+
+  $(".request_time").val(request_time);
+  $(".restaurant_order").val(restaurant);
+
+  console.log(restaurant);
+
+    $(".stored-address-btn input[type=radio]").attr("checked", true);
+
+    $(".stored-address-btn").click(function(){
+      $(".new-address").addClass("hide");
+      $(".stored-address").removeClass("hide");
+      $(".stored-address-btn").addClass("active");
+      $(".new-address-btn").removeClass("active");
+      $(".new-address-btn input[type=radio]").attr("checked", false);
+      $(".stored-address-btn input[type=radio]").attr("checked", true);
+    });
+
+    $(".new-address-btn").click(function(){
+      $(".stored-address").addClass("hide");
+      $(".new-address").removeClass("hide");
+      $(".new-address-btn").addClass("active");
+      $(".stored-address-btn").removeClass("active");
+      $(".stored-address-btn input[type=radio]").attr("checked", false);
+      $(".new-address-btn input[type=radio]").attr("checked", true);
+    });
+
+    
+   });
+</script>

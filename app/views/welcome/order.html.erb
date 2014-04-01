@@ -45,7 +45,14 @@
           <label><span>Name:</span><span class="value"><%= @order.user.name %></span></label>
           <label><span>Telephone:</span><span class="value">(718)-419-2143</span></label>
           <label><span>Email:</span><span class="value"><%= @order.user.email %></span></label>
-          <label><span>Address:</span><span class="value">On Campus Biola University Academic Hall 204 1892 East 34th Street Brooklyn, NY 11229</span></label>
+          <label><span>Address:</span><span class="value">
+            <%= @order.address.address_type %>
+            <% if @order.address.address_type == "On Campus" %>
+             <%= @order.address.school.school_name %> <%= @order.address.room_number %> <%= @order.address.building.try(:street_adress) %></span>
+           <% else %>
+             <%= @order.address.room_number %> <%= @order.address.street_adress %>
+           <% end %>  
+          </label>
         </div>
         <div class="col-md-6 campusbite-container">
           <div class="row about-fnd">
@@ -103,14 +110,19 @@
         <div class="col-md-3 col-md-offset-1 order-detail">
           <label>You</label>
           <label><%= @order.user.name %></label>
-          <label>(718)-419-2143</label>
+          <label><%= @order.address.phone_number %></label>
           <label><%= @order.user.email %></label>
-          <label>On Campus</label>
-          <label>Biola University</label>
-          <label>Academic Hall</label>
-          <label>204</label>
-          <label>1892 East 34th Street</label>
-          <label>Brooklyn, NY 11229</label>
+          <label><%= @order.address.address_type %></label>
+          <% if @order.address.address_type == "On Campus" %>
+            <label> <%= @order.address.school.school_name %></label>
+            <label><%= @order.address.building.try(:building_name) %></label>
+            <label><%= @order.address.room_number %></label>
+            <label><%= @order.address.building.try(:street_adress) %></label>
+          <% else %>  
+            <label><%= @order.address.room_number %>  </label>
+            <label><%= @order.address.street_adress %> </label>
+          <% end %>
+
         </div>
         <div class="row receipt-table">
           <div class="col-md-12 credit-table">
@@ -138,45 +150,13 @@
                   <td>$ <%= (extra + item.menu_item.price) * item.quantity  %></td>
                 </tr>
               <% end %>
-              <!-- <tr class="even">
-                <td class="first">
-                  <h3>Brocolli Soup</h3>
-                  <p></p>
-                  <p>Instructions: Add extra broccolli </p>
-                </td>
-                <td class="first">$80</td>
-                <td class="first">1</td>
-                <td>$100</td>
-              </tr>
-              <tr class="odd">
-                <td class="first">
-                  <h3>Can</h3>
-                  <label>Pepsi</label>
-                  <p></p>
-                  <p>Instructions:</p>
-                </td>
-                <td class="first">$80</td>
-                <td class="first">1</td>
-                <td>$100</td>
-              </tr>
-              <tr class="even">
-                <td class="first">
-                  <h3>Appetizers</h3>
-                  <label>Chicken Wings</label>
-                  <label>Extra Toppings: Blue Cheese</label>
-                  <p>Instructions: Please add extra blue cheese</p>
-                </td>
-                <td class="first">$80</td>
-                <td class="first">1</td>
-                <td>$100</td>
-              </tr> -->
             </table>
           </div>
         </div>
         <div class="row special-instructions">
           <div class="col-md-6">
             <h3>Special Instructions:</h3>
-            <div class="note">Please ring the bell downstairs because it doesnt work upstairs! Thank You so much!</div>
+            <div class="note"><%= @order.delivery_instruction %></div>
           </div>
           <div class="col-md-6 subtotal">
             <label><span>Subtotal:</span><span class="value">$<%= @order.sub_total%></span></label>

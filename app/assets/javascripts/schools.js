@@ -46,7 +46,7 @@ $(document).ready(function(){
     $(".change_user_password_form").submit();
   });
 
-  $(".on input[type=radio]").attr("checked", true);
+    $(".on input[type=radio]").attr("checked", true);
     $(".address_type_field").val("On Campus");
 
       
@@ -74,6 +74,7 @@ $(document).ready(function(){
 
    $(".school_selector select").change(function(e){
       id = $(this).val();
+      console.log(id);
       building_content = $(".building-selector");
       $.ajax ({
         url:  '/dashboard/building_field',

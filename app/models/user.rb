@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :school_name
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :school_name, :customer_id
   # attr_accessible :title, :body
   has_many :authentications, :dependent => :destroy
   has_many :orders, :dependent => :destroy
@@ -23,11 +23,33 @@ class User < ActiveRecord::Base
   has_many :addresses, :dependent => :destroy 
   has_many :favorites, :dependent => :destroy
   has_many :reviews, :dependent => :destroy  
+  has_many :cards
+
+  accepts_nested_attributes_for :addresses
+
   before_create :add_default_role
+
+  after_create :add_customer_id
 
   def add_default_role
     self.add_role :user if self.roles.blank?
   end
+
+
+  def add_customer_id
+    Braintree::Configuration.environment = :sandbox
+    Braintree::Configuration.merchant_id = "6q6zvwjk33nr2wh6"
+    Braintree::Configuration.public_key = "z8wb4mz95s5hj74g"
+    Braintree::Configuration.private_key = "fca0105a4b3e363f763ffc31a5d69ce8"
+    result = Braintree::Customer.create(
+      :id => "customer_" + self.id.to_s,
+      :first_name => self.first_name
+    )
+    if result.success?
+      self.customer_id = result.customer.id
+      self.save
+    end  
+  end 
 
   def user_admin?
     self.has_role? :admin

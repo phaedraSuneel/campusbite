@@ -37,8 +37,11 @@ class CartsController < ApplicationController
   def checkout
     if user_signed_in?
       @cart = current_user.cart
+
       unless @cart.blank?
-        render :partial => "welcome/order_view_option"
+
+        #render :partial => "welcome/order_view_option"
+        render :partial => "welcome/payment_information"
       else
         render :partial => "welcome/menu_item_option" 
       end  
@@ -50,19 +53,85 @@ class CartsController < ApplicationController
 
   def create_order
     @cart = current_user.cart
-    @order = Order.new params[:order]
-    @order.user_id = current_user.id
-    @order.status = "pending"
-    @order.restaurant = @cart.menu_items.last.restaurant
-    @order.save
-    @cart.cart_menu_items.each do |item|
-      @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   
-      @menu_item_order.menu_item = item.menu_item
-      @menu_item_order.save 
-    end
-    @cart.destroy
-    flash[:notice] = 'Order was successfully created'
-    redirect_to order_welcome_path(@order)
+    total_bill = @cart.total_bill(Restaurant.find(params[:restaurant_id]))
+   
+    Braintree::Configuration.environment = :sandbox
+    Braintree::Configuration.merchant_id = "6q6zvwjk33nr2wh6"
+    Braintree::Configuration.public_key = "z8wb4mz95s5hj74g"
+    Braintree::Configuration.private_key = "fca0105a4b3e363f763ffc31a5d69ce8"
+
+    unless params[:order].blank?
+      if params[:address_type] == "stored-address"
+        address =   Address.find(params[:order][:address_id])
+      else 
+        address =  Address.new(params[:address])
+        address.user_id = current_user.id
+        address.save
+        params[:order][:address_id] = address.id
+      end 
+      if params[:payment_method] == "credit card"
+        payment_method = "credit card"
+        if params[:card] == "stored"
+          @card = current_user.cards.find(params[:card_id])
+          @result = Braintree::Transaction.sale(
+            :amount => total_bill,
+            :customer_id => current_user.customer_id,
+            :payment_method_token => @card.token
+          )  
+        else
+          @result = Braintree::Transaction.sale(
+            :amount => total_bill,
+            :credit_card => {
+              :number => params[:card_number],
+              :expiration_year => params[:card_info]["expiration_date(1i)"],
+              :expiration_month => params[:card_info]["expiration_date(2i)"]
+            }  
+          )
+
+          @new_card_result = Braintree::CreditCard.create(
+            :customer_id => current_user.customer_id,
+            :number => params[:card_number],
+            :expiration_year => params[:card_info]["expiration_date(1i)"],
+            :expiration_month => params[:card_info]["expiration_date(2i)"]
+          )
+
+          if @new_card_result.success? 
+            @card = Card.new(params[:card_info])
+            @card.user_id = current_user.id
+            @card.masked_number = @new_card_result.credit_card.masked_number
+            @card.unique_number_identifier = @new_card_result.credit_card.unique_number_identifier
+            @card.card_type = @new_card_result.credit_card.card_type
+            @card.token = @new_card_result.credit_card.token
+            @card.save
+          else
+            p "Invalid new card information"  
+          end
+        end
+        if @result.success?
+          
+          @order = Order.new params[:order]
+          @order.user_id = current_user.id
+          @order.status = "pending"
+          @order.card_id = @card.id
+          @order.restaurant = @cart.menu_items.last.restaurant
+          @order.save
+          @cart.cart_menu_items.each do |item|
+            @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   
+            @menu_item_order.menu_item = item.menu_item
+            @menu_item_order.save 
+          end
+          @cart.destroy
+          flash[:notice] = 'Order was successfully created'
+          redirect_to order_welcome_path(@order)  
+        else
+          flash[:warning] = "Invalid card information"
+          redirect_to :back
+        end  
+      else
+        payment_method = "paypal"
+      end   
+    end 
+
   end
 
   def update_cart_item_quantity

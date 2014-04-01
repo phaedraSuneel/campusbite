@@ -1,0 +1,58 @@
+<div class="modal fade" id="new_card_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+
+    <div class="modal-content">
+      <div class="modal-header error-title">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <div class="row cards-contanier">
+          <div class="col-md-9 col-md-offset-2">
+            <h4>Add A New Address</h4>
+            <span class="card-1"><a href="#">card1</a></span>
+            <span class="card-1 card-2"><a href="#">card1</a></span>
+            <span class="card-1 card-3"><a href="#">card1</a></span>
+            <span class="card-1 card-4"><a href="#">card1</a></span>
+          </div>
+        </div>
+      </div>
+      <%= form_for("card" , :url => add_user_card_dashboard_index_path, :html => {:class => "add-new-card-form"}) do |f| %>
+        <div class="modal-body modal-body-container">
+          <div class="row">
+            <div class="col-md-12 adress-container">
+              <div class="row">
+                <div class="col-md-6 camp-left">
+                  <label>Card Number *</label>
+                  <%= text_field_tag :card_number, nil,:placeholder => "Card Number" ,:class => "requried" %>
+                </div>
+                <div class="col-md-6 camp-left">
+                  <label>Expiration Date *</label>
+                  <%= f.date_select :expiration_date,  :order => [:month, :year] %>
+                </div>  
+              </div>
+              <div class="row">
+                <div class="col-md-6 camp-left half-field">
+                  <label>Security Code *</label>
+                  <%= text_field_tag :security_code, nil, :placeholder => "Security Code" ,:class => "requried" %>
+                </div>
+                <div class="col-md-6 camp-left half-field">
+                  <label>Billing Zip Code *</label>
+                  <%= text_field_tag :billing_zipcode, nil, :placeholder => "Billing Zipcode" ,:class => "requried" %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary submit-md new-user-card-form">Save</button>
+        </div>
+      <% end -%>  
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".new-user-card-form").click(function(){
+      $(".add-new-card-form").submit();
+    });
+  });
+</script>

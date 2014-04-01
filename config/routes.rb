@@ -5,6 +5,7 @@ Ordering::Application.routes.draw do
 
   resources :restaurant_offers
 
+  resources :card
 
   resources :cuisines
 
@@ -17,6 +18,7 @@ Ordering::Application.routes.draw do
       get 'building_field'
       get 'delete_address'
       get 'delete_review'
+      post 'add_user_card'
     end
     member do 
       post "edit_user_address"

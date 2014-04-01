@@ -35,6 +35,8 @@ gem 'ts-delayed-delta', '2.0.0', :require => 'thinking_sphinx/deltas/delayed_del
 gem 'progress_bar'
 
 gem 'kaminari'
+
+gem "braintree"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

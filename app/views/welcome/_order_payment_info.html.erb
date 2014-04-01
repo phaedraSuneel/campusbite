@@ -1,0 +1,133 @@
+<div class="detail-req detail-req-node">
+  <h3>Payment<span>* Required fields</span></h3>
+  <div class="row">
+    <div class="col-md-6 req-field">
+      <div class="campus-on credit-cart-option payment-method active">
+        <div class="cards"><span><input type="radio" name="payment_method" value ="credit card"></span>Credit Card</div>
+        <div class="payment">
+          <a href="#" class="credit-card card-1"></a>
+          <a href="#" class="credit-card card-2"></a>
+          <a href="#" class="credit-card card-3"></a>
+          <a href="#" class="credit-card card-4"></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 req-field">
+      <div class="campus-on paypal-option payment-method">
+        <div class="cards"><span><input type="radio" name="payment_method" value ="paypal"></span>Pay Pal</div>
+        <div class="payment">
+          <a href="#" class="credit-card card-5"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="credit-card-portion">
+    <div class="row">
+      <div class="col-md-5 req-field stored-field">
+        <div class="campus-on stored-campus active stored-card-option">
+          <span><input type="radio" name="card" value ="stored"></span>Stored Credit Card
+        </div>
+      </div>
+      <div class="col-md-5 req-field stored-field">
+        <div class="campus-on stored-campus new-card-option">
+          <span><input type="radio" name="card" value ="new" ></span>Enter A New Card
+        </div>
+      </div>
+    </div>
+    <div class="stored-card-portion">
+      <div class="row">
+        <div class="col-md-12 req-field select-bg">
+          <div class="row req-field-items">
+            <div class="col-md-11">
+              <%= select_tag 'card_id', options_for_select(current_user.cards.all.collect{ |u| [u.masked_number, u.id] }) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <div class="new-card-portion hide">
+      <div class="row select-bg">
+        <div class="col-md-12">
+          <div class="row">
+            <div class="col-md-6 req-field">
+              <div class="req-field-items">
+                <label>Card Number *</label>
+                <input class="required" type="text" placeholder="Card Number" name = "card_number" />
+              </div>
+            </div>
+            <div class="col-md-6 req-field card-expiration-date">
+              <label class="expiration">Expiration Date: *</label>
+                <%= date_select("card_info", "expiration_date", discard_day: true)%>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6 req-field">
+              <div class="req-field-items">
+                <label class="number expiration">CVV Code *<span>(What is this?)</span></label>
+                <input class="required billing" type="text" name = "cvv_code" />
+              </div>
+            </div>
+            <div class="col-md-6 req-field">
+              <label class="number expiration">Billing Zipcode</label>
+              <input class="required billing" type="text" name = "billing_zipcode"/>
+            </div>
+          </div>
+        </div>  
+      </div>  
+    </div>  
+  <div>
+  
+  <div class="paypal-portion hide">
+
+  </div>  
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){   
+
+    $(".credit-cart-option input[type=radio]").attr("checked", true);
+    $(".stored-card-option input[type=radio]").attr("checked", true);
+
+
+    $(".credit-cart-option").click(function(){
+       $(".paypal-portion").addClass("hide");
+       $(".credit-card-portion").removeClass("hide");
+       $(".credit-cart-option").addClass("active");
+       $(".paypal-option").removeClass("active");
+       $(".paypal-option input[type=radio]").attr("checked", false); 
+       $(".credit-cart-option input[type=radio]").attr("checked", true); 
+    });
+
+    $(".paypal-option").click(function(){
+       $(".credit-card-portion").addClass("hide");
+       $(".paypal-portion").removeClass("hide");
+       $(".paypal-option").addClass("active");
+       $(".credit-cart-option").removeClass("active");
+       $(".credit-cart-option input[type=radio]").attr("checked", false); 
+       $(".paypal-option input[type=radio]").attr("checked", true); 
+       
+    });
+
+    $(".stored-card-option").click(function(){
+       $(".new-card-portion").addClass("hide");
+       $(".stored-card-portion").removeClass("hide");
+       $(".stored-card-option").addClass("active");
+       $(".new-card-option").removeClass("active");
+       $(".new-card-option input[type=radio]").attr("checked", false); 
+       $(".stored-card-option input[type=radio]").attr("checked", true); 
+    });
+
+    $(".new-card-option").click(function(){
+       $(".stored-card-portion").addClass("hide");
+       $(".new-card-portion").removeClass("hide");
+       $(".new-card-option").addClass("active");
+       $(".stored-card-option").removeClass("active");
+       $(".stored-card-option input[type=radio]").attr("checked", false); 
+       $(".new-card-option input[type=radio]").attr("checked", true); 
+       
+    }); 
+
+  });
+</script>

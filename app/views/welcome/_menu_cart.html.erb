@@ -15,7 +15,7 @@
           </div>
           <div class="col-md-4 delivery-type">
             <div class="delivery-btn">
-              <%= f.radio_button :order_type , "delivery"%> Delivery
+              <%= f.radio_button :order_type , "delivery" %> Delivery
             </div>
           </div>
           <div class="col-md-4 pickup-type">
@@ -43,7 +43,7 @@
             </div>
             
           <% end %>  
-          <%= hidden_field_tag :restaurant_id , @restaurant.id %>
+          <%= hidden_field_tag :restaurant_id , @restaurant.id, :class => "restaurant" %>
           <div class="col-md-12 subtotal-container">
             <div class="subtotal-head">
               <label>Subtotal:</label>
@@ -72,3 +72,4 @@
     <% end %>    
   </div>
 </div>
+

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140331100937) do
+ActiveRecord::Schema.define(:version => 20140401204138) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -74,6 +74,18 @@ ActiveRecord::Schema.define(:version => 20140331100937) do
     t.integer  "zip_code"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+  end
+
+  create_table "cards", :force => true do |t|
+    t.datetime "expiration_date"
+    t.integer  "user_id"
+    t.string   "cardholder_name"
+    t.string   "token"
+    t.integer  "masked_number"
+    t.integer  "unique_number_identifier"
+    t.string   "card_type"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
   create_table "cart_menu_items", :force => true do |t|
@@ -234,13 +246,17 @@ ActiveRecord::Schema.define(:version => 20140331100937) do
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",           :null => false
+    t.datetime "updated_at",           :null => false
     t.string   "delievery_address"
     t.string   "order_type"
     t.string   "request_time"
     t.string   "status"
     t.integer  "restaurant_id"
+    t.integer  "address_id"
+    t.text     "delivery_instruction"
+    t.string   "paymemt_method"
+    t.integer  "card_id"
   end
 
   create_table "pick_ups", :force => true do |t|
@@ -361,6 +377,7 @@ ActiveRecord::Schema.define(:version => 20140331100937) do
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
     t.string   "school_name"
+    t.string   "customer_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

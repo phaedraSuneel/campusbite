@@ -62,32 +62,24 @@
       </div>
       <div class="row password-changer">
         <div class="col-md-3"><h3>Payment Information</h3></div>
-        <div class="col-md-3"><button class="green">Add A New Card</button></div>
+        <div class="col-md-3"><button class="green" data-toggle="modal" data-target="#new_card_modal">Add A New Card</button></div>
         <div class="col-md-6"></div>
       </div>
       <div class="row">
-        <div class="col-md-6 room-container">
-          <div class="edit-container">
-            <div class="row">
-              <div class="col-md-9">
-                <label>Credit Card</label>
-                <p>Visa ending in 4154</p>
+        <% @cards.each do |card| %>
+          <div class="col-md-6 room-container">
+            <div class="edit-container">
+              <div class="row">
+                <div class="col-md-9">
+                  <label>Credit Card</label>
+                  <p>Type = <%= card.card_type %></p>
+                  <p>Exp. date = <%= card.expiration_date.strftime("%B %Y") %></p>
+                </div>
+                <div class="col-md-3"><!-- <button class="red-ful margin-top-btn">Delete</button> --></div>
               </div>
-              <div class="col-md-3"><button class="red-ful margin-top-btn">Delete</button></div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6 office-container">
-          <div class="edit-container">
-            <div class="row">
-              <div class="col-md-9">
-                <label>Credit Card</label>
-                <p>Visa ending in 4154</p>
-              </div>
-              <div class="col-md-3"><button class="red-ful margin-top-btn">Delete</button></div>
-            </div>
-          </div>
-        </div>
+        <% end %>  
       </div>
     </div>
   </div>
@@ -97,5 +89,4 @@
 
 <%= render :partial => "add_new_address_model"%>
 
-
-
+<%= render :partial => "new_card_modal" %>

@@ -1,0 +1,25 @@
+<div class="col-md-8 menu-tabs">
+  <%= form_for "order", :url => create_order_carts_path, :method => :get, :html => {:class => "order-form"} do |f|%>    <div class="col-md-12">
+    <div class="row location-container">
+      <div class="save-location">Review & Submit YOUR Order</div>
+      
+        <%= render :partial => "welcome/order_user_info"%>
+        
+        <%= render :partial => "welcome/order_delivery_info" %>
+
+        <%= render :partial => "welcome/order_payment_info" %>
+        
+        <%= render :partial => "welcome/order_tip_info" %>
+
+        <%= render :partial => "welcome/order_promo_code_info" %>      
+      </div>
+    </div>
+    <div class="row t-location">
+      <h4>TOTAL: $70.41</h4>
+      <p>By clicking "Submit Order" you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+      <div class="col-md-6 col-md-offset-3 submit-location-page">
+        <button>Submit Order</button>
+      </div>
+    </div>  
+  <% end %>  
+</div>

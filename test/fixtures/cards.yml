@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  expiration_date: 2014-04-01 19:26:26
+  user_id: 1
+  cardholder_name: MyString
+  token: MyString
+  masked_number: 1
+  unique_number_identifier: 1
+  card_type: MyString
+
+two:
+  expiration_date: 2014-04-01 19:26:26
+  user_id: 1
+  cardholder_name: MyString
+  token: MyString
+  masked_number: 1
+  unique_number_identifier: 1
+  card_type: MyString
