@@ -1,7 +1,7 @@
 <!-- Modal -->
 <div class="modal fade" id="edit_menu_item_<%= cart.id %>" class="menu-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <%= form_for "cart" , :url => edit_item_cart_path(cart), :html => {:class => "order-form", :id => "edit_menu_item_form_#{cart.id}"} do |f|%>
+    <%= form_for "cart" , :url => edit_item_cart_path(cart), :html => {:class => "edit-menu-form", :id => "edit_menu_item_form_#{cart.id}"} do |f|%>
       <div class="modal-content">
         <div class="modal-header error-title">
           <div class="row Quantity-head">
