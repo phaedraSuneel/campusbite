@@ -18,6 +18,7 @@ Ordering::Application.routes.draw do
       get 'building_field'
       get 'delete_address'
       get 'delete_review'
+      get 'delete_card'
       post 'add_user_card'
     end
     member do 

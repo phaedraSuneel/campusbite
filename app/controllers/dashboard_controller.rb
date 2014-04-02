@@ -84,9 +84,13 @@ class DashboardController < ApplicationController
   	end
   end
 
+  def delete_card
+    @card = Card.find(params[:id])
+    @card.destroy
+    render :text => 'successfully'
+  end
+  
   def add_user_card
-  	p params[:card]
-
   	
     Braintree::Configuration.environment = :sandbox
     Braintree::Configuration.merchant_id = "6q6zvwjk33nr2wh6"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140401204138) do
+ActiveRecord::Schema.define(:version => 20140402070518) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20140401204138) do
     t.integer  "user_id"
     t.string   "cardholder_name"
     t.string   "token"
-    t.integer  "masked_number"
+    t.string   "masked_number"
     t.integer  "unique_number_identifier"
     t.string   "card_type"
     t.datetime "created_at",               :null => false

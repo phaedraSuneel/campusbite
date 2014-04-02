@@ -130,6 +130,25 @@ $(document).ready(function(){
        return false  
     });
 
+    $(".delete-card-btn").click(function(){
+      r = confirm('Are you sure you want to delete this address?');
+      if(r == true)
+      {
+        id = $(this).data("card");
+        parent = $("#user_card_"+id);
+        $.ajax ({
+          url:  '/dashboard/delete_card',
+          data: {id: id },
+          success: function(data)
+          {
+            $(parent).remove();
+          }
+        });
+      }
+      else
+       return false  
+    });
+
     $(".delete-review-btn").click(function(){
       r = confirm('Are you sure you want to delete this review?');
       if(r == true)

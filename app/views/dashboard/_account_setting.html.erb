@@ -19,7 +19,7 @@
       <div class="row">
         <% current_user.addresses.each do |address| %>
           <div class="col-md-6 room-container" id = "address_<%=address.id%>">
-            <div class="edit-container">
+            <div class="edit-container fix-height-address">
               <div class="row room-head">
                 <div class="col-md-6"><label><%= address.address_name %></label></div>
                 <div class="col-md-3"><button class="green-ful" data-toggle="modal" data-target="#edit_address_model_<%= address.id%>">Edit</button></div>
@@ -67,15 +67,16 @@
       </div>
       <div class="row">
         <% @cards.each do |card| %>
-          <div class="col-md-6 room-container">
+          <div class="col-md-6 room-container" id="user_card_<%= card.id %>">
             <div class="edit-container">
-              <div class="row">
+              <div class="row account-info-field">
                 <div class="col-md-9">
-                  <label>Credit Card</label>
-                  <p>Type = <%= card.card_type %></p>
-                  <p>Exp. date = <%= card.expiration_date.strftime("%B %Y") %></p>
+                  <label>Credit Card</label> 
+                  <p>Masked number :  <%= card.masked_number %></p>
+                  <p>Type: <%= card.card_type %></p>
+                  <p>Exp. date: <%= card.expiration_date.strftime("%B %Y") %></p>
                 </div>
-                <div class="col-md-3"><!-- <button class="red-ful margin-top-btn">Delete</button> --></div>
+                <div class="col-md-3"><button class="red-ful  delete-card-btn  margin-top-btn" data-card="<%= card.id %>">Delete</button></div>
               </div>
             </div>
           </div>

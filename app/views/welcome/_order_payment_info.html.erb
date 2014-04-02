@@ -76,10 +76,10 @@
         </div>  
       </div>  
     </div>  
-  <div>
+  </div>
   
   <div class="paypal-portion hide">
-
+    <label>When you click "Submit Order you will be taken to Paypal payment site. After the transactoin is processed, you will be returned to the Campus Bite website to view you rececipt and etc"</label>
   </div>  
 </div>
 
@@ -101,6 +101,7 @@
     });
 
     $(".paypal-option").click(function(){
+        console.log("click");
        $(".credit-card-portion").addClass("hide");
        $(".paypal-portion").removeClass("hide");
        $(".paypal-option").addClass("active");
