@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
   has_many :menu_items, through: :menu_item_orders
   has_many :menu_item_orders
 
-  attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :paymemt_method
+  attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type
 
 
   def property_name(id)

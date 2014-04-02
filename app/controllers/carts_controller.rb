@@ -69,8 +69,9 @@ class CartsController < ApplicationController
         address.save
         params[:order][:address_id] = address.id
       end 
+      p params[:order]
+
       if params[:payment_method] == "credit card"
-        payment_method = "credit card"
         if params[:card] == "stored"
           @card = current_user.cards.find(params[:card_id])
           @result = Braintree::Transaction.sale(
@@ -112,6 +113,7 @@ class CartsController < ApplicationController
           @order = Order.new params[:order]
           @order.user_id = current_user.id
           @order.status = "pending"
+          @order.method_type ="Credit Card"
           @order.card_id = @card.id
           @order.restaurant = @cart.menu_items.last.restaurant
           @order.save
@@ -128,7 +130,8 @@ class CartsController < ApplicationController
           redirect_to :back
         end  
       else
-        payment_method = "paypal"
+        result =   @cart.paypal_url('http://localhost:3000/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&order_type='+params[:order][:order_type].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
+        redirect_to result
       end   
     end 
 
@@ -176,4 +179,20 @@ class CartsController < ApplicationController
     end 
   end
 
+  def paypal_order_create
+    @cart = Cart.find(params[:cart_id].to_i)
+    @order = Order.new(:address_id => params[:address_id].to_i, :order_type => params[:order_type], :request_time => params[:request_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal')
+    @order.user_id = current_user.id
+    @order.status = "pending"
+    @order.restaurant = @cart.menu_items.last.restaurant
+    @order.save
+    @cart.cart_menu_items.each do |item|
+      @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   
+      @menu_item_order.menu_item = item.menu_item
+      @menu_item_order.save 
+    end
+    @cart.destroy
+    flash[:notice] = 'Order was successfully created'
+    redirect_to order_welcome_path(@order)  
+  end
 end

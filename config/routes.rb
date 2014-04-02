@@ -76,6 +76,7 @@ Ordering::Application.routes.draw do
       get "create_order"
       get "update_cart_item_quantity"
       get "delete_cart_item"
+      get "paypal_order_create"
     end
     member do
       post 'edit_item'

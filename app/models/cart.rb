@@ -34,5 +34,25 @@ class Cart < ActiveRecord::Base
 		restaurant = Restaurant.find(restaurant.id)
 		self.sub_total + self.sale_tax(restaurant) + self.delivery_charges(restaurant)
 	end
+
+  
+
+  def paypal_url(return_url,total_bill)
+    p return_url
+    values = {
+      :business  => 'suneel.kumar-facilitator@phaedrasolutions.com',
+      :cmd => '_cart',
+      :upload=> 1,
+      :return => return_url,
+      :invoice => self.id,
+      :amount_1 => total_bill,
+      :item_name_1 => 'Order',
+      :item_number_1 => self.id,
+      :quantity_1 => 1
+    }
+    "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.to_query
+  end
+
+
 end
 

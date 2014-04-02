@@ -79,7 +79,12 @@
   </div>
   
   <div class="paypal-portion hide">
-    <label>When you click "Submit Order you will be taken to Paypal payment site. After the transactoin is processed, you will be returned to the Campus Bite website to view you rececipt and etc"</label>
+    <label class="text-center">When you click "Submit Order" you will be taken to Paypal payment site. After the transactoin is processed, you will be returned to the Campus Bite website to view you rececipt and etc"</label>
+
+
+    <%#= link_to "Do Payment", @cart.paypal_url(root_url) %>
+
+
   </div>  
 </div>
 

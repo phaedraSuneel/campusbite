@@ -28,7 +28,7 @@
           <label><span>Order Type:</span><span class="value"><%= @order.order_type %></span></label>
           <label><span>Requested For:</span><span class="value"><%= @order.request_time %></span></label>
           <label><span>Estimated Delivery Time:</span><span class="value"><%= @order.restaurant.estimated_time %> minutes</span></label>
-          <label><span>Payment Method:</span>Credit Card</label>
+          <label><span>Payment Method:</span> <%= @order.method_type %></label>
         </div>
         <div class="col-md-6 order-detail restaurant-detail">
           <h3>Restaurant Details</h3>
