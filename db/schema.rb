@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140402134738) do
+ActiveRecord::Schema.define(:version => 20140402141949) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -258,6 +258,17 @@ ActiveRecord::Schema.define(:version => 20140402134738) do
     t.string   "paymemt_method"
     t.integer  "card_id"
     t.string   "method_type"
+    t.integer  "payment_id"
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "transition_id"
+    t.datetime "transition_at"
+    t.string   "transition_status"
+    t.float    "amount"
+    t.integer  "user_id"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "pick_ups", :force => true do |t|

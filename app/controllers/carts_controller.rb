@@ -69,8 +69,6 @@ class CartsController < ApplicationController
         address.save
         params[:order][:address_id] = address.id
       end 
-      p params[:order]
-
       if params[:payment_method] == "credit card"
         if params[:card] == "stored"
           @card = current_user.cards.find(params[:card_id])
@@ -78,7 +76,8 @@ class CartsController < ApplicationController
             :amount => total_bill,
             :customer_id => current_user.customer_id,
             :payment_method_token => @card.token
-          )  
+          )
+
         else
           @result = Braintree::Transaction.sale(
             :amount => total_bill,
@@ -88,6 +87,7 @@ class CartsController < ApplicationController
               :expiration_month => params[:card_info]["expiration_date(2i)"]
             }  
           )
+
 
           @new_card_result = Braintree::CreditCard.create(
             :customer_id => current_user.customer_id,
@@ -117,6 +117,15 @@ class CartsController < ApplicationController
           @order.card_id = @card.id
           @order.restaurant = @cart.menu_items.last.restaurant
           @order.save
+
+          payment = @order.build_payment
+          payment.user_id = current_user.id
+          payment.transition_id = @result.transaction.id
+          payment.transition_at = @result.transaction.created_at
+          payment.transition_status = @result.transaction.status
+          payment.amount  = @result.transaction.amount
+          payment.save
+
           @cart.cart_menu_items.each do |item|
             @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   
             @menu_item_order.menu_item = item.menu_item
@@ -130,7 +139,7 @@ class CartsController < ApplicationController
           redirect_to :back
         end  
       else
-        result =   @cart.paypal_url('http://localhost:3000/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&order_type='+params[:order][:order_type].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
+        result = @cart.paypal_url('http://localhost:3000/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&order_type='+params[:order][:order_type].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
         redirect_to result
       end   
     end 

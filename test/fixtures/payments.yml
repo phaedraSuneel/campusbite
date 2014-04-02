@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  transition_id: MyString
+  transition_at: 2014-04-02 19:18:45
+  transition_status: MyString
+  amount: 1.5
+
+two:
+  transition_id: MyString
+  transition_at: 2014-04-02 19:18:45
+  transition_status: MyString
+  amount: 1.5
