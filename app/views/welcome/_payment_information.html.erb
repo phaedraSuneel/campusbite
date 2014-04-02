@@ -1,5 +1,6 @@
 <div class="col-md-8 menu-tabs">
-  <%= form_for "order", :url => create_order_carts_path, :method => :get, :html => {:class => "order-form"} do |f|%>    <div class="col-md-12">
+  <%= form_for "order", :url => create_order_carts_path, :method => :get, :html => {:class => "new-order-form"} do |f|%>    
+  <div class="col-md-12">
     <div class="row location-container">
       <div class="save-location">Review & Submit YOUR Order</div>
       
@@ -18,8 +19,16 @@
       <h4>TOTAL: $70.41</h4>
       <p>By clicking "Submit Order" you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
       <div class="col-md-6 col-md-offset-3 submit-location-page">
-        <button>Submit Order</button>
+        <button class="sumbit-order-btn">Submit Order</button>
       </div>
     </div>  
   <% end %>  
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".sumbit-order-btn").click(function(){
+      $(".new-order-form").submit();
+    });
+  });
+</script>
