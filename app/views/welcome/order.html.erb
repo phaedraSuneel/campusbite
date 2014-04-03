@@ -45,14 +45,16 @@
           <label><span>Name:</span><span class="value"><%= @order.user.name %></span></label>
           <label><span>Telephone:</span><span class="value">(718)-419-2143</span></label>
           <label><span>Email:</span><span class="value"><%= @order.user.email %></span></label>
-          <label><span>Address:</span><span class="value">
-            <%= @order.address.address_type %>
-            <% if @order.address.address_type == "On Campus" %>
-             <%= @order.address.school.school_name %> <%= @order.address.room_number %> <%= @order.address.building.try(:street_adress) %></span>
-           <% else %>
-             <%= @order.address.room_number %> <%= @order.address.street_adress %>
-           <% end %>  
-          </label>
+          <% unless @order.order_type == "pickup" %>
+            <label><span>Address:</span><span class="value">
+              <%= @order.address.address_type %>
+              <% if @order.address.address_type == "On Campus" %>
+               <%= @order.address.school.school_name %> <%= @order.address.room_number %> <%= @order.address.building.try(:street_adress) %></span>
+             <% else %>
+               <%= @order.address.room_number %> <%= @order.address.street_adress %>
+             <% end %>  
+            </label>
+          <% end %>  
         </div>
         <div class="col-md-6 campusbite-container">
           <div class="row about-fnd">
@@ -100,7 +102,7 @@
           <label><span>Order Type:</span><span class="value"><%= @order.order_type %></span></label>
           <label><span>Requested For:</span><span class="value"><%= @order.request_time %></span></label>
           <label><span>Estimated Delivery Time:</span><span class="value"><%= @order.restaurant.estimated_time %> minutes</span></label>
-          <label><span>Payment Method:</span>Credit Card</label>
+          <label><span>Payment Method:</span><% @order.method_type %></label>
         </div>
         <div class="col-md-3 col-md-offset-1 order-detail">
           <label>Restaurant</label>
@@ -110,18 +112,20 @@
         <div class="col-md-3 col-md-offset-1 order-detail">
           <label>You</label>
           <label><%= @order.user.name %></label>
-          <label><%= @order.address.phone_number %></label>
           <label><%= @order.user.email %></label>
-          <label><%= @order.address.address_type %></label>
-          <% if @order.address.address_type == "On Campus" %>
-            <label> <%= @order.address.school.school_name %></label>
-            <label><%= @order.address.building.try(:building_name) %></label>
-            <label><%= @order.address.room_number %></label>
-            <label><%= @order.address.building.try(:street_adress) %></label>
-          <% else %>  
-            <label><%= @order.address.room_number %>  </label>
-            <label><%= @order.address.street_adress %> </label>
-          <% end %>
+          <% unless @order.order_type == "pickup" %>
+            <label><%= @order.address.phone_number %></label>
+            <label><%= @order.address.address_type %></label>
+            <% if @order.address.address_type == "On Campus" %>
+              <label> <%= @order.address.school.school_name %></label>
+              <label><%= @order.address.building.try(:building_name) %></label>
+              <label><%= @order.address.room_number %></label>
+              <label><%= @order.address.building.try(:street_adress) %></label>
+            <% else %>  
+              <label><%= @order.address.room_number %>  </label>
+              <label><%= @order.address.street_adress %> </label>
+            <% end %>
+          <% end -%>  
 
         </div>
         <div class="row receipt-table">

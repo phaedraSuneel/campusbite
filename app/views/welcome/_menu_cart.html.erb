@@ -15,12 +15,13 @@
           </div>
           <div class="col-md-4 delivery-type">
             <div class="delivery-btn">
-              <%= f.radio_button :order_type , "delivery" %> Delivery
+              <%= f.check_box :order_type, {:class => "order_type", :checked => "checked" }, "delivery"%> Delivery
             </div>
           </div>
           <div class="col-md-4 pickup-type">
             <div class="pick-btn">
-              <%= f.radio_button :order_type , "pickup" %> Pickup</div>
+              <%= f.check_box :order_type, {:class => "order_type"}, "pickup" %> Pickup
+            </div>
           </div>
           <div class="col-md-12 request-order">
             <%= f.hidden_field :request_time, :value => "ASAP" , :class => "hidden_field_request_time"%>

@@ -12,14 +12,25 @@ $(document).ready(function(){
   });
 
   $(".checkout-btn-link").click(function(){
+    $(".order_type").each(function(){
+      console.log($(this));  
+      if($(this).is(':checked'))
+        order_type = $(this).val();
+    });
     $.ajax ({
       url:  '/carts/checkout',
+      data: {order_type: order_type },
       success: function(data)
       {
         $(".cart-response").html(data);
       }
     });
     
+  });
+
+  $(".order_type").click(function(){
+    $(".order_type").prop("checked", false)
+    $(this).prop("checked", true);
   });
 
   $(".account-tabs").click(function(){
@@ -74,7 +85,6 @@ $(document).ready(function(){
 
    $(".school_selector select").change(function(e){
       id = $(this).val();
-      console.log(id);
       building_content = $(".building-selector");
       $.ajax ({
         url:  '/dashboard/building_field',
