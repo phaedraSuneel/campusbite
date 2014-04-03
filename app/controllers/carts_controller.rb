@@ -139,8 +139,12 @@ class CartsController < ApplicationController
           redirect_to :back
         end  
       else
-        #result = @cart.paypal_url('http://localhost:3000/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
-        result = @cart.paypal_url('http://ordering.mashup.li/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
+        if Rails.env.production?
+          result = @cart.paypal_url('http://ordering.mashup.li/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
+        else
+          result = @cart.paypal_url('http://localhost:3000/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
+        end  
+        
         redirect_to result
       end   
     end 
