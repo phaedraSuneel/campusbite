@@ -12,8 +12,7 @@ $(document).ready(function(){
   });
 
   $(".checkout-btn-link").click(function(){
-    $(".order_type").each(function(){
-      console.log($(this));  
+    $(".order_type").each(function(){ 
       if($(this).is(':checked'))
         order_type = $(this).val();
     });
@@ -28,10 +27,67 @@ $(document).ready(function(){
     
   });
 
-  $(".order_type").click(function(){
-    $(".order_type").prop("checked", false)
-    $(this).prop("checked", true);
+  $(".order-delivery-btn").click(function(){
+    $(this).addClass("delivery-btn");
+    $(this).removeClass("pick-btn");
+    $(this).find("input[type=checkbox]").prop("checked", true);
+    $(".order-pick-btn").removeClass("delivery-btn");
+    $(".order-pick-btn").addClass("pick-btn");
+    $(".order-pick-btn").find("input[type=checkbox]").prop("checked", false);
+    order_type = $(this).find("input[type=checkbox]").val();
+    id = $(this).data("cart")
+    restaurant_id = $("#restaurant_id").val();
+    $.ajax ({
+      url: '/carts/update_order_type',
+      data: {order_type: order_type , id: id, restaurant_id: restaurant_id},
+      success: function(data)
+      {
+        $(".delivery-label").removeClass("hide");
+        $(".delivery-charges").removeClass("hide");
+      } 
+    });
   });
+
+  $(".order-pick-btn").click(function(){
+    $(this).addClass("delivery-btn");
+    $(this).removeClass("pick-btn");
+    $(this).find("input[type=checkbox]").prop("checked", true);
+    $(".order-delivery-btn").removeClass("delivery-btn");
+    $(".order-delivery-btn").addClass("pick-btn");
+    $(".order-delivery-btn").find("input[type=checkbox]").prop("checked", false);
+
+    order_type = $(this).find("input[type=checkbox]").val();
+    id = $(this).data("cart")
+    restaurant_id = $("#restaurant_id").val();
+    $.ajax ({
+      url: '/carts/update_order_type',
+      data: {order_type: order_type , id: id, restaurant_id: restaurant_id},
+      success: function(data)
+      {
+        $(".delivery-label").addClass("hide");
+        $(".delivery-charges").addClass("hide");
+      } 
+    });
+
+  });
+
+  // $(".order_type").click(function(){
+  //   $(".order_type").prop("checked", false)
+  //   $(this).prop("checked", true);
+
+  //   $(this).parent().addClass("delivery-btn");
+  //   $(this).parent().removeClass("pick-btn");  
+  //   if($(this).val() == "pickup")
+  //   {
+  //     $(".order-delivery-btn").removeClass("delivery-btn");
+  //     $(".order-delivery-btn").addClass("pick-btn");
+  //   }
+  //   else
+  //   {
+  //     $(".order-pick-btn").removeClass("delivery-btn");
+  //     $(".order-pick-btn").addClass("pick-btn");
+  //   }  
+  // });
 
   $(".account-tabs").click(function(){
     $(".user-information-tab .account-tabs").each(function(){
@@ -42,7 +98,7 @@ $(document).ready(function(){
 
   $(".edit-action-link").click(function(){
     $(".change_user_information_form input[type=text]").each(function(){
-      $(this).attr("disabled", false);
+      $(this).prop("disabled", false);
       $(this).css("background-color", "white")
     });
     $(this).hide();
@@ -57,7 +113,7 @@ $(document).ready(function(){
     $(".change_user_password_form").submit();
   });
 
-    $(".on input[type=radio]").attr("checked", true);
+    $(".on input[type=radio]").prop("checked", true);
     $(".address_type_field").val("On Campus");
 
       
@@ -68,8 +124,8 @@ $(document).ready(function(){
       $(".on-campus-potion").removeClass("hide");
       $(".on").addClass("active");
       $(".off").removeClass("active");
-      $(".off input[type=radio]").attr("checked", false);
-      $(".on input[type=radio]").attr("checked", true);
+      $(".off input[type=radio]").prop("checked", false);
+      $(".on input[type=radio]").prop("checked", true);
     });
 
     $(".off").click(function(){
@@ -78,8 +134,8 @@ $(document).ready(function(){
       $(".on-campus-potion").addClass("hide");
       $(".off").addClass("active");
       $(".on").removeClass("active");
-      $(".on input[type=radio]").attr("checked", false);
-      $(".off input[type=radio]").attr("checked", true);
+      $(".on input[type=radio]").prop("checked", false);
+      $(".off input[type=radio]").prop("checked", true);
     });
 
 

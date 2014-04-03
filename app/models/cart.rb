@@ -3,7 +3,7 @@ class Cart < ActiveRecord::Base
   has_many :menu_items , through: :cart_menu_items
   has_many :cart_menu_items, :dependent => :destroy
   belongs_to :user
-  attr_accessible :token, :user_id
+  attr_accessible :token, :user_id, :order_type
 
 
   def sub_total
@@ -32,7 +32,12 @@ class Cart < ActiveRecord::Base
 
 	def total_bill(restaurant)
 		restaurant = Restaurant.find(restaurant.id)
-		self.sub_total + self.sale_tax(restaurant) + self.delivery_charges(restaurant)
+    if self.order_type == "delivery"
+      self.sub_total + self.sale_tax(restaurant) + self.delivery_charges(restaurant)
+    else
+      self.sub_total + self.sale_tax(restaurant)
+    end
+      
 	end
 
   

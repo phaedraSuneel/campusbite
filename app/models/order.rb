@@ -44,6 +44,10 @@ class Order < ActiveRecord::Base
 	end
 
 	def total_bill
-		self.sub_total + self.sale_tax + self.delivery_charges
+    if self.method_type == "delivery"
+		  self.sub_total + self.sale_tax + self.delivery_charges
+    else   
+      self.sub_total + self.sale_tax
+    end  
 	end
 end

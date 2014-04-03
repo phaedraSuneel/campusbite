@@ -14,13 +14,13 @@
             Order type:
           </div>
           <div class="col-md-4 delivery-type">
-            <div class="delivery-btn">
-              <%= f.check_box :order_type, {:class => "order_type", :checked => "checked" }, "delivery"%> Delivery
+            <div class="delivery-btn order-delivery-btn" data-cart="<%= cart.id %>">
+              <%= f.check_box :order_type, {:class => "order_type", :checked => "#{'checked'unless cart.order_type=='pickup'}"}, "delivery"%> Delivery
             </div>
           </div>
           <div class="col-md-4 pickup-type">
-            <div class="pick-btn">
-              <%= f.check_box :order_type, {:class => "order_type"}, "pickup" %> Pickup
+            <div class="pick-btn order-pick-btn" data-cart="<%= cart.id %>">
+              <%= f.check_box :order_type, {:class => "order_type", :checked => "#{'checked'unless cart.order_type=='delivery'}"}, "pickup" %> Pickup
             </div>
           </div>
           <div class="col-md-12 request-order">
@@ -49,12 +49,12 @@
             <div class="subtotal-head">
               <label>Subtotal:</label>
               <label>Tax:</label>
-              <label>Delivery Fee:</label>
+              <label class="delivery-label  <%= 'hide' unless cart.order_type == 'delivery'%>">Delivery Fee:</label>
             </div>
             <div class="subtotal-amount">
               <label class="sub-total">$<%= cart.sub_total %></label>
               <label class="sale-tax">$<%= cart.sale_tax(@restaurant) %></label>
-              <label class="delivery-charges">$<%= cart.delivery_charges(@restaurant) %></label>
+              <label class="delivery-charges <%= 'hide' unless cart.order_type == 'delivery'%>">$<%= cart.delivery_charges(@restaurant) %></label>
             </div>
           </div>
           <div class="col-md-12 grandtotal-container">

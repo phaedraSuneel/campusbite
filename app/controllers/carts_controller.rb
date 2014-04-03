@@ -37,7 +37,6 @@ class CartsController < ApplicationController
   def checkout
     if user_signed_in?
       @cart = current_user.cart
-      p params 
 
       unless @cart.blank?
         unless params[:order_type] == "pickup"
@@ -228,5 +227,23 @@ class CartsController < ApplicationController
     @cart.destroy
     flash[:notice] = 'Order was successfully created'
     redirect_to order_welcome_path(@order)  
+  end
+
+  def update_order_type
+    order_type = params[:order_type]
+    @cart = Cart.find(params[:id])
+    @cart.order_type = order_type
+    respond_to do |format|
+      if @cart.save
+        @restaurant = Restaurant.find(params[:restaurant_id])
+        @total_bill =  @cart.total_bill(@restaurant) 
+        @delivery_charges = @cart.delivery_charges(@restaurant)
+        @type = @cart.order_type
+        format.js
+      else
+        format.js
+      end
+    end      
+
   end
 end
