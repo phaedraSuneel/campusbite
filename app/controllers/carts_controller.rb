@@ -120,9 +120,9 @@ class CartsController < ApplicationController
 
           payment = @order.build_payment
           payment.user_id = current_user.id
-          payment.transition_id = @result.transaction.id
-          payment.transition_at = @result.transaction.created_at
-          payment.transition_status = @result.transaction.status
+          payment.transaction_id = @result.transaction.id
+          payment.transaction_at = @result.transaction.created_at
+          payment.transaction_status = @result.transaction.status
           payment.amount  = @result.transaction.amount
           payment.save
 
@@ -139,7 +139,8 @@ class CartsController < ApplicationController
           redirect_to :back
         end  
       else
-        result = @cart.paypal_url('http://localhost:3000/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&order_type='+params[:order][:order_type].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
+        #result = @cart.paypal_url('http://localhost:3000/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
+        result = @cart.paypal_url('http://ordering.mashup.li/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
         redirect_to result
       end   
     end 
@@ -190,7 +191,7 @@ class CartsController < ApplicationController
 
   def paypal_order_create
     @cart = Cart.find(params[:cart_id].to_i)
-    @order = Order.new(:address_id => params[:address_id].to_i, :order_type => params[:order_type], :request_time => params[:request_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal')
+    @order = Order.new(:address_id => params[:address_id].to_i, :order_type => 'delivery', :request_time => params[:request_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal')
     @order.user_id = current_user.id
     @order.status = "pending"
     @order.restaurant = @cart.menu_items.last.restaurant
