@@ -43,10 +43,12 @@ class WelcomeController < ApplicationController
         @restaurants = @restaurants.search :conditions => {:delivery_charges =>  0.0}
       elsif params[:input] == "delivery_mini"
         @restaurants = @restaurants.search :sort_mode => :expr, :order => :min_order 
-      elsif params[:input] == "delivery_eta"
+      elsif params[:input] == "delivery_eta"  
         @restaurants = @restaurants.search :sort_mode => :desc, :order => :delivery_eta
       elsif params[:input] == "sort_name"
         @restaurants = @restaurants.search :order => :restaurant_name
+      elsif params[:input] == "ratings"
+        @restaurants = @restaurants.search  :sort_mode => :extended, :order => 'rating DESC'
       else
         @restaurants = @restaurants.search :conditions => {:restaurant_name =>  params[:input]}
       end  
