@@ -158,7 +158,7 @@ class CartsController < ApplicationController
         @order.status = "completed"
         @order.order_type ="pickup"
         @order.method_type = "cash"
-        @order.restaurant_id = @cart.restaurant
+        @order.restaurant = @cart.restaurant
         @order.save
         @cart.cart_menu_items.each do |item|
           @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   
