@@ -55,7 +55,10 @@ class CartsController < ApplicationController
 
   def create_order
     @cart = current_user.carts.find_by_restaurant_id(params[:restaurant_id])
+    params[:order][:tip] = params[:order][:tip] ||= 0.0
+
     total_bill = @cart.total_bill(@cart.restaurant)
+    total_bill += (@cart.total_bill(@cart.restaurant) * params[:order][:tip].to_f)/100
    
     Braintree::Configuration.environment = :sandbox
     Braintree::Configuration.merchant_id = "6q6zvwjk33nr2wh6"
@@ -63,8 +66,6 @@ class CartsController < ApplicationController
     Braintree::Configuration.private_key = "fca0105a4b3e363f763ffc31a5d69ce8"
 
     unless params[:order].blank?
-
-      params[:order][:tip] = params[:order][:tip] ||= 0.0
 
       unless params[:order][:order_type] == "pickup"
         if params[:address_type] == "stored-address"
