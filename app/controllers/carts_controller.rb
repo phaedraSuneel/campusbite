@@ -4,7 +4,7 @@ class CartsController < ApplicationController
     menu_item = MenuItem.find(params[:cart][:menu_item_id])
     restaurant = menu_item.restaurant
     if restaurant.open? 
-      @cart = User.get_cart(cookies[:cart_token],current_user)
+      @cart = User.get_cart(cookies[:cart_token],current_user,restaurant)
       cookies[:cart_token] = @cart.token
       @cart_menu_item = @cart.cart_menu_items.new(params[:cart])
       @cart_menu_item.restaurant_id = restaurant.id
@@ -35,8 +35,9 @@ class CartsController < ApplicationController
   end
 
   def checkout
+
     if user_signed_in?
-      @cart = current_user.cart
+      @cart = current_user.carts.find_by_restaurant_id(params[:restaurant_id])
 
       unless @cart.blank?
         unless params[:order_type] == "pickup"
@@ -54,8 +55,8 @@ class CartsController < ApplicationController
   end
 
   def create_order
-    @cart = current_user.cart
-    total_bill = @cart.total_bill(Restaurant.find(params[:restaurant_id]))
+    @cart = current_user.carts.find_by_restaurant_id(params[:restaurant_id])
+    total_bill = @cart.total_bill(@cart.restaurant)
    
     Braintree::Configuration.environment = :sandbox
     Braintree::Configuration.merchant_id = "6q6zvwjk33nr2wh6"
@@ -116,9 +117,10 @@ class CartsController < ApplicationController
             @order = Order.new params[:order]
             @order.user_id = current_user.id
             @order.status = "pending"
-            @order.method_type ="Credit Card"
+            @order.order_type ="delivery"
+            @order.method_type = "Credit Card"
             @order.card_id = @card.id
-            @order.restaurant = @cart.menu_items.last.restaurant
+            @order.restaurant = @cart.restaurant
             @order.save
 
             payment = @order.build_payment
@@ -154,8 +156,9 @@ class CartsController < ApplicationController
         @order = Order.new params[:order]
         @order.user_id = current_user.id
         @order.status = "completed"
-        @order.method_type ="cash"
-        @order.restaurant = @cart.menu_items.last.restaurant
+        @order.order_type ="pickup"
+        @order.method_type = "cash"
+        @order.restaurant_id = @cart.restaurant
         @order.save
         @cart.cart_menu_items.each do |item|
           @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   
@@ -172,11 +175,10 @@ class CartsController < ApplicationController
 
   def update_cart_item_quantity
     if user_signed_in?
-      cart=current_user.cart
+      cart=current_user.carts.find_by_restaurant_id(params[:restaurant_id])
     else
-      cart=Cart.find_by_token(cookies[:cart_token])
+      cart=Cart.find_by_token_and_restaurant_id(cookies[:cart_token], params[:restaurant_id])
     end
-    
 
     @cart_menu_item =  cart.cart_menu_items.find(params[:id])
     respond_to do |format|
@@ -194,9 +196,9 @@ class CartsController < ApplicationController
 
   def delete_cart_item
     if user_signed_in?
-      cart=current_user.cart
+      cart=current_user.carts.find_by_restaurant_id(params[:restaurant_id])
     else
-      cart=Cart.find_by_token(cookies[:cart_token])
+      cart=Cart.find_by_token_and_restaurant_id(cookies[:cart_token], params[:restaurant_id])
     end
     @cart_menu_item =  cart.cart_menu_items.find(params[:id])
     respond_to do |format|
@@ -217,7 +219,7 @@ class CartsController < ApplicationController
     @order = Order.new(:address_id => params[:address_id].to_i, :order_type => 'delivery', :request_time => params[:request_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal')
     @order.user_id = current_user.id
     @order.status = "pending"
-    @order.restaurant = @cart.menu_items.last.restaurant
+    @order.restaurant = @cart.restaurant
     @order.save
     @cart.cart_menu_items.each do |item|
       @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   

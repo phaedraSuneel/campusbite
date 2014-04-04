@@ -18,8 +18,8 @@ class ApplicationController < ActionController::Base
   def check_status
     if user_signed_in? && !cookies[:cart_token].blank?
       @cookie_cart=Cart.find_by_token(cookies[:cart_token])
-      unless current_user.cart.blank?
-        @user_cart=current_user.cart
+      unless current_user.carts.blank?
+        @user_cart=current_user.carts.find_by_token(cookies[:cart_token])
 
         if !@cookie_cart.blank?
           @cookie_cart.cart_menu_items.each  do |item|

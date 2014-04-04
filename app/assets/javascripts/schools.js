@@ -16,9 +16,10 @@ $(document).ready(function(){
       if($(this).is(':checked'))
         order_type = $(this).val();
     });
+    restaurant_id = $("#restaurant_id").val();
     $.ajax ({
       url:  '/carts/checkout',
-      data: {order_type: order_type },
+      data: {order_type: order_type, restaurant_id: restaurant_id },
       success: function(data)
       {
         $(".cart-response").html(data);

@@ -2,9 +2,9 @@
   <div class="cart-recored">
     <div class="cart-btn">Your cart</div>
     <% if user_signed_in? %>
-      <% cart=current_user.cart %>
+      <% cart=current_user.carts.find_by_restaurant_id(params[:id]) %>
     <% else %>
-      <% cart=Cart.find_by_token(cookies[:cart_token]) %>
+      <% cart=Cart.find_by_token_and_restaurant_id(cookies[:cart_token], params[:id]) %>
     <% end %>
 
     <% unless cart.blank? %>

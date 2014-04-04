@@ -8,7 +8,8 @@ class Restaurant < ActiveRecord::Base
   has_many :restaurant_coupons, :dependent => :destroy
   has_many  :orders, :dependent => :destroy
   has_many :reviews, :dependent => :destroy
-  
+  has_many :carts, :dependent => :destroy
+    
   has_one :menu, :dependent => :destroy
   has_one :contact_info, :dependent => :destroy
   has_one :restaurant_info, :dependent => :destroy

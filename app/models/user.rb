@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :authentications, :dependent => :destroy
   has_many :orders, :dependent => :destroy
-  has_one :cart, :dependent => :destroy
+  has_many :carts, :dependent => :destroy
   has_many :addresses, :dependent => :destroy 
   has_many :favorites, :dependent => :destroy
   has_many :reviews, :dependent => :destroy  
@@ -59,15 +59,15 @@ class User < ActiveRecord::Base
     "#{self.first_name} #{self.last_name}"
   end
 
-  def get_cart
-    self.cart ||= self.create_cart
+  def get_cart(restaurant)
+    self.carts.find_by_restaurant_id(restaurant.id) || self.carts.create(:restaurant_id => restaurant.id)
   end
 
-  def self.get_cart(token,current_user)
-    cart = current_user.get_cart unless current_user.nil?
-    cart = Cart.find_by_token(token) unless token.nil?
+  def self.get_cart(token,current_user,restaurant)
+    cart = current_user.get_cart(restaurant) unless current_user.nil?
+    cart = Cart.find_by_token_and_restaurant_id(token,restaurant.id) unless token.nil?
     if cart.nil?
-      cart = Cart.create :token => SecureRandom.urlsafe_base64(nil, false)
+      cart = Cart.create :token => SecureRandom.urlsafe_base64(nil, false), :restaurant_id => restaurant.id
     end
     return cart
   end
