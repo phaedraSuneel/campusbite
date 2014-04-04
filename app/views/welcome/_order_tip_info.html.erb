@@ -2,19 +2,34 @@
   <h2>Tip</h2>
   <div class="row">
     <div class="col-md-2 tip-items">
-      <div class="cards"><span><input type="radio"></span>0%</div>
+      <div class="cards"><span><input type="radio" name="order[tip]" value = "0" checked="checked"></span>0%</div>
     </div>
     <div class="col-md-2 tip-items">
-      <div class="cards"><span><input type="radio"></span>10%</div>
+      <div class="cards"><span><input type="radio" name="order[tip]" value = "10"></span>10%</div>
     </div>
     <div class="col-md-2 tip-items">
-      <div class="cards"><span><input type="radio"></span>15%</div>
+      <div class="cards"><span><input type="radio" name="order[tip]" value = "15"></span>15%</div>
     </div>
     <div class="col-md-2 tip-items">
-      <div class="cards"><span><input type="radio"></span>20%</div>
+      <div class="cards"><span><input type="radio" name="order[tip]" value = "20"></span>20%</div>
     </div>
     <div class="col-md-4 tip-items">
-      <div class="tip-field"><span>$</span><input type="text" placeholder="21.48"></div>
+      <div class="tip-field"><span>$</span><input type="text" disabled="true" class="total-tip-charge"></div>
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".cards").click(function(){
+      total_bil = $(".total").data("total");
+      $(this).find("input[type=radio]").prop("checked", true);
+      tip = $(this).find("input[type=radio]").val();
+      tip_charges = (total_bil * tip)/100;
+      $(".total-tip-charge").val(tip_charges);
+      total_bil = parseFloat(total_bil) + parseFloat(tip_charges);
+      $(".total").text("$"+total_bil);
+    });
+  });
+</script>

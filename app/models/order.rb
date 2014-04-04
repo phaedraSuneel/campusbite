@@ -7,7 +7,7 @@ class Order < ActiveRecord::Base
   has_many :menu_items, through: :menu_item_orders
   has_many :menu_item_orders
 
-  attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id
+  attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip
 
 
   def property_name(id)
@@ -43,11 +43,19 @@ class Order < ActiveRecord::Base
   	delivery_charges = restaurant.delivery_charges
 	end
 
+  def tip_charges
+    total = self.sub_total + self.sale_tax + self.delivery_charges
+    (total * self.tip) / 100
+  end
+
+
 	def total_bill
-    if self.method_type == "delivery"
-		  self.sub_total + self.sale_tax + self.delivery_charges
+    if self.order_type == "delivery"
+		  self.sub_total + self.sale_tax + self.delivery_charges + self.tip_charges
     else   
       self.sub_total + self.sale_tax
     end  
 	end
+
+
 end

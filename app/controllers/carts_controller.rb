@@ -37,10 +37,10 @@ class CartsController < ApplicationController
   def checkout
     if user_signed_in?
       @cart = current_user.carts.find_by_restaurant_id(params[:restaurant_id])
-      
+      @restaurant = Restaurant.find params[:restaurant_id]
       unless @cart.blank?
         unless params[:order_type] == "pickup"
-          render :partial => "welcome/payment_information"
+          render :partial => "welcome/payment_information", :locals => {:@cart => @cart, :@restaurant => @restaurant}
         else 
           render :partial => "welcome/order_view_option"
         end  
@@ -63,6 +63,9 @@ class CartsController < ApplicationController
     Braintree::Configuration.private_key = "fca0105a4b3e363f763ffc31a5d69ce8"
 
     unless params[:order].blank?
+
+      params[:order][:tip] = params[:order][:tip] ||= 0.0
+
       unless params[:order][:order_type] == "pickup"
         if params[:address_type] == "stored-address"
           address =   Address.find(params[:order][:address_id])
@@ -144,9 +147,9 @@ class CartsController < ApplicationController
           end  
         else
           if Rails.env.production?
-            result = @cart.paypal_url('http://ordering.mashup.li/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
+            result = @cart.paypal_url('http://ordering.mashup.li/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s ,total_bill)
           else
-            result = @cart.paypal_url('http://localhost:3000/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s ,total_bill)
+            result = @cart.paypal_url('http://localhost:3000/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s, total_bill)
           end  
           
           redirect_to result
@@ -215,7 +218,7 @@ class CartsController < ApplicationController
 
   def paypal_order_create
     @cart = Cart.find(params[:cart_id].to_i)
-    @order = Order.new(:address_id => params[:address_id].to_i, :order_type => 'delivery', :request_time => params[:request_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal')
+    @order = Order.new(:address_id => params[:address_id].to_i, :order_type => 'delivery', :request_time => params[:request_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal', :tip => params[:tip].to_f)
     @order.user_id = current_user.id
     @order.status = "pending"
     @order.restaurant = @cart.restaurant

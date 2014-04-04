@@ -72,23 +72,6 @@ $(document).ready(function(){
 
   });
 
-  // $(".order_type").click(function(){
-  //   $(".order_type").prop("checked", false)
-  //   $(this).prop("checked", true);
-
-  //   $(this).parent().addClass("delivery-btn");
-  //   $(this).parent().removeClass("pick-btn");  
-  //   if($(this).val() == "pickup")
-  //   {
-  //     $(".order-delivery-btn").removeClass("delivery-btn");
-  //     $(".order-delivery-btn").addClass("pick-btn");
-  //   }
-  //   else
-  //   {
-  //     $(".order-pick-btn").removeClass("delivery-btn");
-  //     $(".order-pick-btn").addClass("pick-btn");
-  //   }  
-  // });
 
   $(".account-tabs").click(function(){
     $(".user-information-tab .account-tabs").each(function(){
@@ -174,7 +157,6 @@ $(document).ready(function(){
 
     $(".edit-item-submit").click(function(){
       id = $(this).data("cart");
-      console.log(id);
       $("#edit_menu_item_form_"+id).submit();
     });
 

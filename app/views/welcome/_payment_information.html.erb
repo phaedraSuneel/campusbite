@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="row t-location">
-      <h4>TOTAL: <span class="total"></span></h4>
+      <h4>TOTAL: <span class="total" data-total="<%= @cart.total_bill(@restaurant) %>"></span></h4>
       <p>By clicking "Submit Order" you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
       <div class="col-md-6 col-md-offset-3 submit-location-page">
         <button class="sumbit-order-btn">Submit Order</button>
@@ -26,11 +26,10 @@
 </div>
 
 <script type="text/javascript">
+  $(".total").text($(".total-bill").text());
   $(document).ready(function(){
     $(".sumbit-order-btn").click(function(){
       $(".new-order-form").submit();
     });
-    console.log($(".total-bill").text());
-    $(".total").text($(".total-bill").text());
   });
 </script>
