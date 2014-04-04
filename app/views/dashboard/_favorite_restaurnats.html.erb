@@ -32,7 +32,7 @@
         <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
       </div>
     <% end -%>
-    <%= paginate @favorites_restaurants %>
+    <%= paginate @favorites_restaurants, :params => {:controller => 'dashboard', :action => 'account', :hash => "favorite"} %>
     <!-- <div class="row pagination-container">
       <div class="col-md-8 col-md-offset-4">
         <ul class="pagination">

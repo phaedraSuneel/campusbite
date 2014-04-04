@@ -73,12 +73,7 @@ $(document).ready(function(){
   });
 
 
-  $(".account-tabs").click(function(){
-    $(".user-information-tab .account-tabs").each(function(){
-      $(this).removeClass("active");
-    });
-    $(this).addClass("active");
-  });
+  
 
   $(".edit-action-link").click(function(){
     $(".change_user_information_form input[type=text]").each(function(){

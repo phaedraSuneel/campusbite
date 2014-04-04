@@ -11,16 +11,16 @@
     		<div class="order-history-left">
     			<div class="ring"></div>
     			<div class="account-bar nav nav-pills user-information-tab" data-tabs="tabs">
-            <div class="account-tabs">
+            <div class="account-tabs order_history" data-hash="order_history">
               <a href="#order_history" data-toggle="tab" >ORDER HISTORY</a>
             </div>
-            <div class="account-tabs">
+            <div class="account-tabs favorite" data-hash="favorite">
               <a href="#favorite" data-toggle="tab">FAVORITE RESTAURANTS</a>
             </div>
-            <div class="account-tabs">
+            <div class="account-tabs review" data-hash="review">
               <a href="#review" data-toggle="tab">MY REVIEWS</a>
             </div>
-            <div class="account-tabs active">
+            <div class="account-tabs setting active" data-hash="setting">
               <a href="#setting" data-toggle="tab">account settings</a>
             </div>
           </div>
@@ -34,7 +34,7 @@
           	<div class="tab-pane" id= "review">
           		<%= render :partial => 'my_reviews'%>
           	</div>	
-          	<div class="tab-pane active" id= "setting">
+          	<div class="tab-pane" id= "setting">
           		<%= render :partial => 'account_setting'%>
           	</div>
           </div>	
@@ -45,3 +45,26 @@
     </div>	
   </div>
 </div>  
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var hash = window.location.hash.substring(1);
+    if(hash){
+      $('.account-bar .' + hash +  ' a').click();
+      $('#'+hash).addClass("active");
+    }  
+    else{
+      $('.account-bar .order_history a').click();
+      $("#order_history").addClass("active");
+    }  
+
+    $(".account-tabs").click(function(){
+      $(".user-information-tab .account-tabs").each(function(){
+          $(this).removeClass("active");
+      });
+      $(this).addClass("active");
+      window.location.hash = $(this).data("hash"); 
+    });
+  });
+</script>

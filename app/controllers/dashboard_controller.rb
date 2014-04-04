@@ -1,10 +1,20 @@
 class DashboardController < ApplicationController
 	
 	def account
-		@favorites_restaurants = current_user.favorites.page(params[:page]).per(10)
-		@orders = current_user.orders.page(params[:page]).per(10)
-		@reviews = current_user.reviews.page(params[:page]).per(10)
-		@cards = current_user.cards
+    p params
+		@favorites_restaurants = current_user.favorites.order("created_at desc").page(params[:page]).per(5)
+		@orders = current_user.orders.order("created_at desc").page(params[:page]).per(5)
+		@reviews = current_user.reviews.order("created_at desc").page(params[:page]).per(5)
+		@cards = current_user.cards.order("created_at desc")
+
+    if params[:hash] == "order_history"
+      redirect_to account_dashboard_index_path(:anchor => "order_history", :page=> params[:page])
+    elsif params[:hash] == "review"
+      redirect_to account_dashboard_index_path(:anchor => "review", :page=> params[:page])
+    elsif params[:hash] == "favorite"  
+      redirect_to account_dashboard_index_path(:anchor => "favorite", :page=> params[:page])  
+    end
+    
 	end
 
 	def change_user_information
@@ -102,7 +112,6 @@ class DashboardController < ApplicationController
       :expiration_year => params[:card]["expiration_date(1i)"],
       :expiration_month => params[:card]["expiration_date(2i)"]
     )
-    p @result
     if @result.success? 
       @card = Card.new(params[:card])
       @card.user_id = current_user.id

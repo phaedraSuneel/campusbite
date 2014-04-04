@@ -4450,3 +4450,43 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   {
     min-height: 265px !important;
   }
+
+  .pagination{
+    margin-top: 0px !important;
+  }
+
+  .pagination span:hover{
+    background: linear-gradient(to bottom, #57AF0A 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0)!important;
+  }
+  .pagination span.current{
+    background: linear-gradient(to bottom, #f4dfbb 0%, #f4dfbb 100%);
+    color: #fd603c !important;
+  }
+
+  .pagination span{
+    background: linear-gradient(to bottom, #79cf33 0%, #57af0a 100%);
+    border: 1px solid #919191;
+    border-radius: 3px;
+    color: #fff;
+    font-family: 'PT Sans';
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+    margin-right: 3px;
+    margin-top: 5px;
+  }
+
+  .pagination span a{
+    text-decoration: none !important;
+    background: linear-gradient(to bottom, #79cf33 0%, #57af0a 100%);
+    color: #fff;
+    font-family: 'PT Sans';
+    font-weight: bold;
+    font-size: 15px;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+    margin: 10px; 
+  }

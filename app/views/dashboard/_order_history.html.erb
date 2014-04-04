@@ -47,19 +47,10 @@
         <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
       </div>
     <% end %>  
-    
-    <!-- <div class="row pagination-container">
+    <div class="row pagination-container">
       <div class="col-md-8 col-md-offset-4">
-        <ul class="pagination">
-          <li><a href="#">PREVIOUS</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">next</a></li>
-        </ul>
+          <%= paginate @orders, :params => {:controller => 'dashboard', :action => 'account', :hash => "order_history"} %>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>
