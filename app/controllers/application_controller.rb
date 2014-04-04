@@ -20,15 +20,16 @@ class ApplicationController < ActionController::Base
       @cookie_cart=Cart.find_by_token(cookies[:cart_token])
       unless current_user.carts.blank?
         @user_cart=current_user.carts.find_by_token(cookies[:cart_token])
-
-        if !@cookie_cart.blank?
-          @cookie_cart.cart_menu_items.each  do |item|
-            item.cart_id = @user_cart.id
-            item.save
+        unless @user_cart.blank?
+          if !@cookie_cart.blank?
+            @cookie_cart.cart_menu_items.each  do |item|
+              item.cart_id = @user_cart.id
+              item.save
+            end
+            @cookie_cart.destroy
+            cookies.delete :cart_token
           end
-          @cookie_cart.destroy
-          cookies.delete :cart_token
-        end
+        end  
       else
         @cookie_cart.user_id = current_user.id
         @cookie_cart.token = nil
