@@ -17,7 +17,7 @@
     <% current_user.addresses.each do |address| %>
       <div class="row">
         <div class="col-md-12 req-field error-modal account-modal">
-          <div class="campus-on" id="office-job-1">
+          <div class="campus-on address-div" id="office-job-1">
             <div class="campus-room"><input type="radio" name= "order[address_id]" value = "<%= address.id  %>"></div>
             <div class="campus-room-note">
               <p><%= address.address_name %> <a href="#", data-toggle="modal", data-target="#edit_address_model_<%= address.id%>">Edit</a></p>
@@ -60,23 +60,31 @@
 <script type="text/javascript">
   $(document).ready(function(){
 
-  request_time = $(".hidden_field_request_time").val();
-  restaurant = $(".restaurant").val();
+    request_time = $(".hidden_field_request_time").val();
+    restaurant = $(".restaurant").val();
 
-  $(".request_time").val(request_time);
-  $(".restaurant_order").val(restaurant);
 
-  console.log(restaurant);
 
-    $(".stored-address-btn input[type=radio]").attr("checked", true);
+    $(".request_time").val(request_time);
+    $(".restaurant_order").val(restaurant);
+
+    
+
+    $(".stored-address-btn input[type=radio]").prop("checked", true);
+    $(".address-div").find("input[type=radio]").prop("checked", true);
+    
+    $(".address-div").click(function(){
+      $(this).find("input[type=radio]").prop("checked", true);
+    });
 
     $(".stored-address-btn").click(function(){
       $(".new-address").addClass("hide");
       $(".stored-address").removeClass("hide");
       $(".stored-address-btn").addClass("active");
       $(".new-address-btn").removeClass("active");
-      $(".new-address-btn input[type=radio]").attr("checked", false);
-      $(".stored-address-btn input[type=radio]").attr("checked", true);
+      $(".new-address-btn input[type=radio]").prop("checked", false);
+      $(".stored-address-btn input[type=radio]").prop("checked", true);
+      $(".address-div").find("input[type=radio]").prop("checked", true);
     });
 
     $(".new-address-btn").click(function(){
@@ -84,10 +92,8 @@
       $(".new-address").removeClass("hide");
       $(".new-address-btn").addClass("active");
       $(".stored-address-btn").removeClass("active");
-      $(".stored-address-btn input[type=radio]").attr("checked", false);
-      $(".new-address-btn input[type=radio]").attr("checked", true);
+      $(".stored-address-btn input[type=radio]").prop("checked", false);
+      $(".new-address-btn input[type=radio]").prop("checked", true);
     });
-
-    
-   });
+  });
 </script>

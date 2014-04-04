@@ -92,8 +92,8 @@
 <script type="text/javascript">
   $(document).ready(function(){   
 
-    $(".credit-cart-option input[type=radio]").attr("checked", true);
-    $(".stored-card-option input[type=radio]").attr("checked", true);
+    $(".credit-cart-option input[type=radio]").prop("checked", true);
+    $(".stored-card-option input[type=radio]").prop("checked", true);
 
 
     $(".credit-cart-option").click(function(){
@@ -101,8 +101,8 @@
        $(".credit-card-portion").removeClass("hide");
        $(".credit-cart-option").addClass("active");
        $(".paypal-option").removeClass("active");
-       $(".paypal-option input[type=radio]").attr("checked", false); 
-       $(".credit-cart-option input[type=radio]").attr("checked", true); 
+       $(".paypal-option input[type=radio]").prop("checked", false); 
+       $(".credit-cart-option input[type=radio]").prop("checked", true); 
     });
 
     $(".paypal-option").click(function(){
@@ -110,8 +110,8 @@
        $(".paypal-portion").removeClass("hide");
        $(".paypal-option").addClass("active");
        $(".credit-cart-option").removeClass("active");
-       $(".credit-cart-option input[type=radio]").attr("checked", false); 
-       $(".paypal-option input[type=radio]").attr("checked", true); 
+       $(".credit-cart-option input[type=radio]").prop("checked", false); 
+       $(".paypal-option input[type=radio]").prop("checked", true); 
        
     });
 
@@ -120,8 +120,8 @@
        $(".stored-card-portion").removeClass("hide");
        $(".stored-card-option").addClass("active");
        $(".new-card-option").removeClass("active");
-       $(".new-card-option input[type=radio]").attr("checked", false); 
-       $(".stored-card-option input[type=radio]").attr("checked", true); 
+       $(".new-card-option input[type=radio]").prop("checked", false); 
+       $(".stored-card-option input[type=radio]").prop("checked", true); 
     });
 
     $(".new-card-option").click(function(){
@@ -129,8 +129,8 @@
        $(".new-card-portion").removeClass("hide");
        $(".new-card-option").addClass("active");
        $(".stored-card-option").removeClass("active");
-       $(".stored-card-option input[type=radio]").attr("checked", false); 
-       $(".new-card-option input[type=radio]").attr("checked", true); 
+       $(".stored-card-option input[type=radio]").prop("checked", false); 
+       $(".new-card-option input[type=radio]").prop("checked", true); 
        
     }); 
 
