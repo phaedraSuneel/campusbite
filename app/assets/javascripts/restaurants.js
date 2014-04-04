@@ -217,7 +217,7 @@ $(document).ready(function(){
       id = quantity_area.data("cart");
       restaurant_id = $("#restaurant_id").val();
       quantity = parseFloat(quantity_area.text());
-      if(quantity!=0)
+      if(quantity!=1)
         quantity --;  
       $.ajax ({
         url:  '/carts/update_cart_item_quantity',

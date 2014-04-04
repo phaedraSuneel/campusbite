@@ -35,10 +35,9 @@ class CartsController < ApplicationController
   end
 
   def checkout
-
     if user_signed_in?
       @cart = current_user.carts.find_by_restaurant_id(params[:restaurant_id])
-
+      
       unless @cart.blank?
         unless params[:order_type] == "pickup"
           render :partial => "welcome/payment_information"
