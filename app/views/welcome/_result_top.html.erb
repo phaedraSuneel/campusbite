@@ -1,5 +1,5 @@
 <div class="col-md-3 logo-side-1">
-  <img class="logo-image" alt="Smiley face" src="/assets/logo.png" />
+  <%= link_to raw("<img class='logo-image' alt='Smiley face' src='/assets/logo.png'>"), '/' %>
 </div>
 <div class="col-md-9 add-side">
   <%= render :partial => "welcome/search_form" %>

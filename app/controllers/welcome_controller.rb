@@ -56,20 +56,6 @@ class WelcomeController < ApplicationController
     render :partial => 'restaurant', collection: @restaurants
   end 
 
-  def aboutus
-  end
-
-  def restaurant_owners
-
-  end
-
-  def faqs
-
-  end
-
-  def contact_us
-
-  end
 
   def contact_us_mail
 
@@ -103,12 +89,13 @@ class WelcomeController < ApplicationController
     end
   end
 
-  def add_restaurant
-  end
-
-  def add_campus
-  end
-
-  def how_it_works
+  def campus_suggestion
+    if  UserMailer.campus_suggestion(params[:user]).deliver
+      flash[:notice] = "Thank you for suggestion us we farword you request to our supporting team"
+      redirect_to :back
+    else
+      flash[:warning] = "suggestion request failed"
+      redirect_to :back
+    end
   end
 end

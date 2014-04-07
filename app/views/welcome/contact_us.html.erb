@@ -3,7 +3,7 @@
     <div class="col-md-12 main-fram-container">
       <div class="row">
         <div class="col-md-4  col-md-offset-4 about-logo">
-          <img class="logo-image" alt="Smiley face" src="/assets/about-logo.png" />
+          <%= link_to raw("<img class='logo-image' alt='Smiley face' src='/assets/about-logo.png'>"), '/' %>
         </div>
       </div>
       <div class="row">
@@ -132,7 +132,7 @@
             <div class="col-md-10">
               <h3>Restaurant Owners</h3>
               <p>Restaurant not listed?</p>
-              <p><a href="#">Click here to join CampusBite</a></p>
+              <p><a href="<%= add_restaurant_path %> ">Click here to join CampusBite</a></p>
             </div>
           </div>
         </div>
@@ -144,7 +144,7 @@
             <div class="col-md-10">
               <h3>Campus</h3>
               <p>Campus not listed?</p>
-              <p><a href="#">Click here to bring CampusBite</a></p>
+              <p><a href="<%= add_campus_path %>">Click here to bring CampusBite</a></p>
               <p>To your Campus</p>
             </div>
           </div>

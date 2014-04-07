@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default to: "sunny.ciitlahore@gmail.com"
+  default to: "support@campusbite.com"
 
   def contact_us(user)
   	@user = user
@@ -15,4 +15,10 @@ class UserMailer < ActionMailer::Base
   	@user = user
   	mail(from: @user["email"])
   end
+
+  def campus_suggestion(user)
+  	@user = user
+  	mail(from: @user["email"])
+  end
+  
 end

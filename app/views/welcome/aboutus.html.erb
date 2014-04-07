@@ -3,7 +3,7 @@
     <div class="col-md-12 main-fram-container">
       <div class="row">
         <div class="col-md-4  col-md-offset-4 about-logo">
-          <img class="logo-image" alt="Smiley face" src="/assets/about-logo.png" />
+          <%= link_to raw("<img class='logo-image' alt='Smiley face' src='/assets/about-logo.png'>"), '/' %>
         </div>
       </div>
       <div class="row">
@@ -50,7 +50,7 @@
         <div class="col-md-12 about-heading">
           <div class="foot-note">
             <p>By using Campus Bite, you can order all your meals online in a fast and effective manner. With this outstanding service, you will get accurate orders, secure payment methods, and vast dining options in your area. All you have to is make an order and you will receive it in no time. It really is this simple!</p>
-            <p>If you have any questions we are more than happy to answer. You can chat with us directly using our live chat. You can also email us, or call us. <a href="#">Click Here</a> to go to the Contact Us page. We would love to hear from you, whether it is a question, feedback, or anything that you would like to share with us! </p>
+            <p>If you have any questions we are more than happy to answer. You can chat with us directly using our live chat. You can also email us, or call us. <a href="<%= contact_us_path %>">Click Here</a> to go to the Contact Us page. We would love to hear from you, whether it is a question, feedback, or anything that you would like to share with us! </p>
           </div>
         </diV>
       </div>
