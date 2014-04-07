@@ -133,6 +133,7 @@ Ordering::Application.routes.draw do
     collection do 
       get 'result'
       get 'restaurant_search'
+      get 'aboutus'
     end
     member do
       get "menu"
@@ -140,6 +141,7 @@ Ordering::Application.routes.draw do
     end
   end
 
+  match '/welcome/aboutus' => 'welcome#aboutus', :as => :aboutus 
   
 
   # Sample resource route with sub-resources:

@@ -56,4 +56,7 @@ class WelcomeController < ApplicationController
     render :partial => 'restaurant', collection: @restaurants
   end 
 
+  def aboutus
+  end
+
 end

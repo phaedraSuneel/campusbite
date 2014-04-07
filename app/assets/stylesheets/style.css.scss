@@ -238,47 +238,32 @@ border-radius: 4px;
   padding-top: 40px;
 }
 .Search-block{
-  text-align: center;
-}
-.Search-block img{
-  width: 100%;
--webkit-box-shadow: 0px 7px 5px -2px rgba(87,84,87,1);
--moz-box-shadow: 0px 7px 5px -2px rgba(87,84,87,1);
-box-shadow: 0px 7px 5px -2px rgba(87,84,87,1);
-}
-.Search-block h2{
-  font-family: 'bignoodletitlingregular';
-  width: 100%;
-  font-size: 34px;
-  color: #825f4a;
-  margin-top: 25px;
-  margin-bottom: 0px;
-}
-.Search-block p{
-  width: 100%;
-  font-size: 24px;
-  color: #825f4a;
-  font-family: 'bignoodletitlingregular';
-  margin-bottom: 15px;
-  margin-top: 5px;
-}
-.arrow{
+  text-align: left;
+  width: 20%;
+  padding-left: 0px;
   position: relative;
-  top: 150px;
 }
+
 .slider-img img{
   width: 100%;
   margin-bottom:20px;
   height: 400px;
 }
-#how-it-works .col-md-3{
-  width: 25%;
-  padding: 0;
+.Search-block .arrow-next
+{
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  background: url("/assets/arow-sign.png") no-repeat;
+  display: block;
+  right: -11px;
+  top: 41%;
+  z-index: 35;
 }
-#how-it-works .col-md-1{
-  width: 12.5%;
-  padding: 0;
-  text-align: center;
+
+#how-it-works
+{
+  padding: 25px 0px;
 }
 @media (max-width: 991px) {
   #how-it-works .col-md-3{
@@ -296,6 +281,14 @@ box-shadow: 0px 7px 5px -2px rgba(87,84,87,1);
   .search-field input{
     font-size: 10px !important; 
   }
+  .Search-block img{
+    width: 100%;
+  }
+  .Search-block .arrow-next
+  {
+    display: none;
+  }
+
 }
 @media (max-width: 607px) {
   .search-b, .pickup, .delivery {
@@ -312,6 +305,7 @@ box-shadow: 0px 7px 5px -2px rgba(87,84,87,1);
   .search button{
     height: 88px !important;
   }
+
 }
 
 /*<footer-container>*/
@@ -4455,12 +4449,18 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     margin-top: 0px !important;
   }
 
-  .pagination span:hover{
-    background: linear-gradient(to bottom, #57AF0A 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0)!important;
-  }
   .pagination span.current{
     background: linear-gradient(to bottom, #f4dfbb 0%, #f4dfbb 100%);
     color: #fd603c !important;
+    text-decoration: none !important;
+    font-family: 'PT Sans';
+    font-weight: bold;
+    font-size: 20px;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+    margin: 4px;
+    padding: 0px 8px;
   }
 
   .pagination span{
@@ -4490,3 +4490,635 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     text-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
     margin: 10px; 
   }
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<aboutus-page>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+@media (max-width: 991px) {
+  .aboutus-page .about-heading{
+  padding-left: 0px !important;
+  }
+  .aboutus-page .foot-note{
+  margin-top: 10px;
+  border-radius:5px !important; 
+  }
+  .house-logo img,
+  .house-logo-1 img{
+  top: 0px !important; 
+  }
+}
+
+.aboutus-page .main-fram-container{
+  padding: 0px !important;  
+}
+.aboutus-page .about-logo{
+  text-align: center;
+  padding-top: 50px;
+}
+.aboutus-page .about-heading{
+  padding-right: 0px !important;
+}
+.aboutus-page .about-heading h1{
+  font-family: 'PT Sans';
+  font-weight: 600;
+  color: #555;
+  font-size: 20px;
+  border-bottom: 3px solid #fa401d;
+  text-transform: uppercase;
+}
+.aboutus-page .location-container{
+  width: 100%;
+  background-color: #fffaf2;
+  border-radius: 5px 5px 0px 0px;
+  border: 1px solid #eac78b;
+  padding: 15px 15px 30px;
+  border-bottom: 0px;
+  margin-top: 5px;
+}
+.aboutus-page .foot-note p,
+.aboutus-page .location-container p{
+  color: #343434;
+  font-size: 15px;
+  font-family: arial;
+}
+.aboutus-page .foot-note p{
+  margin: 15px 0;
+}
+.aboutus-page .location-container h4{
+  font-family: arial;
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 30px;
+}
+.aboutus-page .location-container ul{
+  padding-left: 10px;
+}
+.aboutus-page .location-container ul li{
+   font-size: 15px;
+   font-family: arial;
+   color: #c16a19;
+}
+.aboutus-page .about-heading img.child-image{
+  width: 100%;
+  margin-top: 5px;
+}
+.aboutus-page .child-container{
+  padding: 0px !important;
+}
+.aboutus-page .socail-icons-container{
+  border-radius: 5px;
+  background-color: #fffaf2;
+  border: 1px solid #b4b4b4;
+  margin-top: 15px;
+}
+.aboutus-page .socail-icons-container h4{
+  text-align: center;
+  background-color: #c16a19;
+  border-radius: 5px 5px 0 0;
+  border-bottom:1px solid #b4b4b4;  
+  padding: 10px 0;
+  margin: 0;
+  color: #fff;
+  font-family: 'PT Sans';
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: uppercase;
+}
+.aboutus-page .socail-icons-container .social-icon{
+  text-align: center;
+  padding: 15px 0px;
+}
+.aboutus-page .foot-note{
+  background-color: #fffaf2;
+  border-radius: 0px 5px 5px 5px;
+  border: 1px solid #eac78b;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+.aboutus-page .foot-note p a{
+  color: #007403;
+  text-decoration: underline;
+}
+.aboutus-page .about-heading p.thanks{
+  font-size: 15.5px;
+  font-family: arial;
+  color: #343434;
+}
+.aboutus-page  .Add-forms .items textarea,
+.aboutus-page  .Add-forms .items input{
+  width: 100%; 
+  border-radius: 3px;
+  border: 1px solid #eac689;
+  height: 37px;
+  padding-left: 10px;
+  color: #555;
+  box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  font-size: 18px;
+}
+.aboutus-page  .Add-forms .items textarea{
+  min-height:150px;
+  min-width: 100%; 
+  max-height:150px;
+  max-width: 100%; 
+}
+.aboutus-page  .Add-forms .items label{
+  font-size: 15.5px;
+  font-weight: 600;
+  font-family: 'PT Sans';
+  color: #555;
+  text-transform: uppercase;
+}
+.aboutus-page .Add-forms{
+  background-color: #fff;
+  border-radius: 5px;
+  border: 1px solid #eac689;
+  padding: 15px 0 15px 15px;
+  margin-bottom: 20px;
+}
+.aboutus-page .field-category{
+  padding-bottom: 10px;
+}
+.aboutus-page  .Add-forms .items button{
+  background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #919191;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-family: 'bignoodletitlingregular';
+  font-size: 30px;
+  text-align: center;
+  width: 100%;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
+  font-weight: normal;
+  padding: 5px;
+  height: 45px;
+  line-height: 40px;
+  margin-top:125px;
+}
+.aboutus-page  .Add-forms .items button:hover{
+  background: linear-gradient(to bottom, #57AF0A 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.aboutus-page  .Add-forms .items button:active{
+  background: linear-gradient(to bottom, #57AF0A 0%, #79CF33 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
+.aboutus-page  .Add-forms .items{
+  padding-left: 0px;
+}
+.aboutus-page  .Add-forms .items button.submit-btn{
+  margin-top: 20px;
+}
+.aboutus-page .main-fram-canvus{
+  background-color: #fffaf2;
+  border-radius: 5px;
+  border: 1px solid #eac78b;
+  margin-bottom: 30px;
+  padding-top: 20px;
+  padding-left:0px;
+}
+.aboutus-page .about-heading h1{
+  margin-top: 0px;
+  margin-bottom: 15px;
+}
+.aboutus-page .house-logo img{
+  position: relative;
+  z-index: 5555;
+  top: 45px;
+  left: 25%;
+}
+.aboutus-page .fq-container{
+  border: 1px solid #eac689;
+  background-color: #fffaf2;
+  border-radius: 5px;
+  padding: 10px 0;
+  margin-bottom: 5px;
+}
+.aboutus-page .fq-container a{
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'PT Sans';
+  color: #305e08;
+  line-height: 70px;
+}
+.aboutus-page .padding-right-zero{
+  padding-right: 0px;
+}
+.aboutus-page .fq-container label{
+  width: 100%;
+  float: left;
+  text-align: right;
+  font-size: 16px;
+  color: #000;
+  font-family: 'PT Sans';
+  font-weight: normal;
+}
+.aboutus-page .fq-container label span{
+  width: 55%;
+  float:right;
+  text-align: left;
+  margin-left: 2%;
+  font-size: 16px;
+  color: #000;
+  font-family: 'PT Sans';
+  font-weight: 600;
+}
+.aboutus-page .fq-container-1 label span{
+  width: 65%;
+  float:right;
+  text-align: left;
+  margin-left: 2%;
+  font-size: 16px;
+  color: #000;
+  font-family: 'PT Sans';
+  font-weight: 600;
+}
+.aboutus-page .fq-container-margin{
+  margin-top: 5px !important;
+}
+.aboutus-page .conecting-container{
+  border: 1px solid #eac689;
+  background-color: #fffaf2;
+  border-radius: 5px;
+  padding: 15px 0;
+  margin-bottom: 5px;
+}
+.aboutus-page .conecting-container-inner{
+  background-color: #fff;
+  border: 1px solid #eac689;
+  height: 413px;
+  border-radius: 5px;
+  padding: 15px;
+}
+.aboutus-page .conecting-container-inner h1{
+  font-size: 30px;
+  font-weight: 600;
+  font-family: 'PT Sans';
+  text-align: center;
+  margin-top: 150px;
+}
+.aboutus-page .conecting-container-inner h2{
+  font-size: 25px;
+  font-weight: 600;
+  font-family: 'PT Sans';
+  text-align: center;
+}
+.aboutus-page .careers-container{
+  background-color: #FFFAF2;
+  border: 1px solid #EAC689;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  padding: 10px 0;
+}
+.aboutus-page .careers-container h3{
+  margin-bottom: 10px;
+  font-size: 20px;
+  font-family: 'PT Sans';
+  color: #000;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-top: 0;
+}
+.aboutus-page .careers-container-padding{
+  padding: 14px 0 25px;
+}
+.aboutus-page .careers-container p{
+  font-size: 16px;
+  font-family: 'PT Sans';
+  color: #000;
+  text-align: center;
+  margin: 0;
+}
+.aboutus-page .careers-container p a{
+  color: #305e08;
+}
+.aboutus-page .owner-container{
+  margin: 25px 0;
+}
+.aboutus-page .contact-form label{
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-family: 'PT Sans';
+  width: 100%;
+  text-align: center;
+  margin-top: 10px;
+}
+.aboutus-page .contact-form input,
+.aboutus-page .contact-form textarea{
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #eac689;
+  height: 35px;
+  padding-left: 10px;
+  color: #939393;
+  box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  margin-bottom: 5px;
+}
+.aboutus-page .contact-form textarea{
+  min-height: 195px;
+  max-height: 195px;
+  max-width: 100%;
+  min-width: 100%;
+}
+#conecting-container-inner-1{
+  height: 100%;
+}
+#conecting-container-inner-1 .submit-btn{
+  background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
+  border: 1px solid #919191;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-family: 'bignoodletitlingregular';
+  font-size: 30px;
+  text-align: center;
+  width: 100%;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
+  font-weight: normal;
+  padding: 5px;
+  height: 45px;
+  line-height: 40px;
+  margin-top: 20px;
+}
+.aboutus-page .house-logo-1 img {
+  position: relative;
+  z-index: 5555;
+  top: 112px;
+  left: 76%;
+}
+.aboutus-page .faqpage-questions h2{
+  font-size: 15px;
+  color: #343434;
+  font-weight: bold;
+  font-family: arial;
+}
+.aboutus-page .faqpage-questions p{
+  font-size: 15px;
+  color: #343434;
+  font-family: arial;
+}
+.aboutus-page .faq-question{
+  margin-bottom: 20px;
+}
+.aboutus-page .working-campus{
+  background-color: #fff4e2;
+  border: 2px solid #EAC689;
+  border-radius: 5px;
+  padding:0;
+  margin-bottom: 30px;
+}
+.aboutus-page .school-campus{
+  padding-top: 30px;
+}
+.aboutus-page .school-campus h1{
+  color: #f93c1b;
+  font-family: '616';
+  font-size: 26px;
+  font-weight: 500;
+}
+.aboutus-page .school-campus p{
+  color: #825f4a;
+  font-family: '616';
+  font-size: 20px;
+}
+.aboutus-page .school-campus p a{
+  color: #4b6f02;
+}
+.aboutus-page .separator{
+  border-bottom: 2px solid #EAC689;
+}
+.aboutus-page .image-left{
+  text-align: left;
+  padding-top: 15px;
+}
+.aboutus-page .image-right{
+  text-align: right;
+  padding-top: 15px;
+}
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<owner-page-1>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
+.owner-page-1 .house-big-image{
+  position: relative;
+  z-index: 5555;
+  top: 50px;
+}
+.owner-page-1 .heading-join button{
+  height: 70px;
+  border-radius: 10px;
+  color: #fff;
+  background-color: #2cc26b;
+  border: 0;
+  width: 100%;
+  font-size: 28px;
+  font-family: 'PT Sans';
+  margin-top: 130px;
+  margin-bottom: 20px;
+}
+.owner-page-1 .owner-note h3{
+  font-size: 29px;
+  font-weight: bold;
+  font-family: 'PT Sans';
+  color: #fb441f;
+  margin-top: 0;
+}
+.owner-page-1 .owner-note p{
+  font-size: 18px;
+  font-family: 'PT Sans'; 
+}
+.owner-page-1 .owner-note{
+  text-align: center;
+  padding: 20px 30px;
+  background-color: #fffaf2;
+  border: 2px solid #e9c588;
+  border-radius: 5px;
+}
+.owner-page-1 .social-block{
+  width: 167px;
+  float: left;
+  padding: 16px 0;
+}
+.owner-page-1 .social-block-last{
+  width: 90px;
+  float: left;
+  padding: 16px 0;
+}
+.owner-page-1 .main-fram-container{
+  float: left;
+  width: 100%;
+}
+.owner-page-1 .increasing-value-block{
+  text-align: left;
+  padding-top: 10px;
+  padding-bottom: 0;
+  border-radius: 10px 10px 0px 0px;  
+}
+.owner-page-1 .increasing-value-block h1{
+  color: #977121;
+  font-size: 29px;
+  font-weight: bold;
+  font-family: 'PT Sans';
+}
+.owner-page-1 .increasing-value-block ul{
+  padding-left: 0px;
+  margin: 0;
+}
+.owner-page-1 .increasing-value-block ul li{
+  background: url("/assets/dot.png") no-repeat scroll 0 9px rgba(0, 0, 0, 0);
+  color: #555555;
+  font-family: 'PT Sans';
+  font-size: 17px;
+  line-height: 23px;
+  list-style: none outside none;
+  padding-left: 15px;
+}
+.owner-page-1 .handing{
+  position: relative;
+  right: -34px;
+  top: 27px;
+  width: 100%;
+}
+.owner-page-1 .technology-value-block{
+  float: left;
+  width: 100%;
+  border: 2px solid #e9c588;
+  border-top: 0px;
+  background-color: #f0e5d8;
+}
+.owner-page-1 .work-technology-head h1,
+.owner-page-1 .ad-technology h1{
+  font-size: 30px;
+  font-weight: bold;
+  color: #977121;
+  font-family: 'PT Sans';
+}
+.owner-page-1 .camping-system ul,
+.owner-page-1 .work-technology-head ul,
+.owner-page-1 .ad-technology ul{
+  padding-left: 0px;
+  margin: 0;
+}
+.owner-page-1 .camping-system ul li,
+.owner-page-1 .work-technology-head ul li,
+.owner-page-1 .ad-technology ul li{
+  background: url("/assets/dot.png") no-repeat scroll 0 9px rgba(0, 0, 0, 0);
+  color: #555555;
+  font-family: 'PT Sans';
+  font-size: 17px;
+  line-height: 23px;
+  list-style: none outside none;
+  padding-left: 15px;
+}
+.owner-page-1  p.clickhere{
+  text-align: right;
+}
+.owner-page-1  p.clickhere-left{
+  text-align: left;
+  padding-top: 30px;
+}
+.owner-page-1  p.clickhere-left a,
+.owner-page-1  p.clickhere a{
+  font-size: 18px;
+  font-weight: bold;
+  color: #1b8c4a;
+}
+.owner-page-1 .work-value-block{
+  background-color: #fffaf2 !important;
+}
+.owner-page-1 .work-technology{
+  text-align: center;
+  padding-top: 15px;
+}
+.owner-page-1 .camp-value-block{
+  background-color: #f0e5d8;
+}
+.owner-page-1 .camp-img{
+  position: relative;
+  left: -15px;
+  width: 91%;
+}
+.owner-page-1 .camping-system h1{
+  font-size: 30px;
+  font-weight: bold;
+  color: #977121;
+  font-family: 'PT Sans';
+  margin-top: 115px;
+}
+.owner-page-1 .camping-system ul li span{
+  color: #2ba45e;
+  text-transform: uppercase;
+  margin-left: 5px;
+  font-weight: bold;
+}
+.owner-page-1 .border-clr{
+  border-radius: 0 0 5px 5px;
+  margin-bottom: 25px;
+}
+.owner-page-1 .click-1{
+  margin-top: 80px;
+  margin-right: 30px;
+}
+.owner-page-1 .click-2{
+  margin-top: 100px;
+  margin-right: 30px;
+}
+.owner-page-1 .business-form{
+  float: left;
+  width: 100%;  
+}
+.owner-page-1 .business-form-container{
+   float: left;
+  width: 100%;
+  background-color: #fffaf2;
+  border: 2px solid #e9c588;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+.owner-page-1 .business-form h2,
+.owner-page-1 .business-form h1{
+  font-size: 38px;
+  font-weight: bold;
+  font-family: 'PT Sans';
+  color: #555;
+  text-align: center;
+}
+.owner-page-1 .business-form h2{
+  font-weight: normal;
+  font-size: 29px;
+}
+.owner-page-1 .business-form input{
+  box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  -webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
+  background-color: #fff;
+  border: 1px solid #ebca91;
+  border-radius: 3px;
+  height: 43px;
+  width: 100%;
+  padding-left: 10px;
+  font-size: 14px;
+  font-family: 'PT Sans';
+  text-transform: uppercase;
+  color: #000;
+  margin-bottom: 20px;
+}
+.owner-page-1 .business-form label{
+  font-size: 14px;
+  font-family: 'PT Sans';
+  color: #555;
+  font-weight: normal;
+}
+.owner-page-1 .business-form button{
+  background-color: #2cc26b;
+  border: 1px solid #409d0f;
+  border-radius: 3px;
+  width: 100%;
+  height: 43px;
+  color: #fff;
+  font-family: 'PT Sans';
+  font-size: 38px;
+  font-weight: bold;
+  line-height: 0;
+  margin-top: 24px;
+  margin-bottom: 20px;
+  border-top: 1px solid #fff;
+  box-shadow: 0px 0px 0px 1px #409d0f;
+}
