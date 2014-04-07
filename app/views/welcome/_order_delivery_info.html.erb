@@ -49,9 +49,6 @@
       <div class="req-field-items">
         <label>Delivery Instructions:</label>
         <textarea palceholder="E.g. I need extra napkins, etc" name= "order[delivery_instruction]"></textarea>
-        <%= hidden_field_tag "order[order_type]",  "delivery" %>
-        <%= hidden_field_tag "order[request_time]",  nil, :class => "request_time" %>
-        <%= hidden_field_tag "restaurant_id", nil, :class => "restaurant_order" %>
       </div>
     </div>
   </div>
@@ -59,15 +56,6 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-
-    request_time = $(".hidden_field_request_time").val();
-    restaurant = $(".restaurant").val();
-
-
-
-    $(".request_time").val(request_time);
-    $(".restaurant_order").val(restaurant);
-
     
 
     $(".stored-address-btn input[type=radio]").prop("checked", true);

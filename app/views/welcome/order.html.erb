@@ -169,9 +169,9 @@
             <label><span>Tax:</span><span class="value">$<%= @order.sale_tax %></span></label>
             <% if @order.order_type == "delivery" %>
               <label><span>Delivery Fee:</span><span class="value">$<%= @order.delivery_charges %></span></label>
-            
+            <% end %> 
               <label><span>Tip:</span><span class="value">$<%= @order.tip_charges %></span></label>
-            <% end %>  
+             
             <label class="larg-size"><span>Total:</span><span class="value">$<%= @order.total_bill %></span></label>
           </div>
         </div>

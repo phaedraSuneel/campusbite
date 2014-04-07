@@ -44,7 +44,11 @@ class Order < ActiveRecord::Base
 	end
 
   def tip_charges
-    total = self.sub_total + self.sale_tax + self.delivery_charges
+    if self.order_type == "delivery"
+      total = self.sub_total + self.sale_tax + self.delivery_charges
+    else
+      total = self.sub_total + self.sale_tax
+    end  
     (total * self.tip) / 100
   end
 
@@ -53,7 +57,7 @@ class Order < ActiveRecord::Base
     if self.order_type == "delivery"
 		  self.sub_total + self.sale_tax + self.delivery_charges + self.tip_charges
     else   
-      self.sub_total + self.sale_tax
+      self.sub_total + self.sale_tax + self.tip_charges
     end  
 	end
 
