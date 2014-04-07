@@ -71,6 +71,29 @@ class WelcomeController < ApplicationController
 
   end
 
+  def contact_us_mail
+
+   if  UserMailer.contact_us(params[:contactus]).deliver
+    flash[:notice] = "Successfully email sent"
+    redirect_to contact_us_path(:anchor => "sent")
+   else 
+    flash[:warning] = "Failed to send you email"
+    redirect_to :back
+   end
+
+  end
+
+  def join_us
+    if  UserMailer.join_us(params[:joinus]).deliver
+      flash[:notice] = "Thank you for joining us we farword you request to our supporting team"
+      redirect_to :back
+    else
+      flash[:warning] = "Joining request failed"
+      redirect_to :back
+    end 
+
+  end
+
   def add_restaurant
   end
 

@@ -17,47 +17,53 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="conecting-container-inner" id="conecting-container-inner-1">
-                  <div class="row contact-form">
-                    <div class="col-md-3">
-                      <label>Name: *</label>
+                  <%= form_for("contactus", :url => 'contact_us_mail', :html =>{:class => 'contact-us-form', :method => :get }) do |f|%>
+                    <div class="row contact-form">
+                      <div class="col-md-3">
+                        <label>Name: *</label>
+                      </div>
+                      <div class="col-md-8">
+                        <%= f.text_field :name %>
+                      </div>
                     </div>
-                    <div class="col-md-8">
-                      <input type="text">
+                    <div class="row contact-form">
+                      <div class="col-md-3">
+                        <label>Email: *</label>
+                      </div>
+                      <div class="col-md-8">
+                         <%= f.email_field :email %>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row contact-form">
-                    <div class="col-md-3">
-                      <label>Email: *</label>
+                    <div class="row contact-form">
+                      <div class="col-md-3">
+                        <label>Subject: *</label>
+                      </div>
+                      <div class="col-md-8">
+                        <%= f.text_field :subject %>
+                      </div>
                     </div>
-                    <div class="col-md-8">
-                      <input type="text">
+                    <div class="row contact-form">
+                      <div class="col-md-3">
+                        <label>Message:</label>
+                      </div>
+                      <div class="col-md-8">
+                        <%= f.text_area :message %>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row contact-form">
-                    <div class="col-md-3">
-                      <label>Subject: *</label>
+                    <div class="row contact-form">
+                      <div class="col-md-5">
+                        <label></label>
+                      </div>
+                      <div class="col-md-6">
+                        <button class="submit-btn">Submit</button>
+                      </div>
                     </div>
-                    <div class="col-md-8">
-                      <input type="text">
-                    </div>
-                  </div>
-                  <div class="row contact-form">
-                    <div class="col-md-3">
-                      <label>Message:</label>
-                    </div>
-                    <div class="col-md-8">
-                      <textarea></textarea>
-                    </div>
-                  </div>
-                  <div class="row contact-form">
-                    <div class="col-md-5">
-                      <label></label>
-                    </div>
-                    <div class="col-md-6">
-                      <button class="submit-btn">Submit</button>
-                    </div>
-                  </div>
+                  <% end %>  
                 </div>
+                <div class="conecting-container-inner hide" id="thanks">
+                  <h1>Thank You For Contacting Us</h1>
+                  <h2>We will get in touch with you shortly</h2>
+                </div>  
               </div>
             </div>
           </div>
@@ -147,3 +153,18 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var hash = window.location.hash.substring(1);
+    if(hash){
+      $("#conecting-container-inner-1").addClass("hide");
+      $("#thanks").removeClass("hide");
+    }  
+    else{
+      $("#conecting-container-inner-1").removeClass("hide");
+      $("#thanks").addClass("hide");
+    }  
+  });
+</script>
