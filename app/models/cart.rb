@@ -44,7 +44,6 @@ class Cart < ActiveRecord::Base
   
 
   def paypal_url(return_url,total_bill)
-    p return_url
     values = {
       :business  => 'suneel.kumar-facilitator@phaedrasolutions.com',
       :cmd => '_cart',

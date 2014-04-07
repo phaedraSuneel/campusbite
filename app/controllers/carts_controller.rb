@@ -54,9 +54,7 @@ class CartsController < ApplicationController
   end
 
   def create_order
-    p params
     @cart = current_user.carts.find_by_restaurant_id(params[:restaurant_id])
-    p @cart
     params[:order][:tip] = params[:order][:tip] ||= 0.0
 
     total_bill = @cart.total_bill(@cart.restaurant)
