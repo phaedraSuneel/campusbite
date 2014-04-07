@@ -142,6 +142,7 @@ Ordering::Application.routes.draw do
       get 'how_it_works'
       get 'contact_us_mail'
       get 'join_us'
+      get 'restaurant_suggestion'
     end
     member do
       get "menu"
@@ -162,6 +163,7 @@ Ordering::Application.routes.draw do
   match '/welcome/how_it_works' => 'welcome#how_it_works', :as => :how_it_works 
 
   match '/welcome/join_us' => 'welcome#join_us', :as => :join_us 
+  match '/welcome/restaurant_suggestion' => 'welcome#restaurant_suggestion', :as => :restaurant_suggestion 
 
 
   # Sample resource route with sub-resources:

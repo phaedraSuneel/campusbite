@@ -91,7 +91,16 @@ class WelcomeController < ApplicationController
       flash[:warning] = "Joining request failed"
       redirect_to :back
     end 
+  end
 
+  def restaurant_suggestion
+    if  UserMailer.restaurant_suggestion(params[:user]).deliver
+      flash[:notice] = "Thank you for suggestion us we farword you request to our supporting team"
+      redirect_to :back
+    else
+      flash[:warning] = "suggestion request failed"
+      redirect_to :back
+    end
   end
 
   def add_restaurant
