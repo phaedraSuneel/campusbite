@@ -59,4 +59,24 @@ class WelcomeController < ApplicationController
   def aboutus
   end
 
+  def restaurant_owners
+
+  end
+
+  def faqs
+
+  end
+
+  def contact_us
+
+  end
+
+  def add_restaurant
+  end
+
+  def add_campus
+  end
+
+  def how_it_works
+  end
 end

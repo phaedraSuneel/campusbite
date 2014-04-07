@@ -134,6 +134,12 @@ Ordering::Application.routes.draw do
       get 'result'
       get 'restaurant_search'
       get 'aboutus'
+      get 'restaurant_owners'
+      get 'faqs'
+      get 'contact_us'
+      get 'add_restaurant'
+      get 'add_campus'
+      get 'how_it_works'
     end
     member do
       get "menu"
@@ -142,7 +148,16 @@ Ordering::Application.routes.draw do
   end
 
   match '/welcome/aboutus' => 'welcome#aboutus', :as => :aboutus 
-  
+
+  match '/welcome/restaurant_owners' => 'welcome#restaurant_owners', :as => :restaurant_owners 
+  match '/welcome/faqs' => 'welcome#faqs', :as => :faqs
+  match '/welcome/contact_us' => 'welcome#contact_us', :as => :contact_us 
+
+  match '/welcome/add_restaurant' => 'welcome#add_restaurant', :as => :add_restaurant 
+
+  match '/welcome/add_campus' => 'welcome#add_campus', :as => :add_campus 
+  match '/welcome/how_it_works' => 'welcome#how_it_works', :as => :how_it_works 
+
 
   # Sample resource route with sub-resources:
   #   resources :products do
