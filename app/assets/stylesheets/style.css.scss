@@ -2960,6 +2960,8 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 .last-page .receipt-container .receipt-table{
   float: left;
   width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 .order-history-page .receipt-container .receipt-table .credit-table,
 .last-page .receipt-container .receipt-table .credit-table{
@@ -5121,4 +5123,8 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   margin-bottom: 20px;
   border-top: 1px solid #fff;
   box-shadow: 0px 0px 0px 1px #409d0f;
+}
+
+.view-reciept.active{
+  color: black !important;
 }

@@ -72,7 +72,11 @@ $(document).ready(function(){
 
   });
 
-
+  $(".view-reciept").click(function(){
+    parent = $(this).parent().parent().parent().parent().parent().find(".view-reciept-data");
+    parent.toggleClass("hide");
+    $(this).toggleClass("active");
+  });
   
 
   $(".edit-action-link").click(function(){

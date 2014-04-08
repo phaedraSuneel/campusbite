@@ -20,7 +20,7 @@
             <div class="account-tabs review" data-hash="review">
               <a href="#review" data-toggle="tab">MY REVIEWS</a>
             </div>
-            <div class="account-tabs setting active" data-hash="setting">
+            <div class="account-tabs setting" data-hash="setting">
               <a href="#setting" data-toggle="tab">account settings</a>
             </div>
           </div>
@@ -53,10 +53,12 @@
     if(hash){
       $('.account-bar .' + hash +  ' a').click();
       $('#'+hash).addClass("active");
+      $('.'+hash).addClass("active");
     }  
     else{
       $('.account-bar .order_history a').click();
       $("#order_history").addClass("active");
+      $(".order_history").addClass("active");
     }  
 
     $(".account-tabs").click(function(){

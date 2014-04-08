@@ -9,43 +9,108 @@
     </div>
     
     <% @orders.each do |order|%>
-      <div class="row favorite-order">
-        <div class="col-md-3 heading-favorite">
-          <div class="pic-delivery">
-            <p><%= order.created_at.strftime("%m/%d/%Y %H:%M %p")%></p>
+      <div class="row favorite-order favorite-order-tabel">
+        <div class="col-md-12 receipt-container">
+          <div class="row">
+            <div class="col-md-3 heading-favorite">
+              <div class="pic-delivery">
+                <p><%= order.created_at.strftime("%m/%d/%Y %H:%M %p")%></p>
+              </div>
+            </div>
+            <div class="col-md-3 heading-favorite">
+              <div class="pic-delivery">
+                <h3><%= link_to order.restaurant.restaurant_name, menu_welcome_path(order.restaurant)%></h3>
+              </div>
+            </div>
+            <div class="col-md-2 heading-favorite">
+              <div class="pic-delivery">
+                <label>$<%= order.total_bill %></label>
+              </div>
+            </div>
+            <div class="col-md-2 heading-favorite ">
+              <div class="pic-delivery">
+                <% if current_user.can_review?(order.restaurant) %>
+                  <p><%= link_to "Rate","#", "data-toggle" => "modal", "data-target" => "#review_modal_#{order.restaurant.id}" %></p>
+                <% else %>  
+                  <p><%= link_to "Edit Rating","#", "data-toggle" => "modal", "data-target" => "#edit_review_modal_#{order.restaurant.id}" %></p>
+                <% end %>  
+                <p><%= link_to "View Reciept", "javascript:void(0)", :class => "view-reciept" %></p>
+                <p><%= link_to "Add To Favorites", add_favorite_restaurant_path(order.restaurant)%></p>
+                <% if current_user.can_review?(order.restaurant) %>
+                  <%= render :partial => "new_review_modal", :locals => {:@restaurant => order.restaurant} %>
+                <% else %>
+                  <%= render :partial => "edit_review_modal", :locals => {:@review => Review.where(:restaurant_id => order.restaurant.id, :user_id => current_user.id ).first, :@restaurant => order.restaurant } %>
+                <% end %>
+
+              </div>
+            </div>
+            <div class="col-md-2 heading-favorite">
+              <%= link_to raw("<button class='order-again'>Order Again</button>"), menu_welcome_path(order.restaurant)%>
+            </div>
+            <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
           </div>
+          <div class="view-reciept-data hide">
+            <div class="row receipt">
+              <div class="col-md-4">
+                <h3>Order Number: <%= order.id %></h3>
+                <h3>Order Type: <%= order.order_type %></h3>
+                <h3>Payment Method: <%= order.method_type %></h3>
+              </div>
+              <div class="col-md-4 print-head"></div>
+              <div class="col-md-3 col-md-offset-1 printer-img">
+                <a href="#"><span class="printer"></span>Print Receipt</a>
+              </div>
+            </div>
+            <div class="row receipt-table">
+              <div class="col-md-12 credit-table">
+                <table>
+                  <tr class="heading">
+                    <th class="first">Items</th>
+                    <th class="first">Price</th>
+                    <th class="first">Quantity</th>
+                    <th>Total</th>
+                  </tr>
+                  <% order.menu_item_orders.each_with_index do |item, index | %>
+                    <tr class="odd">
+                      <td class="first">
+                        <h3><%= item.menu_item.item_name %></h3>
+                        <% extra = 0 %>
+                        <% if item.menu_item_property_id %>
+                          <label>Size: <%= order.property_name(item.menu_item_property_id) %> </label>
+                          <% extra += order.property_price(item.menu_item_property_id) %>
+                        <% end -%>  
+                        <label>Extra Toppings: Mushrooms, Tomato, Onion</label>
+                        <p>Instructions: <%= item.instruction %></p>
+                      </td>
+                      <td class="first">$<%= extra + item.menu_item.price %></td>
+                      <td class="first"><%= item.quantity %></td>
+                      <td>$ <%= (extra + item.menu_item.price) * item.quantity  %></td>
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+            <div class="row special-instructions">
+              <div class="col-md-6">
+                <h3>Special Instructions:</h3>
+                <div class="note"><%= order.delivery_instruction %></div>
+              </div>
+              <div class="col-md-6 subtotal">
+                <label><span>Subtotal:</span><span class="value">$<%= order.sub_total%></span></label>
+                <label class="green"><span>Online Discount(10% off):</span><span class="value">- $0</span></label>
+                <label class="green"><span>Coupon (Ketchup):</span><span class="value">-$0</span></label>
+                <label><span>Tax:</span><span class="value">$<%= order.sale_tax %></span></label>
+                <% if order.order_type == "delivery" %>
+                  <label><span>Delivery Fee:</span><span class="value">$<%= order.delivery_charges %></span></label>
+                <% end %>  
+                <label><span>Tip:</span><span class="value">$<%= order.tip_charges %></span></label>
+                <label class="larg-size"><span>Total:</span><span class="value">$<%= order.total_bill %></span></label>
+              </div>
+            </div>
+          </div>  
         </div>
-        <div class="col-md-3 heading-favorite">
-          <div class="pic-delivery">
-            <h3><%= link_to order.restaurant.restaurant_name, menu_welcome_path(order.restaurant)%></h3>
-          </div>
-        </div>
-        <div class="col-md-2 heading-favorite">
-          <div class="pic-delivery">
-            <label>$<%= order.total_bill %></label>
-          </div>
-        </div>
-        <div class="col-md-2 heading-favorite">
-          <div class="pic-delivery">
-            <% if current_user.can_review?(order.restaurant) %>
-              <p><%= link_to "Rate","#", "data-toggle" => "modal", "data-target" => "#review_modal_#{order.restaurant.id}" %></p>
-            <% else %>  
-              <p><%= link_to "Edit Rating","#", "data-toggle" => "modal", "data-target" => "#edit_review_modal_#{order.restaurant.id}" %></p>
-            <% end %>  
-            <p><%= link_to "View Reciept", order_welcome_path(order) %></p>
-            <p><%= link_to "Add To Favorites", add_favorite_restaurant_path(order.restaurant)%></p>
-            <% if current_user.can_review?(order.restaurant) %>
-              <%= render :partial => "new_review_modal", :locals => {:@restaurant => order.restaurant} %>
-            <% else %>
-              <%= render :partial => "edit_review_modal", :locals => {:@review => Review.where(:restaurant_id => order.restaurant.id, :user_id => current_user.id ).first, :@restaurant => order.restaurant } %>
-            <% end %>
-          </div>
-        </div>
-        <div class="col-md-2 heading-favorite">
-          <%= link_to raw("<button class='order-again'>Order Again</button>"), menu_welcome_path(order.restaurant)%>
-        </div>
-        <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
-      </div>
+      </div>  
+        
     <% end %>  
     <div class="row pagination-container">
       <div class="col-md-8 col-md-offset-4">
