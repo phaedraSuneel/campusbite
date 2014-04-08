@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row password-changer">
+      <div class="col-md-3 heading-favorite"><label>Customer Name</label></div>
+      <div class="col-md-3 heading-favorite"><label>Order Amount</label></div>
+    </div>
+    <% @customers.each do |customer|%>
+    	<div class="row favorite-order favorite-order-tabel">
+        <div class="col-md-12 receipt-container">
+          <div class="row">
+            <div class="col-md-3 heading-favorite">
+              <div class="pic-delivery">
+                <p><%= customer.name %></p>
+              </div>
+            </div>
+            <div class="col-md-3 heading-favorite">
+              <div class="pic-delivery">
+                <p>$<%= customer.total_order(@restaurant) %></p>
+              </div>
+            </div>
+          </div> 
+        </div>   
+      </div>  
+    <% end -%>
+  </div>
+</div>    

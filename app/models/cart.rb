@@ -28,7 +28,7 @@ class Cart < ActiveRecord::Base
 
   def delivery_charges(restaurant)
   	restaurant = Restaurant.find(restaurant.id)
-  	delivery_charges = restaurant.delivery_charges
+  	delivery_charges = restaurant.delivery_charges || 0.0
 	end
 
 	def total_bill(restaurant)
@@ -40,8 +40,6 @@ class Cart < ActiveRecord::Base
     end
       
 	end
-
-  
 
   def paypal_url(return_url,total_bill)
     values = {

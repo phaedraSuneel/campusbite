@@ -1,6 +1,7 @@
 class Restaurant < ActiveRecord::Base
 
   belongs_to :school
+  belongs_to :user
   has_many  :restaurant_categories
   has_many :addons, :dependent => :destroy
   has_many :restaurant_offers, :dependent => :destroy
@@ -21,18 +22,25 @@ class Restaurant < ActiveRecord::Base
   has_one :operation, :dependent => :destroy
 
   attr_accessible :school_id, :restaurant_category_ids, :contact_info_attributes, :restaurant_info_attributes, :delivery_info_attributes, :order_info_attributes, :bank_info_attributes,
-                  :operation_attributes, :delivery_attributes, :pick_up_attributes, :avg_rating
+                  :operation_attributes, :delivery_attributes, :pick_up_attributes, :avg_rating, :user_id, :user_attributes
                  
   accepts_nested_attributes_for :restaurant_categories
   accepts_nested_attributes_for :favorites
   accepts_nested_attributes_for :contact_info, :restaurant_info, :delivery_info, :order_info, :bank_info, :operation, :delivery, :pick_up
   accepts_nested_attributes_for :reviews
+  accepts_nested_attributes_for :user
   before_create :create_menu
-
+  after_create :assign_role_admin
 
  	def create_menu
  	  self.build_menu
  	end
+
+  def assign_role_admin
+    if self.user
+      self.user.add_role :admin_restaurant
+    end  
+  end
 
   def restaurant_name
     self.contact_info.restaurant_name
@@ -96,4 +104,9 @@ class Restaurant < ActiveRecord::Base
       0
     end
   end
+
+  def customers
+    self.orders.collect(&:user)
+  end
+
 end

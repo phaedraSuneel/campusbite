@@ -12,6 +12,7 @@ Ordering::Application.routes.draw do
   resources :dashboard do 
     collection do
       get 'account'
+      get 'restaurant'
       post 'change_user_information'
       post 'change_user_password'
       post 'add_user_address'

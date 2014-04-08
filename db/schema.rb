@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140408095615) do
+ActiveRecord::Schema.define(:version => 20140408101511) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -336,6 +336,7 @@ ActiveRecord::Schema.define(:version => 20140408095615) do
     t.datetime "updated_at",                :null => false
     t.integer  "school_id"
     t.integer  "avg_rating", :default => 0
+    t.integer  "user_id"
   end
 
   create_table "reviews", :force => true do |t|

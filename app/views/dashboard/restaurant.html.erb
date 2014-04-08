@@ -1,0 +1,91 @@
+<div class="row  search-container result-page account-setting-page favorite-Restaurant-page  favorite-Restaurant-page-1 order-history-page  node-reviews" id="restaurant_admin_dashboard">
+  <div class="container">
+  	<div class="row">
+    	<div class="col-md-3 logo-side-1">
+        <%= link_to raw("<img class='logo-image' alt='Smiley face' src='/assets/logo.png'>"), '/' %>
+      </div>
+      
+      <div class="col-md-5 chair-items">
+        <h3>Welcome, <%= current_user.name %></h3>
+        <p>Some sample text will go here that will be the same for all users.Just put sample text here. Nothing else. Only Sample. Sample Text.Sample Text</p>
+      </div>
+      <div class="col-md-4 chair-field">
+        <img class="logo-image" alt="Smiley face" src="/assets/chair.png" />
+      </div>
+    </div>
+    <div class="row setting-info-container">
+      <div class="col-md-11 info-main-container">
+        <div class="order-history-left">
+          <div class="ring"></div>
+          <div class="account-bar nav nav-pills user-information-tab" data-tabs="tabs">
+            <div class="account-tabs recent-order" data-hash="recent-order">
+              <a href="#recent-order" data-toggle="tab" >Recent Orders</a>
+            </div>
+            <div class="account-tabs top-customer" data-hash="top-customer">
+              <a href="#top-customer" data-toggle="tab">Top Customers</a>
+            </div>
+            <div class="account-tabs reports" data-hash="reports">
+              <a href="#reports" data-toggle="tab">Reports</a>
+            </div>
+            <div class="account-tabs schedual-reports" data-hash="schedual-reports">
+              <a href="#schedual-reports" data-toggle="tab">Schedualed Reports</a>
+            </div>
+            <div class="account-tabs contact-admin" data-hash="contact-admin">
+              <a href="#contact-admin" data-toggle="tab">Contact Admin</a>
+            </div>
+            <div class="account-tabs setting" data-hash="setting">
+              <a href="#setting" data-toggle="tab">Setting</a>
+            </div>
+          </div>
+          <div id="account-tab-content" class="tab-content">
+            <div class="tab-pane" id= "recent-order">
+              <%= render :partial  => "recent_order" %>
+            </div>
+            <div class="tab-pane" id= "top-customer">
+              <%= render :partial  => "top_customer", :locals => {:@restaurant => @restaurant} %>
+            </div>
+            <div class="tab-pane" id= "reports">
+              
+            </div>  
+            <div class="tab-pane" id= "schedual-reports">
+              
+            </div>
+            <div class="tab-pane" id= "contact-admin">
+              
+            </div>
+            <div class="tab-pane" id= "setting">
+              
+            </div>
+          </div>  
+        </div>  
+      </div>
+      <div class="col-md-1 order-history-right">
+      </div>
+    </div>  
+  </div>  
+</div>    
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    console.log(window.location.search);
+    var hash = window.location.hash.substring(1);
+    if(hash){
+      $('.account-bar .' + hash +  ' a').click();
+      $('#'+hash).addClass("active");
+      $('.'+hash).addClass("active");
+    }  
+    else{
+      $('.account-bar .recent-order a').click();
+      $("#recent-order").addClass("active");
+      $(".recent-order").addClass("active");
+    }  
+
+    $(".account-tabs").click(function(){
+      $(".user-information-tab .account-tabs").each(function(){
+          $(this).removeClass("active");
+      });
+      $(this).addClass("active");
+      window.location.hash = $(this).data("hash"); 
+    });
+  });
+</script>

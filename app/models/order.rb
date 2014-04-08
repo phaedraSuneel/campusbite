@@ -50,7 +50,7 @@ class Order < ActiveRecord::Base
 
   def delivery_charges
   	restaurant = self.restaurant
-  	delivery_charges = restaurant.delivery_charges
+  	delivery_charges = restaurant.delivery_charges || 0
 	end
 
   def tip_charges

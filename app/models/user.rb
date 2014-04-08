@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :school_name, :customer_id, :points
   # attr_accessible :title, :body
+  
+
   has_many :authentications, :dependent => :destroy
   has_many :orders, :dependent => :destroy
   has_many :carts, :dependent => :destroy
@@ -25,6 +27,7 @@ class User < ActiveRecord::Base
   has_many :reviews, :dependent => :destroy  
   has_many :cards, :dependent => :destroy
   has_many :payments, :dependent => :destroy
+  has_many :restaurant, :dependent => :destroy
   accepts_nested_attributes_for :addresses
 
   before_create :add_default_role
@@ -50,6 +53,7 @@ class User < ActiveRecord::Base
       self.save
     end  
   end 
+
 
   def user_admin?
     self.has_role? :admin
@@ -86,7 +90,15 @@ class User < ActiveRecord::Base
     else
       true
     end  
-  end  
+  end 
 
+  def total_order(restaurant)
+    user_orders = self.orders.find_all_by_restaurant_id(restaurant.id)
+    total = 0
+    user_orders.each do |order|
+      total += order.total_bill
+    end  
+    total
+  end
 
 end
