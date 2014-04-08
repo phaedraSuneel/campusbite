@@ -174,4 +174,13 @@ class RestaurantsController < ApplicationController
       redirect_to :back
     end  
   end
+
+  def order
+    @restaurant = Restaurant.find(params[:id])
+    @orders= @restaurant.orders.order("created_at desc").page(params[:page]).per(5)
+  end
+
+  def order_detail
+    @order = Order.find(params[:id])
+  end
 end

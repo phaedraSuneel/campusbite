@@ -56,6 +56,8 @@ Ordering::Application.routes.draw do
   resources :restaurants do
     member do 
       get 'add_favorite'
+      get 'order'
+      get 'order_detail'
       post 'new_review'
       post 'edit_review'
     end

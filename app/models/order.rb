@@ -9,6 +9,16 @@ class Order < ActiveRecord::Base
 
   attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip
 
+  after_save :update_user_points
+
+  def update_user_points
+    total = 0
+    self.user.orders.each do |user_order|
+      total += user_order.total_bill
+    end  
+    points = (total.floor) * 5
+    self.user.update_attributes(:points => points)
+  end
 
   def property_name(id)
   	MenuItemProperty.find(id).name

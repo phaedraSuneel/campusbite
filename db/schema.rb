@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140404114452) do
+ActiveRecord::Schema.define(:version => 20140408095615) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -394,6 +394,7 @@ ActiveRecord::Schema.define(:version => 20140404114452) do
     t.datetime "updated_at",                             :null => false
     t.string   "school_name"
     t.string   "customer_id"
+    t.integer  "points",                 :default => 0
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

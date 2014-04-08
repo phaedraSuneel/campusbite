@@ -1,7 +1,6 @@
 class DashboardController < ApplicationController
 	
 	def account
-    p params
 		@favorites_restaurants = current_user.favorites.order("created_at desc").page(params[:page]).per(5)
 		@orders = current_user.orders.order("created_at desc").page(params[:page]).per(5)
 		@reviews = current_user.reviews.order("created_at desc").page(params[:page]).per(5)

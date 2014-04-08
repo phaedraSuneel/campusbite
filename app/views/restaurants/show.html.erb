@@ -86,7 +86,10 @@
         <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
       <% end %>   
       <% if can? :read, Restaurant %>    
-        <%= link_to 'Back', restaurants_path %>
+        <%= link_to 'Back', restaurants_path %> |
+      <% end %>
+      <% if current_user.user_admin? %>  
+        <%= link_to "View Orders", order_restaurant_path(@restaurant) %>
       <% end %>  
     <% end %>  
   </div>

@@ -65,7 +65,6 @@
     $(".account-tabs").click(function(){
       $(".user-information-tab .account-tabs").each(function(){
           $(this).removeClass("active");
-          window.location.search = "";
       });
       $(this).addClass("active");
       window.location.hash = $(this).data("hash"); 
