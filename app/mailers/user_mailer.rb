@@ -20,5 +20,10 @@ class UserMailer < ActionMailer::Base
   	@user = user
   	mail(from: @user["email"])
   end
+
+  def restaurant_admin(contact_us)
+    @user = User.find(contact_us[:user_id])
+    mail(to: 'admin@ordering.com', from: @user.email, subject: contact_us[:subject], message: contact_us[:message])
+  end    
   
 end

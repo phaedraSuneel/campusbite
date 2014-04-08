@@ -20,6 +20,7 @@ Ordering::Application.routes.draw do
       get 'delete_address'
       get 'delete_review'
       get 'delete_card'
+      get 'contact_admin'
       post 'add_user_card'
     end
     member do 
@@ -27,7 +28,7 @@ Ordering::Application.routes.draw do
       get 'remove_review'
     end
   end
-
+  match '/dashboard/contact_admin' => 'dashboard#contact_admin', :as => :contact_admin 
 
   resources :addons do
     collection do 

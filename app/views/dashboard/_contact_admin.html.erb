@@ -1,0 +1,52 @@
+<div class="row aboutus-page">
+  <div class="col-md-12">
+    <div class="row contact-admin-form">
+      <div class="conecting-container-inner" id="conecting-container-inner-1">
+        <%= form_for("contactus", :url => 'contact_admin', :html =>{:class => 'contact-us-form', :method => :get }) do |f|%>
+          <div class="row contact-form">
+            <div class="col-md-3">
+              <label>Subject: *</label>
+            </div>
+            <div class="col-md-8">
+              <%= f.text_field :subject %>
+            </div>
+          </div>
+          <div class="row contact-form">
+            <div class="col-md-3">
+              <label>Message:</label>
+            </div>
+            <div class="col-md-8">
+              <%= f.text_area :message %>
+            </div>
+            <%= f.hidden_field :user_id, :value => current_user.id %>
+          </div>
+          <div class="row contact-form">
+            <div class="col-md-8 col-md-offset-3">
+              <button class="submit-btn">Submit</button>
+            </div>
+          </div>
+        <% end %>  
+      </div>
+      <div class="conecting-container-inner hide" id="thanks">
+        <h1>Thank You For Contacting Us</h1>
+        <h2>We will get in touch with you shortly</h2>
+      </div>
+    </div>  
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var hash = window.location.hash.substring(1);
+    if(hash =="sent"){
+      window.location.hash.substring(1);
+      $("#conecting-container-inner-1").addClass("hide");
+      $("#thanks").removeClass("hide");
+      window.location.hash="contact-admin"
+    }  
+    else{
+      $("#conecting-container-inner-1").removeClass("hide");
+      $("#thanks").addClass("hide");
+    }  
+  });
+</script>
