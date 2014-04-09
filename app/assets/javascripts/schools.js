@@ -215,4 +215,21 @@ $(document).ready(function(){
       else
        return false  
     });
+
+    $(".printer-request").click(function(){
+      print_area = $(this).parent().parent().parent();
+      var html = "<HTML>\n<HEAD>\n"+
+          $("head").html()+
+          "\n</HEAD>\n<BODY class='row  search-container result-page account-setting-page favorite-Restaurant-page  favorite-Restaurant-page-1 order-history-page  node-reviews' id='restaurant_admin_dashboard'>\n"+
+          +"<div class='receipt-container'><div class='favorite-order-tabel'>"+print_area.html()+
+          "</div></div>\n</BODY>\n</HTML>";
+      //open new window
+      var printWP = window.open("","printWebPart");
+      printWP.document.open();
+      //insert content
+      printWP.document.write(html);
+      printWP.document.close();
+      //open print dialog
+      printWP.print();
+    });
 });
