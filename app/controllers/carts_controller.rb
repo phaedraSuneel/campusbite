@@ -60,6 +60,8 @@ class CartsController < ApplicationController
     total_bill = @cart.total_bill(@cart.restaurant)
     total_bill += (@cart.total_bill(@cart.restaurant) * params[:order][:tip].to_f)/100
    
+    p total_bill
+
     Braintree::Configuration.environment = :sandbox
     Braintree::Configuration.merchant_id = "6q6zvwjk33nr2wh6"
     Braintree::Configuration.public_key = "z8wb4mz95s5hj74g"
@@ -76,7 +78,7 @@ class CartsController < ApplicationController
           address.save
           params[:order][:address_id] = address.id
         end 
-      end   
+      end
       if params[:payment_method] == "credit card"
         if params[:card] == "stored"
           @card = current_user.cards.find(params[:card_id])
@@ -84,8 +86,7 @@ class CartsController < ApplicationController
             :amount => total_bill,
             :customer_id => current_user.customer_id,
             :payment_method_token => @card.token
-          )
-
+          ) 
         else
           @result = Braintree::Transaction.sale(
             :amount => total_bill,
@@ -95,8 +96,6 @@ class CartsController < ApplicationController
               :expiration_month => params[:card_info]["expiration_date(2i)"]
             }  
           )
-
-
           @new_card_result = Braintree::CreditCard.create(
             :customer_id => current_user.customer_id,
             :number => params[:card_number],
@@ -117,7 +116,6 @@ class CartsController < ApplicationController
           end
         end
         if @result.success?
-          
           @order = Order.new params[:order]
           @order.user_id = current_user.id
           @order.status = "pending"

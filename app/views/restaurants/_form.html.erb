@@ -261,31 +261,33 @@
       <% end %>
     </div>
   </div>
-<label> Restaurant Admin Information </label>
-  <%= f.fields_for :user do |f| %>
-    <div class="field">
-      <%= f.label :first_name %>
-      <%= f.text_field :first_name %>
-    </div>
-    <div class="field">
-      <%= f.label :last_name %>
-      <%= f.text_field :last_name %>
-    </div>
-    <div class="field">
-      <%= f.label :email %>
-      <%= f.email_field :email %>
-    </div>
-    <div class="field">
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </div>
-    <div class="field" >
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation %>
-    </div>
-  <% end %>
+  <% unless !@restaurant.user.blank? %>
+    <label> Restaurant Admin Information </label>
+    <%= f.fields_for :user do |f| %>
+      <div class="field">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+      </div>
+      <div class="field">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+      </div>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+      <div class="field" >
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+    <% end %>
+    
+  <% end -%>  
   <div class="actions">
-    <%= f.submit %>
-  </div>
-
+      <%= f.submit %>
+    </div>
 <% end %>
