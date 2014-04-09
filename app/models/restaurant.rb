@@ -54,6 +54,15 @@ class Restaurant < ActiveRecord::Base
     self.contact_info.contact_phone
   end
 
+  def email
+    self.contact_info.contact_email
+  end
+
+  def close_time
+    today = Time.now.strftime('%A')
+    self.operation.sechedules.where(:day => today).first.closing_time.strftime("%I:%M%p") 
+  end
+
   def open?
     today = Time.now.strftime('%A')
     current_time = Time.now.strftime("%I:%M%p") 

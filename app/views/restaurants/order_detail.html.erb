@@ -1,33 +1,35 @@
 <div class="container admin-page">
-  <div class="row heading">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4 admin-centr">
-      <label>Order page sample</label>
-    </div>
-    <div class="col-md-4 admin-right">
-      <label>Admin Side</label>
-    </div>
-  </div>
   <div class="row content-body">
     <div class="col-md-5 block-a">
       <div class="inner-order-block">
         <h1>Order details</h1>
-        <div class="content-field"><label class="left">Order Number:</label><label class="right">14563</label></div>
+        <div class="content-field"><label class="left">Order Number:</label><label class="right"><%= @order.id %></label></div>
         <div class="content-field"><label class="left">Method:</label><label class="right">FAX</label></div>
         <div class="content-field"><label class="left">Confirmation Pin:</label><label class="right">4891</label></div>
-        <div class="content-field"><label class="left">Delivery Or Pickup:</label><label class="right">Delivery</label></div>
-        <div class="content-field"><label class="left">Order Send at:</label><label class="right">09/08/2014 9:14PM</label></div>
+        <div class="content-field"><label class="left"><%= @order.order_type %></label><label class="right">Delivery</label></div>
+        <div class="content-field"><label class="left">Order Send at:</label><label class="right"><%= @order.created_at.strftime("%m/%d/%Y %H:%M %p") %></label></div>
         <div class="content-field"><label class="left">Confirmed at:</label><label class="right">09/08/2014 9:14PM</label></div>
-        <div class="content-field"><label class="left">Time Required:</label><label class="right">ASAP</label></div>
+        <div class="content-field"><label class="left">Time Required:</label><label class="right"><%= @order.request_time %></label></div>
       </div>
     </div>
     <div class="col-md-4 block-a block-b">
       <div class="inner-order-block inner-order-block-b">
         <h1>Customer Information</h1>
-        <div class="content-field"><label class="left">Name:</label><label class="right">James Smith</label></div>
-        <div class="content-field"><label class="left">Adress:</label><label class="right">1234 Maple St Room 14 brooklyn New york 11229</label></div>
-        <div class="content-field"><label class="left">Telephone:</label><label class="right">718-456-7894</label></div>
+        <div class="content-field"><label class="left">Name:</label><label class="right"><%= @order.user.name %></label> </div>
+            <% unless @order.order_type == "pickup" %>
+            <div class="content-field"><label class="left">Adress:</label>
+              <%= @order.address.address_type %>
+              <% if @order.address.address_type == "On Campus" %>
+              <label class="right">
+               <%= @order.address.school.school_name %> <%= @order.address.room_number %> <%= @order.address.building.try(:street_adress) %></label>
+             <% else %>
+              <label class="right">
+               <%= @order.address.room_number %> <%= @order.address.street_adress %>
+              </label> 
+             <% end %>  
+            </div>
+          <% end %> 
+          <div class="content-field"><label class="left">Telephone:</label><label class="right">718-456-7894</label></div>
       </div>
     </div>
     <div class="col-md-3 block-a block-c">
@@ -44,18 +46,18 @@
     <div class="col-md-5 block-a">
       <div class="inner-order-block">
         <h1>Restaurant Details</h1>
-        <div class="content-field"><label class="left">Restaurant Name:</label><label class="right">Peter Steakhouse</label></div>
-        <div class="content-field"><label class="left">Restaurant Adress:</label><label class="right">1234 Maple St Room 14 brooklyn New york 11229 Harvard University</label></div>
+        <div class="content-field"><label class="left">Restaurant Name:</label><label class="right"><%= @order.restaurant.restaurant_name %></label></div>
+        <div class="content-field"><label class="left">Restaurant Adress:</label><label class="right"><%= @order.restaurant.address %></label></div>
         <div class="content-field"><label class="left">Order number</label><label class="right">14563</label></div>
-        <div class="content-field"><label class="left">Restaurant Telephone:</label><label class="right">718-456-7894</label></div>
-        <div class="content-field"><label class="left">Email:</label><label class="right">Petersteak@aol.com</label></div>
-        <div class="content-field"><label class="left">Schedule:</label><label class="right">Today closes at 9:00PM</label></div>
+        <div class="content-field"><label class="left">Restaurant Telephone:</label><label class="right"><%= @order.restaurant.phone %></label></div>
+        <div class="content-field"><label class="left">Email:</label><label class="right"><%= @order.restaurant.email%></label></div>
+        <div class="content-field"><label class="left">Schedule:</label><label class="right">Today closes at <%= @order.restaurant.close_time %></label></div>
       </div>
     </div>
     <div class="col-md-4 block-a block-b">
       <div class="inner-order-block">
         <h1>Payment</h1>
-        <div class="content-field"><label class="left text-right">Payment Meathod:</label><label class="right">Credit Card</label></div>
+        <div class="content-field"><label class="left text-right">Payment Meathod:</label><label class="right"><%= @order.method_type %></label></div>
         <div class="content-field"><label class="left text-right">Last 4digits of the card:</label><label class="right">8921</label></div>
         <div class="content-field"><label class="left text-right">Approved at:</label><label class="right">09/08/2014 9:14PM</label></div>
         <div class="content-field"><label class="left">Reference:</label><label class="right">898561</label></div>
@@ -70,17 +72,8 @@
       </div>
     </div>
   </div>
-  <div class="row heading">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4 admin-centr">
-      <label>Order page Receipt sample</label>
-    </div>
-    <div class="col-md-4 admin-right">
-      <label>Admin Side</label>
-    </div>
-  </div>
-  <div class="row">
+
+  <!-- <div class="row">
     <div class="col-md-9 block-a">
       <div class="receipt-block">
         <div class="content-field"><label class="left">Order Number:</label><label class="right">14563</label></div>
@@ -195,5 +188,5 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </div>
