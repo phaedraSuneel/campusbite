@@ -261,7 +261,7 @@
       <% end %>
     </div>
   </div>
-  <% unless !@restaurant.user.blank? %>
+  <% unless !@restaurant.user.try(:email).blank? %>
     <label> Restaurant Admin Information </label>
     <%= f.fields_for :user do |f| %>
       <div class="field">
