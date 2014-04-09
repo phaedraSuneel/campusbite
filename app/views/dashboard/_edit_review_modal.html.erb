@@ -12,11 +12,13 @@
               <div class="col-md-4 col-md-offset-4 name-restarant">
                 <h4>Rating:</h4>
                   <div class="rating-stars">
-                    <input name="review[rating]" id= "review_rating" type="radio" class="star" value="1"/> 
-                    <input name="review[rating]" id= "review_rating" type="radio" class="star" value="2"/> 
-                    <input name="review[rating]" id= "review_rating" type="radio" class="star" value="3"/> 
-                    <input name="review[rating]" id= "review_rating" type="radio" class="star" value="4"/>
-                    <input name="review[rating]" id= "review_rating" type="radio" class="star" value="5"/>
+                    
+                      <input name="review[rating]" type="radio" class="star" value="1" <%= 'checked' if @review.rating ==1  %> /> 
+                      <input name="review[rating]" type="radio" class="star" value="2" <%= 'checked' if @review.rating ==2  %> /> 
+                      <input name="review[rating]" type="radio" class="star" value="3" <%= 'checked' if @review.rating ==3  %> /> 
+                      <input name="review[rating]" type="radio" class="star" value="4" <%= 'checked' if @review.rating ==4  %> /> 
+                      <input name="review[rating]" type="radio" class="star" value="5" <%= 'checked' if @review.rating ==5  %> />
+                    
                   </div>    
               </div>
             </div>

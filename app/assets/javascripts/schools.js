@@ -58,7 +58,7 @@ $(document).ready(function(){
     $(".order-delivery-btn").find("input[type=checkbox]").prop("checked", false);
 
     order_type = $(this).find("input[type=checkbox]").val();
-    id = $(this).data("cart")
+    id = $(this).data("cart");
     restaurant_id = $("#restaurant_id").val();
     $.ajax ({
       url: '/carts/update_order_type',
