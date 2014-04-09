@@ -5163,7 +5163,6 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     .report-nav a:hover
     {
      text-decoration:none;
-     background: url("/assets/active-tab.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
     }
     #report-tab-content
     {
@@ -5175,5 +5174,225 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
       background:#fff;
     }
   }
+
+  .setting-panel
+  {
+    margin-top: 30px;
+  }
 }
 
+
+/*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Admin-Order-Page>>>>>>>>>>>>>>>>>>>>>>*/
+@media (max-width: 991px) {
+ .admin-page .block-a{
+  padding-left: 15px !important;
+  }
+  .tabel-foot-container .gray{
+    display: none;
+  } 
+}
+.admin-page{
+  font-size: 16px;
+  color: #000;
+  font-weight: 600;
+}
+.admin-page .container{
+  padding: 0;
+}
+.admin-page .heading{
+  padding: 25px 0;
+}
+.admin-page .admin-centr label{
+  font-size: 25px;
+  font-weight: bold;
+  font-family: 'PT Sans';
+  color: #000;
+  text-align: center;
+}
+.admin-page .admin-right label{
+  font-size: 25px;
+  font-weight: bold;
+  font-family: 'PT Sans';
+  color: #fe0000;
+  text-align: right;
+  text-transform: uppercase;
+}
+.admin-page .inner-order-block h1{
+  width: 100%;
+  background-color: #000;
+  padding: 7px 10px;
+  color: #fff;
+  font-size: 25px;
+  font-weight: bold;
+}
+.admin-page .inner-order-block{
+  background-color: #3ab54a;
+  padding-bottom: 25px;
+}
+.admin-page .block-a{
+  padding-left: 0;
+  padding-right: 15px;
+}
+.admin-page .inner-order-block-b{
+  background-color: #fff884;
+}
+.admin-page .inner-order-block-c{
+  background-color: #c6c6c6;
+}
+.admin-page .inner-order-block .content-field{
+  width: 100%;
+}
+.admin-page .inner-order-block .content-field label.left{
+  width: 45%;
+  margin-right: 5%;
+  text-align: right;
+}
+.admin-page .inner-order-block .content-field label.right{
+  width: 50%;
+  text-align: left;
+}
+.admin-page .inner-order-block{
+  min-height: 290px;
+}
+.admin-page .inner-order-block p{
+  padding-left: 15px;
+}
+.admin-page .inner-order-block-c {
+  padding-bottom: 74px;
+}
+.admin-page .content-body-sec{
+  padding-bottom: 25px;
+  border-bottom: 3px solid #000;
+}
+.admin-page .block-b .content-field .left{
+  text-align: left !important;
+  padding-left: 15px;
+}
+.admin-page .text-right{
+  text-align: right !important;
+}
+.admin-page  .receipt-block{
+  background-color: #bfbfbf;
+  padding: 20px;
+  border-radius: 5px;
+}
+.admin-page .receipt-block-color label,
+.admin-page .receipt-block label{
+  width: 50%;
+}
+.admin-page .receipt-block label.left{
+  text-align: right;
+  width: 30%;
+  margin-right: 3%;
+}
+.admin-page .margin-block{
+  margin-top: 20px;
+}
+.admin-page .receipt-block-color label.left{
+  width: 47% !important;
+  text-align: right;
+  margin-right: 3%;
+}
+.admin-page .receipt-block-color{
+  background-color: #bfbfbf;
+  padding: 20px;
+  border-radius: 5px;
+}
+.admin-page .green-color{
+  background-color: #3ab54a;
+  min-height: 246px;
+}
+.admin-page .yellow-color{
+  background-color: #fff884;
+  min-height: 246px;
+}
+.admin-page .receipt-table{
+  float: left;
+  width: 100%;
+}
+.admin-page .receipt-table .credit-table{
+  padding: 0px !important;
+}
+.admin-page .receipt-table table{
+  width: 100%;
+  font-family: 'PT Sans';
+  font-size: 18px;
+  font-weight: bold;
+}
+.admin-page .receipt-table table h3{
+  font-family: 'PT Sans';
+  font-size: 20px;
+  font-weight: bold;
+  margin: 5px 0px 0px 0px;
+}
+.admin-page .receipt-table table p{
+  font-family: 'PT Sans';
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 25px;
+}
+.admin-page .receipt-table table label{
+  font-family: 'PT Sans';
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0px;
+  width: 100%;
+}
+.admin-page .receipt-table table tr.heading th{
+  font-family: 'PT Sans';
+  font-size: 20px;
+  font-weight: bold;
+  border-left: 0px;
+  border-right: 0px;
+  background-color: #bfbfbf;
+  height: 50px;
+  padding-left: 10px;
+}
+.admin-page .receipt-table table tr td.first,
+.admin-page .receipt-table table tr.heading th.first{
+  border-right: 5px solid #fffaf2;
+}
+.admin-page .receipt-table table tr.odd{
+  background-color: #e3e3e3; 
+}
+.admin-page .receipt-table table tr.odd td,
+.admin-page .receipt-table table tr.even td{
+  padding-left: 10px;
+}
+.admin-page .receipt-table table tr.even{
+  background-color: #fffbb2; 
+}
+.tabel-foot-container .gray{
+  background-color: #bfbfbf;
+  height: 20px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+.sub-main-container{
+  background-color: #bfbfbf;
+  width: 30%;
+  float: right;
+}
+.sub-main-container .subtotal-container{
+  width: 100%;
+}
+.sub-main-container .subtotal-container label{
+  width: 39%;
+  margin-bottom: 0px;
+  font-size: 22px;
+  font-weight: normal;
+  text-align: right;
+}
+.sub-main-container .subtotal-container label.left{
+  width: 55%;
+  padding-right: 3%;
+  margin-right: 3%;
+  border-right:5px solid #fff;
+  text-align: right; 
+}
+.sub-main-container .subtotal-container label p{
+  font-size: 12px;
+  margin: 0;
+  line-height: 26px;
+  font-weight: normal;
+}
