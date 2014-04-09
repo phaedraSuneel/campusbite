@@ -1,0 +1,35 @@
+<table class="week-report">
+	<thead>
+	<tr>
+    <th width="5%" class="bottom_border name">No.</th>
+		<th width="10%" class="bottom_border">Status</th>
+		<th width="10%" class="bottom_border">Type</th>
+		<th width="20%" class="bottom_border">Payment mehtod</th>
+		<th width="15%" class="bottom_border">Request time</th>
+		<th width="20%" class="bottom_border">Amount($)</th>
+		<th width="25%" class="bottom_border">Created at</th>
+	</tr>
+	</thead>
+	<tbody>
+		<% @orders.each do |order| %>
+			<tr>
+				<td width="5%" ><%= order.id %></td>
+				<td width="10%"><%= order.status %></td>
+				<td width="10%"><%= order.order_type%></td>
+				<td width="20%"><%= order.method_type%></td>
+				<td width="15%"><%= order.request_time %></td>
+				<td width="20%"><%= order.total_bill%></td>
+				<td width="25%"><%= order.created_at.strftime("%m/%d/%Y %H:%M %p") %></td>
+			</tr>
+		<% end -%>
+	</tbody>
+</table>	
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".week-report").dataTable({
+			paginate: true,
+  		scrollY: 300
+		});
+	})
+</script>

@@ -18,9 +18,13 @@ class DashboardController < ApplicationController
 
   def restaurant
     @restaurant = current_user.restaurant.first
+    #@restaurant = Restaurant.first
     @orders = @restaurant.orders.order("created_at desc")
     @customers = (@restaurant.customers).uniq.sort {|a,b| b.total_order(@restaurant) <=> a.total_order(@restaurant)}
+    @last_week_orders = @restaurant.last_week_orders
+    @last_month_orders = @restaurant.last_month_orders
   end
+
 
   def contact_admin
     @user = current_user

@@ -109,4 +109,16 @@ class Restaurant < ActiveRecord::Base
     self.orders.collect(&:user)
   end
 
+  def last_week_orders
+    week_last_day = Time.now.beginning_of_week - 1.day 
+    week_first_day = week_last_day.beginning_of_week
+    self.orders.where(:created_at => week_first_day..week_last_day).order("created_at desc")
+  end
+
+  def last_month_orders
+    last_month = Time.now - 1.month
+    month_first_day = last_month.beginning_of_month
+    month_last_day = last_month.end_of_month
+    self.orders.where(:created_at => month_first_day..month_last_day).order("created_at desc")
+  end 
 end
