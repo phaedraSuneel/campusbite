@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="container">
+		<h1>New restaurant</h1>
+		<%= render 'form' %>
+		<% if can? :read, Restaurant %>  
+			<%= link_to 'Back', restaurants_path %>
+		<% end %>	
+ 	</div>
+</div> 				

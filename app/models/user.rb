@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   has_many :reviews, :dependent => :destroy  
   has_many :cards, :dependent => :destroy
   has_many :payments, :dependent => :destroy
-  has_many :restaurant, :dependent => :destroy
+  has_many :restaurants, :dependent => :destroy
   accepts_nested_attributes_for :addresses
 
   before_create :add_default_role
@@ -61,6 +61,10 @@ class User < ActiveRecord::Base
 
   def name
     "#{self.first_name} #{self.last_name}"
+  end
+
+  def restaurant
+    self.restaurants.first
   end
 
   def get_cart(restaurant)

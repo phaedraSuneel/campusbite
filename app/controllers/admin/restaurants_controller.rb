@@ -1,18 +1,12 @@
-class RestaurantsController < ApplicationController
+class Admin::RestaurantsController < AdminController
 
   after_filter :rollback_if_not_admin, :only => [:update]
   
   def rollback_if_not_admin
-    p "rooback"
     unless current_user.user_admin?
-    #roll back changes
-      p 'not admin'
       version = @restaurant.versions.count
-      if version > 1
-        @restaurant.reset_to!(version - 1)
-        @restaurant.status = "pending"
-      end
-
+      @restaurant.reset_to!(1)
+      @restaurant.status = "pending"
       flash[:notice] = "Your changes will be reflected once an admin has reviewed them"
     end
   end  
@@ -96,7 +90,7 @@ class RestaurantsController < ApplicationController
       @restaurant = @school.restaurants.build(params[:restaurant])
       if @restaurant.save
       flash[:notice] = 'Restaurant was successfully created.'
-      redirect_to [@school, @restaurant]  
+      redirect_to admin_school_restaurant_path(@school, @restaurant)
       else
         render action: "new"
       end
@@ -105,7 +99,7 @@ class RestaurantsController < ApplicationController
       @restaurant.delivery_eta = params[:from_eta] + "-" +  params[:to_eta] + "Minutes" unless params[:from_eta].blank? and params[:to_eta].blank?
       if @restaurant.save
         flash[:notice] = 'Restaurant was successfully created.'
-        redirect_to @restaurant  
+        redirect_to admin_restaurant_path(@restaurant)
       else
         render action: "new"
       end  
@@ -118,7 +112,7 @@ class RestaurantsController < ApplicationController
       @restaurant = @school.restaurants.find(params[:id])
       if @restaurant.update_attributes(params[:restaurant])
         flash[:notice] = 'Restaurant was successfully updated.'
-        redirect_to [@school, @restaurant]
+        redirect_to admin_school_restaurant_path(@school, @restaurant)
       else
         render action: "edit"
       end
@@ -126,7 +120,7 @@ class RestaurantsController < ApplicationController
       @restaurant = Restaurant.find(params[:id])
       if @restaurant.update_attributes(params[:restaurant])
         flash[:notice] = 'Restaurant was successfully updated.'
-        redirect_to @restaurant
+        redirect_to admin_restaurant_path(@restaurant)
       else
         render action: "edit"
       end
@@ -140,57 +134,13 @@ class RestaurantsController < ApplicationController
       @restaurant = @school.restaurants.find(params[:id])
       @restaurant.destroy
       flash[:notice] = 'Restaurant was successfully deleted.'
-      redirect_to [@school, @restaurant]
+      redirect_to admin_school_restaurants_path(@school)
     else
       @restaurant = Restaurant.find(params[:id])
       @restaurant.destroy
       flash[:notice] = 'Restaurant was successfully deleted'
-      redirect_to @restaurant
+      redirect_to admin_restaurants_path
     end
-  end  
-
-  def add_favorite
-    if user_signed_in?
-      restaurant = Restaurant.find(params[:id])
-      unless !current_user.favorites.find_by_restaurant_id(params[:id]).blank?
-        favorite = restaurant.favorites.create(:user_id => current_user.id)
-        flash[:notice] = 'This restaurant has been added to your favorites'
-      else   
-        flash[:notice] = 'This restaurant has been already added to your favorites'
-      end   
-      redirect_to :back
-    else
-      flash[:notice] = 'please Sign In than add to favorite'
-      redirect_to new_user_session_path
-    end   
-  end
-
-  def new_review
-    if user_signed_in?
-      restaurant = Restaurant.find(params[:id])
-      @review = restaurant.reviews.new(params[:review])
-      if @review.save
-        flash[:notice] = 'You Successfully review this restaurant'
-        redirect_to :back
-      else 
-        flash[:notice] = 'Sorry you can not review this restaurant'
-        redirect_to :back
-      end
-    else
-      flash[:notice] = 'please Sign In than review this restaurant'
-      redirect_to new_user_session_path
-    end
-  end
-
-  def edit_review
-    @review = Review.find(params[:id])
-    if @review.update_attributes(params[:review])
-      flash[:notice] = 'Review successfully updated'
-      redirect_to :back
-    else
-      flash[:notice] = 'Review not updated'
-      redirect_to :back
-    end  
   end
 
   def order
@@ -201,4 +151,5 @@ class RestaurantsController < ApplicationController
   def order_detail
     @order = Order.find(params[:id])
   end
+
 end

@@ -37,6 +37,8 @@ gem 'progress_bar'
 gem 'kaminari'
 
 gem "braintree"
+
+gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

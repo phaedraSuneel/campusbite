@@ -1,5 +1,11 @@
 class AdminController < ApplicationController
 
+  layout "admin_layout"
+
+  def user_layout
+    "admin_layout"
+  end
+
   #### User Model ##########
   def user
     authorize! :read, User

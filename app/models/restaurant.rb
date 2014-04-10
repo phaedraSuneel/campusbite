@@ -1,5 +1,7 @@
 class Restaurant < ActiveRecord::Base
 
+  versioned
+  
   belongs_to :school
   belongs_to :user
   has_many  :restaurant_categories

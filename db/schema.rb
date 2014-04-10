@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140408101511) do
+ActiveRecord::Schema.define(:version => 20140410105654) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -332,11 +332,12 @@ ActiveRecord::Schema.define(:version => 20140408101511) do
   end
 
   create_table "restaurants", :force => true do |t|
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "school_id"
     t.integer  "avg_rating", :default => 0
     t.integer  "user_id"
+    t.string   "status",     :default => "completed"
   end
 
   create_table "reviews", :force => true do |t|
@@ -407,5 +408,26 @@ ActiveRecord::Schema.define(:version => 20140408101511) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], :name => "index_users_roles_on_user_id_and_role_id"
+
+  create_table "versions", :force => true do |t|
+    t.integer  "versioned_id"
+    t.string   "versioned_type"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "user_name"
+    t.text     "modifications"
+    t.integer  "number"
+    t.integer  "reverted_from"
+    t.string   "tag"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "versions", ["created_at"], :name => "index_versions_on_created_at"
+  add_index "versions", ["number"], :name => "index_versions_on_number"
+  add_index "versions", ["tag"], :name => "index_versions_on_tag"
+  add_index "versions", ["user_id", "user_type"], :name => "index_versions_on_user_id_and_user_type"
+  add_index "versions", ["user_name"], :name => "index_versions_on_user_name"
+  add_index "versions", ["versioned_id", "versioned_type"], :name => "index_versions_on_versioned_id_and_versioned_type"
 
 end

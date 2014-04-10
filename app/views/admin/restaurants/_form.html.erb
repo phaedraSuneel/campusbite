@@ -1,0 +1,293 @@
+<%= form_for([@school, @restaurant], :url => set_restaurant_url(@school, @restaurant) , :html => { :multipart => true}) do |f| %>
+  <% if @restaurant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+
+      <ul>
+      <% @restaurant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <label>Restaurant Contact Info </label> <hr>
+  <%= f.fields_for :contact_info do |f| %>
+    <div class="field">
+      <%= f.label :restaurant_name %><br />
+      <%= f.text_field :restaurant_name %>
+    </div>
+    <div class="field">
+      <%= f.label :restaurant_phone %><br />
+      <%= f.text_field :restaurant_phone %>
+    </div>
+    <div class="field">
+      <%= f.label :restaurant_website %><br />
+      <%= f.text_field :restaurant_website %>
+    </div>
+    <div class="field">
+      <%= f.label :restaurant_street_address %><br />
+      <%= f.text_field :restaurant_street_address %>
+    </div>
+    <div class="field">
+      <%= f.label :state %><br />
+      <%= f.text_field :state %>
+    </div>
+    <div class="field">
+      <%= f.label :city %><br />
+      <%= f.text_field :city %>
+    </div>
+    <div class="field">
+      <%= f.label :zip_code %><br />
+      <%= f.text_field :zip_code %>
+    </div>
+    <div class="field">
+      <%= f.label :map_photo, "Restaurant Map Picture" %><br />
+      <%= f.file_field :map_photo %>
+    </div>
+    <div class="field">
+      <%= f.label :contact_name %><br />
+      <%= f.text_field :contact_name %>
+    </div>
+    <div class="field">
+      <%= f.label :contact_email %><br />
+      <%= f.email_field :contact_email %>
+    </div>
+
+  <% end %>  
+  <br >
+  <label>Restaurant Info </label> 
+  <hr>
+  
+  <%= f.fields_for :restaurant_info do |f| %>
+    <div class="field">
+      <%= f.label :logo, "Restaurant logo" %><br />
+      <%= f.file_field :logo %>
+    </div>
+    <div class="field">
+      <%= f.label :about_restaurant %><br />
+      <%= f.text_area :about_restaurant , :cols => 40, :rows => 4 %>
+    </div> 
+
+    <div class="field">
+      <%= f.label :is_pick_up, "Pick Up" %><br />
+      <%= f.label :is_pick_up, "Yes", :value => "true"  %>
+      <%= f.radio_button :is_pick_up, true %>
+      <%= f.label :is_pick_up, "No", :value => "false" %>
+      <%= f.radio_button :is_pick_up, false, :checked => true %>
+    </div>
+
+    
+
+    <div class="field">
+      <%= f.label :is_featured, "Feature" %><br />
+      <%= f.label :is_featured, "Yes", :value => "true"  %>
+      <%= f.radio_button :is_featured, true %>
+      <%= f.label :is_featured, "No", :value => "false" %>
+      <%= f.radio_button :is_featured, false, :checked => true %>
+    </div>
+    
+    
+
+    <div class="field">
+      <%= f.label :min_order %><br />
+      <%= f.text_field :min_order %>
+    </div>
+
+    <div class="field">
+      <%= f.label :sale_tax, "Sale Tax (%)" %><br />
+      <%= f.text_field :sale_tax %>
+    </div>
+  <% end %>
+  <br >
+
+  <label> Delivery Information </label>
+  <hr>
+  <%= f.fields_for :delivery_info do |f| %>
+    
+    <div class="field">
+      <%= f.label :is_delivery, "Delivery" %><br />
+      <%= f.label :is_delivery, "Yes", :value => "true"  %>
+      <%= f.radio_button :is_delivery, true, :checked => true %>
+      <%= f.label :is_delivery, "No", :value => "false" %>
+      <%= f.radio_button :is_delivery, false %>
+    </div>
+
+    <div class="field">
+      <%= f.label :delivery_estimated_time, "Restaurant delivery estimated time" %><br />
+      <%= f.number_field  :delivery_estimated_time, :min => 0 %> ( minutes )
+    </div>
+
+    <div class="field">
+      <%= f.label :delivery_charges %><br />
+      <%= f.text_field :delivery_charges %>
+    </div>
+
+    <div class="field">
+      <%= f.label :delivery_distance, "Delivery Distance (miles)"  %><br />
+      <%= f.text_field :delivery_distance %>
+    </div>
+  <% end -%>
+
+  <label> Ordering Information </label>
+  <hr>
+  <%= f.fields_for :order_info do |f| %>
+    <div class="field">
+      <%= f.label :email_order %><br />
+      <%= f.email_field :email_order %>
+    </div>
+    <div class="field">
+      <%= f.label :fax_number, "Restaurant Fax No."  %><br />
+      <%= f.text_field :fax_number %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :gprs, "GPRS Option" %><br />
+      <%= f.label :gprs, "Yes", :value => "true"  %>
+      <%= f.radio_button :gprs, true %>
+      <%= f.label :gprs, "No", :value => "false" %>
+      <%= f.radio_button :gprs, false, :checked => true %>
+    </div>
+    
+    <div class="field">
+      <%= f.label :cloud_printer_email %><br />
+      <%= f.email_field :cloud_printer_email %>
+    </div>
+
+    <div class="field">
+      <%= f.label :cloud_printer_password %><br />
+      <%= f.password_field :cloud_printer_password %>
+    </div>
+
+    <div class="field">
+      <%= f.label :sms_option, "Sms Option" %><br />
+      <%= f.label :sms_option, "Yes", :value => "true"  %>
+      <%= f.radio_button :sms_option, true %>
+      <%= f.label :sms_option, "No", :value => "false" %>
+      <%= f.radio_button :sms_option, false, :checked => true %>
+    </div>
+  <% end -%>
+  <br>
+  <label> Bank Information </label>
+  <hr>
+  <%= f.fields_for :bank_info do |f| %>
+    <div class="field">
+      <%= f.label :bank_name%><br />
+      <%= f.text_field :bank_name %>
+    </div>
+     <div class="field">
+      <%= f.label :bank_account_number%><br />
+      <%= f.text_field :bank_account_number %>
+    </div>
+    <div class="field">
+      <%= f.label :routine_number%><br />
+      <%= f.text_field :routine_number %>
+    </div>
+    <div class="field">
+      <%= f.label :swift_code%><br />
+      <%= f.text_field :swift_code %>
+    </div>
+
+  <% end -%>
+  <br >
+  <div class="row">
+    <div class="col-md-4">
+      <label> Restaurant Opening & Closing Time </label>
+      
+      <%= f.fields_for :operation do |f| %>
+        <%= f.fields_for :sechedules do |f| %>
+          <div class="field">
+            <%= f.label :day %>
+            <%= f.text_field :day,  :readonly => true%>
+          </div>
+          <div class="field">
+            <%= f.label :opening_time %>
+            <%= f.time_select :opening_time, {:ampm => true, :prompt => true } %>
+          </div>
+          <div class="field">
+            <%= f.label :closing_time %>
+            <%= f.time_select :closing_time, {:ampm => true, :prompt => true} %>
+          </div> 
+        <% end %>  
+      <% end %>
+    </div>  
+    <div class="col-md-4">
+      <label> Restaurant Order Pick Time </label>
+      <%= f.fields_for :pick_up do |f| %>
+        <%= f.fields_for :sechedules do |f| %>
+          <div class="field">
+            <%= f.label :day %>
+            <%= f.text_field :day,  :readonly => true%>
+          </div>
+          <div class="field">
+            <%= f.label :opening_time %>
+            <%= f.time_select :opening_time, {:ampm => true, :prompt => true } %>
+          </div>
+          <div class="field">
+            <%= f.label :closing_time %>
+            <%= f.time_select :closing_time, {:ampm => true, :prompt => true} %>
+          </div> 
+        <% end %> 
+      <% end %>
+    </div>  
+    <div class="col-md-4">
+      <label> Restarant Order Deliver Time </label>
+      <%= f.fields_for :delivery do |f| %>
+        <%= f.fields_for :sechedules do |f| %>
+          <div class="field">
+            <%= f.label :day %>
+            <%= f.text_field :day,  :readonly => true%>
+          </div>
+          <div class="field">
+            <%= f.label :opening_time %>
+            <%= f.time_select :opening_time, {:ampm => true, :prompt => true} %>
+          </div>
+          <div class="field">
+            <%= f.label :closing_time %>
+            <%= f.time_select :closing_time, {:ampm => true, :prompt => true} %>
+          </div> 
+        <% end %> 
+      <% end %>
+    </div>  
+  </div>  
+  <br>
+ <label> Select Categories of Restaurant</label>
+  <div class="control-group">
+    <%#= hidden_field_tag "restaurant[restaurant_category_ids][]", nil %>
+    <div class="controls">
+      <% RestaurantCategory.all.each do |cat| %>
+        <%= check_box_tag "restaurant[restaurant_category_ids][]", cat.id, @restaurant.restaurant_category_ids.include?(cat.id), id: dom_id(cat), :class => 'pull-left' %>
+        <%= label_tag dom_id(cat), cat.category_name %> <br >
+      <% end %>
+    </div>
+  </div>
+  <% unless !@restaurant.user.try(:email).blank? %>
+    <label> Restaurant Admin Information </label>
+    <%= f.fields_for :user do |f| %>
+      <div class="field">
+        <%= f.label :first_name %>
+        <%= f.text_field :first_name %>
+      </div>
+      <div class="field">
+        <%= f.label :last_name %>
+        <%= f.text_field :last_name %>
+      </div>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+      </div>
+      <div class="field">
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+      </div>
+      <div class="field" >
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation %>
+      </div>
+    <% end %>
+    
+  <% end -%>  
+  <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

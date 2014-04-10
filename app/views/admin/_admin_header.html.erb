@@ -1,0 +1,30 @@
+<nav class="row menu-bar navbar-default" role="navigation">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigations</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="menu nav navbar-nav">
+          
+          <li><%= link_to "Dashboard", '/admin' %><span class="border-right-img"></span></li>
+          <li><%= link_to "User" , user_admin_index_path %><span class="border-right-img"></span></li>
+          <li><%= link_to "Role" , role_admin_index_path %><span class="border-right-img"></span></li>
+          <li><%= link_to "School",  admin_schools_path %><span class="border-right-img"></span></li>
+          <li><%= link_to "Restaurant",  admin_restaurants_path %><span class="border-right-img"></span></li>
+        </ul>
+        
+        <ul class="login nav navbar-nav navbar-right">
+            <li class="sign-up"><%= link_to "Home", '/' %><span class="border-right-img"></span></li>
+            <li class="sign-up"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %> <span class="border-right-img"></span></li>
+        </ul>
+        
+      </div>
+    </div>
+  </nav>

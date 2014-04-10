@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="container">
+		<p>
+		  <b>School name:</b>
+		  <%= @school.school_name %>
+		</p>
+
+		<p>
+		  <b>School address:</b>
+		  <%= @school.school_address %>
+		</p>
+
+		<p>
+		  <b>Branch name:</b>
+		  <%= @school.branch_name %>
+		</p>	
+		<% if can? :read, Restaurant %>  
+			<%= link_to "View Restaurants", admin_school_restaurants_path(@school) %> 
+		<% end %>	
+		<% if can? :create, Restaurant %>	
+			| <%= link_to 'Add More Restaurant', new_admin_school_restaurant_path(@school) %>
+		<% end %>	
+		<% if can? :read, Building %>  
+			| <%= link_to "View Buildings", buildings_admin_school_path(@school) %> 
+		<% end %>	
+		<% if can? :create, Building %>	
+			| <%= link_to 'Add More Building', new_building_admin_school_path(@school) %>
+		<% end %>
+		<% if can? :update, School %>
+			| <%= link_to 'Edit', edit_admin_school_path(@school) %> 
+		<% end %>	
+		<% if can? :read, School %>	
+			| <%= link_to 'Back', admin_schools_path %>
+		<% end %>
+	</div>
+</div>	

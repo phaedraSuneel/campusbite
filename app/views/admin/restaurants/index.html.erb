@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="container"> 
+    <h4>Listing of  Restaurants </h4>
+    <table class="table" >
+      <tr>
+        <th>Restaurant name</th>
+        <th>View</th>
+        <th>Update</th>
+        <th>Delete</th>
+      </tr>
+      <% @restaurants.each do |restaurant| %>
+        <tr>
+          <td><%= restaurant.contact_info.restaurant_name %></td>
+          <% unless params[:school_id].blank? %>
+            
+              <td><%= link_to 'Show', admin_school_restaurant_path(@school,restaurant) %></td> 
+              <td><%= link_to 'Edit', edit_admin_school_restaurant_path(@school,restaurant) %></td>
+              <td><%= link_to 'Destroy', admin_school_restaurant_path(@school,restaurant), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+          <% else %>  
+              <td><%= link_to 'Show', admin_restaurant_path(restaurant) %></td>
+              <td><%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %></td>
+              <td><%= link_to 'Destroy', admin_restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %>
+              </td>
+          <% end %>  
+        </tr>
+      <% end %>
+    </table>
+    <br />
+    <% unless params[:school_id].blank? %>
+        <%= link_to 'New Restaurant', new_admin_school_restaurant_path(@school) %> | 
+        <%= link_to 'Back', admin_school_path(@school) %> 
+    <%else %>
+        <%= link_to 'New Restaurant', new_admin_restaurant_path %>
+    <% end %>  
+  </div>
+</div>

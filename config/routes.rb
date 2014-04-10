@@ -1,5 +1,36 @@
 Ordering::Application.routes.draw do
 
+  namespace :admin do
+    
+    get '/admin', to: 'admin#index'
+    
+    resources :schools do 
+      collection do 
+        post "create_building"
+      end  
+      member do 
+        get "new_building"
+        get "buildings"
+      end
+      resources :restaurants do
+        member do 
+          get 'order'
+          get 'order_detail'
+        end
+      end
+    end 
+
+    resources :restaurants do
+      member do 
+        get 'order'
+        get 'order_detail'
+      end
+    end
+    
+  end 
+
+
+
   resources :restaurant_coupons
 
 

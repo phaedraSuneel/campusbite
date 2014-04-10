@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ordering</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="main-body">
+    <div class="ordering_header">
+      <%= render :partial => "admin_header" %> 
+    </div>
+    <div class="flash row margin-auto">
+      <% flash_message = current_user.blank? ? "flash-msg" : "signed-in-flash-msg" %>
+      <div class="<%= flash_message %>">
+        <% flash.each do |name, msg| %>
+          <% if msg.is_a?(String) %>
+            <% unless name == :warning %>
+              <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
+                <a class="close" data-dismiss="alert">&#215;</a>
+                <%= content_tag :div, msg, :id => "flash_#{name}" %>
+              </div>
+            <% else %>
+              <div class="alert alert-<%= name%> ">
+                <a class="close" data-dismiss="alert">&#215;</a>
+                <%= content_tag :div, msg, :id => "flash_#{name}" %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>  
+    <%= yield %>
+    <div class="ordering_footer">
+      <%= render :partial => "admin_footer" %> 
+    </div>  
+  </div>  
+</body>
+</html>

@@ -1,0 +1,23 @@
+<div class="row search-container result-page menupage checkout-page last-page">
+  <div class="container">
+  	<table>
+		  <tr>
+		    <th>Building name</th>
+		    <th>City</th>
+		    <th>State</th>
+		    <th>Zip Code</th>
+		  </tr>
+		  <% @buildings.each do |building| %>
+			  <tr>
+			  	<td><%= building.building_name %></td>
+			  	<td><%= building.city %></td>
+			  	<td><%= building.state %></td>
+			  	<td><%= building.zip_code %></td>		
+			  </tr>	
+			<% end -%>  
+		</table>
+
+		<%= link_to "back", admin_school_path(@school) %>
+
+  </div>
+</div>  	
