@@ -1,0 +1,14 @@
+<div class="row">
+  <div class="container">
+    <div class="row">
+      <h3>List of  Menus </h3>
+    </div>
+    <div class="row">
+      <% @menu.each do |menu| %>
+        <span class="col-md-4">
+          <%= link_to Restaurant.find(menu.restaurant.id).restaurant_name+"'s Menu", admin_menu_path(menu)%>
+        </span> <br />
+      <% end%>
+    </div>   
+  </div>
+</div>    

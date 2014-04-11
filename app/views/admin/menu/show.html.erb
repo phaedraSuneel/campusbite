@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="container">
+    <h3>View Menu </h3>
+    </h3>
+    <p>
+      <% unless @menu.menu_categories.blank? %>
+        <ul>
+            <% @menu.menu_categories.each do |category| %>
+              <li>
+                <span> <%= category.category_name %></span>  
+                  
+                    (<%= link_to "delete" ,admin_menu_menu_category_path(@menu, category), :method => :delete, :confirm => "are you sure?" %> | 
+                    <%= link_to "edit" ,edit_admin_menu_menu_category_path(@menu, category)%>)
+                <ul> 
+                  <% unless category.menu_items.blank? %>
+                    <% category.menu_items.each do |item |%>
+                      <li><label> <%= item.item_name %> </label> ($<%= item.price %>) 
+                       (<%= link_to "show" ,admin_menu_menu_item_path(@menu, item) %> |
+                       (<%= link_to "delete" ,admin_menu_menu_item_path(@menu, item), :method => :delete, :confirm => "are you 
+                       sure?" %> |<%= link_to "edit" ,edit_admin_menu_menu_item_path(@menu, item)%> )<br >
+                         <span><%= item.short_description %></span> <br >
+                      </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              </li>  
+            <% end%>
+        </ul>  
+      <% else %>
+        <span> No Menu Category Existed </span>
+      <% end %>
+    </p>  
+    <br />
+    <% if can? :read, Menu %>  
+      <%= link_to "back to menus" , admin_menu_index_path %> | 
+    <% end %>  
+    <%if can? :create, MenuCategory %>    
+      <%= link_to "Add more menu category",  new_admin_menu_menu_category_path(@menu) %> |
+    <% end %>  
+    <% if can? :create, MenuItem %>  
+      <%= link_to "Add more menu item",  new_admin_menu_menu_item_path(@menu) %> | 
+    <% end  %>  
+  </div>
+</div>

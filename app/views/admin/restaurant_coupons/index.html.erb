@@ -1,0 +1,25 @@
+<h1>Listing restaurant_coupons</h1>
+
+<table>
+  <tr>
+    <th>Restaurant</th>
+    <th>Expiration date</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @restaurant_coupons.each do |restaurant_coupon| %>
+  <tr>
+    <td><%= restaurant_coupon.restaurant.restaurant_name %></td>
+    <td><%= restaurant_coupon.expiration_date %></td>
+    <td><%= link_to 'Show', admin_restaurant_coupon_path(restaurant_coupon) %></td>
+    <td><%= link_to 'Edit', edit_admin_restaurant_coupon_path(restaurant_coupon) %></td>
+    <td><%= link_to 'Destroy', admin_restaurant_coupon_path(restaurant_coupon), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Restaurant coupon', new_admin_restaurant_coupon_path %>

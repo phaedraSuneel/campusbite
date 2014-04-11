@@ -1,0 +1,14 @@
+<div class="property">
+	Property Name  <input type='text' name = 'menu_item[menu_item_properties_attributes]["<%= length %>"][name]' >  
+	Price  <input type='text' name = 'menu_item[menu_item_properties_attributes]["<%= length %>"][price]' >
+	<a href="#" class="remove-property-field"> Remove </a>
+</div>
+ <br />
+
+ <script>
+	$(document).ready(function(){
+		$(".remove-property-field").click(function(){
+	      $(this).parent().remove();
+	  	});
+	});
+</script>

@@ -72,12 +72,12 @@
       <% end %> 
     </p>
     <p>
-      <%#= link_to "View Menu" , menu_path(@restaurant.menu) %>  
+      <%= link_to "View Menu" , admin_menu_path(@restaurant.menu) %>  
     </p>  
     <% unless params[:school_id].blank? %>
-      <%= link_to 'Edit', edit_admin_school_restaurant_path(@school, @restaurant) %> |
-      <%= link_to 'Back', admin_school_restaurants_path(@school) %> 
-      <%= link_to "View Orders", order_admin_school_restaurant_path(@restaurant) %>
+      <%= link_to 'Edit', edit_admin_school_restaurant_path(@school, @restaurant) %> 
+      | <%= link_to 'Back', admin_school_restaurants_path(@school) %> 
+      | <%= link_to "View Orders", order_admin_school_restaurant_path(@restaurant) %>
     <% else %>
       <%= link_to 'Edit', edit_admin_restaurant_path(@restaurant) %> |
       <%= link_to 'Back', admin_restaurants_path %> |

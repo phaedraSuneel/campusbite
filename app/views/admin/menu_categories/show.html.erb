@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Category name:</b>
+  <%= @menu_category.category_name %>
+</p>
+
+<%= link_to 'Edit', edit_menu_menu_category_path(@menu, @menu_category) %> |
+<%= link_to 'Back', @menu %>

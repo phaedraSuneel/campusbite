@@ -46,7 +46,7 @@ $(document).ready(function(){
     id = $(this).val();
     category_content = $(this).parent().parent().find(".menu-category-selector");
     $.ajax ({
-      url:  '/addons/category_field',
+      url:  'category_field',
       data: {id: id },
       success: function(data)
       {
@@ -60,7 +60,7 @@ $(document).ready(function(){
     length = sub_add_content.find('input').length;
     $(".Add-on-label").removeClass("hide");
     $.ajax ({
-      url:  '/addons/sub_addon_field',
+      url:  'sub_addon_field',
       data: {length: length },
       success: function(data)
       {

@@ -26,19 +26,29 @@ Ordering::Application.routes.draw do
         get 'order_detail'
       end
     end
-    
-  end 
 
-
+  resources :menu do
+    resources :menu_categories 
+    resources :menu_items
+  end
+  
+  resources :addons do
+    collection do 
+      get "category_field"
+      get "sub_addon_field"
+    end
+  end  
 
   resources :restaurant_coupons
-
-
   resources :restaurant_offers
+  resources :restaurant_categories
+  resources :cuisines
+
+  end 
 
   resources :card
 
-  resources :cuisines
+  
 
   resources :dashboard do 
     collection do
@@ -61,12 +71,7 @@ Ordering::Application.routes.draw do
   end
   match '/dashboard/contact_admin' => 'dashboard#contact_admin', :as => :contact_admin 
 
-  resources :addons do
-    collection do 
-      get "category_field"
-      get "sub_addon_field"
-    end
-  end  
+    
 
   resources :schools do 
     collection do 
@@ -81,10 +86,7 @@ Ordering::Application.routes.draw do
   end  
 
 
-  resources :menu do
-    resources :menu_categories 
-    resources :menu_items
-  end
+  
 
   resources :restaurants do
     member do 
@@ -95,7 +97,7 @@ Ordering::Application.routes.draw do
       post 'edit_review'
     end
   end 
-  resources :restaurant_categories
+  
   resources :menu
   resources :menu_categories    
   resources :menu_items do

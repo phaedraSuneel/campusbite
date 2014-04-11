@@ -1,0 +1,14 @@
+<p>
+  <b>Restaurant:</b>
+  <%= @restaurant_coupon.restaurant.restaurant_name %>
+</p>
+  <b>Restaurant:</b>
+  <%= image_tag(@restaurant_coupon.coupon_image(:medium)) %>
+<p>
+  <b>Expiration date:</b>
+  <%= @restaurant_coupon.expiration_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_restaurant_coupon_path(@restaurant_coupon) %> |
+<%= link_to 'Back', admin_restaurant_coupons_path %>

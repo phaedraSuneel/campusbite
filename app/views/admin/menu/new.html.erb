@@ -1,0 +1,6 @@
+<h1>New menu</h1>
+
+<%= render 'form' %>
+<% if can? :read, Menu %>  
+	<%= link_to 'Back', menus_path %>
+<% end %>	
