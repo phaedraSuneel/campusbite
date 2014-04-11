@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="row password-changer">
+      <div class="col-md-3 heading-favorite"><label>Order Information</label></div>
+      <div class="col-md-3 heading-favorite"><label>Status</label></div>
+      <div class="col-md-2 heading-favorite"><label>Total</label></div>
+      <div class="col-md-2 heading-favorite"><label>Actions</label></div>
+    </div>
+    
+    <% @orders.each do |order|%>
+      <div class="row favorite-order favorite-order-tabel">
+        <div class="col-md-12 receipt-container">
+          <div class="row">
+            <div class="col-md-3 heading-favorite">
+              <div class="pic-delivery">
+                <p><%= order.created_at.strftime("%m/%d/%Y %H:%M %p")%></p>
+              </div>
+            </div>
+            <div class="col-md-3 heading-favorite">
+              <div class="pic-delivery">
+                <p><%= order.status %></p>
+              </div>
+            </div>
+            <div class="col-md-2 heading-favorite">
+              <div class="pic-delivery">
+                <label>$<%= order.total_bill %></label>
+              </div>
+            </div>
+            <div class="col-md-2 heading-favorite ">
+              <div class="pic-delivery">  
+                <p><%= link_to "View Reciept", "javascript:void(0)", :class => "view-reciept" %></p>
+              </div>
+            </div>
+            <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
+          </div>
+          <div class="view-reciept-data hide">
+            <div class="row receipt">
+              <div class="col-md-4">
+                <h3>Order Number: <%= order.id %></h3>
+                <h3>Order Type: <%= order.order_type %></h3>
+                <h3>Payment Method: <%= order.method_type %></h3>
+              </div>
+              <div class="col-md-4 print-head"></div>
+              <div class="col-md-3 col-md-offset-1 printer-img">
+                <a href="javascript:void(0)" class="printer-request"><span class="printer"></span>Print Receipt</a>
+              </div>
+            </div>
+            <div class="row receipt-table">
+              <div class="col-md-12 credit-table">
+                <table>
+                  <tr class="heading">
+                    <th class="first">Items</th>
+                    <th class="first">Price</th>
+                    <th class="first">Quantity</th>
+                    <th>Total</th>
+                  </tr>
+                  <% order.menu_item_orders.each_with_index do |item, index | %>
+                    <tr class="odd">
+                      <td class="first">
+                        <h3><%= item.menu_item.item_name %></h3>
+                        <% extra = 0 %>
+                        <% if item.menu_item_property_id %>
+                          <label>Size: <%= order.property_name(item.menu_item_property_id) %> </label>
+                          <% extra += order.property_price(item.menu_item_property_id) %>
+                        <% end -%>  
+                        <label>Extra Toppings: Mushrooms, Tomato, Onion</label>
+                        <p>Instructions: <%= item.instruction %></p>
+                      </td>
+                      <td class="first">$<%= extra + item.menu_item.price %></td>
+                      <td class="first"><%= item.quantity %></td>
+                      <td>$ <%= (extra + item.menu_item.price) * item.quantity  %></td>
+                  </tr>
+                  <% end %>
+                </table>
+              </div>
+            </div>
+            <div class="row special-instructions">
+              <div class="col-md-6">
+                <h3>Special Instructions:</h3>
+                <div class="note"><%= order.delivery_instruction %></div>
+              </div>
+              <div class="col-md-6 subtotal">
+                <label><span>Subtotal:</span><span class="value">$<%= order.sub_total%></span></label>
+                <label class="green"><span>Online Discount(10% off):</span><span class="value">- $0</span></label>
+                <label class="green"><span>Coupon (Ketchup):</span><span class="value">-$0</span></label>
+                <label><span>Tax:</span><span class="value">$<%= order.sale_tax %></span></label>
+                <% if order.order_type == "delivery" %>
+                  <label><span>Delivery Fee:</span><span class="value">$<%= order.delivery_charges %></span></label>
+                <% end %>  
+                <label><span>Tip:</span><span class="value">$<%= order.tip_charges %></span></label>
+                <label class="larg-size"><span>Total:</span><span class="value">$<%= order.total_bill %></span></label>
+              </div>
+            </div>
+          </div>  
+        </div>
+      </div>  
+        
+    <% end %>  
+
+  </div>
+</div>

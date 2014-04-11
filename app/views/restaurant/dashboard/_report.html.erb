@@ -1,0 +1,35 @@
+<div class="row reports-panel">
+  <div class="col-md-12">
+		<div class="row">
+  		<div class="report-tab-bar nav nav-pills" data-tabs="tabs">
+	  		<div class="col-md-2 report-nav">
+	  			<a href="#week_report" data-toggle="tab" class="active"  >Last week order</a>
+	  		</div>
+	  		<div class="col-md-2 report-nav">
+	  			<a href="#month_report" data-toggle="tab" >Last month order</a>
+	  		</div>	
+	  	</div>
+	  </div>		
+	  <div class="row report-content">
+	  	<div id="report-tab-content" class="col-md-11 tab-content">
+	  		<div class="tab-pane active" id= "week_report">
+          <%= render :partial => "last_report", :locals => {:@orders => @last_week_orders} %>
+        </div>
+        <div class="tab-pane" id= "month_report">
+          <%= render :partial => "last_report", :locals => {:@orders => @last_month_orders} %>
+        </div>
+      </div>  
+  	</div>	
+	</div>
+</div> 	
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".report-tab-bar div a").click(function(){
+			$(".report-tab-bar div a").each(function(){
+				$(this).removeClass("active");
+			});	
+			$(this).addClass("active");
+		});
+	});
+</script>

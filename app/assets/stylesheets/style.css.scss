@@ -5178,7 +5178,42 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   .setting-panel
   {
     margin-top: 30px;
+    .setting-nav a
+    {
+     background: url("/assets/tab.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+      width: 156px;
+      height: 31px;
+      display: block;
+      padding: 10px 7px;
+      font-family: 'PT Sans';
+      font-size: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+    .setting-nav a.active
+    {
+     background: url("/assets/active-tab.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+    }
+    .setting-nav a:hover
+    {
+     text-decoration:none;
+    }
+    #setting-tab-content
+    {
+      margin: 30px 0px;
+      text-align: justify;
+    }
+    .setting-content
+    {
+      background:#fff;
+
+      .messsage-update
+      {
+        color: red;
+      }
+    }
   }
+
 }
 
 

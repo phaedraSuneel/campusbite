@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140410105654) do
+ActiveRecord::Schema.define(:version => 20140411133525) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -179,8 +179,9 @@ ActiveRecord::Schema.define(:version => 20140410105654) do
   create_table "menu_categories", :force => true do |t|
     t.string   "category_name"
     t.integer  "menu_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.string   "status",        :default => "completed"
   end
 
   create_table "menu_item_orders", :force => true do |t|
@@ -207,8 +208,8 @@ ActiveRecord::Schema.define(:version => 20140410105654) do
     t.integer  "menu_category_id"
     t.float    "price"
     t.string   "short_description"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
     t.text     "description"
     t.string   "menu_item_type"
     t.boolean  "addons"
@@ -219,6 +220,7 @@ ActiveRecord::Schema.define(:version => 20140410105654) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.integer  "cuisine_id"
+    t.string   "status",             :default => "completed"
   end
 
   create_table "menus", :force => true do |t|

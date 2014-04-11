@@ -27,24 +27,46 @@ Ordering::Application.routes.draw do
       end
     end
 
-  resources :menu do
-    resources :menu_categories 
-    resources :menu_items
-  end
-  
-  resources :addons do
-    collection do 
-      get "category_field"
-      get "sub_addon_field"
+    resources :menu do
+      resources :menu_categories 
+      resources :menu_items
     end
-  end  
+    
+    resources :addons do
+      collection do 
+        get "category_field"
+        get "sub_addon_field"
+      end
+    end  
 
-  resources :restaurant_coupons
-  resources :restaurant_offers
-  resources :restaurant_categories
-  resources :cuisines
+    resources :restaurant_coupons
+    resources :restaurant_offers
+    resources :restaurant_categories
+    resources :cuisines
 
   end 
+
+  namespace :restaurant do
+    
+    resources :dashboard do 
+      get '/dashboard', to: 'dashboard#index'
+      collection do
+         get 'contact_admin'
+      end
+    end
+    resources :settings do 
+      collection do 
+        get 'edit_restaurant'
+        put 'update_restaurant'
+      end
+      member do
+        get 'edit_category'
+        put 'update_category'
+        get 'edit_item'
+        put 'update_item'
+      end
+    end
+  end
 
   resources :card
 
@@ -61,7 +83,6 @@ Ordering::Application.routes.draw do
       get 'delete_address'
       get 'delete_review'
       get 'delete_card'
-      get 'contact_admin'
       post 'add_user_card'
     end
     member do 
@@ -69,7 +90,7 @@ Ordering::Application.routes.draw do
       get 'remove_review'
     end
   end
-  match '/dashboard/contact_admin' => 'dashboard#contact_admin', :as => :contact_admin 
+  
 
     
 
@@ -83,7 +104,7 @@ Ordering::Application.routes.draw do
       get "buildings"
     end
     resources :restaurants   
-  end  
+  end
 
 
   

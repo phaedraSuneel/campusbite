@@ -1,0 +1,35 @@
+<div class="row setting-panel">
+  <div class="col-md-12">
+		<div class="row">
+  		<div class="setting-tab-bar nav nav-pills" data-tabs="tabs">
+	  		<div class="col-md-2 setting-nav">
+	  			<a href="#restaurant_information" data-toggle="tab" class="active"  >Restaurant Information</a>
+	  		</div>
+	  		<div class="col-md-2 setting-nav">
+	  			<a href="#menu_information" data-toggle="tab" >Menu Information</a>
+	  		</div>	
+	  	</div>
+	  </div>		
+	  <div class="row setting-content">
+	  	<div id="setting-tab-content" class="col-md-11 tab-content">
+	  		<div class="tab-pane active" id= "restaurant_information">
+          <%= render :partial => "restaurant_information", :locals => {:@restaurant => @restaurant} %>
+        </div>
+        <div class="tab-pane" id= "menu_information">
+          <%= render :partial => "menu_information", :locals => {:@menu => @restaurant.menu} %>
+        </div>
+      </div>  
+  	</div>	
+	</div>
+</div> 	
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".setting-tab-bar div a").click(function(){
+			$(".setting-tab-bar div a").each(function(){
+				$(this).removeClass("active");
+			});	
+			$(this).addClass("active");
+		});
+	});
+</script>
