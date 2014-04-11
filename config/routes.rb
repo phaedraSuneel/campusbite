@@ -3,7 +3,8 @@ Ordering::Application.routes.draw do
   namespace :admin do
     
     get '/admin', to: 'admin#index'
-    
+
+
     resources :schools do 
       collection do 
         post "create_building"
@@ -24,6 +25,8 @@ Ordering::Application.routes.draw do
       member do 
         get 'order'
         get 'order_detail'
+        get 'accept_request'
+        get 'reject_request'
       end
     end
 

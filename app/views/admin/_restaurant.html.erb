@@ -1,0 +1,77 @@
+<div class="col-md-8">
+  <p>
+    <b>Name:</b>
+    <%= restaurant.restaurant_name %>
+  </p>
+
+  <p>
+    <b>phone:</b>
+    <%= restaurant.contact_info.restaurant_phone %>
+  </p>
+
+  <p>
+    <b> website:</b>
+    <%= restaurant.contact_info.restaurant_website %>
+  </p>
+
+  <p>
+    <b>street add:</b>
+    <%= restaurant.contact_info.restaurant_street_address %>
+  </p>
+
+  <p>
+    <b>State:</b>
+    <%= restaurant.contact_info.state %>
+  </p>
+
+  <p>
+    <b>City:</b>
+    <%= restaurant.contact_info.city %>
+  </p>
+
+  <p>
+    <b>Zip code:</b>
+    <%= restaurant.contact_info.zip_code %>
+  </p>
+
+  <p>
+    <b>About:</b>
+    <%= restaurant.restaurant_info.about_restaurant %>
+  </p>
+
+  <p>
+    <b>pick up:</b>
+    <%= restaurant.restaurant_info.is_pick_up? ? "Yes" : "No" %>
+  </p>
+
+  <p>
+    <b>deliver:</b>
+    <%= restaurant.delivery_info.is_delivery? ? "Yes" : "No" %>
+  </p>
+
+  <p>
+    <b>Min delivery:</b>
+    $<%= restaurant.restaurant_info.min_order %>
+  </p>
+
+  <p>
+    <b>Delivery Estimate Time:</b>
+    <%= restaurant.delivery_info.delivery_estimated_time %> mints
+  </p>
+
+  <p>
+    <b>Featured:</b>
+    <%= restaurant.restaurant_info.is_featured? ? "Yes" : "No" %>
+  </p>
+
+  <p>
+    <label>Restaurant Categories</label> <br>
+    <% restaurant.restaurant_categories.each do |cat| %>
+      <span><%= cat.category_name%> </span> <br>
+    <% end %> 
+  </p>  
+</div>
+<div class="col-md-4">
+  <span><%= link_to "accept", accept_request_admin_restaurant_path(restaurant) %></span> |
+  <span><%= link_to "reject", reject_request_admin_restaurant_path(restaurant) %></span>
+</div>  
