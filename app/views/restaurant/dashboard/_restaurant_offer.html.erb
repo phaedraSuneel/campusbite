@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-md-10">  
+  	<table class="offer-tabel">
+  		<caption> Restaurant Offers </caption>
+  			<thead>
+  				<tr>
+	          <th> Description </th>
+	          <th> Package(%) </th>
+	          <th> Price </th>
+	          <th> From </th>
+	          <th> To </th>
+	          <th> Action </th>
+          </tr>
+        </thead>
+        <tbody>
+        	<% unless @offers.blank? %>
+        		<% @offers.each do |offer| %>
+        			<tr>
+        				<td><%= offer.description %></td>
+        				<td><%= offer.offer_percentage %></td>
+        				<td><%= offer.offer_price %></td>
+        				<td><%= offer.valid_from.strftime("%m/%d/%Y") %></td>
+        				<td><%= offer.valid_to.strftime("%m/%d/%Y") %></td>
+        				<td>
+        					<% unless offer.status=='pending' %>
+        						<%= link_to "edit", "javascript:void(0);", "data-toggle"=>"modal", "data-target"=>"#edit_offer_model_#{offer.id}"%> 
+        					<% else%>
+        						request pending
+        					<% end %>
+        				</td>
+        			</tr>
+        			<%= render :partial => "edit_offer_model", :locals => { :@offer => offer} %>
+        		<% end -%>
+        	<% end %>
+        </tbody>
+  	</table>	
+  </div>
+</div>  	
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".offer-tabel").dataTable({
+      paginate: true,
+      scrollY: 300
+    });
+  })
+</script>

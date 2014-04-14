@@ -3,6 +3,7 @@ class Restaurant::SettingsController < ApplicationController
 	after_filter :rollback_for_sechedule_if_not_admin, :only => [:update_sechedule]
 	after_filter :rollback_for_category_if_not_admin, :only => [:update_category]
 	after_filter :rollback_for_item_if_not_admin, :only => [:update_item]
+	after_filter :rollback_for_offer_if_not_admin, :only => [:update_offer]
 
 	def update_sechedule
 		@sechedule = Sechedule.find(params[:id])
@@ -10,6 +11,11 @@ class Restaurant::SettingsController < ApplicationController
 		redirect_to restaurant_dashboard_index_path(:anchor => 'setting')
 	end
 
+	def update_offer
+		@offer = RestaurantOffer.find(params[:id])
+		@offer.update_attributes(params[:restaurant_offer])
+		redirect_to restaurant_dashboard_index_path(:anchor => 'setting')
+	end
 	def edit_category
 		@menu_category = MenuCategory.find(params[:id])
 	end
@@ -41,16 +47,22 @@ class Restaurant::SettingsController < ApplicationController
 
 	def rollback_for_sechedule_if_not_admin
 		unless current_user.user_admin?
-			version = @sechedule.versions.count
 			@sechedule.status = "pending"
 			@sechedule.revert_to!(1)
       flash[:notice] = "Your changes will be reflected once an admin has reviewed them"
 		end
 	end
 
+	def rollback_for_offer_if_not_admin
+		unless current_user.user_admin?
+			@offer.status = "pending"
+			@offer.revert_to!(1)
+      flash[:notice] = "Your changes will be reflected once an admin has reviewed them"
+		end
+	end
+
 	def rollback_for_category_if_not_admin
 		unless current_user.user_admin?
-			version = @menu_category.versions.count
 			@menu_category.status = "pending"
 			@menu_category.revert_to!(1)
       flash[:notice] = "Your changes will be reflected once an admin has reviewed them"
@@ -59,7 +71,6 @@ class Restaurant::SettingsController < ApplicationController
 
 	def rollback_for_item_if_not_admin
 		unless current_user.user_admin?
-			version = @menu_item.versions.count
 			@menu_item.status = "pending"
 			@menu_item.revert_to!(1)
       flash[:notice] = "Your changes will be reflected once an admin has reviewed them"

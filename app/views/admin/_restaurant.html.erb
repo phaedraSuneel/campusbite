@@ -1,6 +1,7 @@
-<% @sechedules = restaurant.sechedule_changes %>
-<% @categories = restaurant.menu_category_changes %>
-<% @items = restaurant.menu_item_changes %>
+<% @sechedules = restaurant.sechedule_pendings %>
+<% @categories = restaurant.menu_category_pendings %>
+<% @items = restaurant.menu_item_pendings %>
+<% @offers = restaurant.offer_pendings%>
 
 
 <div class="row changes">
@@ -84,6 +85,43 @@
             </tr>
           <% end %>
         </tbody>  
+      </table>  
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-7">
+    <% unless @offers.blank? %>
+      <table class="restaurant-table">
+        <caption> Restaurant Offers </caption>
+        <thead>
+          <tr>
+            <th> Description </th>
+            <th> Package(%) </th>
+            <th> Price </th>
+            <th> From </th>
+            <th> To </th>
+            <th> Accept </th>
+            <th> Reject </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @offers.each do |offer| %>
+            <% version = offer.versions.count %>
+            <% p  version %>
+            <% offer.revert_to(version) %>
+            <tr>
+              <td><%= offer.description %></td>
+              <td><%= offer.offer_percentage %></td>
+              <td><%= offer.offer_price %></td>
+              <td><%= offer.valid_from.strftime("%m/%d/%Y") %></td>
+              <td><%= offer.valid_to.strftime("%m/%d/%Y") %></td>
+              <td class="text-center"> <%= link_to raw("<img src='assets/accept.png' width='20px' height='20px' />"),  accept_request_admin_restaurant_offer_path(offer) %> </td>
+              <td class="text-center"> <%= link_to raw("<img src='assets/reject.png' width='20px' height='20px' />"), reject_request_admin_restaurant_offer_path(offer) %></td>
+            </tr>
+            <% end -%>
+        </tbody>
       </table>  
     <% end %>
   </div>

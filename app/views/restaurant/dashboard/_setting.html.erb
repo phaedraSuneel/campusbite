@@ -7,6 +7,9 @@
 	  		</div>
 	  		<div class="col-md-2 setting-nav">
 	  			<a href="#menu_information" data-toggle="tab" >Menu Information</a>
+	  		</div>
+	  		<div class="col-md-2 setting-nav">
+	  			<a href="#offer" data-toggle="tab" >Restaurant Offers</a>
 	  		</div>	
 	  	</div>
 	  </div>		
@@ -17,6 +20,9 @@
         </div>
         <div class="tab-pane" id= "menu_information">
           <%= render :partial => "menu_information", :locals => {:@menu => @restaurant.menu} %>
+        </div>
+        <div class="tab-pane" id= "offer">
+          <%= render :partial => "restaurant_offer", :locals => {:@offers => @restaurant.restaurant_offers} %>
         </div>
       </div>  
   	</div>	

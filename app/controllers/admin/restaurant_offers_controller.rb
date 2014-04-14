@@ -74,4 +74,19 @@ class Admin::RestaurantOffersController < AdminController
       format.json { head :no_content }
     end
   end
+
+  def accept_request
+    @offer = RestaurantOffer.find(params[:id])
+    version = @offer.versions.count
+    @offer.revert_to!(version)
+    flash[:notice] = "Restaurant Offer Information resquest accepted.."
+    redirect_to :back
+  end
+
+  def reject_request
+    @offer = RestaurantOffer.find(params[:id])
+    @offer.revert_to!(1)
+    flash[:notice] = "Restaurant Offer Information resquest rejected.."
+    redirect_to :back
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140414064548) do
+ActiveRecord::Schema.define(:version => 20140414112608) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -320,8 +320,9 @@ ActiveRecord::Schema.define(:version => 20140414064548) do
     t.float    "offer_price"
     t.datetime "valid_from"
     t.datetime "valid_to"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.string   "status",           :default => "completed"
   end
 
   create_table "restaurant_opening_closing_times", :force => true do |t|

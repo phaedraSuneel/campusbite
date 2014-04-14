@@ -6,10 +6,12 @@ class AdminController < ApplicationController
     sechedules = Sechedule.where(:status => 'pending')
     menu_categories = MenuCategory.where(:status => 'pending')
     menu_items = MenuItem.where(:status => 'pending')
+    restaurant_offers = RestaurantOffer.where(:status => 'pending')
+    @offer_restaurants =  restaurant_offers.collect(&:restaurant).uniq
     @sechedule_restaurants = sechedules.collect(&:sechedulable).collect(&:restaurant).uniq
     @menu_item_restaurants = menu_items.collect(&:menu_category).collect(&:menu).select{|a| !a.nil?}.collect(&:restaurant).uniq
     @menu_category_restaurants = menu_categories.collect(&:menu).select{|a| !a.nil?}.collect(&:restaurant).uniq
-    @restaurants =  (@sechedule_restaurants + @menu_item_restaurants + @menu_category_restaurants).uniq
+    @restaurants =  (@sechedule_restaurants + @menu_item_restaurants + @menu_category_restaurants + @offer_restaurants).uniq 
   end
 
   def user_layout

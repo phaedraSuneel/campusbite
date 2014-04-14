@@ -149,6 +149,11 @@ $(document).ready(function(){
       $("#sechedule_form_"+id).submit();
     });
 
+    $(".edit-offer-btn").click(function(){
+      id = $(this).data("offer");
+      $("#offer_form_"+id).submit();
+    });
+
     $(".edit-review-submit-btn").click(function(){
       id = $(this).data("review");
       $("#edit_review_form_"+id).submit();

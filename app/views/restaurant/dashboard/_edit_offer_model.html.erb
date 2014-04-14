@@ -1,0 +1,42 @@
+<div class="modal fade" id="edit_offer_model_<%= @offer.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header error-title">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Edit Offer </h4>
+      </div>  
+      <%= form_for(@offer, :url => update_offer_restaurant_setting_path(@offer), :html => {:class => "edit-offer-form", :id => "offer_form_#{@offer.id}" } ) do |f| %>
+        <div class="modal-body modal-body-container">
+          <div class="row">
+            <div class="col-md-12 adress-container">
+		          <div class="field">
+                <%= f.label :description %><br />
+                <%= f.text_field :description %>
+              </div>
+              <div class="field">
+                <%= f.label :offer_percentage %><br />
+                <%= f.text_field :offer_percentage %>
+              </div>
+              <div class="field">
+                <%= f.label :offer_price %><br />
+                <%= f.text_field :offer_price %>
+              </div>
+              <div class="field">
+                <%= f.label :valid_from %><br />
+                <%= f.date_select :valid_from %>
+              </div>
+              <div class="field">
+                <%= f.label :valid_to %><br />
+                <%= f.date_select :valid_to %>
+              </div> 
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary submit-md edit-offer-btn" data-offer = "<%= @offer.id %>">Save</button>
+        </div>
+	   	<% end -%>
+
+		</div>
+  </div>
+</div>

@@ -133,15 +133,19 @@ class Restaurant < ActiveRecord::Base
     self.orders.where(:created_at => month_first_day..month_last_day).order("created_at desc")
   end 
 
-  def sechedule_changes
+  def sechedule_pendings
     self.operation.sechedules.where(:status => 'pending') + self.delivery.sechedules.where(:status => "pending") + self.pick_up.sechedules.where(:status => "pending")
   end
 
-  def menu_category_changes
+  def menu_category_pendings
     self.menu.menu_categories.where(:status => 'pending')
   end 
 
-  def menu_item_changes
+  def menu_item_pendings
     self.menu.menu_categories.collect(&:menu_items).flatten.select{|a| a.status == 'pending'}
+  end
+
+  def offer_pendings
+    self.restaurant_offers.where(:status => 'pending')
   end
 end
