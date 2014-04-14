@@ -1,0 +1,11 @@
+<div class="col-md-8">
+	<div class="restaurant-name"> Change request of   <%= item.menu_category.menu.restaurant.restaurant_name %>  Restaurant's menu item </div>
+	<div>
+		Update Name of Item: <%= item.item_name %>
+	</div>	
+</div>
+
+<div class="col-md-4">
+  <span><%= link_to "accept", accept_request_admin_menu_menu_item_path(item.menu_category.menu, item) %></span> |
+  <span><%= link_to "reject", reject_request_admin_menu_menu_item_path(item.menu_category.menu, item) %></span>
+</div> 

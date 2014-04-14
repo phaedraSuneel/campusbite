@@ -60,4 +60,21 @@ class Admin::MenuItemsController < AdminController
     render(:partial => "admin/menu_items/get_property_field", :locals => {:length => params[:length].to_i})
   end
 
+  def accept_request
+    @menu = Menu.find(params[:menu_id])
+    @menu_item = MenuItem.find(params[:id])
+    version = @menu_item.versions.count
+    @menu_item.revert_to!(version)
+    flash[:notice] = "Menu Item resquest accepted.."
+    redirect_to :back
+  end
+
+  def reject_request
+    @menu = Menu.find(params[:menu_id])
+    @menu_item = MenuItem.find(params[:id])
+    version = @menu_item.versions.count
+    @menu_item.revert_to!(1)
+    flash[:notice] = "Menu Item resquest rejected.."
+    redirect_to :back
+  end
 end

@@ -5,7 +5,7 @@ class AdminController < ApplicationController
   def index
     @restaurants = Restaurant.where(:status => 'pending')
     @menu_categories = MenuCategory.where(:status => 'pending')
-    @menu_items = MenuCategory.where(:status => 'pending')
+    @menu_items = MenuItem.where(:status => 'pending')
   end
 
   def user_layout

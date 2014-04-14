@@ -56,4 +56,22 @@ class Admin::MenuCategoriesController < AdminController
     flash[:notice] = 'Menu category was successfully deleted.'
     redirect_to admin_menu_path(@menu)
   end
+
+  def accept_request
+    @menu = Menu.find(params[:menu_id])
+    @menu_category = @menu.menu_categories.find(params[:id])
+    version = @menu_category.versions.count
+    @menu_category.revert_to!(version)
+    flash[:notice] = "Menu Category resquest accepted.."
+    redirect_to :back
+  end
+
+  def reject_request
+    @menu = Menu.find(params[:menu_id])
+    @menu_category = @menu.menu_categories.find(params[:id])
+    version = @menu_category.versions.count
+    @menu_category.revert_to!(1)
+    flash[:notice] = "Menu Category resquest rejected.."
+    redirect_to :back
+  end
 end

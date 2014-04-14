@@ -31,8 +31,18 @@ Ordering::Application.routes.draw do
     end
 
     resources :menu do
-      resources :menu_categories 
-      resources :menu_items
+      resources :menu_categories do
+        member do
+          get 'accept_request'
+          get 'reject_request'
+        end
+      end
+      resources :menu_items do
+        member do
+          get 'accept_request'
+          get 'reject_request'
+        end
+      end
     end
     
     resources :addons do

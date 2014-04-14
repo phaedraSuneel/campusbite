@@ -28,7 +28,7 @@
                         <% unless item.status == "pending" %>
                           <%= link_to "edit", edit_item_restaurant_setting_path(item) %>
                         <% else %>
-                          can't edit
+                          request pending
                         <% end %>  
                       </td>
                     </tr>
@@ -40,7 +40,7 @@
               <% unless category.status == "pending" %>
                 <%= link_to "edit", edit_category_restaurant_setting_path(category) %>
               <% else %>
-                can't edit
+                request pending
               <% end %>  
             </td>
           </tr>
