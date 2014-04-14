@@ -13,8 +13,8 @@
           <th>Day</th>
           <th>Open Time</th>
           <th>Close Time</th>
-          <th></th>
-          <th></th>
+          <th>Accept</th>
+          <th>Reject</th>
         </thead>
         <tbody>
           <% @sechedules.each do |sechedule| %>
@@ -25,8 +25,8 @@
               <td><%= sechedule.day %></td>
               <td><%= sechedule.opening_time.strftime("%I:%M%p")%></td>
               <td><%= sechedule.closing_time.strftime("%I:%M%p")%></td>
-              <td><%= link_to "accept", accept_request_admin_restaurant_path(sechedule) %></td>
-              <td><%= link_to "reject", reject_request_admin_restaurant_path(sechedule) %></td>
+              <td class="text-center"><%= link_to raw("<img src='assets/accept.png' width='20px' height='20px' />"), accept_request_admin_restaurant_path(sechedule) %></td>
+              <td class="text-center"><%= link_to raw("<img src='assets/reject.png' width='20px' height='20px' />"), reject_request_admin_restaurant_path(sechedule) %></td>
             </tr>
           <% end -%>    
         </tbody>
@@ -48,8 +48,8 @@
             <% category.revert_to(version) %>
             <tr>
               <td><%= category.category_name %></td>
-              <td><%= link_to "accept", accept_request_admin_menu_menu_category_path(category.menu, category) %></td>
-              <td><%= link_to "reject", reject_request_admin_menu_menu_category_path(category.menu, category) %>
+              <td class="text-center"><%= link_to raw("<img src='assets/accept.png' width='20px' height='20px' />"), accept_request_admin_menu_menu_category_path(category.menu, category) %></td>
+              <td class="text-center"><%= link_to raw("<img src='assets/reject.png' width='20px' height='20px' />"), reject_request_admin_menu_menu_category_path(category.menu, category) %>
               </td>
             </tr>  
           <% end %>
@@ -79,8 +79,8 @@
               <td> <%= item.item_name %></td>
               <td> <%= item.short_description %></td>
               <td> <%= item.price %></td>
-              <td> <%= link_to "accept", accept_request_admin_menu_menu_item_path(item.menu_category.menu, item) %> </td>
-              <td> <%= link_to "reject", reject_request_admin_menu_menu_item_path(item.menu_category.menu, item) %></td>
+              <td class="text-center"> <%= link_to raw("<img src='assets/accept.png' width='20px' height='20px' />"), accept_request_admin_menu_menu_item_path(item.menu_category.menu, item) %> </td>
+              <td class="text-center"> <%= link_to raw("<img src='assets/reject.png' width='20px' height='20px' />"), reject_request_admin_menu_menu_item_path(item.menu_category.menu, item) %></td>
             </tr>
           <% end %>
         </tbody>  

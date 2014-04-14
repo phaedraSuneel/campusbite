@@ -142,6 +142,6 @@ class Restaurant < ActiveRecord::Base
   end 
 
   def menu_item_changes
-    self.menu.menu_categories.collect(&:menu_items).flatten.select{|a| a.status = 'pending'}
+    self.menu.menu_categories.collect(&:menu_items).flatten.select{|a| a.status == 'pending'}
   end
 end

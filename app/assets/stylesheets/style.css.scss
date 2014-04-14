@@ -5459,3 +5459,15 @@ table.restaurant-table td {
   border-style: solid;
   border-color: #999999;
 }
+
+a.accept-icon{
+  background: url("/assets/accept.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+  width: 20px;
+  display: block;
+  float:left;
+}
+
+span.icon-reject
+{
+  background: url("/assets/reject.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+}
