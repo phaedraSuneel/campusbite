@@ -2,6 +2,7 @@
 <% @categories = restaurant.menu_category_pendings %>
 <% @items = restaurant.menu_item_pendings %>
 <% @offers = restaurant.offer_pendings%>
+<% @coupons = restaurant.coupon_pendings %>
 
 
 <div class="row changes">
@@ -60,7 +61,7 @@
   </div>  
 </div>
 
-<div class="row">
+<div class="row changes">
   <div class="col-md-7">
     <% unless @items.blank? %>
       <table class="restaurant-table">
@@ -90,7 +91,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row changes">
   <div class="col-md-7">
     <% unless @offers.blank? %>
       <table class="restaurant-table">
@@ -109,7 +110,6 @@
         <tbody>
           <% @offers.each do |offer| %>
             <% version = offer.versions.count %>
-            <% p  version %>
             <% offer.revert_to(version) %>
             <tr>
               <td><%= offer.description %></td>
@@ -126,3 +126,33 @@
     <% end %>
   </div>
 </div>
+
+<div class="row change">
+  <% unless @coupons.blank? %>
+    <table class="restaurant-table">
+      <caption> Restaurant Offers </caption>
+      <thead>
+          <tr>
+            <th> Coupon Image </th>
+            <th> Expiration date </th>
+            <th> Accept </th>
+            <th> Reject </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% unless @coupons.blank? %>
+            <% @coupons.each do |coupon| %>
+              <% version = coupon.versions.count %>
+              <% coupon.revert_to(version) %>
+              <tr>
+                <td> <%= image_tag(coupon.coupon_image(:thumb)) %></td>
+                <td><%= coupon.expiration_date.strftime("%m/%d/%Y") %></td>
+                <td class="text-center"> <%= link_to raw("<img src='assets/accept.png' width='20px' height='20px' />"),  accept_request_admin_restaurant_coupon_path(coupon) %> </td>
+              <td class="text-center"> <%= link_to raw("<img src='assets/reject.png' width='20px' height='20px' />"), reject_request_admin_restaurant_coupon_path(coupon) %></td>
+              </tr>
+            <% end -%>
+          <% end %>
+        </tbody>
+    </table>    
+  <% end -%>
+</div>  

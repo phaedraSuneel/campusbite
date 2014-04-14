@@ -4,6 +4,7 @@ class Restaurant::SettingsController < ApplicationController
 	after_filter :rollback_for_category_if_not_admin, :only => [:update_category]
 	after_filter :rollback_for_item_if_not_admin, :only => [:update_item]
 	after_filter :rollback_for_offer_if_not_admin, :only => [:update_offer]
+	after_filter :rollback_for_coupon_if_not_admin, :only => [:update_coupon]
 
 	def update_sechedule
 		@sechedule = Sechedule.find(params[:id])
@@ -14,6 +15,12 @@ class Restaurant::SettingsController < ApplicationController
 	def update_offer
 		@offer = RestaurantOffer.find(params[:id])
 		@offer.update_attributes(params[:restaurant_offer])
+		redirect_to restaurant_dashboard_index_path(:anchor => 'setting')
+	end
+
+	def update_coupon
+		@coupon = RestaurantCoupon.find(params[:id])
+		@coupon.update_attributes(params[:restaurant_coupon])
 		redirect_to restaurant_dashboard_index_path(:anchor => 'setting')
 	end
 	def edit_category
@@ -57,6 +64,14 @@ class Restaurant::SettingsController < ApplicationController
 		unless current_user.user_admin?
 			@offer.status = "pending"
 			@offer.revert_to!(1)
+      flash[:notice] = "Your changes will be reflected once an admin has reviewed them"
+		end
+	end
+
+	def rollback_for_coupon_if_not_admin
+		unless current_user.user_admin?
+			@coupon.status = "pending"
+			@coupon.revert_to!(1)
       flash[:notice] = "Your changes will be reflected once an admin has reviewed them"
 		end
 	end

@@ -1,0 +1,30 @@
+<div class="modal fade" id="edit_coupon_model_<%= @coupon.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header error-title">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Edit Coupon </h4>
+      </div>  
+      <%= form_for(@coupon, :url => update_coupon_restaurant_setting_path(@coupon), :html => {:class => "edit-coupon-form", :id => "coupon_form_#{@coupon.id}", :multipart => true } ) do |f| %>
+        <div class="modal-body modal-body-container">
+          <div class="row">
+            <div class="col-md-12 adress-container">
+		          <div class="field">
+                <%= f.label :coupon_image, "Coupon Image" %>
+                <%= f.file_field :coupon_image %>
+              </div> <br>
+              <div class="field">
+                <%= f.label :expiration_date %><br />
+                <%= f.date_select :expiration_date %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary submit-md edit-coupon-btn" data-coupon = "<%= @coupon.id %>">Save</button>
+        </div>
+	   	<% end -%>
+
+		</div>
+  </div>
+</div>

@@ -75,4 +75,19 @@ class Admin::RestaurantCouponsController < AdminController
       format.html { redirect_to admin_restaurant_coupons_url }
     end
   end
+
+  def accept_request
+    @coupon = RestaurantCoupon.find(params[:id])
+    version = @coupon.versions.count
+    @coupon.revert_to!(version)
+    flash[:notice] = "Restaurant coupon Information resquest accepted.."
+    redirect_to :back
+  end
+
+  def reject_request
+    @coupon = RestaurantCoupon.find(params[:id])
+    @coupon.revert_to!(1)
+    flash[:notice] = "Restaurant coupon Information resquest rejected.."
+    redirect_to :back
+  end
 end

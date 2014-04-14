@@ -1,6 +1,7 @@
 class RestaurantCoupon < ActiveRecord::Base
+  versioned
 	belongs_to :restaurant
-  attr_accessible :expiration_date, :restaurant_id, :coupon_image
+  attr_accessible :expiration_date, :restaurant_id, :coupon_image, :status
   has_attached_file :coupon_image,
                     :styles => {
                         :thumb => "75x75#",

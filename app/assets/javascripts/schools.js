@@ -154,6 +154,11 @@ $(document).ready(function(){
       $("#offer_form_"+id).submit();
     });
 
+    $(".edit-coupon-btn").click(function(){
+      id = $(this).data("coupon");
+      $("#coupon_form_"+id).submit();
+    });
+
     $(".edit-review-submit-btn").click(function(){
       id = $(this).data("review");
       $("#edit_review_form_"+id).submit();

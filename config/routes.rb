@@ -52,7 +52,12 @@ Ordering::Application.routes.draw do
       end
     end  
 
-    resources :restaurant_coupons
+    resources :restaurant_coupons do
+      member do
+        get 'accept_request'
+        get 'reject_request'
+      end
+    end
     resources :restaurant_offers do
       member do
         get 'accept_request'
@@ -80,6 +85,7 @@ Ordering::Application.routes.draw do
         put 'update_item'
         put 'update_sechedule'
         put 'update_offer'
+        put 'update_coupon'
       end
     end
   end

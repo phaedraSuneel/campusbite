@@ -10,6 +10,9 @@
 	  		</div>
 	  		<div class="col-md-2 setting-nav">
 	  			<a href="#offer" data-toggle="tab" >Restaurant Offers</a>
+	  		</div>
+	  		<div class="col-md-2 setting-nav">
+	  			<a href="#coupon" data-toggle="tab" >Restaurant Coupons</a>
 	  		</div>	
 	  	</div>
 	  </div>		
@@ -23,6 +26,9 @@
         </div>
         <div class="tab-pane" id= "offer">
           <%= render :partial => "restaurant_offer", :locals => {:@offers => @restaurant.restaurant_offers} %>
+        </div>
+        <div class="tab-pane" id= "coupon">
+          <%= render :partial => "restaurant_coupon", :locals => {:@coupons => @restaurant.restaurant_coupons} %>
         </div>
       </div>  
   	</div>	

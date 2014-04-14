@@ -148,4 +148,8 @@ class Restaurant < ActiveRecord::Base
   def offer_pendings
     self.restaurant_offers.where(:status => 'pending')
   end
+
+  def coupon_pendings
+    self.restaurant_coupons.where(:status => 'pending')
+  end
 end
