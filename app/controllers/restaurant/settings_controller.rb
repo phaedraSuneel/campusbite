@@ -1,21 +1,14 @@
 class Restaurant::SettingsController < ApplicationController
 	
-	after_filter :rollback_for_restaurant_if_not_admin, :only => [:update_restaurant]
+	after_filter :rollback_for_sechedule_if_not_admin, :only => [:update_sechedule]
 	after_filter :rollback_for_category_if_not_admin, :only => [:update_category]
 	after_filter :rollback_for_item_if_not_admin, :only => [:update_item]
 
-	def edit_restaurant
-		@restaurant = current_user.restaurants.first
+	def update_sechedule
+		@sechedule = Sechedule.find(params[:id])
+		@sechedule.update_attributes(params[:sechedule])
+		redirect_to restaurant_dashboard_index_path(:anchor => 'setting')
 	end
-	
-	def update_restaurant
-		@restaurant = current_user.restaurants.first
-    if @restaurant.update_attributes(params[:restaurant])
-      redirect_to restaurant_dashboard_index_path(:anchor => 'setting')
-    else
-      render action: "edit"
-    end
-	end	
 
 	def edit_category
 		@menu_category = MenuCategory.find(params[:id])
@@ -46,11 +39,11 @@ class Restaurant::SettingsController < ApplicationController
 	end
 
 
-	def rollback_for_restaurant_if_not_admin
+	def rollback_for_sechedule_if_not_admin
 		unless current_user.user_admin?
-			version = @restaurant.versions.count
-			@restaurant.status = "pending"
-			@restaurant.revert_to!(1)
+			version = @sechedule.versions.count
+			@sechedule.status = "pending"
+			@sechedule.revert_to!(1)
       flash[:notice] = "Your changes will be reflected once an admin has reviewed them"
 		end
 	end

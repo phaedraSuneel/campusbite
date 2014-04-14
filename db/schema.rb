@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140411133525) do
+ActiveRecord::Schema.define(:version => 20140414064548) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -375,10 +375,11 @@ ActiveRecord::Schema.define(:version => 20140411133525) do
     t.string   "day"
     t.time     "opening_time"
     t.time     "closing_time"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.integer  "sechedulable_id"
     t.string   "sechedulable_type"
+    t.string   "status",            :default => "completed"
   end
 
   create_table "users", :force => true do |t|

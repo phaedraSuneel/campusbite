@@ -153,17 +153,17 @@ class Admin::RestaurantsController < AdminController
   end
 
   def accept_request
-    @restaurant = Restaurant.find(params[:id])
-    version = @restaurant.versions.count
-    @restaurant.revert_to!(version)
-    flash[:notice] = "Restaurant Information resquest accepted.."
+    @sechedule = Sechedule.find(params[:id])
+    version = @sechedule.versions.count
+    @sechedule.revert_to!(version)
+    flash[:notice] = "sechedule Information resquest accepted.."
     redirect_to :back
   end
 
   def reject_request
-    @restaurant = Restaurant.find(params[:id])
-    @restaurant.revert_to!(1)
-    flash[:notice] = "Restaurant Information resquest rejected.."
+    @sechedule = Sechedule.find(params[:id])
+    @sechedule.revert_to!(1)
+    flash[:notice] = "sechedule Information resquest rejected.."
     redirect_to :back
   end
 

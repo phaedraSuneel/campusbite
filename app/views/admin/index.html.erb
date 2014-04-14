@@ -2,11 +2,10 @@
 	<div class="row">
 		<div class="col-md-4">
 			<div class="row">
-				<span>List of  Changes Request </span>
+				<span>Restaurants pending requests </span>
 			</div>
 			<div class="row notification">
 				<% unless @restaurants.blank? %>
-					<div class="col-md-12">Restaurant Information</div>
 					<div class="col-md-12">
 						<ul>
 							<% @restaurants.each do |restaurant| %>
@@ -18,61 +17,16 @@
 					</div>	
 				<% else %>
 				<% end -%>
-				<% unless @menu_categories.blank? %>
-					<div class="col-md-12">Menu Category</div>
-					<div class="col-md-12">
-						<ul>
-							<% @menu_categories.each do |category| %>
-								<li>
-									<span class="category-name" data-category = "<%= category.id %>"> <%= link_to category.category_name, "javascript:void(0);", :class => 'category-change'%></span>
-								</li>
-							<% end -%>
-						</ul>	
-					</div>		
-				<% end -%>
-				<% unless @menu_items.blank? %>
-					<div class="col-md-12">Menu Item</div>
-					<div class="col-md-12">
-						<ul>
-							<% @menu_items.each do |item| %>
-								<li>
-									<span class="item-name" data-item = "<%= item.id %>"> <%= link_to item.item_name, "javascript:void(0);", :class => 'item-change'%></span>
-								</li>
-							<% end -%>
-						</ul>	
-					</div>		
-				<% end -%>
 			</div>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-8">
 			<div class="row notification-data">
 				<div class="col-md-12">
 					<% unless @restaurants.blank? %>
 						<% @restaurants.each do |restaurant| %>
-							<% version = restaurant.versions.count %>
-							<% restaurant.revert_to(version) %>
-
 							<div class="restaurant-changes hide" id="restaurant_<%= restaurant.id %>">
 								<%= render :partial => "restaurant", :locals => {:restaurant => restaurant }%>
 							</div>	
-						<% end %>
-					<% end -%>
-					<% unless @menu_categories.blank? %>
-						<% @menu_categories.each do |category| %>
-							<% version = category.versions.count %>
-							<% category.revert_to(version) %>
-							<div class="category-changes hide" id="category_<%= category.id %>">
-								<%= render :partial => "menu_category", :locals => {:category => category }%>
-							</div>
-						<% end %>
-					<% end -%>
-					<% unless @menu_items.blank? %>
-						<% @menu_items.each do |item| %>
-							<% version = item.versions.count %>
-							<% item.revert_to(version) %>
-							<div class="item-changes hide" id="item_<%= item.id %>">
-								<%= render :partial => "menu_item", :locals => {:item => item }%>
-							</div>
 						<% end %>
 					<% end -%>
 				</div>	
@@ -89,45 +43,7 @@
 			$(".notification-data .restaurant-changes").each(function(){
 				$(this).addClass("hide");
 			});
-			$(".notification-data .category-changes").each(function(){
-				$(this).addClass("hide");
-			});
-			$(".notification-data .item-changes").each(function(){
-				$(this).addClass("hide");
-			});
 			$("#restaurant_"+id).removeClass("hide")
 		});
-		
-		$(".category-change").click(function(){
-			$(".notification-data .restaurant-changes").each(function(){
-				$(this).addClass("hide");
-			});
-			$(".notification-data .item-changes").each(function(){
-				$(this).addClass("hide");
-			});
-			id = $(this).parent().data("category");
-			$(".notification-data .category-changes").each(function(){
-				$(this).addClass("hide");
-			});
-			$("#category_"+id).removeClass("hide")
-		});
-
-		$(".item-change").click(function(){
-			$(".notification-data .restaurant-changes").each(function(){
-				$(this).addClass("hide");
-			});
-			
-			$(".notification-data .category-changes").each(function(){
-				$(this).addClass("hide");
-			});
-
-			$(".notification-data .item-changes").each(function(){
-				$(this).addClass("hide");
-			});
-			id = $(this).parent().data("item");
-			$("#item_"+id).removeClass("hide")
-		});
-
-
 	});
 </script>

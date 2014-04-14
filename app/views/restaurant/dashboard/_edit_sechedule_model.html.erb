@@ -1,0 +1,30 @@
+<div class="modal fade" id="edit_sechedule_model_<%= @sechedule.id%>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header error-title">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Edit <%=  @sechedule.day %> Sechedule</h4>
+      </div>  
+      <%= form_for(@sechedule, :url => update_sechedule_restaurant_setting_path(@sechedule), :html => {:class => "edit-sechedule-form", :id => "sechedule_form_#{@sechedule.id}" } ) do |f| %>
+        <div class="modal-body modal-body-container">
+          <div class="row">
+            <div class="col-md-12 adress-container">
+		          <div class="field">
+		            <%= f.label :opening_time %>
+		            <%= f.time_select :opening_time, {:ampm => true, :prompt => true } %>
+		          </div>
+		          <div class="field">
+		            <%= f.label :closing_time %>
+		            <%= f.time_select :closing_time, {:ampm => true, :prompt => true} %>
+		          </div> 
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary submit-md edit-sechedule-btn" data-sechedule = "<%= @sechedule.id %>">Save</button>
+        </div>
+	   	<% end -%>
+
+		</div>
+  </div>
+</div>

@@ -67,16 +67,13 @@ Ordering::Application.routes.draw do
          get 'contact_admin'
       end
     end
-    resources :settings do 
-      collection do 
-        get 'edit_restaurant'
-        put 'update_restaurant'
-      end
+    resources :settings do
       member do
         get 'edit_category'
         put 'update_category'
         get 'edit_item'
         put 'update_item'
+        put 'update_sechedule'
       end
     end
   end

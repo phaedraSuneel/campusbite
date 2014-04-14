@@ -1,77 +1,90 @@
-<div class="col-md-8">
-  <p>
-    <b>Name:</b>
-    <%= restaurant.restaurant_name %>
-  </p>
+<% @sechedules = restaurant.sechedule_changes %>
+<% @categories = restaurant.menu_category_changes %>
+<% @items = restaurant.menu_item_changes %>
 
-  <p>
-    <b>phone:</b>
-    <%= restaurant.contact_info.restaurant_phone %>
-  </p>
 
-  <p>
-    <b> website:</b>
-    <%= restaurant.contact_info.restaurant_website %>
-  </p>
-
-  <p>
-    <b>street add:</b>
-    <%= restaurant.contact_info.restaurant_street_address %>
-  </p>
-
-  <p>
-    <b>State:</b>
-    <%= restaurant.contact_info.state %>
-  </p>
-
-  <p>
-    <b>City:</b>
-    <%= restaurant.contact_info.city %>
-  </p>
-
-  <p>
-    <b>Zip code:</b>
-    <%= restaurant.contact_info.zip_code %>
-  </p>
-
-  <p>
-    <b>About:</b>
-    <%= restaurant.restaurant_info.about_restaurant %>
-  </p>
-
-  <p>
-    <b>pick up:</b>
-    <%= restaurant.restaurant_info.is_pick_up? ? "Yes" : "No" %>
-  </p>
-
-  <p>
-    <b>deliver:</b>
-    <%= restaurant.delivery_info.is_delivery? ? "Yes" : "No" %>
-  </p>
-
-  <p>
-    <b>Min delivery:</b>
-    $<%= restaurant.restaurant_info.min_order %>
-  </p>
-
-  <p>
-    <b>Delivery Estimate Time:</b>
-    <%= restaurant.delivery_info.delivery_estimated_time %> mints
-  </p>
-
-  <p>
-    <b>Featured:</b>
-    <%= restaurant.restaurant_info.is_featured? ? "Yes" : "No" %>
-  </p>
-
-  <p>
-    <label>Restaurant Categories</label> <br>
-    <% restaurant.restaurant_categories.each do |cat| %>
-      <span><%= cat.category_name%> </span> <br>
-    <% end %> 
-  </p>  
+<div class="row changes">
+  <div class="col-md-7">
+    <% unless @sechedules.blank? %>
+      <table class="restaurant-table">
+        <caption> <%= restaurant.restaurant_name %>'s scheduale request(s) </caption>
+        <thead>
+          <th>Type</th>
+          <th>Day</th>
+          <th>Open Time</th>
+          <th>Close Time</th>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <% @sechedules.each do |sechedule| %>
+            <% version = sechedule.versions.count %>
+            <% sechedule.revert_to(version) %>
+            <tr>
+              <td><%= sechedule.sechedulable_type %></td>
+              <td><%= sechedule.day %></td>
+              <td><%= sechedule.opening_time.strftime("%I:%M%p")%></td>
+              <td><%= sechedule.closing_time.strftime("%I:%M%p")%></td>
+              <td><%= link_to "accept", accept_request_admin_restaurant_path(sechedule) %></td>
+              <td><%= link_to "reject", reject_request_admin_restaurant_path(sechedule) %></td>
+            </tr>
+          <% end -%>    
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+  <div class="col-md-5">
+    <% unless @categories.blank? %>
+      <table class="restaurant-table">
+        <caption> Menu category name </caption>
+        <thead>
+          <th>Name </th>
+          <th>Accept</th>
+          <th>Reject</th>
+        </thead>
+        <tbody>
+          <%@categories.each do |category| %>
+            <% version = category.versions.count %>
+            <% category.revert_to(version) %>
+            <tr>
+              <td><%= category.category_name %></td>
+              <td><%= link_to "accept", accept_request_admin_menu_menu_category_path(category.menu, category) %></td>
+              <td><%= link_to "reject", reject_request_admin_menu_menu_category_path(category.menu, category) %>
+              </td>
+            </tr>  
+          <% end %>
+        </tbody>
+      </table> 
+    <% end %>
+  </div>  
 </div>
-<div class="col-md-4">
-  <span><%= link_to "accept", accept_request_admin_restaurant_path(restaurant) %></span> |
-  <span><%= link_to "reject", reject_request_admin_restaurant_path(restaurant) %></span>
-</div>  
+
+<div class="row">
+  <div class="col-md-7">
+    <% unless @items.blank? %>
+      <table class="restaurant-table">
+        <caption> Menu Items </caption>
+        <thead>
+          <th>Name </th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Accept</th>
+          <th>Reject</th>
+        </thead>
+        <tbody>
+          <% @items.each do |item|%>
+            <% version = item.versions.count %>
+            <% item.revert_to(version) %>
+            <tr>
+              <td> <%= item.item_name %></td>
+              <td> <%= item.short_description %></td>
+              <td> <%= item.price %></td>
+              <td> <%= link_to "accept", accept_request_admin_menu_menu_item_path(item.menu_category.menu, item) %> </td>
+              <td> <%= link_to "reject", reject_request_admin_menu_menu_item_path(item.menu_category.menu, item) %></td>
+            </tr>
+          <% end %>
+        </tbody>  
+      </table>  
+    <% end %>
+  </div>
+</div>

@@ -5436,3 +5436,26 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 {
   margin-top: 30px;
 }
+
+table.restaurant-table {
+  font-family: verdana,arial,sans-serif;
+  font-size:13px;
+  color:#333333;
+  border-width: 1px;
+  border-color: #999999;
+  border-collapse: collapse;
+}
+table.restaurant-table th {
+  background:#b5cfd2 url('cell-blue.jpg');
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #999999;
+}
+table.restaurant-table td {
+  background:#dcddc0 url('cell-grey.jpg');
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #999999;
+}

@@ -144,6 +144,11 @@ $(document).ready(function(){
       $("#address_form_"+id).submit();
     });
 
+    $(".edit-sechedule-btn").click(function(){
+      id = $(this).data("sechedule");
+      $("#sechedule_form_"+id).submit();
+    });
+
     $(".edit-review-submit-btn").click(function(){
       id = $(this).data("review");
       $("#edit_review_form_"+id).submit();
