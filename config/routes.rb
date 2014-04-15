@@ -196,6 +196,7 @@ Ordering::Application.routes.draw do
       get 'role'
       post 'create_role'
       get 'new_role'
+      get 'reports'
     end
     member do
       get 'edit_user'

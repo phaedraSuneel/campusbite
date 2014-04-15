@@ -136,4 +136,9 @@ class AdminController < ApplicationController
       redirect_to(:back)
     end 
   end
+
+  def reports
+    @restaurants = Restaurant.all
+    @orders = @restaurants.collect(&:orders).flatten
+  end
 end

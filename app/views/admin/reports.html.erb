@@ -1,0 +1,47 @@
+<div class="row  search-container result-page account-setting-page favorite-Restaurant-page  favorite-Restaurant-page-1 order-history-page  node-reviews" id="restaurant_admin_dashboard">
+	<div class="container">
+		<div class="row setting-info-container">
+			<div class="col-md-11 info-main-container">
+				<div class="order-history-left">
+					<div class="ring"></div>
+					<div class="account-bar nav nav-pills user-information-tab" data-tabs="tabs">
+            <div class="account-tabs orders" data-hash="orders">
+              <a href="#orders" data-toggle="tab" >Orders</a>
+            </div>
+          </div>
+          <div id="account-tab-content" class="tab-content admin-report-content">
+          	<div class="tab-pane" id= "orders">
+              <%= render :partial  => "orders" %>
+            </div>
+          </div>
+        </div>  
+      </div>
+      <div class="col-md-1 order-history-right">
+      </div>	
+		</div>	
+	</div>	
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var hash = window.location.hash.substring(1);
+    if(hash){
+      $('.account-bar .' + hash +  ' a').click();
+      $('#'+hash).addClass("active");
+      $('.'+hash).addClass("active");
+    }  
+    else{
+      $('.account-bar .orders a').click();
+      $("#orders").addClass("active");
+      $(".orders").addClass("active");
+    }  
+
+    $(".account-tabs").click(function(){
+      $(".user-information-tab .account-tabs").each(function(){
+          $(this).removeClass("active");
+      });
+      $(this).addClass("active");
+      window.location.hash = $(this).data("hash"); 
+    });
+  });
+</script>
