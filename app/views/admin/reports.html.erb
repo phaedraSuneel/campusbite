@@ -8,10 +8,22 @@
             <div class="account-tabs orders" data-hash="orders">
               <a href="#orders" data-toggle="tab" >Orders</a>
             </div>
+            <div class="account-tabs last_week" data-hash="last_week">
+              <a href="#last_week" data-toggle="tab" >Last Week Orders</a>
+            </div>
+            <div class="account-tabs last_month" data-hash="last_month">
+              <a href="#last_month" data-toggle="tab" >Last Month Orders</a>
+            </div>
           </div>
           <div id="account-tab-content" class="tab-content admin-report-content">
           	<div class="tab-pane" id= "orders">
-              <%= render :partial  => "orders" %>
+              <%= render :partial  => "orders", :locals => {:orders => @orders} %>
+            </div>
+            <div class="tab-pane" id= "last_week">
+              <%= render :partial  => "orders", :locals => {:orders => @last_week_orders} %>
+            </div>
+            <div class="tab-pane" id= "last_month">
+              <%= render :partial  => "orders", :locals => {:orders => @last_month_orders} %>
             </div>
           </div>
         </div>  
