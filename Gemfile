@@ -38,6 +38,8 @@ gem 'kaminari'
 
 gem "braintree"
 
+gem 'phaxio', '0.4.0'
+
 gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

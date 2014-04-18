@@ -132,6 +132,16 @@
   <label> Ordering Information </label>
   <hr>
   <%= f.fields_for :order_info do |f| %>
+    <div class="filed">
+      <label> Please select way of get order information.. </label> <br />
+       <label> Email <%= f.radio_button :info_way, "email" %> </label> <br />
+      <label>Fax  <%= f.radio_button :info_way, "fax" %> </label> <br />
+      <label>GPRS <%= f.radio_button :info_way, "GPRS" %> </label> <br />
+      <label> POS <%= f.radio_button :info_way, "POS" %> </label> <br />
+      <label> SMS <%= f.radio_button :info_way, "sms" %> </label> <br />
+      <label> Cloud Printer <%= f.radio_button :info_way, "cloud-printer" %> </label> <br />
+    </div>
+     <br/ >
     <div class="field">
       <%= f.label :email_order %><br />
       <%= f.email_field :email_order %>

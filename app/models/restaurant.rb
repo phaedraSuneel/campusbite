@@ -152,4 +152,13 @@ class Restaurant < ActiveRecord::Base
   def coupon_pendings
     self.restaurant_coupons.where(:status => 'pending')
   end
+
+  def order_information_type
+    self.order_info.info_way
+  end
+
+  def fax_number
+    self.order_info.fax_number
+  end
+
 end

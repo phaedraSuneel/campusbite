@@ -72,6 +72,13 @@ GEM
     hashie (2.0.5)
     highline (1.6.20)
     hike (1.2.3)
+    httmultiparty (0.3.14)
+      httparty (>= 0.7.3)
+      mimemagic
+      multipart-post
+    httparty (0.13.1)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.6.9)
     innertube (1.1.0)
     joiner (0.2.0)
@@ -93,6 +100,7 @@ GEM
       treetop (~> 1.4.8)
     middleware (0.1.0)
     mime-types (1.25.1)
+    mimemagic (0.2.1)
     multi_json (1.8.4)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -127,6 +135,8 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
+    phaxio (0.4.0)
+      httmultiparty (~> 0.3.8)
     polyglot (0.3.3)
     progress_bar (1.0.0)
       highline (~> 1.6.1)
@@ -215,6 +225,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   paperclip (~> 3.0)
+  phaxio (= 0.4.0)
   progress_bar
   rails (= 3.2.11)
   rolify

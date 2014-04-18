@@ -60,7 +60,7 @@ class CartsController < ApplicationController
     total_bill = @cart.total_bill(@cart.restaurant)
     total_bill += (@cart.total_bill(@cart.restaurant) * params[:order][:tip].to_f)/100
   
-    Braintree::Configuration.environment = APP_CONFIG["environment"]
+    Braintree::Configuration.environment = :sandbox
     Braintree::Configuration.merchant_id = APP_CONFIG["merchant-id"]
     Braintree::Configuration.public_key = APP_CONFIG["public-key"]
     Braintree::Configuration.private_key = APP_CONFIG["private-key"]
@@ -139,6 +139,7 @@ class CartsController < ApplicationController
           end
           @cart.destroy
           flash[:notice] = 'Order was successfully created'
+          send_order(@order) 
           redirect_to order_welcome_path(@order)  
         else
           flash[:warning] = "Invalid card information"
@@ -215,6 +216,7 @@ class CartsController < ApplicationController
     end
     @cart.destroy
     flash[:notice] = 'Order was successfully created'
+    send_order(@order)
     redirect_to order_welcome_path(@order)  
   end
 
@@ -235,4 +237,16 @@ class CartsController < ApplicationController
     end      
 
   end
+  private
+  def send_order(order)
+    if order.restaurant.order_information_type == "fax"
+      send_fax_to_restaurant(order)
+    else
+    end    
+  end
+
+  def send_fax_to_restaurant(order)
+    order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => order}, :layout => false )
+    @fax = Phaxio.send_fax(to: order.restaurant.fax_number ,string_data_type: 'html', string_data: order_reciept )
+  end 
 end
