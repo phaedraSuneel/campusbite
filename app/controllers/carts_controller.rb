@@ -59,13 +59,11 @@ class CartsController < ApplicationController
 
     total_bill = @cart.total_bill(@cart.restaurant)
     total_bill += (@cart.total_bill(@cart.restaurant) * params[:order][:tip].to_f)/100
-   
-    p total_bill
-
-    Braintree::Configuration.environment = :sandbox
-    Braintree::Configuration.merchant_id = "6q6zvwjk33nr2wh6"
-    Braintree::Configuration.public_key = "z8wb4mz95s5hj74g"
-    Braintree::Configuration.private_key = "fca0105a4b3e363f763ffc31a5d69ce8"
+  
+    Braintree::Configuration.environment = APP_CONFIG["environment"]
+    Braintree::Configuration.merchant_id = APP_CONFIG["merchant-id"]
+    Braintree::Configuration.public_key = APP_CONFIG["public-key"]
+    Braintree::Configuration.private_key = APP_CONFIG["private-key"]
 
     unless params[:order].blank?
 
@@ -123,6 +121,7 @@ class CartsController < ApplicationController
           @order.method_type = "Credit Card"
           @order.card_id = @card.id
           @order.restaurant = @cart.restaurant
+          @order.secure_code = SecureRandom.hex(3)
           @order.save
 
           payment = @order.build_payment
@@ -147,19 +146,11 @@ class CartsController < ApplicationController
         end  
       else
       unless params[:order][:order_type] == "pickup"
-        if Rails.env.production?
-          result = @cart.paypal_url('http://ordering.mashup.li/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s ,total_bill)
-        else
-          result = @cart.paypal_url('http://localhost:3000/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s, total_bill)
-        end  
+          result = @cart.paypal_url(APP_CONFIG["domain"]+'carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s ,total_bill)
       else
-        if Rails.env.production?
-          result = @cart.paypal_url('http://ordering.mashup.li/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s ,total_bill)
-        else
-          result = @cart.paypal_url('http://localhost:3000/carts/paypal_order_create?cart_id='+@cart.id.to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s, total_bill)
-        end
+          result = @cart.paypal_url(APP_CONFIG["domain"]+'carts/paypal_order_create?cart_id='+@cart.id.to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s ,total_bill)
       end
-        redirect_to result
+      redirect_to result
       end
     end 
   end
@@ -215,6 +206,7 @@ class CartsController < ApplicationController
     @order.user_id = current_user.id
     @order.status = "pending"
     @order.restaurant = @cart.restaurant
+    @order.secure_code = SecureRandom.hex(3)
     @order.save
     @cart.cart_menu_items.each do |item|
       @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   

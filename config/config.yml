@@ -1,0 +1,11 @@
+development:
+  domain: 'http://localhost:3000/'
+  envoriment: ':sandbox'
+  merchant-id: '6q6zvwjk33nr2wh6'
+  public-key: 'z8wb4mz95s5hj74g'
+  private-key: 'fca0105a4b3e363f763ffc31a5d69ce8'
+production:
+  domain: 'http://ordering.mashup.li/'
+  merchant-id: '6q6zvwjk33nr2wh6'
+  public-key: 'z8wb4mz95s5hj74g'
+  private-key: 'fca0105a4b3e363f763ffc31a5d69ce8'

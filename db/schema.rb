@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140414123909) do
+ActiveRecord::Schema.define(:version => 20140418070546) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -264,6 +264,7 @@ ActiveRecord::Schema.define(:version => 20140414123909) do
     t.string   "method_type"
     t.integer  "payment_id"
     t.float    "tip",                  :default => 0.0
+    t.string   "secure_code"
   end
 
   create_table "payments", :force => true do |t|

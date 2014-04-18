@@ -143,4 +143,5 @@ class AdminController < ApplicationController
     @last_week_orders = @restaurants.collect(&:last_week_orders).flatten
     @last_month_orders = @restaurants.collect(&:last_month_orders).flatten
   end
+  
 end
