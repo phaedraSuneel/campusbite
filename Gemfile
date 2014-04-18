@@ -38,6 +38,7 @@ gem 'kaminari'
 
 gem "braintree"
 
+gem 'twilio-ruby'
 gem 'phaxio', '0.4.0'
 
 gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'

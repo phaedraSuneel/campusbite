@@ -137,9 +137,10 @@ class CartsController < ApplicationController
             @menu_item_order.menu_item = item.menu_item
             @menu_item_order.save 
           end
+          send_order(@order)
           @cart.destroy
           flash[:notice] = 'Order was successfully created'
-          send_order(@order) 
+           
           redirect_to order_welcome_path(@order)  
         else
           flash[:warning] = "Invalid card information"
@@ -214,9 +215,9 @@ class CartsController < ApplicationController
       @menu_item_order.menu_item = item.menu_item
       @menu_item_order.save 
     end
+    send_order(@order)
     @cart.destroy
     flash[:notice] = 'Order was successfully created'
-    send_order(@order)
     redirect_to order_welcome_path(@order)  
   end
 
@@ -236,17 +237,35 @@ class CartsController < ApplicationController
       end
     end      
 
+    def process_gether
+      digit = params
+    end
+
   end
   private
+
   def send_order(order)
+
     if order.restaurant.order_information_type == "fax"
       send_fax_to_restaurant(order)
     else
+      false
     end    
   end
 
   def send_fax_to_restaurant(order)
     order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => order}, :layout => false )
     @fax = Phaxio.send_fax(to: order.restaurant.fax_number ,string_data_type: 'html', string_data: order_reciept )
+    if @fax["success"]
+       #make_call 
+    else  
+      false
+    end  
   end 
+
+  def make_call
+    @client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
+    @call = @client.account.calls.create(:from => '+18283480253',:to => '+923353455244', :record => true, :url => "#{Rails.root}"+"/voice.xml")
+  end
+
 end

@@ -3,8 +3,12 @@ development:
   merchant-id: '6q6zvwjk33nr2wh6'
   public-key: 'z8wb4mz95s5hj74g'
   private-key: 'fca0105a4b3e363f763ffc31a5d69ce8'
+  twilio-account-sid: 'AC7da0588ee4327b01216c241df0a1b001'
+  twilio-auth-token: 'bcbc1db4904cef482ed48d6096fece4c'
 production:
   domain: 'http://ordering.mashup.li/'
   merchant-id: '6q6zvwjk33nr2wh6'
   public-key: 'z8wb4mz95s5hj74g'
   private-key: 'fca0105a4b3e363f763ffc31a5d69ce8'
+  twilio-account-sid: 'AC7da0588ee4327b01216c241df0a1b001'
+  twilio-auth-token: 'bcbc1db4904cef482ed48d6096fece4c'

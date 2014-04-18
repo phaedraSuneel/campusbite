@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Response>
+    	<Say voice="women" language="en-US">Please presss order confirmation code! than press * </Say>
+    	<Record
+        action="http://localhost:3000/carts/process_gether"
+        method="GET"
+        maxLength="6"
+        finishOnKey="*"
+        />
+    <Say>I did not receive a recording</Say>
+</Response>
