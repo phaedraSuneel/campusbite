@@ -39,11 +39,7 @@ class CartsController < ApplicationController
       @cart = current_user.carts.find_by_restaurant_id(params[:restaurant_id])
       @restaurant = Restaurant.find params[:restaurant_id]
       unless @cart.blank?
-        #unless params[:order_type] == "pickup"
-          render :partial => "welcome/payment_information", :locals => {:@cart => @cart, :@restaurant => @restaurant}
-        # else 
-        #   render :partial => "welcome/order_view_option"
-        # end  
+        render :partial => "welcome/payment_information", :locals => {:@cart => @cart, :@restaurant => @restaurant}
       else
         render :partial => "welcome/menu_item_option" 
       end  
@@ -59,11 +55,8 @@ class CartsController < ApplicationController
 
     total_bill = @cart.total_bill(@cart.restaurant)
     total_bill += (@cart.total_bill(@cart.restaurant) * params[:order][:tip].to_f)/100
-  
-    Braintree::Configuration.environment = :sandbox
-    Braintree::Configuration.merchant_id = APP_CONFIG["merchant-id"]
-    Braintree::Configuration.public_key = APP_CONFIG["public-key"]
-    Braintree::Configuration.private_key = APP_CONFIG["private-key"]
+    
+    p total_bill
 
     unless params[:order].blank?
 
@@ -113,6 +106,7 @@ class CartsController < ApplicationController
             p "Invalid new card information"  
           end
         end
+
         if @result.success?
           @order = Order.new params[:order]
           @order.user_id = current_user.id
@@ -239,18 +233,28 @@ class CartsController < ApplicationController
 
     def process_gether
       digit = params
+      p params
     end
 
   end
   private
 
-  def send_order(order)
 
-    if order.restaurant.order_information_type == "fax"
+
+  def send_order(order)
+    email_order_to_restaurant_resources(order)
+    if order.restaurant.can_fax?
       send_fax_to_restaurant(order)
     else
-      false
+      p "Fax Not Avaiable"
+      #make_call
+      #order.update_attributes(:status => "confirm")
     end    
+  end
+
+  def email_order_to_restaurant_resources(order)
+    order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => order}, :layout => false ) 
+    UserMailer.new_order(order, order_reciept).deliver
   end
 
   def send_fax_to_restaurant(order)
@@ -258,14 +262,22 @@ class CartsController < ApplicationController
     @fax = Phaxio.send_fax(to: order.restaurant.fax_number ,string_data_type: 'html', string_data: order_reciept )
     if @fax["success"]
        #make_call 
+       order.update_attributes(:status => "confirm")
     else  
+      p "Error in Fax information"
       false
-    end  
+    end
   end 
 
   def make_call
     @client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
-    @call = @client.account.calls.create(:from => '+18283480253',:to => '+923353455244', :record => true, :url => "#{Rails.root}"+"/voice.xml")
+    @message = @client.account.messages.create({
+      :from => '+17189253361',   :to => '+923353455244' , :body => "Hello Test"
+    })
+    p @message
+    #@client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
+    #@call = @client.account.calls.create(:from => '+17189253361',:to => '+923353455244', :record => true, :url => "#{Rails.root}"+"/voice.xml")
+    #p @call
   end
 
 end

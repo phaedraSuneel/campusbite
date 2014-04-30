@@ -3,12 +3,19 @@ development:
   merchant-id: '6q6zvwjk33nr2wh6'
   public-key: 'z8wb4mz95s5hj74g'
   private-key: 'fca0105a4b3e363f763ffc31a5d69ce8'
-  twilio-account-sid: 'AC7da0588ee4327b01216c241df0a1b001'
-  twilio-auth-token: 'bcbc1db4904cef482ed48d6096fece4c'
+  api_key: '6f045479b9d44fdf95e91d0a882d0401eb34cb60'
+  api_secret: 'b32ccd2ce9a59bd24909d61132830993fc0833bd'
+  twilio-account-sid: 'AC3eb4ac7bb667e38d796299684798dc46'
+  twilio-auth-token: '544fbd768739740dfe75c3a74ab41f9e'
+  api_login_id: 27hq52HGB
+  api_transaction_key: 9n6fC4v2k8APM23h
+  merchant_hash_value:
 production:
   domain: 'http://ordering.mashup.li/'
   merchant-id: '6q6zvwjk33nr2wh6'
   public-key: 'z8wb4mz95s5hj74g'
   private-key: 'fca0105a4b3e363f763ffc31a5d69ce8'
-  twilio-account-sid: 'AC7da0588ee4327b01216c241df0a1b001'
-  twilio-auth-token: 'bcbc1db4904cef482ed48d6096fece4c'
+  twilio-account-sid: 'ACf11515a95fe2ceabf3ea7da329036cea'
+  twilio-auth-token: '699cdf167684cca152bc0c4704e66c12'
+  api_key: '6f045479b9d44fdf95e91d0a882d0401eb34cb60'
+  api_secret: 'b32ccd2ce9a59bd24909d61132830993fc0833bd'

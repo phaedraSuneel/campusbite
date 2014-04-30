@@ -11,6 +11,8 @@ class Order < ActiveRecord::Base
 
   after_save :update_user_points
 
+  # after_create :email_order_to_restaurant_resources
+
   def update_user_points
     total = 0
     self.user.orders.each do |user_order|
@@ -19,6 +21,11 @@ class Order < ActiveRecord::Base
     points = (total.floor) * 5
     self.user.update_attributes(:points => points)
   end
+
+  # def email_order_to_restaurant_resources
+  #   order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => self}, :layout => false ) 
+  #   UserMailer.new_order(self, order_reciept).deliver
+  # end
 
   def property_name(id)
   	MenuItemProperty.find(id).name

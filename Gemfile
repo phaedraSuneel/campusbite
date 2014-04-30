@@ -31,7 +31,7 @@ end
 gem 'jquery-rails'
 gem 'delayed_job_active_record'
 gem 'thinking-sphinx', '3.1.0'
-gem 'ts-delayed-delta', '2.0.0', :require => 'thinking_sphinx/deltas/delayed_delta'
+gem 'ts-delayed-delta', '~> 2.0.2'
 gem 'progress_bar'
 
 gem 'kaminari'
@@ -40,6 +40,8 @@ gem "braintree"
 
 gem 'twilio-ruby'
 gem 'phaxio', '0.4.0'
+
+gem "authorize-net"
 
 gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'
 # To use ActiveModel has_secure_password

@@ -1,4 +1,4 @@
-ThinkingSphinx::Index.define :restaurant, :with => :active_record do
+ThinkingSphinx::Index.define :restaurant, :with => :active_record, :delta => ThinkingSphinx::Deltas::DelayedDelta do
   
   indexes school(:school_name), :sortable => true, :as => :school_name
   indexes school(:branch_name), :sortable => true, :as => :branch_name
@@ -18,5 +18,5 @@ ThinkingSphinx::Index.define :restaurant, :with => :active_record do
   has delivery_info(:delivery_estimated_time), :as => :delivery_eta, :type => :integer, :sortable => true
 
   set_property :min_infix_len => 1
-
+  set_property :delta => ThinkingSphinx::Deltas::DelayedDelta
 end

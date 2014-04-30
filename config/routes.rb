@@ -250,6 +250,12 @@ Ordering::Application.routes.draw do
   match '/welcome/campus_suggestion' => 'welcome#campus_suggestion', :as => :campus_suggestion 
 
 
+  match '/payments/payment', :to => 'payments#payment', :as => 'paymentspayment', :via => [:get]
+
+  match '/payments/relay_response', :to => 'payments#relay_response', :as => 'payments_relay_response', :via => [:post]
+
+  match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
+
   # Sample resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

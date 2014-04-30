@@ -26,4 +26,8 @@ class UserMailer < ActionMailer::Base
     mail(to: 'admin@ordering.com', from: @user.email, subject: contact_us[:subject], message: contact_us[:message])
   end    
   
+  def new_order(order,order_reciept)
+    @order_reciept = order_reciept
+    mail(to: order.restaurant.order_email, cc: order.restaurant.admin_email, from: "support@campusbite.com", subject: "New Order Placement")
+  end  
 end

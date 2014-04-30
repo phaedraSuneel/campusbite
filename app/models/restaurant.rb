@@ -24,7 +24,7 @@ class Restaurant < ActiveRecord::Base
   has_one :operation, :dependent => :destroy
 
   attr_accessible :school_id, :restaurant_category_ids, :contact_info_attributes, :restaurant_info_attributes, :delivery_info_attributes, :order_info_attributes, :bank_info_attributes,
-                  :operation_attributes, :delivery_attributes, :pick_up_attributes, :avg_rating, :user_id, :user_attributes
+                  :operation_attributes, :delivery_attributes, :pick_up_attributes, :avg_rating, :user_id, :user_attributes, :delta
                  
   accepts_nested_attributes_for :restaurant_categories
   accepts_nested_attributes_for :favorites
@@ -153,12 +153,20 @@ class Restaurant < ActiveRecord::Base
     self.restaurant_coupons.where(:status => 'pending')
   end
 
-  def order_information_type
-    self.order_info.info_way
+  def can_fax?
+    self.order_info.info_way = "fax" ? true : false
   end
 
   def fax_number
     self.order_info.fax_number
+  end
+
+  def order_email
+    self.order_info.email_order
+  end
+
+  def admin_email
+    self.user.email
   end
 
 end

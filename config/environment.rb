@@ -6,6 +6,12 @@ Ordering::Application.initialize!
 
 require 'phaxio'
 Phaxio.config do |config|
-	config.api_key = "b4b5fa935e60b20bd5ad7860f8f553c3f1d1d738"
-	config.api_secret = "1d6e0b8260a1a9b5b2b0ea1fe8c7312a6eddc4c1"
+	config.api_key = APP_CONFIG["api_key"]
+	config.api_secret = APP_CONFIG["api_secret"]
 end
+require 'braintree'
+
+Braintree::Configuration.environment = :sandbox
+Braintree::Configuration.merchant_id = APP_CONFIG["merchant-id"]
+Braintree::Configuration.public_key = APP_CONFIG["public-key"]
+Braintree::Configuration.private_key = APP_CONFIG["private-key"]

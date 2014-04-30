@@ -38,6 +38,8 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.3)
     atomic (1.1.14)
+    authorize-net (1.5.2)
+      nokogiri (~> 1.4)
     bcrypt-ruby (3.1.2)
     braintree (2.30.0)
       builder (>= 2.0.0)
@@ -101,10 +103,13 @@ GEM
     middleware (0.1.0)
     mime-types (1.25.1)
     mimemagic (0.2.1)
+    mini_portile (0.5.3)
     multi_json (1.8.4)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     mysql2 (0.3.15)
+    nokogiri (1.6.1)
+      mini_portile (~> 0.5.0)
     oauth (0.4.7)
     oauth2 (0.9.3)
       faraday (>= 0.8, < 0.10)
@@ -199,9 +204,9 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    ts-delayed-delta (2.0.0)
+    ts-delayed-delta (2.0.2)
       delayed_job
-      thinking-sphinx
+      thinking-sphinx (>= 1.5.0)
     twilio-ruby (3.11.4)
       builder (>= 2.1.2)
       jwt (>= 0.1.2)
@@ -217,6 +222,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  authorize-net
   braintree
   cancan
   coffee-rails (~> 3.2.1)
@@ -237,7 +243,7 @@ DEPENDENCIES
   simple_form
   therubyracer
   thinking-sphinx (= 3.1.0)
-  ts-delayed-delta (= 2.0.0)
+  ts-delayed-delta (~> 2.0.2)
   twilio-ruby
   uglifier (>= 1.0.3)
   vestal_versions!

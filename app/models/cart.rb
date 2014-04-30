@@ -48,7 +48,7 @@ class Cart < ActiveRecord::Base
       :upload=> 1,
       :return => return_url,
       :invoice => self.id,
-      :amount_1 => total_bill,
+      :amount_1 => total_bill.to_f,
       :item_name_1 => 'Order',
       :item_number_1 => self.id,
       :quantity_1 => 1

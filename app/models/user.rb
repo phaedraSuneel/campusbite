@@ -40,10 +40,6 @@ class User < ActiveRecord::Base
 
 
   def add_customer_id
-    Braintree::Configuration.environment = :sandbox
-    Braintree::Configuration.merchant_id = APP_CONFIG["merchant-id"]
-    Braintree::Configuration.public_key = APP_CONFIG["public-key"]
-    Braintree::Configuration.private_key = APP_CONFIG["private-key"]
     result = Braintree::Customer.create(
       :id => "customer_" + self.id.to_s,
       :first_name => self.first_name
