@@ -247,13 +247,14 @@ class CartsController < ApplicationController
 
   def send_order(order)
     #email_order_to_restaurant_resources(order)
-    if order.restaurant.can_fax?
-      send_fax_to_restaurant(order)
-    else
-      p "Fax Not Avaiable"
-      make_call(order.restaurant)
-      #order.update_attributes(:status => "confirm")
-    end    
+    # if order.restaurant.can_fax?
+    #   send_fax_to_restaurant(order)
+    # else
+    #   p "Fax Not Avaiable"
+    #   make_call(order.restaurant)
+    #   #order.update_attributes(:status => "confirm")
+    # end
+        make_call(order.restaurant)
   end
 
   def email_order_to_restaurant_resources(order)
