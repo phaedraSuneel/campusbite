@@ -236,6 +236,12 @@ class CartsController < ApplicationController
       p params
     end
 
+    def voice
+      respond_with do |format|
+        format.xml
+      end
+    end
+
   end
   private
 
@@ -247,7 +253,7 @@ class CartsController < ApplicationController
       send_fax_to_restaurant(order)
     else
       p "Fax Not Avaiable"
-      #make_call
+      make_call(order.restaurant)
       #order.update_attributes(:status => "confirm")
     end    
   end
@@ -261,7 +267,7 @@ class CartsController < ApplicationController
     order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => order}, :layout => false )
     @fax = Phaxio.send_fax(to: order.restaurant.fax_number ,string_data_type: 'html', string_data: order_reciept )
     if @fax["success"]
-       #make_call 
+       make_call(order.restaurant) 
        order.update_attributes(:status => "confirm")
     else  
       p "Error in Fax information"
@@ -269,15 +275,19 @@ class CartsController < ApplicationController
     end
   end 
 
-  def make_call
+  def make_call(restaurant)
+    p restaurant.phone_number
+
+    # @client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
+    # @message = @client.account.messages.create({
+    #   :from => '+13477897512',   :to => restaurant.phone_number , :body => "New order has placed now..."
+    # })
+    # p @message
     @client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
-    @message = @client.account.messages.create({
-      :from => '+17189253361',   :to => '+923353455244' , :body => "Hello Test"
-    })
-    p @message
-    #@client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
-    #@call = @client.account.calls.create(:from => '+17189253361',:to => '+923353455244', :record => true, :url => "#{Rails.root}"+"/voice.xml")
-    #p @call
+    p @client
+    #@call = @client.account.calls.create(:from => '+17189253361',:to => restaurant.phone_number, :record => true, :url => voice_carts_url )
+    @call = @client.account.calls.create(:from => '+17189253361',:to => '+923353455244', :record => true, :url => voice_carts_url )
+    p @call
   end
 
 end

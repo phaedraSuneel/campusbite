@@ -169,4 +169,7 @@ class Restaurant < ActiveRecord::Base
     self.user.email
   end
 
+  def phone_number
+    self.contact_info.restaurant_phone
+  end
 end
