@@ -245,10 +245,8 @@ class CartsController < ApplicationController
   end
   private
 
-
-
   def send_order(order)
-    email_order_to_restaurant_resources(order)
+    #email_order_to_restaurant_resources(order)
     if order.restaurant.can_fax?
       send_fax_to_restaurant(order)
     else
