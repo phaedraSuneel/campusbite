@@ -2,6 +2,7 @@ ThinkingSphinx::Index.define :restaurant, :with => :active_record, :delta => Thi
   
   indexes school(:school_name), :sortable => true, :as => :school_name
   indexes school(:branch_name), :sortable => true, :as => :branch_name
+  indexes school(:delta) => ThinkingSphinx::Deltas::DelayedDelta
   has restaurant_info(:is_pick_up), :as => :pick_up, :facet => true
   has delivery_info(:is_delivery),  :as => :delivery, :facet => true
 
