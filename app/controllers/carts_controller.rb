@@ -115,7 +115,7 @@ class CartsController < ApplicationController
           @order.method_type = "Credit Card"
           @order.card_id = @card.id
           @order.restaurant = @cart.restaurant
-          @order.secure_code = SecureRandom.hex(3)
+          @order.secure_code = SecureRandom.random_number(1000000)
           @order.save
 
           payment = @order.build_payment
@@ -202,7 +202,7 @@ class CartsController < ApplicationController
     @order.user_id = current_user.id
     @order.status = "pending"
     @order.restaurant = @cart.restaurant
-    @order.secure_code = SecureRandom.hex(3)
+    @order.secure_code = SecureRandom.random_number(1000000)
     @order.save
     @cart.cart_menu_items.each do |item|
       @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   
@@ -265,7 +265,7 @@ class CartsController < ApplicationController
     #   make_call(order.restaurant)
     #   #order.update_attributes(:status => "confirm")
     # end
-        make_call(order.restaurant,order)
+        make_call(order.restaurant)
   end
 
   def email_order_to_restaurant_resources(order)
@@ -277,7 +277,7 @@ class CartsController < ApplicationController
     order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => order}, :layout => false )
     @fax = Phaxio.send_fax(to: order.restaurant.fax_number ,string_data_type: 'html', string_data: order_reciept )
     if @fax["success"]
-       make_call(order.restaurant,order) 
+       make_call(order.restaurant) 
        order.update_attributes(:status => "confirm")
     else  
       p "Error in Fax information"
@@ -285,20 +285,12 @@ class CartsController < ApplicationController
     end
   end 
 
-  def make_call(restaurant,order)
+  def make_call(restaurant)
     p restaurant.phone_number
-    @order = order
-
-    # @client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
-    # @message = @client.account.messages.create({
-    #   :from => '+13477897512',   :to => restaurant.phone_number , :body => "New order has placed now..."
-    # })
-    # p @message
     @client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
     p @client
     #@call = @client.account.calls.create(:from => '+17189253361',:to => restaurant.phone_number, :record => true, :url => voice_carts_url )
     @call = @client.account.calls.create(:from => '+17189253361',:to => '+923353455244', :url => voice_carts_url, :method => :get)
-    #p @call
   end
 
 end

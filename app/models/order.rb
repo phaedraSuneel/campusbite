@@ -22,11 +22,6 @@ class Order < ActiveRecord::Base
     self.user.update_attributes(:points => points)
   end
 
-  # def email_order_to_restaurant_resources
-  #   order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => self}, :layout => false ) 
-  #   UserMailer.new_order(self, order_reciept).deliver
-  # end
-
   def property_name(id)
   	MenuItemProperty.find(id).name
   end
