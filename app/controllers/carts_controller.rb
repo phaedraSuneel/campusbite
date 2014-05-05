@@ -230,21 +230,21 @@ class CartsController < ApplicationController
         format.js
       end
     end      
-
-    def process_gether
-      digit = params
-      p params
-      p asdsadsa
-    end
-
-    def voice
-      p "reading xml"
-      respond_with do |format|
-        format.xml
-      end
-    end
-
   end
+
+  def process_gether
+    digit = params
+    p params
+    p asdsadsa
+  end
+
+  def voice
+    p "reading xml"
+    respond_with do |format|
+      format.xml
+    end
+  end
+  
   private
 
   def send_order(order)
