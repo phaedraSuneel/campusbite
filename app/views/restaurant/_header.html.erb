@@ -1,0 +1,33 @@
+<div class="header navbar navbar-fixed-top">
+	<div class="header-inner">
+		<%= link_to raw(image_tag("/assets/change_logo2.png", :alt => "Campusbite logo", :class=> "img-responsive")), restaurant_dashboard_index_path, :class => "navbar-brand" %>
+
+		<%= link_to raw(image_tag("/assets/menu-toggler.png")), 'javascript:;', :class => "navbar-toggle", "data-toggle" => "collapse", "data-target" => ".navbar-collapse"   %>
+		<ul class="nav navbar-nav pull-right">
+			<li class="dropdown user">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+					<%= image_tag("/assets/avatar1_small.jpg") %>
+					<span class="username">
+						 <%= current_user.name %>
+					</span>
+					<i class="fa fa-angle-down"></i>
+				</a>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="javascript:;">
+							<i class="fa fa-user"></i> My Profile
+						</a>
+					</li>
+					<li>
+						<a href="javascript:;">
+							<i class="fa fa-calendar"></i> My Calendar
+						</a>
+					</li>
+					<li>
+						<%= link_to raw('<i class="fa fa-key"></i> Log Out'), destroy_user_session_path, :method => :delete %>
+					</li>
+				</ul>
+			</li>
+		</ul>	
+	</div>	
+</div>
