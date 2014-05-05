@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-
+  respond_to :html, :xml, :json
   def add_item
     menu_item = MenuItem.find(params[:cart][:menu_item_id])
     restaurant = menu_item.restaurant
@@ -244,7 +244,7 @@ class CartsController < ApplicationController
       format.xml
     end
   end
-  
+
   private
 
   def send_order(order)
