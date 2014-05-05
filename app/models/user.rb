@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     self.has_role? :admin
   end
 
+  def admin_restaurant?
+    self.has_role? :admin_restaurant
+  end
+
   def name
     "#{self.first_name} #{self.last_name}"
   end

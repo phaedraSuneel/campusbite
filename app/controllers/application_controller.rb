@@ -1,12 +1,20 @@
 class ApplicationController < ActionController::Base
 	before_filter :check_admin
 	before_filter :check_status
+	layout :change_layout
 
 	rescue_from CanCan::AccessDenied do |exception|
 	  redirect_to root_url, :notice => "You are not authorize for this action"
 	end	
 	protect_from_forgery
 
+	def change_layout
+    if current_user
+      current_user.admin_restaurant? ? 'admin_restaurant' : 'application'
+    else
+      'application'
+    end  
+  end
 
   def check_admin
 		if params[:controller] == 'admin'
@@ -15,6 +23,7 @@ class ApplicationController < ActionController::Base
 		  end
 		end
 	end
+	
   def check_status
     if user_signed_in? && !cookies[:cart_token].blank?
       @cookie_cart=Cart.find_by_token(cookies[:cart_token])
