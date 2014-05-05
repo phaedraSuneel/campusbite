@@ -235,10 +235,10 @@ class CartsController < ApplicationController
   def process_gether
     p params
 
-    digit = params[:Digits]
-    p digit
+    digit = params["Digits"]
+
     order = Order.last
-    if order.secure_code == digit.to_i
+    if order.secure_code == digit
       order.status = "confirm"
     else
       order.status = "rejected"
