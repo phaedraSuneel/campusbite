@@ -32,6 +32,6 @@ class UserMailer < ActionMailer::Base
   end  
 
   def order_confirmation(order)
-    mail(to: 'sunny.ciitlahore@gmail.com', from: "support@campusbite.com", :subject: "Order Confirm", :message => "Thank you for order. Your order has been confirmed by restaurant," )
+    mail(to: 'sunny.ciitlahore@gmail.com', from: "support@campusbite.com", subject: "Order Confirm", message: "Thank you for order. Your order has been confirmed by restaurant," )
   end
 end
