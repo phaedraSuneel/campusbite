@@ -237,13 +237,13 @@ class CartsController < ApplicationController
 
     digit = params[:Digits]
     p digit
-    order = Order.find(params[:id].to_i)
-    if order.secure_code == digit.to_i
-      order.status = "confirm"
-    else
-      order.status = "rejected"
-    end
-    order.save
+    # order = Order.find(params[:id].to_i)
+    # if order.secure_code == digit.to_i
+    #   order.status = "confirm"
+    # else
+    #   order.status = "rejected"
+    # end
+    # order.save
     render :text => "Order status updated"
   end
 

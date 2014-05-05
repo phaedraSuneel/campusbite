@@ -158,10 +158,10 @@ Ordering::Application.routes.draw do
       get "delete_cart_item"
       get "paypal_order_create"
       get "update_order_type"
+      get "process_gether"
       get "voice", :format => "xml"
     end
     member do
-      get "process_gether"
       post 'edit_item'
     end
   end  
