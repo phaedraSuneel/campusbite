@@ -15,4 +15,14 @@
  *= require jquery.rating
  *= require datepicker
  *= require jquery.dataTables	
+ *= require gooleapis
+ *= require font-awesome.min
+ *= require bootstrap.min
+ *= require uniform.default
+ *= require style-metronic
+ *= require restaurant-style
+ *= require style-responsive
+ *= require plugins
+ *= require default
+ *= require custom
  */

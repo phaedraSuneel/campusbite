@@ -9,7 +9,7 @@
 <body>
   <div class="main-body">
     <div class="ordering_header">
-      <%= render :partial => "restaurant/dashboard/header" %> 
+      <%= render :partial => "restaurant/header" %> 
     </div>
     <div class="flash row margin-auto">
       <% flash_message = current_user.blank? ? "flash-msg" : "signed-in-flash-msg" %>
@@ -33,7 +33,7 @@
     </div>  
     <%= yield %>
     <div class="ordering_footer">
-      <%= render :partial => "restaurant/dashboard/footer" %> 
+      <%= render :partial => "restaurant/footer" %> 
     </div>  
   </div>  
 </body>
