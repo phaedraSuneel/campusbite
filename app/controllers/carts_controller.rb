@@ -233,9 +233,10 @@ class CartsController < ApplicationController
   end
 
   def process_gether
-    digit = params
     p params
-    p asdsadsa
+    digit = params[:Digits]
+    p digit
+
   end
 
   def voice
@@ -288,7 +289,7 @@ class CartsController < ApplicationController
     p @client
     #@call = @client.account.calls.create(:from => '+17189253361',:to => restaurant.phone_number, :record => true, :url => voice_carts_url )
     @call = @client.account.calls.create(:from => '+17189253361',:to => '+923353455244', :record => true, :url => voice_carts_url, :method => :get )
-    p @call
+    #p @call
   end
 
 end

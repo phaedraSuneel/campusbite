@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Response>
-	<Say voice="women" language="en-US">Please presss order confirmation code! than press * </Say>
-	<Record
-    action="<%= process_gether_carts_url %>"
-    method="GET"
-    maxLength="10"
-    finishOnKey="*"
-    />
+	<Gather timeout="10" finishOnKey="*" action="<%= process_gether_carts_url %>" method="get" numDigits="8">
+		<Say voice="women" language="en-US">Please presss order confirmation code! than press star </Say>
+	</Gather>	
 </Response>
