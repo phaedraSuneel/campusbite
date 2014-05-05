@@ -234,6 +234,7 @@ class CartsController < ApplicationController
     def process_gether
       digit = params
       p params
+      p asdsadsa
     end
 
     def voice
