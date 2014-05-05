@@ -159,7 +159,7 @@ Ordering::Application.routes.draw do
       get "paypal_order_create"
       get "update_order_type"
       get "process_gether"
-      get "voice", :format => "xml"
+      post "voice", :format => "xml"
     end
     member do
       post 'edit_item'
