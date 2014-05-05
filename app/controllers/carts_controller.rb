@@ -288,7 +288,7 @@ class CartsController < ApplicationController
     @client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
     p @client
     #@call = @client.account.calls.create(:from => '+17189253361',:to => restaurant.phone_number, :record => true, :url => voice_carts_url )
-    @call = @client.account.calls.create(:from => '+17189253361',:to => '+923353455244', :record => true, :url => voice_carts_url, :method => :get )
+    @call = @client.account.calls.create(:from => '+17189253361',:to => '+923353455244', :url => voice_carts_url, :method => :get)
     #p @call
   end
 
