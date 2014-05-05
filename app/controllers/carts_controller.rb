@@ -234,9 +234,17 @@ class CartsController < ApplicationController
 
   def process_gether
     p params
+
     digit = params[:Digits]
     p digit
-
+    order = Order.find(params[:order_id].to_i)
+    if order.secure_code == digit.to_i
+      order.status = "confirm"
+    else
+      order.status = "rejected"
+    end
+    order.save
+    render :text => "Order status updated"
   end
 
   def voice
@@ -257,7 +265,7 @@ class CartsController < ApplicationController
     #   make_call(order.restaurant)
     #   #order.update_attributes(:status => "confirm")
     # end
-        make_call(order.restaurant)
+        make_call(order.restaurant,order)
   end
 
   def email_order_to_restaurant_resources(order)
@@ -269,7 +277,7 @@ class CartsController < ApplicationController
     order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => order}, :layout => false )
     @fax = Phaxio.send_fax(to: order.restaurant.fax_number ,string_data_type: 'html', string_data: order_reciept )
     if @fax["success"]
-       make_call(order.restaurant) 
+       make_call(order.restaurant,order) 
        order.update_attributes(:status => "confirm")
     else  
       p "Error in Fax information"
@@ -277,8 +285,9 @@ class CartsController < ApplicationController
     end
   end 
 
-  def make_call(restaurant)
+  def make_call(restaurant,order)
     p restaurant.phone_number
+    @order = order
 
     # @client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
     # @message = @client.account.messages.create({
