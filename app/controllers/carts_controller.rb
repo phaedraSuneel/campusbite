@@ -237,7 +237,7 @@ class CartsController < ApplicationController
 
     digit = params[:Digits]
     p digit
-    order = Order.find(params[:order_id].to_i)
+    order = Order.find(params[:id].to_i)
     if order.secure_code == digit.to_i
       order.status = "confirm"
     else
