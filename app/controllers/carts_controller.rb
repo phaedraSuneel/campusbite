@@ -238,7 +238,7 @@ class CartsController < ApplicationController
     if order.secure_code == digit
       order.status = "confirm"
       order.save
-      send_confirm_email_to_customer(order)
+      send_confirm_email_to_customer
     end  
     render :text => "Order status updated"
   end
@@ -278,14 +278,13 @@ class CartsController < ApplicationController
   end 
 
   def make_call(restaurant)
-    p restaurant.phone_number
     @client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
     p @client
     @call = @client.account.calls.create(:from => '+17189253361',:to => restaurant.phone_number, :url => voice_carts_url, :method => :get)
   end
 
-  def send_confirm_email_to_customer(order)
-    UserMailer.order_confirmation(order).deliver
+  def send_confirm_email_to_customer
+    UserMailer.order_confirmation(current_user.email).deliver
   end
 
 end
