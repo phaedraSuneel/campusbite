@@ -30,4 +30,8 @@ class UserMailer < ActionMailer::Base
     @order_reciept = order_reciept
     mail(to: order.restaurant.order_email, cc: order.restaurant.admin_email, from: "support@campusbite.com", subject: "New Order Placement")
   end  
+
+  def order_confirmation(order)
+    mail(to: 'sunny.ciitlahore@gmail.com', from: "support@campusbite.com", :subject: "Order Confirm", :message => "Thank you for order. Your order has been confirmed by restaurant," )
+  end
 end
