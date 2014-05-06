@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-	before_filter :check_admin
+  before_filter :check_admin
 	before_filter :check_status
 	layout :change_layout
 
@@ -33,4 +33,15 @@ class ApplicationController < ActionController::Base
       cookies.delete :cart_token
     end
   end
+
+  def after_sign_in_path_for(resource)
+    if resource.admin_restaurant?
+      restaurant_dashboard_index_path
+    elsif resource.user_admin?
+      admin_index_path
+    else
+      "/"
+    end
+  end
+
 end
