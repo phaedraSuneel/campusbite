@@ -6,6 +6,7 @@ class Restaurant::DashboardController < ApplicationController
     @customers = (@restaurant.customers).uniq.sort {|a,b| b.total_order(@restaurant) <=> a.total_order(@restaurant)}
     @last_week_orders = @restaurant.last_week_orders
     @last_month_orders = @restaurant.last_month_orders
+    @reviews = @restaurant.reviews
   end
 
   def contact_admin

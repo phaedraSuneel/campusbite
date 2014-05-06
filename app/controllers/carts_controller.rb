@@ -239,6 +239,9 @@ class CartsController < ApplicationController
       order.status = "confirm"
       order.save
       send_confirm_email_to_customer
+    else 
+      order.status = "reject"
+      order.save
     end  
     render :text => "Order status updated"
   end
@@ -256,9 +259,7 @@ class CartsController < ApplicationController
     if order.restaurant.can_fax?
       send_fax_to_restaurant(order)
     else
-      p "Fax Not Avaiable"
       make_call(order.restaurant)
-      #order.update_attributes(:status => "confirm")
     end
   end
 

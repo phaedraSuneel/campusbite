@@ -25,4 +25,3 @@
 //= require jquery.flot.categories
 //= require app
 //= require ecommerce-index
-

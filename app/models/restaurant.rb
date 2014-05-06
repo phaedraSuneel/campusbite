@@ -172,4 +172,12 @@ class Restaurant < ActiveRecord::Base
   def phone_number
     self.contact_info.restaurant_phone
   end
+
+  def life_time_sale
+    total = 0
+    self.orders.each do |order|
+      total += order.total_bill
+    end
+    total
+  end
 end
