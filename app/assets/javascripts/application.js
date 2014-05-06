@@ -12,6 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.rating
+//= require jquery.printpage
+//= require typeahead
 //= require bootstrap
 //= require dropdown
-//= require_tree .
+//= require schools
+//= require restaurants

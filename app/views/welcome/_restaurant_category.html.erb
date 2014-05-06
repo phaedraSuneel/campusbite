@@ -5,7 +5,7 @@
     <ul class="chooses">
       <li class="restaurant-category active all"><a href="#" data-id = "">All categories(<%= RestaurantCategory.count%>)</a></li>
       <% RestaurantCategory.all.each do |category|%>
-        <li class="restaurant-category"><a href="#" data-id = "<%= category.id %>" remote = "true"><%= category.category_name %></a></li>
+        <li class="restaurant-category"><a href="javascript:;" data-id = "<%= category.id %>" remote = "true"><%= category.category_name %></a></li>
         
       <% end %>  
       <%= hidden_field_tag :keyword, params[:keyword], :class => "query" %>
