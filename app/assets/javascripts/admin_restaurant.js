@@ -12,6 +12,7 @@
 //
 
 //= require jquery-1.10.2.min
+//= require jquery_ujs
 //= require jquery-migrate-1.2.1.min
 //= require jquery-ui-1.10.3.custom.min
 //= require bootstrap.min

@@ -17,11 +17,13 @@ class ApplicationController < ActionController::Base
   end
 
   def check_admin
-		if params[:controller] == 'admin'
-		  unless current_user.user_admin?
-		    return redirect_to "/"
-		  end
-		end
+    unless current_user.blank?
+  		if params[:controller] == 'admin'
+  		  unless current_user.user_admin?
+  		    return redirect_to "/"
+  		  end
+  		end
+    end  
 	end
 	
   def check_status
@@ -43,5 +45,5 @@ class ApplicationController < ActionController::Base
       "/"
     end
   end
-
+  
 end

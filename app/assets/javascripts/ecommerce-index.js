@@ -12,21 +12,10 @@ var EcommerceIndex = function () {
         }).appendTo("body").fadeIn(200);
     }
 
+
     var initChart1 = function () {
 
-        var data = [
-            ['01/2013', 0],
-            ['02/2013', 8],
-            ['03/2013', 10],
-            ['04/2013', 12],
-            ['05/2013', 2125],
-            ['06/2013', 324],
-            ['07/2013', 1223],
-            ['08/2013', 1365],
-            ['09/2013', 250],
-            ['10/2013', 999],
-            ['11/2013', 390],
-        ];
+        var data = $(".dashboard-data").data("orders");
 
             var plot_statistics = $.plot(
                 $("#statistics_1"), 

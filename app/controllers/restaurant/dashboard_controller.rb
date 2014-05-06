@@ -7,6 +7,15 @@ class Restaurant::DashboardController < ApplicationController
     @last_week_orders = @restaurant.last_week_orders
     @last_month_orders = @restaurant.last_month_orders
     @reviews = @restaurant.reviews
+    @chart_orders =  @restaurant.orders.group_by{|o| o[:created_at].to_date}
+    @chart_data = []
+    @chart_orders.each do |key, value|
+      total_order = 0
+      value.each do |order|
+        total_order+= order.total_bill
+      end
+      @chart_data.push(["#{key}", "#{total_order}".to_f])
+    end
   end
 
   def contact_admin
