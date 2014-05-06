@@ -23,6 +23,13 @@ class ApplicationController < ActionController::Base
   		    return redirect_to "/"
   		  end
   		end
+      if params[:controller] == 'welcome'
+        unless current_user.admin_restaurant?
+          return redirect_to "/"
+        else
+          return redirect_to restaurant_dashboard_index_path
+        end  
+      end
     end  
 	end
 	
