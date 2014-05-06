@@ -33,6 +33,11 @@ class Restaurant::DashboardController < ApplicationController
     @orders = @restaurant.orders.order("created_at desc")
   end  
 
+  def reports
+    @restaurant = current_user.restaurant
+    @orders =  @restaurant.orders.where(:status => "confirm").order("created_at desc")
+  end
+
   def contact_admin
     @user = current_user
     if  UserMailer.restaurant_admin(params[:contactus]).deliver

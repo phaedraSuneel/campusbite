@@ -79,6 +79,7 @@ Ordering::Application.routes.draw do
         get 'new_orders'
         get 'confirm_orders'
         get 'all_orders'
+        get 'reports'
       end
     end
     resources :settings do
