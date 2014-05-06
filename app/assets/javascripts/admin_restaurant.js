@@ -26,3 +26,9 @@
 //= require jquery.flot.categories
 //= require app
 //= require ecommerce-index
+//= require select2.min
+//= require jquery.dataTables
+//= require DT_bootstrap
+//= require bootstrap-datepicker
+//= require datatable
+//= require ecommerce-orders

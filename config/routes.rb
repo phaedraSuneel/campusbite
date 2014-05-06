@@ -75,7 +75,10 @@ Ordering::Application.routes.draw do
     resources :dashboard do 
       get '/dashboard', to: 'dashboard#index'
       collection do
-         get 'contact_admin'
+        get 'contact_admin'
+        get 'new_orders'
+        get 'confirm_orders'
+        get 'all_orders'
       end
     end
     resources :settings do

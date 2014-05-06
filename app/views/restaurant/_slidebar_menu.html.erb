@@ -32,23 +32,16 @@
 				<span class="arrow open">
 				</span>
 			</a>
-			<ul class="sub-menu">
-				<li class="active">
-					<a href="javascript:;">
-						<i class="fa fa-bullhorn"></i>
-						New Orders
-					</a>
+			<ul class="sub-menu" style="display:block;">
+				<li>
+					<%= link_to raw("<i class='fa fa-bullhorn'></i>New Orders"), new_orders_restaurant_dashboard_index_path %>
+				</li>
+				<li>
+					<%= link_to raw("<i class='fa fa-bullhorn'></i>Confirm Orders"), confirm_orders_restaurant_dashboard_index_path %>
 				</li>
 				<li>
 					<a href="javascript:;">
-						<i class="fa fa-shopping-cart"></i>
-						Confirm Orders
-					</a>
-				</li>
-				<li>
-					<a href="javascript:;">
-						<i class="fa fa-tags"></i>
-						All Orders
+						<%= link_to raw("<i class='fa fa-bullhorn'></i>All Orders"), all_orders_restaurant_dashboard_index_path %>
 					</a>
 				</li>
 				<li>

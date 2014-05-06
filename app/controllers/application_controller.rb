@@ -18,15 +18,8 @@ class ApplicationController < ActionController::Base
 
   def check_admin
     unless current_user.blank?
-  		if params[:controller] == 'admin'
-  		  unless current_user.user_admin?
-  		    return redirect_to "/"
-  		  end
-  		end
-      if params[:controller] == 'welcome'
-        unless current_user.admin_restaurant?
-          return redirect_to "/"
-        else
+  		if params[:controller] == 'welcome'
+        if current_user.admin_restaurant?
           return redirect_to restaurant_dashboard_index_path
         end  
       end

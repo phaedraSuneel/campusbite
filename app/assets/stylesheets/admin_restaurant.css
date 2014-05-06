@@ -13,6 +13,10 @@
  *= require font-awesome.min
  *= require bootstrap.min
  *= require uniform.default
+ *= require select2
+ *= require select2-metronic
+ *= require DT_bootstrap
+ *= require datepicker
  *= require style-metronic
  *= require restaurant-style
  *= require style-responsive
