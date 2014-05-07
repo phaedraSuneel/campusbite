@@ -33,9 +33,6 @@
             <thead>
               <tr role="row" class="heading">
                   <th width="5%">
-                    <input type="checkbox" class="group-checkable">
-                  </th>
-                  <th width="5%">
                      ORDER&nbsp;ID
                   </th>
                   <th width="15%">
@@ -61,7 +58,6 @@
             <tbody>
               <% @orders.each do |order| %>
                 <tr>
-                  <td></td>
                   <td><%= order.id %></td>
                   <td><%= order.created_at.strftime('%e %B, %Y %I:%M%p')%></td>
                   <td><%= order.order_type %></td>

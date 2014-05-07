@@ -194,14 +194,9 @@
 
     $(".print-order").click(function(){
       var id = $(this).data("order");
-      console.log(id);
       var print_area = $(".new-orders").find(".border-green.order_"+id).html();
-
-      console.log(print_area);
-
-      html = "<html><head><title></title></head><body>" + 
-              print_area + "</body>";
-
+      html = "<html><head>"+$("head").html()+"</head><body>" + 
+              print_area + "</body>";        
       var printWP = window.open("","printWebPart");
       printWP.document.open();
       printWP.document.write(html);
