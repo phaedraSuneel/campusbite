@@ -38,6 +38,28 @@ class Restaurant::DashboardController < ApplicationController
     @orders =  @restaurant.orders.where(:status => "confirm").order("created_at desc")
   end
 
+  def confirm_order
+    order = Order.find(params[:id])
+    if order.update_attributes(:status => "confirm")
+      flash[:notice] = "Order Successfully Confirmed"
+      redirect_to :back
+    else
+      flash[:warning] = "Order Failed Confirmed"
+      redirect_to :back
+    end  
+  end
+
+  def cancel_order
+    order = Order.find(params[:id])
+    if order.update_attributes(:status => "reject")
+      flash[:notice] = "Order Successfully Cancel"
+      redirect_to :back
+    else
+      flash[:warning] = "Order Fail Cancel"
+      redirect_to :back
+    end  
+  end
+
   def contact_admin
     @user = current_user
     if  UserMailer.restaurant_admin(params[:contactus]).deliver

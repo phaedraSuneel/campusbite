@@ -1,0 +1,40 @@
+/home/phaedra/.rvm/rubies/ruby-1.9.3-p484/bin/ruby extconf.rb 
+checking for main() in -lpthread... yes
+creating Makefile
+
+make  clean
+
+make
+compiling signature.cc
+compiling trycatch.cc
+compiling template.cc
+compiling init.cc
+compiling external.cc
+compiling invocation.cc
+compiling stack.cc
+compiling primitive.cc
+compiling constraints.cc
+compiling context.cc
+compiling function.cc
+compiling gc.cc
+compiling message.cc
+compiling constants.cc
+compiling backref.cc
+compiling array.cc
+compiling v8.cc
+compiling string.cc
+compiling heap.cc
+compiling accessor.cc
+compiling locker.cc
+compiling handles.cc
+compiling value.cc
+compiling rr.cc
+compiling script.cc
+compiling date.cc
+compiling exception.cc
+compiling object.cc
+linking shared-object v8/init.so
+
+make  install
+/usr/bin/install -m 0755 init.so /www/projects/ordering/vendor/bundle/ruby/1.9.1/gems/therubyracer-0.12.1/ext/v8/.gem.20140507-13860-1dfx73q/v8
+installing default init libraries

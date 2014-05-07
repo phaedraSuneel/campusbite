@@ -81,6 +81,10 @@ Ordering::Application.routes.draw do
         get 'all_orders'
         get 'reports'
       end
+      member do 
+        get 'confirm_order'
+        get 'cancel_order'
+      end
     end
     resources :settings do
       member do

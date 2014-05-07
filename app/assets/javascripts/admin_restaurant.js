@@ -21,11 +21,10 @@
 //= require jquery.blockui.min
 //= require jquery.cokie.min
 //= require jquery.uniform.min
-//= require jquery.flot
-//= require jquery.flot.resize
-//= require jquery.flot.categories
+//= require jquery.printpage
+
 //= require app
-//= require ecommerce-index
+
 //= require select2.min
 //= require jquery.dataTables
 //= require DT_bootstrap

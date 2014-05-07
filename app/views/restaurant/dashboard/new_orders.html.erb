@@ -27,6 +27,186 @@
           <i class="fa fa-shopping-cart"></i>Order Listing
         </div>
       </div>
+      <div class="portlet-body">
+        <div class="row new-orders">
+          <div class="col-md-3">
+            <% @orders.each_with_index do |order, index|%>
+              <div class="tabs <%= index%2==0 ? 'even' : 'odd'%> <%= index==0 ? 'first' : 'next'%> " data-order="<%=order.id%>">
+                <label>Order#:<%= order.id %></label>
+                <label>Time:<%= order.created_at.strftime('%e %B, %Y %I:%M%p')%></label>
+                <label>Customer:<%= order.user.name %></label>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-md-9 ">
+            <% @orders.each do |order| %>
+              <div class="order-detail border-green  order_<%= order.id %>">
+                <div class="row border-bottom">
+                  <div class="col-md-4 img-black">
+                    <img src="/assets/black-bite.png" />
+                  </div>
+                  <div class="col-md-4 cof-code">
+                    <div class="code">
+                      <h2>Confirmation Code</h2>
+                      <h1><%= order.secure_code %></h1>
+                    </div>
+                  </div>
+                  <div class="col-md-4 sent-at">
+                    <div class="senta">
+                      <p>Sent At:</p>
+                      <p><%= order.created_at %></p>
+                      <p>Support:1-866-000-0000</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="order-pic">
+                      <ul>
+                        <li><label>Order#</label> <span><%= order.id %></span></li>
+                        <li><label>Delivery or Pickup:</label> <span><%= order.order_type %></span></li>
+                        <li><label>Order send at:</label> <span><%= order.created_at.strftime('%e %B, %Y %I:%M%p')%></span></li>
+                        <li><label>Order request for:</label> <span><%= order.request_time %></span></li>
+                        <li><label>Payment:</label> <span><%= order.method_type %></span></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="order-pic">
+                      <ul>
+                        <li><label>Address:</label> 
+                          <% unless order.order_type == 'delivery'%>
+                            <span>Costumer will pickup order</span>
+                          <% else %>  
+                            <label><span>Address:</span><span class="value">
+                              <%= order.address.address_type %>
+                              <% if order.address.address_type == "On Campus" %>
+                               <%= order.address.school.school_name %> <%= order.address.room_number %> <%= order.address.building.try(:street_adress) %></span>
+                             <% else %>
+                               <%= order.address.room_number %> <%= order.address.street_adress %>
+                             <% end %>  
+                            </label>
+                          <% end %>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-12 tabel-container">
+                    <table>
+                      <tr class="heading">
+                        <th class="first">Items</th>
+                        <th class="first">Quantity</th>
+                        <th>Total</th>
+                      </tr>
+                      <% order.menu_item_orders.each_with_index do |item, index | %>
+                        <tr class="odd">
+                          <td class="first">
+                            <h3><%= item.menu_item.item_name %></h3>
+                            <% extra = 0 %>
+                            <% if item.menu_item_property_id %>
+                              <label>Size: <%= order.property_name(item.menu_item_property_id) %> </label>
+                              <% extra += order.property_price(item.menu_item_property_id) %>
+                            <% end %>
+                            <p>Instructions: <%= item.instruction %></p>
+                          </td>
+                          <td class="first"><%= item.quantity %></td>
+                          <td>$ <%= (extra + item.menu_item.price) * item.quantity  %></td>
+                        </tr>
+                      <% end %>
+                      <tr class="odd">
+                        <td>
+                          <div class="intruction">
+                            <span>Special Intructions:</span><%= order.delivery_instruction %>
+                          </div>
+                          <label class="sig">Customer Signature:________________________________________</label>
+                        </td>
+                        <td class="border-am">
+                          <p>Subtotal:</p>
+                          <p>Tex:</p>
+                          <p>Delivery Free:</p>
+                          <p>Tips:</p>
+                          <p><b>Total:</b></p>
+                          <p class="small">Coupon & Discount:</p>
+                          <p class="small">Total After Discount:</p>
+                        </td>
+                        <td class="border-am border-am-b">
+                          <p>$<%= order.sub_total%></p>
+                          <p>$<%= order.sale_tax %></p>
+                          <p>$<%= order.delivery_charges %></p>
+                          <p>$<%= order.tip_charges %></p>
+                          <p><b>$<%= order.total_bill %></b></p>
+                          <p>$0</p>
+                          <p>$<%= order.total_bill %></p>
+                        </td>
+                      </tr>
+                    </table>  
+                    <div class="support-help">
+                      For support or helps please contact us:Email:restaurant@campusbite or Phone:1-866-000-000
+                    </div>
+                  </div>
+                </div>   
+              </div> 
+              <div class="row order-action order-detail hide order_<%= order.id %>"> 
+                <div class="col-md-3"></div>
+                <div class="col-md-3">
+                  <%= link_to "Confirm", confirm_order_restaurant_dashboard_path(order), :class => "btn btn-lg green"%>
+                </div>
+                <div class="col-md-3">
+                  <%= link_to raw("<i class='fa  fa-5x fa-print'></i> Print"), "javascript:;", :class => "btn btn btn-lg blue print-order", "data-order" => order.id %>
+                </div>
+                <div class="col-md-3">
+                  <%= link_to "Cancel", cancel_order_restaurant_dashboard_path(order), :class => "btn btn-lg red"%>
+                </div>  
+              </div>  
+            <% end %>
+          </div>   
+        </div>
+      </div>
     </div>    
   </div>  
 </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".tabs").each(function(){
+      id = $(this).data("order");
+      $(".order_" + id).addClass("hide"); 
+      $(this).removeClass("active");  
+    });
+    first_order = $(".tabs.first").data("order");
+    $(".order_" + first_order).removeClass("hide");
+    $(".tabs.first").addClass("active");
+
+    $(".tabs").click(function(){
+      $(".tabs").each(function(){
+        id = $(this).data("order");
+        $(".order_" + id).addClass("hide"); 
+        $(this).removeClass("active");  
+
+      });
+      id = $(this).data("order");
+      $(".order_" + id).removeClass("hide");
+      $(this).addClass("active");  
+    });
+
+    $(".print-order").click(function(){
+      var id = $(this).data("order");
+      console.log(id);
+      var print_area = $(".new-orders").find(".border-green.order_"+id).html();
+
+      console.log(print_area);
+
+      html = "<html><head><title></title></head><body>" + 
+              print_area + "</body>";
+
+      var printWP = window.open("","printWebPart");
+      printWP.document.open();
+      printWP.document.write(html);
+      printWP.document.close();
+      printWP.print();
+    });
+  });
+</script>
