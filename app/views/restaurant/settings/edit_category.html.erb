@@ -1,22 +1,72 @@
-<%= form_for(@menu_category, :url => update_category_restaurant_setting_path(@menu_category)) do |f| %>
-  <% if @menu_category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@menu_category.errors.count, "error") %> prohibited this menu_category from being saved:</h2>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Settings <small> <%= @restaurant.restaurant_name %> </small> 
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", restaurant_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Restaurant", 'javascript:;' %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Settings", settings_restaurant_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Restaurant Menu", settings_restaurant_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Edit Menu Category", 'javascript:;' %>
+      </li>
+    </ul>  
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet box yellow">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-edit"></i>Edit Category
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body form">
+        <%= form_for(@menu_category, :url => update_category_restaurant_setting_path(@menu_category)) do |f| %>
+          <div class="form-body">
+            <% if @menu_category.errors.any? %>
+              <div id="error_explanation">
+                <h2><%= pluralize(@menu_category.errors.count, "error") %> prohibited this menu_category from being saved:</h2>
 
-      <ul>
-      <% @menu_category.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+                <ul>
+                <% @menu_category.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <div class="field">
+              <%= f.label :category_name %>
+              <%= f.text_field :category_name %>
+            </div>
+          </div>
+          <div class="form-actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :category_name %><br />
-    <%= f.text_field :category_name %>
   </div>
-  <br />
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>        

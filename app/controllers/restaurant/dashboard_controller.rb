@@ -36,6 +36,13 @@ class Restaurant::DashboardController < ApplicationController
   def reports
     @restaurant = current_user.restaurant
     @orders =  @restaurant.orders.where(:status => "confirm").order("created_at desc")
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportPdf.new(@orders)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
   end
 
   def confirm_order
@@ -60,14 +67,35 @@ class Restaurant::DashboardController < ApplicationController
     end  
   end
 
+  def support
+    @restaurant = current_user.restaurant
+  end
+
+  def report_pdf
+    @restaurant = current_user.restaurant
+    @orders =  @restaurant.orders.where(:status => "confirm").order("created_at desc")
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = ReportPdf.new(@orders)
+        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
+      end
+    end
+  end
+
   def contact_admin
     @user = current_user
     if  UserMailer.restaurant_admin(params[:contactus]).deliver
       flash[:notice] = "Successfully email sent"
-      redirect_to restaurant_dashboard_index_path(:anchor => "sent")
+      redirect_to support_restaurant_dashboard_index_path(:anchor => "sent")
    else 
       flash[:warning] = "Failed to send you email"
       redirect_to :back
    end
+  end
+
+  def settings
+    @user = current_user
+    @restaurant = current_user.restaurant
   end
 end

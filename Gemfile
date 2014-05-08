@@ -38,12 +38,16 @@ gem 'kaminari'
 
 gem "braintree"
 
+gem 'prawn'
+
+gem 'pdfkit'
+
 gem 'twilio-ruby'
 gem 'phaxio', '0.4.0'
 
 gem "authorize-net"
 
-gem 'vestal_versions', :git => 'git://github.com/laserlemon/vestal_versions'
+gem 'vestal_versions'
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

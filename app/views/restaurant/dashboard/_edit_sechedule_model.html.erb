@@ -7,16 +7,12 @@
       </div>  
       <%= form_for(@sechedule, :url => update_sechedule_restaurant_setting_path(@sechedule), :html => {:class => "edit-sechedule-form", :id => "sechedule_form_#{@sechedule.id}" } ) do |f| %>
         <div class="modal-body modal-body-container">
-          <div class="row">
-            <div class="col-md-12 adress-container">
-		          <div class="field">
-		            <%= f.label :opening_time %>
-		            <%= f.time_select :opening_time, {:ampm => true, :prompt => true } %>
-		          </div>
-		          <div class="field">
-		            <%= f.label :closing_time %>
-		            <%= f.time_select :closing_time, {:ampm => true, :prompt => true} %>
-		          </div> 
+          <div class="form-body">
+            <div class="form-group">
+	            <%= f.label :opening_time %>
+	            <%= f.time_select :opening_time, {:ampm => true, :prompt => true } %>
+	            <%= f.label :closing_time %>
+	            <%= f.time_select :closing_time, {:ampm => true, :prompt => true} %>
             </div>
           </div>
         </div>

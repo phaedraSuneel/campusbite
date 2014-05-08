@@ -14,7 +14,6 @@ var App = function () {
 
     var responsiveHandlers = [];
 
-
     // theme layout color set
     var layoutColorCodes = {
         'blue': '#4b8df8',
@@ -25,6 +24,7 @@ var App = function () {
         'light-grey': '#fafafa',
         'yellow': '#ffb848'
     };
+
 
     
     // To get the correct viewport width based on  http://andylangton.co.uk/articles/javascript/get-viewport-size-javascript/

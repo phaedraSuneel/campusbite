@@ -4506,3 +4506,7 @@ UI Loading
   margin-top: 30px;
 }
 
+.form-group input[type=radio]{
+  opacity: 1 !important;
+  margin-left: 0px !important;
+}

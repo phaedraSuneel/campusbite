@@ -9,28 +9,29 @@ class Restaurant::SettingsController < ApplicationController
 	def update_sechedule
 		@sechedule = Sechedule.find(params[:id])
 		@sechedule.update_attributes(params[:sechedule])
-		redirect_to restaurant_dashboard_index_path(:anchor => 'setting')
+		redirect_to settings_restaurant_dashboard_index_path(:anchor => 'restaurant_information')
 	end
 
 	def update_offer
 		@offer = RestaurantOffer.find(params[:id])
 		@offer.update_attributes(params[:restaurant_offer])
-		redirect_to restaurant_dashboard_index_path(:anchor => 'setting')
+		redirect_to settings_restaurant_dashboard_index_path(:anchor => 'restaurant_offers')
 	end
 
 	def update_coupon
 		@coupon = RestaurantCoupon.find(params[:id])
 		@coupon.update_attributes(params[:restaurant_coupon])
-		redirect_to restaurant_dashboard_index_path(:anchor => 'setting')
+		redirect_to settings_restaurant_dashboard_index_path(:anchor => 'restaurant_coupons')
 	end
 	def edit_category
+		@restaurant = current_user.restaurant
 		@menu_category = MenuCategory.find(params[:id])
 	end
 
 	def update_category
-		 @menu_category = MenuCategory.find(params[:id])
+	   @menu_category = MenuCategory.find(params[:id])
     if @menu_category.update_attributes(params[:menu_category])
-      redirect_to restaurant_dashboard_index_path(:anchor => 'setting')
+      redirect_to settings_restaurant_dashboard_index_path(:anchor => 'restaurant_menu')
     else
       render action: "edit"
     end
@@ -45,7 +46,7 @@ class Restaurant::SettingsController < ApplicationController
 	def update_item
 		@menu_item = MenuItem.find(params[:id])
     if @menu_item.update_attributes(params[:menu_item])
-      redirect_to restaurant_dashboard_index_path(:anchor => 'setting')
+      redirect_to settings_restaurant_dashboard_index_path(:anchor => 'restaurant_menu')
     else
       render action: "edit"
     end

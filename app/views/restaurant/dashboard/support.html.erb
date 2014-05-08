@@ -1,0 +1,88 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Settings <small> <%= @restaurant.restaurant_name %> </small> 
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", restaurant_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Restaurant", 'javascript:;' %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Support", support_restaurant_dashboard_index_path %>
+      </li>
+    </ul>  
+  </div>
+</div>
+<div class="portlet box yellow">
+  <div class="portlet-title">
+    <div class="caption">
+      <i class="fa fa-thumb-tack"></i>Overview
+    </div>
+    <div class="tools">
+      <a href="javascript:;" class="collapse">
+      </a>
+      <a href="javascript:;" class="reload">
+      </a>
+      <a href="javascript:;" class="remove">
+      </a>
+    </div>
+  </div>
+  <div class="portlet-body form">
+    <%= form_for("contactus", :url => contact_admin_restaurant_dashboard_index_path, :html =>{:class => 'contact-us-form',:id => "conecting-container-inner-1", :method => :get }) do |f|%>
+      <div class="form-body">
+        <div class="row contact-form">
+          <div class="col-md-3">
+            <label>Subject: *</label>
+          </div>
+          <div class="col-md-8">
+            <%= f.text_field :subject %>
+          </div>
+        </div>
+        <div class="row contact-form">
+          <div class="col-md-3">
+            <label>Message:</label>
+          </div>
+          <div class="col-md-8">
+            <%= f.text_area :message %>
+          </div>
+          <%= f.hidden_field :user_id, :value => current_user.id %>
+        </div>
+      </div>  
+      <div class="form-actions">
+        <div class="col-md-8 col-md-offset-3">
+          <button class="btn green">Send Request</button>
+        </div>
+      </div>
+
+    <% end %>  
+    <div class="conecting-container-inner hide" id="thanks">
+      <div class="col-md-6">
+        <h1>Thank You For Contacting Us</h1>
+        <h2>We will get in touch with you shortly</h2>
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var hash = window.location.hash.substring(1);
+    if(hash =="sent"){
+      window.location.hash.substring(1);
+      $("#conecting-container-inner-1").addClass("hide");
+      $("#thanks").removeClass("hide");
+      window.location.hash=""
+    }  
+    else{
+      $("#conecting-container-inner-1").removeClass("hide");
+      $("#thanks").addClass("hide");
+    }  
+  });
+</script>

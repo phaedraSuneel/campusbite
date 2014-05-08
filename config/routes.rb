@@ -80,6 +80,9 @@ Ordering::Application.routes.draw do
         get 'confirm_orders'
         get 'all_orders'
         get 'reports'
+        get 'settings'
+        get 'support'
+        get 'report_pdf'
       end
       member do 
         get 'confirm_order'

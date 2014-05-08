@@ -1,0 +1,70 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Settings <small> <%= @restaurant.restaurant_name %> </small> 
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", restaurant_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Restaurant", 'javascript:;' %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Setting", settings_restaurant_dashboard_index_path %>
+      </li>
+    </ul>  
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+  	<div class="portlet box yellow">
+  		<div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i>Overview
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+     	<div class="portlet-body">
+     		<ul class="nav nav-tabs">
+     			<li class="active">
+	  				<a href="#restaurant_information" data-toggle="tab" class="active"  >Restaurant Information</a>
+	  			</li>
+	  			<li>
+	  				<a href="#menu_information" data-toggle="tab" >Menu Information</a>
+	  			</li>
+	  			<li>
+	  				<a href="#offer" data-toggle="tab" >Restaurant Offers</a>
+	  			</li>
+	  			<li>
+	  				<a href="#coupon" data-toggle="tab" >Restaurant Coupons</a>
+	  			</li>
+     		</ul>	
+     		<div class="tab-content">
+     			<div class="tab-pane active" id= "restaurant_information">
+          <%= render :partial => "restaurant_information", :locals => {:@restaurant => @restaurant} %>
+        </div>
+        <div class="tab-pane" id= "menu_information">
+          <%= render :partial => "menu_information", :locals => {:@menu => @restaurant.menu} %>
+        </div>
+        <div class="tab-pane" id= "offer">
+          <%= render :partial => "restaurant_offer", :locals => {:@offers => @restaurant.restaurant_offers} %>
+        </div>
+        <div class="tab-pane" id= "coupon">
+          <%= render :partial => "restaurant_coupon", :locals => {:@coupons => @restaurant.restaurant_coupons} %>
+        </div>
+     		</div>	
+     	</div>
+    </div>
+  </div>
+</div>

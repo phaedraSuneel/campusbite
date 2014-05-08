@@ -25,6 +25,7 @@
 //= require jquery.flot
 //= require jquery.flot.resize
 //= require jquery.flot.categories
+//= require custom_admin
 //= require app
 //= require ecommerce-index
 //= require select2.min
@@ -33,3 +34,4 @@
 //= require bootstrap-datepicker
 //= require datatable
 //= require ecommerce-orders
+

@@ -1,94 +1,86 @@
-    <div class="row">
-      <div class="col-md-4">
-        <table class="restaurant-time">
-          <caption> Restaurant Opening - Closing Time </caption>
-          <thead>
-            <th> Day </th>
-            <th> Open </th>
-            <th> Closed </th>
-            <th> Edit</th>
-          </thead>
-          <tbody> 
-            <% @restaurant.operation.sechedules.each do |sechedule| %>
-             <tr>
-                <td><%= sechedule.day %> </td>
-                <td> <%= sechedule.opening_time.strftime("%I:%M%p") %> </td>
-                <td><%= sechedule.closing_time.strftime("%I:%M%p") %> </td>
-                <td> <% unless sechedule.status=='pending' %>
-                      <%= link_to "edit", "javascript:void(0);", "data-toggle"=>"modal", "data-target"=>"#edit_sechedule_model_#{sechedule.id}"%> 
-                    <% else %>
-                      pending  
-                    <% end %>
-                </td>
-             </tr> 
-             <%= render :partial => "edit_sechedule_model", :locals => { :@sechedule => sechedule} %>
-            <% end %>
-          </tbody>  
-        </table>
-      </div>  
-      <div class="col-md-4">
-        <table class="restaurant-time">
-          <caption> Delivery Opening - Closing Time </caption>
-          <thead>
-            <th> Day </th>
-            <th> Open </th>
-            <th> Closed </th>
-            <th> Edit</th>
-          </thead>
-          <tbody> 
-            <% @restaurant.delivery.sechedules.each do |sechedule| %>
-             <tr>
-                <td><%= sechedule.day %> </td>
-                <td> <%= sechedule.opening_time.strftime("%I:%M%p") %> </td>
-                <td><%= sechedule.closing_time.strftime("%I:%M%p") %> </td>
-                <td> <% unless sechedule.status=='pending' %>
-                      <%= link_to "edit", "javascript:void(0);", "data-toggle"=>"modal", "data-target"=>"#edit_sechedule_model_#{sechedule.id}"%> 
-                    <% else %>
-                      pending  
-                    <% end %>
-                </td>
-             </tr> 
-             <%= render :partial => "edit_sechedule_model", :locals => { :@sechedule => sechedule} %>
-            <% end %>
-          </tbody>  
-        </table>
-      </div>
-      <div class="col-md-4">
-        <table class="restaurant-time">
-          <caption> Pick Up Opening - Closing Time </caption>
-          <thead>
-            <th> Day </th>
-            <th> Open </th>
-            <th> Closed </th>
-            <th> Edit</th>
-          </thead>
-          <tbody> 
-            <% @restaurant.pick_up.sechedules.each do |sechedule| %>
-             <tr>
-                <td><%= sechedule.day %> </td>
-                <td> <%= sechedule.opening_time.strftime("%I:%M%p") %> </td>
-                <td><%= sechedule.closing_time.strftime("%I:%M%p") %> </td>
-                <td> <% unless sechedule.status=='pending' %>
-                      <%= link_to "edit", "javascript:void(0);", "data-toggle"=>"modal", "data-target"=>"#edit_sechedule_model_#{sechedule.id}"%> 
-                    <% else %>
-                      pending  
-                    <% end %>
-                </td>
-             </tr> 
-             <%= render :partial => "edit_sechedule_model", :locals => { :@sechedule => sechedule} %>
-            <% end %>
-          </tbody>  
-        </table>
-      </div>  
-      <!-- <div class="col-md-4">
-        <#% unless @restaurant.status == "pending" %>
-          <%#= link_to "Edit Information", edit_restaurant_restaurant_settings_path %>
-        <#% else %> 
-          <%#= link_to "Edit Information", "javascript:void(0);", :class => "already-edit-link" %>
-          <div class="messsage-update hide">You have already update this informaton, after admin approval you may update more information!</div>
-        <%# end %>
-      </div>  --> 
-    </div>
+<div class="row">
+  <div class="col-md-4">
+    <table class="table table-striped table-hover table-bordered">
+      <caption> Restaurant Opening - Closing Time </caption>
+      <thead>
+        <th> Day </th>
+        <th> Open </th>
+        <th> Closed </th>
+        <th> Edit</th>
+      </thead>
+      <tbody> 
+        <% @restaurant.operation.sechedules.each do |sechedule| %>
+         <tr>
+            <td><%= sechedule.day %> </td>
+            <td> <%= sechedule.opening_time.strftime("%I:%M%p") %> </td>
+            <td><%= sechedule.closing_time.strftime("%I:%M%p") %> </td>
+            <td> <% unless sechedule.status=='pending' %>
+                  <%= link_to "edit", "javascript:void(0);", "data-toggle"=>"modal", "data-target"=>"#edit_sechedule_model_#{sechedule.id}"%> 
+                <% else %>
+                  pending  
+                <% end %>
+            </td>
+         </tr> 
+         <%= render :partial => "edit_sechedule_model", :locals => { :@sechedule => sechedule} %>
+        <% end %>
+      </tbody>  
+    </table>
+  </div>  
+  <div class="col-md-4">
+    <table class="table table-striped table-hover table-bordered">
+      <caption> Delivery Opening - Closing Time </caption>
+      <thead>
+        <th> Day </th>
+        <th> Open </th>
+        <th> Closed </th>
+        <th> Edit</th>
+      </thead>
+      <tbody> 
+        <% @restaurant.delivery.sechedules.each do |sechedule| %>
+         <tr>
+            <td><%= sechedule.day %> </td>
+            <td> <%= sechedule.opening_time.strftime("%I:%M%p") %> </td>
+            <td><%= sechedule.closing_time.strftime("%I:%M%p") %> </td>
+            <td> <% unless sechedule.status=='pending' %>
+                  <%= link_to "edit", "javascript:void(0);", "data-toggle"=>"modal", "data-target"=>"#edit_sechedule_model_#{sechedule.id}"%> 
+                <% else %>
+                  pending  
+                <% end %>
+            </td>
+         </tr> 
+         <%= render :partial => "edit_sechedule_model", :locals => { :@sechedule => sechedule} %>
+        <% end %>
+      </tbody>  
+    </table>
+  </div>
+  <div class="col-md-4">
+    <table class="table table-striped table-hover table-bordered">
+      <caption> Pick Up Opening - Closing Time </caption>
+      <thead>
+        <th> Day </th>
+        <th> Open </th>
+        <th> Closed </th>
+        <th> Edit</th>
+      </thead>
+      <tbody> 
+        <% @restaurant.pick_up.sechedules.each do |sechedule| %>
+         <tr>
+            <td><%= sechedule.day %> </td>
+            <td> <%= sechedule.opening_time.strftime("%I:%M%p") %> </td>
+            <td><%= sechedule.closing_time.strftime("%I:%M%p") %> </td>
+            <td> <% unless sechedule.status=='pending' %>
+                  <%= link_to "edit", "javascript:void(0);", "data-toggle"=>"modal", "data-target"=>"#edit_sechedule_model_#{sechedule.id}"%> 
+                <% else %>
+                  pending  
+                <% end %>
+            </td>
+         </tr> 
+         <%= render :partial => "edit_sechedule_model", :locals => { :@sechedule => sechedule} %>
+        <% end %>
+      </tbody>  
+    </table>
+  </div>
+</div>
 
 
 <script type="text/javascript">
