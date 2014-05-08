@@ -132,14 +132,10 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.0)
       mime-types
-    pdf-core (0.2.5)
     pdfkit (0.6.2)
     phaxio (0.4.0)
       httmultiparty (~> 0.3.8)
     polyglot (0.3.3)
-    prawn (1.0.0)
-      pdf-core (~> 0.2.2)
-      ttfunk (~> 1.1.1)
     progress_bar (1.0.0)
       highline (~> 1.6.1)
       options (~> 2.3.0)
@@ -204,7 +200,6 @@ GEM
     ts-delayed-delta (2.0.2)
       delayed_job
       thinking-sphinx (>= 1.5.0)
-    ttfunk (1.1.1)
     twilio-ruby (3.11.4)
       builder (>= 2.1.2)
       jwt (>= 0.1.2)
@@ -218,6 +213,7 @@ GEM
       activesupport (>= 3, < 5)
     warden (1.2.3)
       rack (>= 1.0)
+    wkhtmltopdf (0.1.2)
 
 PLATFORMS
   ruby
@@ -238,7 +234,6 @@ DEPENDENCIES
   paperclip (~> 3.0)
   pdfkit
   phaxio (= 0.4.0)
-  prawn
   progress_bar
   rails (= 3.2.11)
   rolify
@@ -250,3 +245,4 @@ DEPENDENCIES
   twilio-ruby
   uglifier (>= 1.0.3)
   vestal_versions
+  wkhtmltopdf

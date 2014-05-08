@@ -26,50 +26,12 @@
         <div class="caption">
           <i class="fa fa-shopping-cart"></i>Order Listing
         </div>
+        <div class="pull-right">
+          <%= link_to raw("<i class='fa fa-print'></i>"), all_orders_report_restaurant_dashboard_index_path, :class => "btn btn-default", :target => "_blank" %>
+        </div>
       </div>
       <div class="portlet-body">
-        <div class="table-container">
-          <table class="table table-striped table-bordered table-hover" id="datatable_orders">
-            <thead>
-              <tr role="row" class="heading">
-                  <th width="5%">
-                     ORDER&nbsp;ID
-                  </th>
-                  <th width="15%">
-                     ORDER&nbsp;DATE&nbsp;AND&nbsp;TIME
-                  </th>
-                  <th width="15%">
-                    ORDER&nbsp;TYPE
-                  </th>
-                  <th width="10%">
-                    ORDER&nbsp;TIME
-                  </th>
-                  <th width="10%">
-                     CUSTOMER&nbsp;NAME 
-                  </th>
-                  <th width="10%">
-                    TOTAL
-                  </th>
-                  <th width="10%">
-                     Status
-                  </th>
-                </tr>
-            </thead>  
-            <tbody>
-              <% @orders.each do |order| %>
-                <tr>
-                  <td><%= order.id %></td>
-                  <td><%= order.created_at.strftime('%e %B, %Y %I:%M%p')%></td>
-                  <td><%= order.order_type %></td>
-                  <td><%= order.request_time %></td>
-                  <td><%= order.user.name %></td>
-                  <td>$<%= order.total_bill %></td>
-                  <td><%= order.status %></td>
-                </tr>
-              <% end %>
-            </tbody>  
-          </table>  
-        </div>  
+        <%= render :partial => "all_orders_report", :locals => {:@orders => @orders} %>
       </div>  
     </div>    
   </div>  

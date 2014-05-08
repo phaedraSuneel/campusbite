@@ -38,8 +38,7 @@ gem 'kaminari'
 
 gem "braintree"
 
-gem 'prawn'
-
+gem 'wkhtmltopdf'
 gem 'pdfkit'
 
 gem 'twilio-ruby'

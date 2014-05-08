@@ -71,18 +71,23 @@ class Restaurant::DashboardController < ApplicationController
     @restaurant = current_user.restaurant
   end
 
-  def report_pdf
+  def general_report
     @restaurant = current_user.restaurant
     @orders =  @restaurant.orders.where(:status => "confirm").order("created_at desc")
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = ReportPdf.new(@orders)
-        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
-      end
-    end
+    render general_report_restaurant_dashboard_index_path, :layout => false
   end
 
+  def confirm_orders_report
+    @restaurant = current_user.restaurant
+    @orders = @restaurant.orders.where(:status => "confirm").order("created_at desc")
+    render confirm_orders_report_restaurant_dashboard_index_path, :layout => false
+  end
+
+  def all_orders_report
+    @restaurant = current_user.restaurant
+    @orders = @restaurant.orders.order("created_at desc")
+    render all_orders_report_restaurant_dashboard_index_path, :layout => false
+  end
   def contact_admin
     @user = current_user
     if  UserMailer.restaurant_admin(params[:contactus]).deliver
