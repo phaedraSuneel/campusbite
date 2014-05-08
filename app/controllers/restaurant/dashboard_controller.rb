@@ -35,15 +35,15 @@ class Restaurant::DashboardController < ApplicationController
 
   def reports
     @restaurant = current_user.restaurant
-    @orders =  @restaurant.orders.where(:status => "confirm").order("created_at desc")
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = ReportPdf.new(@orders)
-        send_data pdf.render, filename: 'report.pdf', type: 'application/pdf'
-      end
-    end
+    @orders =  @restaurant.orders.order("created_at desc")
   end
+
+  def schedule_reports
+    @restaurant = current_user.restaurant
+    @orders = @restaurant.last_week_orders
+  end
+
+
 
   def confirm_order
     order = Order.find(params[:id])
@@ -73,8 +73,15 @@ class Restaurant::DashboardController < ApplicationController
 
   def general_report
     @restaurant = current_user.restaurant
-    @orders =  @restaurant.orders.where(:status => "confirm").order("created_at desc")
+    @orders =  @restaurant.orders.order("created_at desc")
     render general_report_restaurant_dashboard_index_path, :layout => false
+  end
+
+  def schedule_orders_report
+
+    @restaurant = current_user.restaurant
+    @orders = @restaurant.last_week_orders
+    render schedule_orders_report_restaurant_dashboard_index_path, :layout => false
   end
 
   def confirm_orders_report

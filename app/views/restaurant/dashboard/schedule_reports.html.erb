@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     General Report
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", restaurant_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Restaurant", 'javascript:;' %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Schedule Reports",schedule_reports_restaurant_dashboard_index_path %>
+      </li>
+    </ul>  
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-shopping-cart"></i>Report Listing
+        </div>
+        <div class="pull-right">
+          <%= link_to raw("<i class='fa fa-print'></i>"), schedule_orders_report_restaurant_dashboard_index_path, :class => "btn btn-default", :target => "_blank" %>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <%= render :partial => "schedule_report", :locals => {:@orders => @orders} %>
+      </div>  
+    </div>    
+  </div>  
+</div>  
+
+<script>
+  $(document).ready(function() {    
+    $("#datatable_orders").DataTable();
+  });
+</script>

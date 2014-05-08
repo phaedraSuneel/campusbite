@@ -1,0 +1,60 @@
+<style type="text/css">
+	
+
+	table.table{
+		width: 100%;
+		margin: 0;
+		background-color: #fff;
+		clear: both;
+		margin-bottom: 6px;
+		max-width: none;
+		border-collapse: collapse;
+		border-spacing: 0;
+	}
+
+	caption {
+		font-size: 20px;
+		font-weight: bold;
+		margin-bottom: 20px;
+	}
+
+	thead {
+		display: table-header-group;
+		vertical-align: middle;
+		border-color: inherit;
+		font-size: 14px;
+		font-weight: 600;
+	}
+
+	tr {
+		vertical-align: inherit;
+		border-color: inherit;
+	}
+
+	.table .heading > th {
+		background-color: #eee !important;
+		border: 1px solid #ddd;
+		vertical-align: bottom;
+		padding: 8px;
+		line-height: 1.42857143;
+		text-align: left;
+
+	}
+
+	tbody td
+	{
+		border: 1px solid #ddd;
+		padding: 10px;
+		text-align: center;
+	}
+
+</style>
+<div class="row">
+	<div class="portlet-body">	
+		<%= render :partial => "schedule_report", :locals => {:@orders => @orders} %>
+	</div>
+</div>	
+
+<script type="text/javascript">
+	window.print();
+</script>	
