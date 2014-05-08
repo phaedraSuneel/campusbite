@@ -27,9 +27,7 @@ class MenuItemsController < ApplicationController
 
   def create
     @menu =Menu.find(params[:menu_id])
-    p params[:menu_item]
     @menu_item = MenuItem.new(params[:menu_item])   
-    p params[:menu_item]
     if @menu_item.save
       flash[:notice] =  'Menu item was successfully created.'
       redirect_to @menu

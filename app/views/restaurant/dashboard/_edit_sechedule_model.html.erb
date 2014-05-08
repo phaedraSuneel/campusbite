@@ -10,9 +10,11 @@
           <div class="form-body">
             <div class="form-group">
 	            <%= f.label :opening_time %>
-	            <%= f.time_select :opening_time, {:ampm => true, :prompt => true } %>
-	            <%= f.label :closing_time %>
-	            <%= f.time_select :closing_time, {:ampm => true, :prompt => true} %>
+	              <%= f.time_select :opening_time, {:ampm => true, :prompt => true }%>
+            </div>
+            <div class="form-group">
+              <%= f.label :closing_time %>
+              <%= f.time_select :closing_time, {:ampm => true, :prompt => true }%>
             </div>
           </div>
         </div>
@@ -20,7 +22,6 @@
           <button type="button" class="btn btn-primary submit-md edit-sechedule-btn" data-sechedule = "<%= @sechedule.id %>">Save</button>
         </div>
 	   	<% end -%>
-
 		</div>
   </div>
 </div>

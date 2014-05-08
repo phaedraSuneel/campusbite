@@ -4510,3 +4510,8 @@ UI Loading
   opacity: 1 !important;
   margin-left: 0px !important;
 }
+
+.top-margin-ajax-field{
+  margin-top: 20px;
+}
+

@@ -19,10 +19,10 @@
     </ul>  
   </div>
 </div>
-<div class="portlet box yellow">
+<div class="portlet box yellow col-md-6">
   <div class="portlet-title">
     <div class="caption">
-      <i class="fa fa-thumb-tack"></i>Overview
+      <i class="fa fa-thumb-tack"></i>Support-Form
     </div>
     <div class="tools">
       <a href="javascript:;" class="collapse">
@@ -36,26 +36,19 @@
   <div class="portlet-body form">
     <%= form_for("contactus", :url => contact_admin_restaurant_dashboard_index_path, :html =>{:class => 'contact-us-form',:id => "conecting-container-inner-1", :method => :get }) do |f|%>
       <div class="form-body">
-        <div class="row contact-form">
-          <div class="col-md-3">
-            <label>Subject: *</label>
-          </div>
-          <div class="col-md-8">
-            <%= f.text_field :subject %>
-          </div>
+
+        <div class="form-group">
+          <label class="form-label" >Subject: *</label>
+          <%= f.text_field :subject, :class=> "form-control" %>
         </div>
-        <div class="row contact-form">
-          <div class="col-md-3">
-            <label>Message:</label>
-          </div>
-          <div class="col-md-8">
-            <%= f.text_area :message %>
-          </div>
+        <div class="form-group">
+          <label class="form-label">Message:</label>
+          <%= f.text_area :message, :class=> "form-control", :rows=>"3" %>
           <%= f.hidden_field :user_id, :value => current_user.id %>
         </div>
       </div>  
-      <div class="form-actions">
-        <div class="col-md-8 col-md-offset-3">
+      <div class="form-actions fluid">
+        <div class="col-md-offset-3 col-md-9">
           <button class="btn green">Send Request</button>
         </div>
       </div>
@@ -78,7 +71,6 @@
       window.location.hash.substring(1);
       $("#conecting-container-inner-1").addClass("hide");
       $("#thanks").removeClass("hide");
-      window.location.hash=""
     }  
     else{
       $("#conecting-container-inner-1").removeClass("hide");
