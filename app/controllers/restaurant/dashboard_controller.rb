@@ -78,7 +78,6 @@ class Restaurant::DashboardController < ApplicationController
   end
 
   def schedule_orders_report
-
     @restaurant = current_user.restaurant
     @orders = @restaurant.last_week_orders
     render schedule_orders_report_restaurant_dashboard_index_path, :layout => false
@@ -95,6 +94,7 @@ class Restaurant::DashboardController < ApplicationController
     @orders = @restaurant.orders.order("created_at desc")
     render all_orders_report_restaurant_dashboard_index_path, :layout => false
   end
+
   def contact_admin
     @user = current_user
     if  UserMailer.restaurant_admin(params[:contactus]).deliver
