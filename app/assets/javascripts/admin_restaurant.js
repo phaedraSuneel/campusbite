@@ -30,6 +30,8 @@
 //= require ecommerce-index
 //= require select2.min
 //= require jquery.dataTables
+//= require FixedHeader
+//= require jquery.dataTables.columnFilter
 //= require DT_bootstrap
 //= require bootstrap-datepicker
 //= require datatable
