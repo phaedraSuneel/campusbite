@@ -18,6 +18,10 @@ class Restaurant::DashboardController < ApplicationController
     end
   end
 
+  def order
+    @order = Order.find(params[:id])
+  end
+
   def new_orders
     @restaurant = current_user.restaurant
     @orders = @restaurant.orders.where(:status => "pending").order("created_at desc")

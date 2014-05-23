@@ -57,6 +57,9 @@
           <th width="10%">
              Status
           </th>
+          <th width="10%">
+             Action
+          </th>
         </tr> 
         <tfoot>
         <tr>
@@ -83,6 +86,9 @@
           <td><%= order.user.name %></td>
           <td>$<%= order.total_bill %></td>
           <td><%= order.status %></td>
+          <td>
+            <%= link_to "View", order_restaurant_dashboard_path(order), :class => "btn default btn-xs green-stripe" %>
+          </td>
         </tr>
       <% end %>
     </tbody>  

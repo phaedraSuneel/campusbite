@@ -56,8 +56,6 @@ class CartsController < ApplicationController
     total_bill = @cart.total_bill(@cart.restaurant)
     total_bill += (@cart.total_bill(@cart.restaurant) * params[:order][:tip].to_f)/100
     
-    p total_bill
-
     unless params[:order].blank?
 
       unless params[:order][:order_type] == "pickup"
@@ -115,7 +113,7 @@ class CartsController < ApplicationController
           @order.method_type = "Credit Card"
           @order.card_id = @card.id
           @order.restaurant = @cart.restaurant
-          @order.secure_code = SecureRandom.random_number(1000000)
+          @order.secure_code = SecureRandom.random_number(10000)
           @order.save
 
           payment = @order.build_payment
@@ -202,7 +200,7 @@ class CartsController < ApplicationController
     @order.user_id = current_user.id
     @order.status = "pending"
     @order.restaurant = @cart.restaurant
-    @order.secure_code = SecureRandom.random_number(1000000)
+    @order.secure_code = SecureRandom.random_number(10000)
     @order.save
     @cart.cart_menu_items.each do |item|
       @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   
