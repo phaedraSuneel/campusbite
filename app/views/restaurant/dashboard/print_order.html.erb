@@ -157,11 +157,7 @@
   .tabel-container table td.border-am-b p{
     text-align: left;
   }
- /* .tabel-container table td.border-am-b p.small,
-  .tabel-container table td.border-am p.small{
-    font-size: 10px;
-    height: 40px;
-  }*/
+ 
   .tabel-container table td.border-am-b p.small:last-child,
   .tabel-container table td.border-am p.small:last-child{
     border-bottom: 0px;
@@ -209,6 +205,10 @@
   .print-container{
     margin: 0px auto;
     width: 825px;
+  }
+  .text-center
+  {
+    text-align: center;
   }
 </style>
 
@@ -286,7 +286,7 @@
                     <% end %>
                     <p>Instructions: <%= item.instruction %></p>
                   </td>
-                  <td class="first"><%= item.quantity %></td>
+                  <td class="first text-center"><%= item.quantity %></td>
                   <td>$ <%= (extra + item.menu_item.price) * item.quantity  %></td>
                 </tr>
               <% end %>
