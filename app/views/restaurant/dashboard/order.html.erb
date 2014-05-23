@@ -61,7 +61,6 @@
                 <% unless @order.order_type == 'delivery'%>
                   <span>Costumer will pickup order</span>
                 <% else %>  
-                  <label><span>Address:</span><span class="value">
                     <%= @order.address.address_type %>
                     <% if @order.address.address_type == "On Campus" %>
                      <%= @order.address.school.school_name %> <%= @order.address.room_number %> <%= @order.address.building.try(:street_adress) %></span>
@@ -152,7 +151,7 @@
     <%= link_to "Confirm", confirm_order_restaurant_dashboard_path(@order), :class => "btn btn-lg green"%>
   </div>
   <div class="col-md-3">
-    <%= link_to raw("<i class='fa  fa-5x fa-print'></i> Print"), "javascript:;", :class => "btn btn btn-lg blue print-order", "data-order" => @order.id %>
+    <%= link_to raw("<i class='fa  fa-5x fa-print'></i> Print"), print_order_restaurant_dashboard_path(@order), :class => "btn btn btn-lg blue" , :target => "_blank"%>
   </div>
   <div class="col-md-3">
     <%= link_to "Cancel", cancel_order_restaurant_dashboard_path(@order), :class => "btn btn-lg red"%>

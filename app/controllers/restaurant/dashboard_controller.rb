@@ -22,6 +22,13 @@ class Restaurant::DashboardController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+  def print_order
+    @order = Order.find(params[:id]) 
+    respond_to do |format|
+      format.html { render "print_order", :layout => false  }  
+    end  
+  end
+
   def new_orders
     @restaurant = current_user.restaurant
     @orders = @restaurant.orders.where(:status => "pending").order("created_at desc")

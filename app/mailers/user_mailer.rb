@@ -23,7 +23,8 @@ class UserMailer < ActionMailer::Base
 
   def restaurant_admin(contact_us)
     @user = User.find(contact_us[:user_id])
-    mail(to: 'admin@ordering.com', from: @user.email, subject: contact_us[:subject], message: contact_us[:message])
+    @support = contact_us
+    mail(to: 'admin@ordering.com', from: @user.email, subject: "Restaurant Support Resquest")
   end    
   
   def new_order(order,order_reciept)

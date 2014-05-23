@@ -92,6 +92,7 @@ Ordering::Application.routes.draw do
         get 'confirm_order'
         get 'cancel_order'
         get 'order'
+        get 'print_order'
       end
     end
     resources :settings do
