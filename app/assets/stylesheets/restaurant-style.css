@@ -4514,3 +4514,12 @@ UI Loading
 .top-margin-ajax-field{
   margin-top: 20px;
 }
+
+.sound-portion{
+  text-align: right;
+  margin-bottom: 8px;
+}
+.sound-img-icon
+{
+  width: 40px !important; 
+}

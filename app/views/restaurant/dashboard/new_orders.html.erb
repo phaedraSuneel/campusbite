@@ -26,6 +26,14 @@
         <div class="caption">
           <i class="fa fa-shopping-cart"></i>Order Listing
         </div>
+        <div class="sound-portion">
+          <%=  link_to image_tag("/assets/sound-on-icon.png", :class => "sound-img-icon"), "javascript:;", :class => "toggle-alert", "data-alert" => "#{current_user.mute? ? false : true }" %>
+          <% unless current_user.mute? %>
+            <audio>
+              <source src="/assets/beep.wav">
+            </audio>
+          <% end %>
+        </div>  
       </div>
       <div class="portlet-body">
         <div class="row new-orders">
@@ -170,6 +178,14 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+   
+   alert = $(".toggle-alert").data("alert");
+    if(alert)
+    {
+      var audio = $("audio")[0]
+      audio.play();
+    }
+
     $(".tabs").each(function(){
       id = $(this).data("order");
       $(".order_" + id).addClass("hide"); 

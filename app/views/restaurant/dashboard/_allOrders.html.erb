@@ -1,0 +1,14 @@
+<% @orders.each do |order| %>
+  <tr>
+    <td><%= order.id %></td>
+    <td><%= order.created_at.strftime('%e %B, %Y %I:%M%p')%></td>
+    <td><%= order.order_type %></td>
+    <td><%= order.request_time %></td>
+    <td><%= order.user.name %></td>
+    <td>$<%= order.total_bill %></td>
+    <td><%= order.status %></td>
+    <td>
+      <%= link_to "View", order_restaurant_dashboard_path(order), :class => "btn default btn-xs green-stripe" %>
+    </td>
+  </tr>
+<% end %>

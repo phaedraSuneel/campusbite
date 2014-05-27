@@ -11,7 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 
-//= require jquery-1.10.2.min
+//= require jquery-1.10.2.min.js
 //= require jquery_ujs
 //= require jquery-migrate-1.2.1.min
 //= require jquery-ui-1.10.3.custom.min
@@ -30,10 +30,12 @@
 //= require ecommerce-index
 //= require select2.min
 //= require jquery.dataTables
-//= require FixedHeader
-//= require jquery.dataTables.columnFilter
 //= require DT_bootstrap
 //= require bootstrap-datepicker
 //= require datatable
+//= require table-ajax
+//= require FixedHeader
+//= require moment
+//= require bootstrap-datetimepicker
 //= require ecommerce-orders
 

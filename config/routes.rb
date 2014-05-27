@@ -87,6 +87,8 @@ Ordering::Application.routes.draw do
         get 'confirm_orders_report'
         get 'all_orders_report'
         get 'schedule_orders_report'
+        get 'toggle_alert'
+        get 'allOrders'
       end
       member do 
         get 'confirm_order'

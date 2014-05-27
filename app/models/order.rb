@@ -72,4 +72,5 @@ class Order < ActiveRecord::Base
       self.sub_total + self.sale_tax + self.tip_charges
     end  
 	end
+
 end

@@ -15,7 +15,8 @@
  *= require uniform.default
  *= require select2
  *= require select2-metronic
- *= require DT_bootstrap
+ *= require bootstrap-datetimepicker
+ *= require jquery.dataTables
  *= require datepicker
  *= require style-metronic
  *= require restaurant-style

@@ -44,6 +44,13 @@ class Restaurant::DashboardController < ApplicationController
     @orders = @restaurant.orders.order("created_at desc")
   end  
 
+  def allOrders
+    @restaurant = current_user.restaurant
+    @orders = @restaurant.orders.order("created_at desc")
+    all_orders = @orders.collect{|a| {:order_id => a.id.to_s, :order_date => a.created_at.strftime("%e %B, %Y %I:%M%P"), :order_type => a.order_type,  :order_time => a.request_time, :order_customer_name => a.user.name, :order_total => a.total_bill.to_s, :order_status => a.status, :order_action => ""}}
+    render :json => {:aaData => all_orders}
+  end
+
   def reports
     @restaurant = current_user.restaurant
     @orders =  @restaurant.orders.order("created_at desc")
@@ -120,5 +127,12 @@ class Restaurant::DashboardController < ApplicationController
   def settings
     @user = current_user
     @restaurant = current_user.restaurant
+  end
+
+  def toggle_alert
+    user = current_user
+    user.mute = user.mute? ?  false : true
+    user.save
+    render :text => "changed"
   end
 end
