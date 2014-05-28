@@ -1,3 +1,4 @@
+<%= subscribe_to "restaurant/#{@order.restaurant.id}/new_orders" %>
 <div class="row search-container result-page menupage checkout-page last-page">
   <div class="container">
     <div class="col-md-3 logo-side-1">
@@ -210,7 +211,7 @@
               <img class="logo-image" alt="Smiley face" src="/assets/LastPage_22.png" />
             </div>
             <div class="col-md-9">
-              <p><a href="#">Click Here to go to the FAQ Page</a></p>
+              <p><a href="<%= faqs_path %>">Click Here to go to the FAQ Page</a></p>
             </div>
           </div>
         </div>

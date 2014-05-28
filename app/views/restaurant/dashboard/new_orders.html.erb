@@ -1,3 +1,4 @@
+<%= subscribe_to "restaurant/#{@restaurant.id}/new_orders" %>
 <div class="row">
   <div class="col-md-12">
     <h3 class="page-title">
@@ -178,13 +179,12 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-   
-   alert = $(".toggle-alert").data("alert");
-    if(alert)
-    {
-      var audio = $("audio")[0]
-      audio.play();
-    }
+
+    $(".toggle-alert").click(function(){
+      $.ajax ({
+        url:  '/restaurant/dashboard/toggle_alert'
+      });    
+    });
 
     $(".tabs").each(function(){
       id = $(this).data("order");
@@ -208,4 +208,18 @@
     });
   });
 
+  function new_order_alert(id)
+  {
+    restaurant_id = "<%= current_user.restaurant.id %>"
+
+    if (restaurant_id == id)
+    { 
+      alert = $(".toggle-alert").data("alert");
+      if(alert)
+      {
+        var audio = $("audio")[0]
+        audio.play();
+      }
+    }  
+  }
 </script>
