@@ -47,7 +47,6 @@ gem 'phaxio', '0.4.0'
 gem "authorize-net"
 
 gem 'vestal_versions'
-gem 'faye'
 gem 'private_pub'
 gem "thin"
 # To use ActiveModel has_secure_password

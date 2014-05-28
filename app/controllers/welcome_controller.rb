@@ -28,7 +28,6 @@ class WelcomeController < ApplicationController
 
   def order
     @order = Order.find params[:id]
-    PrivatePub.publish_to("restaurant/#{@order.restaurant.id}/new_orders", "new_order_alert(#{@order.restaurant.id})");
   end
 
   def restaurant_search

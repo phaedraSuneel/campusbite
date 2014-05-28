@@ -133,6 +133,6 @@ class Restaurant::DashboardController < ApplicationController
     user = current_user
     user.mute = user.mute? ?  false : true
     user.save
-    render :text => "changed"
+    render :text => !user.mute
   end
 end

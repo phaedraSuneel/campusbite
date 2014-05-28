@@ -129,7 +129,7 @@ class CartsController < ApplicationController
             @menu_item_order.save 
           end
           send_order(@order)
-          #subscribe_chanel(@order)
+          publish_order
           @cart.destroy
           flash[:notice] = 'Order was successfully created'
           respond_to do |format| 
@@ -210,6 +210,7 @@ class CartsController < ApplicationController
       @menu_item_order.save 
     end
     send_order(@order)
+    publish_order
     @cart.destroy
     flash[:notice] = 'Order was successfully created'
     redirect_to order_welcome_path(@order)  
@@ -254,9 +255,9 @@ class CartsController < ApplicationController
 
   private
 
-  def subscribe_chanel(order)
-    subscribe_to "restaurant/" + @order.restaurant.id.to_s + "new_order"
-  end 
+  def publish_order
+    PrivatePub.publish_to("/restaurant/new_orders", "new_order_alert('#{@order.restaurant.id}')")
+  end
 
   def send_order(order)
     email_order_to_restaurant_resources(order)

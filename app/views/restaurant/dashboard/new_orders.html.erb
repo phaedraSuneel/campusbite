@@ -1,4 +1,3 @@
-<%= subscribe_to "restaurant/#{@restaurant.id}/new_orders" %>
 <div class="row">
   <div class="col-md-12">
     <h3 class="page-title">
@@ -28,12 +27,10 @@
           <i class="fa fa-shopping-cart"></i>Order Listing
         </div>
         <div class="sound-portion">
-          <%=  link_to image_tag("/assets/sound-on-icon.png", :class => "sound-img-icon"), "javascript:;", :class => "toggle-alert", "data-alert" => "#{current_user.mute? ? false : true }" %>
-          <% unless current_user.mute? %>
-            <audio>
-              <source src="/assets/beep.wav">
-            </audio>
-          <% end %>
+          <%=  link_to image_tag(current_user.mute? ? '/assets/mute.png' : '/assets/un-mute.png', :class => "sound-img-icon"), "javascript:;", :class => "toggle-alert", "alert" => "#{current_user.mute? ? false : true }" %>
+          <audio>
+            <source src="/assets/beep.wav">
+          </audio>
         </div>  
       </div>
       <div class="portlet-body">
@@ -176,46 +173,19 @@
   </div>  
 </div>
 
+<%= subscribe_to "/restaurant/new_orders" %>
 
 <script type="text/javascript">
-  $(document).ready(function(){
-
-    $(".toggle-alert").click(function(){
-      $.ajax ({
-        url:  '/restaurant/dashboard/toggle_alert'
-      });    
-    });
-
-    $(".tabs").each(function(){
-      id = $(this).data("order");
-      $(".order_" + id).addClass("hide"); 
-      $(this).removeClass("active");  
-    });
-    first_order = $(".tabs.first").data("order");
-    $(".order_" + first_order).removeClass("hide");
-    $(".tabs.first").addClass("active");
-
-    $(".tabs").click(function(){
-      $(".tabs").each(function(){
-        id = $(this).data("order");
-        $(".order_" + id).addClass("hide"); 
-        $(this).removeClass("active");  
-
-      });
-      id = $(this).data("order");
-      $(".order_" + id).removeClass("hide");
-      $(this).addClass("active");  
-    });
-  });
-
+  
   function new_order_alert(id)
   {
+    
     restaurant_id = "<%= current_user.restaurant.id %>"
 
     if (restaurant_id == id)
     { 
-      alert = $(".toggle-alert").data("alert");
-      if(alert)
+      alert = $(".toggle-alert").attr('alert');
+      if(alert=="true")
       {
         var audio = $("audio")[0]
         audio.play();

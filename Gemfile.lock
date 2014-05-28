@@ -256,7 +256,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   delayed_job_active_record
   devise
-  faye
   jquery-rails
   kaminari
   mysql2

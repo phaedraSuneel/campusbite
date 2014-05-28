@@ -39,4 +39,4 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require ecommerce-orders
-
+//= require new_orders

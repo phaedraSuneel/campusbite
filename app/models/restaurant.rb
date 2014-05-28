@@ -154,7 +154,7 @@ class Restaurant < ActiveRecord::Base
   end
 
   def can_fax?
-    self.order_info.info_way = "fax" ? true : false
+    self.order_info.info_way == "fax" ? true : false
   end
 
   def fax_number
