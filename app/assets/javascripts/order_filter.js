@@ -68,11 +68,4 @@
 
   $(".datatable_reports").dataTable();
 
-
-  $(".toggle-alert").click(function(){
-    $.ajax ({
-      url:  '/restaurant/dashboard/toggle_alert'
-    });    
-  });
-
 });

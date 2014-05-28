@@ -28,6 +28,7 @@ GEM
     activesupport (3.2.11)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    addressable (2.3.6)
     arel (3.0.3)
     atomic (1.1.14)
     authorize-net (1.5.2)
@@ -48,6 +49,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.7.0)
+    cookiejar (0.3.2)
+    daemons (1.1.9)
     delayed_job (4.0.0)
       activesupport (>= 3.0, < 4.1)
     delayed_job_active_record (4.0.0)
@@ -59,10 +62,30 @@ GEM
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    em-http-request (1.1.2)
+      addressable (>= 2.3.4)
+      cookiejar
+      em-socksify (>= 0.3)
+      eventmachine (>= 1.0.3)
+      http_parser.rb (>= 0.6.0)
+    em-socksify (0.3.0)
+      eventmachine (>= 1.0.0.beta.4)
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (2.0.2)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    faye (1.0.1)
+      cookiejar (>= 0.3.0)
+      em-http-request (>= 0.3.0)
+      eventmachine (>= 0.12.0)
+      faye-websocket (>= 0.7.0)
+      multi_json (>= 1.0.0)
+      rack (>= 1.0.0)
+      websocket-driver (>= 0.3.0)
+    faye-websocket (0.7.3)
+      eventmachine (>= 0.12.0)
+      websocket-driver (>= 0.3.1)
     hashie (2.0.5)
     highline (1.6.20)
     hike (1.2.3)
@@ -70,6 +93,7 @@ GEM
       httparty (>= 0.7.3)
       mimemagic
       multipart-post
+    http_parser.rb (0.6.0)
     httparty (0.13.1)
       json (~> 1.8)
       multi_xml (>= 0.5.2)
@@ -136,6 +160,8 @@ GEM
     phaxio (0.4.0)
       httmultiparty (~> 0.3.8)
     polyglot (0.3.3)
+    private_pub (1.0.3)
+      faye
     progress_bar (1.0.0)
       highline (~> 1.6.1)
       options (~> 2.3.0)
@@ -183,6 +209,10 @@ GEM
     therubyracer (0.12.1)
       libv8 (~> 3.16.14.0)
       ref
+    thin (1.6.2)
+      daemons (>= 1.0.9)
+      eventmachine (>= 1.0.0)
+      rack (>= 1.0.0)
     thinking-sphinx (3.1.0)
       activerecord (>= 3.1.0)
       builder (>= 2.1.2)
@@ -213,6 +243,7 @@ GEM
       activesupport (>= 3, < 5)
     warden (1.2.3)
       rack (>= 1.0)
+    websocket-driver (0.3.3)
     wkhtmltopdf (0.1.2)
 
 PLATFORMS
@@ -225,6 +256,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   delayed_job_active_record
   devise
+  faye
   jquery-rails
   kaminari
   mysql2
@@ -234,12 +266,14 @@ DEPENDENCIES
   paperclip (~> 3.0)
   pdfkit
   phaxio (= 0.4.0)
+  private_pub
   progress_bar
   rails (= 3.2.11)
   rolify
   sass-rails (~> 3.2.3)
   simple_form
   therubyracer
+  thin
   thinking-sphinx (= 3.1.0)
   ts-delayed-delta (~> 2.0.2)
   twilio-ruby

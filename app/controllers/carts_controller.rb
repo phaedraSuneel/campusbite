@@ -115,7 +115,6 @@ class CartsController < ApplicationController
           @order.restaurant = @cart.restaurant
           @order.secure_code = SecureRandom.random_number(10000)
           @order.save
-
           payment = @order.build_payment
           payment.user_id = current_user.id
           payment.transaction_id = @result.transaction.id
@@ -130,10 +129,13 @@ class CartsController < ApplicationController
             @menu_item_order.save 
           end
           send_order(@order)
+          #subscribe_chanel(@order)
           @cart.destroy
           flash[:notice] = 'Order was successfully created'
-           
-          redirect_to order_welcome_path(@order)  
+          respond_to do |format| 
+            format.html { redirect_to order_welcome_path(@order) }
+            format.js
+          end  
         else
           flash[:warning] = "Invalid card information"
           redirect_to :back
@@ -252,12 +254,16 @@ class CartsController < ApplicationController
 
   private
 
+  def subscribe_chanel(order)
+    subscribe_to "restaurant/" + @order.restaurant.id.to_s + "new_order"
+  end 
+
   def send_order(order)
     email_order_to_restaurant_resources(order)
     if order.restaurant.can_fax?
       send_fax_to_restaurant(order)
     else
-      make_call(order.restaurant)
+      #make_call(order.restaurant)
     end
   end
 
@@ -270,7 +276,7 @@ class CartsController < ApplicationController
     order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => order}, :layout => false )
     @fax = Phaxio.send_fax(to: order.restaurant.fax_number ,string_data_type: 'html', string_data: order_reciept )
     if @fax["success"]
-      make_call(order.restaurant) 
+      #make_call(order.restaurant) 
     else  
       p "Fax number format is incorrect"
     end

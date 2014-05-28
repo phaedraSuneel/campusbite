@@ -15,6 +15,7 @@
 //= require jquery_ujs
 //= require jquery-migrate-1.2.1.min
 //= require jquery-ui-1.10.3.custom.min
+//= require private_pub
 //= require bootstrap.min
 //= require bootstrap-hover-dropdown.min
 //= require jquery.slimscroll.min

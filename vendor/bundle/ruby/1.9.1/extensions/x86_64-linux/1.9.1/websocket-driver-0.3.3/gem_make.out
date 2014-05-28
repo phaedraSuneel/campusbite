@@ -1,0 +1,12 @@
+/home/phaedra/.rvm/rubies/ruby-1.9.3-p484/bin/ruby extconf.rb 
+creating Makefile
+
+make  clean
+
+make
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+make  install
+/usr/bin/install -m 0755 websocket_mask.so /www/projects/ordering/vendor/bundle/ruby/1.9.1/gems/websocket-driver-0.3.3/ext/websocket-driver/.gem.20140528-3080-1cowugj
+installing default websocket_mask libraries
