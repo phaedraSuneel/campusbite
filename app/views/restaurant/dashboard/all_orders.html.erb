@@ -117,7 +117,7 @@
               <% @orders.each do |order| %>
                 <tr>
                   <td class="order_id"><%= order.id %></td>
-                  <td class="order_date"><%= order.created_at.strftime('%e %B, %Y %I:%M')%></td>
+                  <td class="order_date"><%= order.created_at.strftime('%e %b, %Y %H:%M')%></td>
                   <td class="order_type"><%= order.order_type %></td>
                   <td class="order_time"><%= order.request_time %></td>
                   <td class="order_customer_name"><%= order.user.name %></td>

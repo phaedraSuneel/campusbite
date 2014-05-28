@@ -378,8 +378,6 @@ ActiveRecord::Schema.define(:version => 20140523123425) do
     t.boolean  "delta",          :default => true, :null => false
   end
 
-  add_index "schools", ["delta"], :name => "index_schools_on_delta"
-
   create_table "sechedules", :force => true do |t|
     t.string   "day"
     t.time     "opening_time"
