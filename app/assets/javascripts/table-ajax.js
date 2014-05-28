@@ -22,29 +22,46 @@
         {
             return true;
         }
+
         return false;
       }
   );
 
-  function date_range()
-  {
-    var iFini = $('#order_from_date').val();
-    var iFfin = $('#order_to_date').val();
-    
-    var iStartDateCol = 0;
-    var iEndDateCol = 1;
-    iFini = Date.parse(iFini.substring(0,12));
-    iFfin = Date.parse(iFfin.substring(0,12));
-   
+  $.fn.dataTableExt.afnFiltering.push(
+    function( oSettings, aData, iDataIndex ) {
 
-  }
+      var iFini = $('#order_from_date').val();
+      var iFfin = $('#order_to_date').val();
+      imin = iFini=="" ? "" : Date.parse(iFini);
+      imax = iFfin=="" ? "" : Date.parse(iFfin);
+      var idate = Date.parse(aData[1]);
+
+        if ( imin == "" && imax == "" )
+        {
+            return true;
+        }
+        else if ( imin == "" && idate < imax )
+        {
+            return true;
+        }
+        else if ( imin < idate && "" == imax )
+        {
+            return true;
+        }
+        else if ( imin < idate && idate < imax )
+        {
+            return true;
+        }
+
+        return false;
+      }
+  );
 
    $(document).ready(function() {
 
-    $(".date-picker").datetimepicker().change(function(e){
-        var i = $(this).index();
-        date_range();
-      });
+    $(".date-picker").datetimepicker().change(function(){
+      $('#order_from_date, #order_to_date').click();
+    });
 
       var oTable = $('#all_orders_data').dataTable( {
           "oLanguage": {
