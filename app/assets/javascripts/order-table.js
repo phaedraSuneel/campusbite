@@ -58,34 +58,26 @@ $.fn.dataTableExt.afnFiltering.push(
   }
 );
 
- $(document).ready(function() {
+$(document).ready(function() {
 
   $(".date-picker").datetimepicker().change(function(){
     $('#order_from_date, #order_to_date').click();
   });
 
-  var oTable = $('#all_orders_data').dataTable({  // here you can define a typical datatable settings from http://datatables.net/usage/options 
-    "aLengthMenu": [
-        [10, 20, 50, 100, 150, -1],
-        [10, 20, 50, 100, 150, "All"] // change per page values here
-    ],
-    "iDisplayLength": 10, // default record count per page
-    "aaSorting": [[ 1, "asc" ]] // set first column as a default sort by asc
-  });
-
+  var oTable = $('#all_orders_data').dataTable();
+   
   $("thead tr.filter .select_filter").each( function ( i ) {
     var i = $(this).index();
     $(this).find('select').change( function () {
         oTable.fnFilter( $(this).val(), i );
-    } );
+    });
   });
 
-     
   $("thead tr.filter input.search_init").keyup( function () {
-      /* Filter on the column (the index) of this element */
-      var i = $(this).parent().index();
-      oTable.fnFilter( $(this).val(), i );
-  } );
+    /* Filter on the column (the index) of this element */
+    var i = $(this).parent().index();
+    oTable.fnFilter( $(this).val(), i );
+  });
 
 
 
@@ -105,11 +97,10 @@ $.fn.dataTableExt.afnFiltering.push(
   $("thead tr.filter input.search_init").blur( function (i) {
     if ( this.value == "" )
     {
-        this.className = "search_init";
-        this.value = asInitVals[$("thead tr.filter input.search_init").parent().index(this)];
+      this.className = "search_init";
+      this.value = asInitVals[$("thead tr.filter input.search_init").parent().index(this)];
     }
   });
-
 
   $(".filter-cancel").click(function(){
     
@@ -122,6 +113,15 @@ $.fn.dataTableExt.afnFiltering.push(
 
   $(".filter-submit").click(function(){
     var sData = oTable.$('input').serialize() + oTable.$('select').serialize();
+  });
+
+  $("#all_orders_data thead tr.heading th").each(function(){
+    $(this).addClass("sorting");
+  });
+
+  $("#all_orders_data thead tr.filter td").each(function(){
+    $(this).removeClass("sorting");
+    $(this).removeClass("sorting_asc");
   });
 
 });
