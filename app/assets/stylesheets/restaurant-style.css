@@ -4368,17 +4368,16 @@ UI Loading
 }
 .new-orders .tabs.active{
   background-color: #40985c !important;
-  cursor: pointer;
 }
 .new-orders .tabs.even{
   background-color: #cdcdcd;
   padding: 5px 0;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 .new-orders .tabs.odd{
   background-color: #e8e8e8;
   padding: 5px 0;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 .border-green{
   border: 1px solid #40985c;
