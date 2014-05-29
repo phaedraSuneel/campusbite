@@ -4527,3 +4527,8 @@ UI Loading
 {
   width: 40px !important; 
 }
+
+.hidden
+{
+  display: none !important; 
+}

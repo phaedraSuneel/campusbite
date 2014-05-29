@@ -34,7 +34,7 @@
 //= require DT_bootstrap
 //= require bootstrap-datepicker
 //= require datatable
-//= require table-ajax
+//= require order-table
 //= require FixedHeader
 //= require moment
 //= require bootstrap-datetimepicker
