@@ -124,4 +124,4 @@ $.fn.dataTableExt.afnFiltering.push(
     var sData = oTable.$('input').serialize() + oTable.$('select').serialize();
   });
 
-} );
+});

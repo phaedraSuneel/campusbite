@@ -138,16 +138,7 @@
               </tr>  
             </thead>  
             <tbody>
-              <% sub_total = 0 
-              tax = 0
-              delivery_charges =0
-              tip = 0
-              total = 0
-              promo_code = 0
-              discount = 0
-              total_bill = 0
-              %>
-              <% @orders.each do |order| %>
+               <% @orders.each do |order| %>
                 <tr>
                   <td><%= order.id %></td>
                   <td><%= order.updated_at.strftime('%e %B, %Y')%></td>
@@ -160,40 +151,16 @@
                   <td><%= order.order_type %></td>
                   <td><%= order.request_time %></td>
                   <td><%= order.user.name %></td>
-                  <% sub_total += order.sub_total %>
                   <td><%= order.sub_total %></td>
-                  <% tax += order.sale_tax %>
                   <td><%= order.sale_tax %></td>
-                  <% delivery_charges += order.restaurant.delivery_charges %>
                   <td><%= order.restaurant.delivery_charges %></td>
-                  <% tip += order.tip%>
                   <td><%= order.tip %></td>
-                  <% total += order.total_bill %>
                   <td><%= order.total_bill %></td>
                   <td>0</td>
                   <td>0</td>
-                  <% total_bill += order.total_bill %>
                   <td><%= order.total_bill %></td>
                 </tr>
               <% end %>
-              <tr>
-                <td>Total</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td> <%= sub_total%></td>
-                <td><%= tax %></td>
-                <td><%= delivery_charges%></td>
-                <td><%= tip %></td>
-                <td><%= total %></td>
-                <td><%= promo_code %></td>
-                <td><%= discount%></td>
-                <td><%= total_bill %></td>
-              </tr>
             </tbody>  
           </table>  
         </div>
