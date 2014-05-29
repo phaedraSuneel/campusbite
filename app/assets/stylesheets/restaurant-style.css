@@ -4364,17 +4364,21 @@ UI Loading
 .new-orders .tabs.even:hover,
 .new-orders .tabs.odd:hover{
   background-color: #40985c;
+  cursor: pointer;
 }
 .new-orders .tabs.active{
   background-color: #40985c !important;
+  cursor: pointer;
 }
 .new-orders .tabs.even{
   background-color: #cdcdcd;
   padding: 5px 0;
+  cursor: pointer;
 }
 .new-orders .tabs.odd{
   background-color: #e8e8e8;
   padding: 5px 0;
+  cursor: pointer;
 }
 .border-green{
   border: 1px solid #40985c;

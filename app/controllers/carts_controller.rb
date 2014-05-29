@@ -241,7 +241,7 @@ class CartsController < ApplicationController
       order.save
       send_confirm_email_to_customer
     else 
-      order.status = "reject"
+      order.status = "pending"
       order.save
     end  
     render :text => "Order status updated"
@@ -264,7 +264,7 @@ class CartsController < ApplicationController
     if order.restaurant.can_fax?
       send_fax_to_restaurant(order)
     else
-      #make_call(order.restaurant)
+      make_call(order.restaurant)
     end
   end
 
@@ -277,16 +277,17 @@ class CartsController < ApplicationController
     order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => order}, :layout => false )
     @fax = Phaxio.send_fax(to: order.restaurant.fax_number ,string_data_type: 'html', string_data: order_reciept )
     if @fax["success"]
-      #make_call(order.restaurant) 
+      make_call(order.restaurant) 
     else  
       p "Fax number format is incorrect"
     end
   end 
 
   def make_call(restaurant)
-    @client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
-    p @client
-    @call = @client.account.calls.create(:from => '+17189253361',:to => restaurant.phone_number, :url => voice_carts_url, :method => :get)
+    unless Rails.env == "development"
+      @client = Twilio::REST::Client.new APP_CONFIG["twilio-account-sid"], APP_CONFIG["twilio-auth-token"]
+      @call = @client.account.calls.create(:from => '+17189253361',:to => restaurant.phone_number, :url => voice_carts_url, :method => :get)
+    end  
   end
 
   def send_confirm_email_to_customer

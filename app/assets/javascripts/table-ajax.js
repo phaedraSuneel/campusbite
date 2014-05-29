@@ -63,50 +63,46 @@
       $('#order_from_date, #order_to_date').click();
     });
 
-      var oTable = $('#all_orders_data').dataTable( {
-          "oLanguage": {
-              "sSearch": "Search all columns:"
-          }
-      } );
+    var oTable = $('#all_orders_data').dataTable({  // here you can define a typical datatable settings from http://datatables.net/usage/options 
+      "aLengthMenu": [
+          [10, 20, 50, 100, 150, -1],
+          [10, 20, 50, 100, 150, "All"] // change per page values here
+      ],
+      "iDisplayLength": 10, // default record count per page
+      "aaSorting": [[ 1, "asc" ]] // set first column as a default sort by asc
+    });
 
-      
-      
-   
-      $("thead tr.filter .select_filter").each( function ( i ) {
-          // this.innerHTML = fnCreateSelect( oTable.fnGetColumnData(i) );
-          var i = $(this).index();
-          $(this).find('select').change( function () {
-              oTable.fnFilter( $(this).val(), i );
-          } );
-      } );
+    $("thead tr.filter .select_filter").each( function ( i ) {
+        var i = $(this).index();
+        $(this).find('select').change( function () {
+            oTable.fnFilter( $(this).val(), i );
+        } );
+    } );
        
-      $("thead tr.filter input.search_init").keyup( function () {
-          /* Filter on the column (the index) of this element */
-          oTable.fnFilter( this.value, $("thead tr.filter input.search_init").index(this) );
-      } );
+    $("thead tr.filter input.search_init").keyup( function () {
+        /* Filter on the column (the index) of this element */
+        oTable.fnFilter( this.value, $("thead tr.filter input.search_init").index(this) );
+    } );
        
-      /*
-       * Support functions to provide a little bit of 'user friendlyness' to the textboxes in
-       * the footer
-       */
-      $("thead tr.filter input.search_init").each( function (i) {
-          asInitVals[i] = this.value;
-      } );
+ 
+    $("thead tr.filter input.search_init").each( function (i) {
+        asInitVals[i] = this.value;
+    } );
+     
+    $("thead tr.filter input.search_init").focus( function () {
+        if ( this.className == "search_init" )
+        {
+            this.className = "";
+            this.value = "";
+        }
+    } );
        
-      $("thead tr.filter input.search_init").focus( function () {
-          if ( this.className == "search_init" )
-          {
-              this.className = "";
-              this.value = "";
-          }
-      } );
-       
-      $("thead tr.filter input.search_init").blur( function (i) {
-          if ( this.value == "" )
-          {
-              this.className = "search_init";
-              this.value = asInitVals[$("thead tr.filter input.search_init").index(this)];
-          }
-      } );
+    $("thead tr.filter input.search_init").blur( function (i) {
+        if ( this.value == "" )
+        {
+            this.className = "search_init";
+            this.value = asInitVals[$("thead tr.filter input.search_init").index(this)];
+        }
+    } );
 
   } );
