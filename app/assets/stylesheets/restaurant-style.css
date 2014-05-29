@@ -4364,7 +4364,6 @@ UI Loading
 .new-orders .tabs.even:hover,
 .new-orders .tabs.odd:hover{
   background-color: #40985c;
-  cursor: pointer;
 }
 .new-orders .tabs.active{
   background-color: #40985c !important;
@@ -4378,6 +4377,10 @@ UI Loading
   background-color: #e8e8e8;
   padding: 5px 0;
   cursor: pointer !important;
+}
+.new-orders .tabs.odd label,
+.new-orders .tabs.even label{
+  cursor: pointer;
 }
 .border-green{
   border: 1px solid #40985c;
@@ -4530,4 +4533,10 @@ UI Loading
 .hidden
 {
   display: none !important; 
+}
+
+.support-message{
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #fff;
 }
