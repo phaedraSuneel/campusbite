@@ -64,12 +64,15 @@ $(document).ready(function() {
     $('#order_from_date, #order_to_date').click();
   });
 
-  var oTable = $('#all_orders_data').dataTable();
+  var oTable = $('#all_orders_data').dataTable({
+    "aaSorting": [[ 1, "asc" ]],
+    "bSortCellsTop": true
+  });
    
   $("thead tr.filter .select_filter").each( function ( i ) {
     var i = $(this).index();
     $(this).find('select').change( function () {
-        oTable.fnFilter( $(this).val(), i );
+        oTable.fnFilter($(this).val(), i );
     });
   });
 
@@ -79,7 +82,17 @@ $(document).ready(function() {
     oTable.fnFilter( $(this).val(), i );
   });
 
+  $("thead tr.filter input.range-filter").keyup( function () {
+    var i = $(this).parent().parent().index();
+    $("#all_orders_data .sorting")[i].click();
+    $("#all_orders_data .sorting")[i].click();
+  });
 
+  $("thead tr.filter input.date-range-filter").click( function () {
+    var i = $(this).parent().index();
+    $("#all_orders_data .sorting")[i].click();
+    $("#all_orders_data .sorting")[i].click();
+  });
 
   $("thead tr.filter .input_filter").each( function (i) {
     var i = $(this).index();

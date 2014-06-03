@@ -66,13 +66,13 @@
                 </td>
                 <td class="order_date-filter">
                   <div class="input-group date date-picker margin-bottom-5" data-date-format="D MMM, YYYY HH:mm">
-                    <input type="text" class="form-control form-filter input-sm" readonly name="order_date_from" placeholder="From" id="order_from_date">
+                    <input type="text" class="form-control date-range-filter form-filter input-sm" readonly name="order_date_from" placeholder="From" id="order_from_date">
                     <span class="input-group-btn">
                       <button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
                     </span>
                   </div>
                   <div class="input-group date date-picker" data-date-format="D MMM, YYYY HH:mm">
-                    <input type="text" class="form-control form-filter input-sm" readonly name="order_date_to" placeholder="To" id="order_to_date">
+                    <input type="text" class="form-control date-range-filter form-filter input-sm" readonly name="order_date_to" placeholder="To" id="order_to_date">
                     <span class="input-group-btn">
                       <button class="btn btn-sm default" type="button"><i class="fa fa-calendar"></i></button>
                     </span>
@@ -93,9 +93,9 @@
                 </td>
                 <td>
                   <div class="margin-bottom-5">
-                    <input type="text" class="form-control form-filter input-sm" id="order_total_from" name="order_total_from" placeholder="From"/>
+                    <input type="text" class="form-control range-filter form-filter input-sm" id="order_total_from" name="order_total_from" placeholder="From"/>
                   </div>
-                  <input type="text" class="form-control form-filter input-sm" id="order_total_to" name="order_total_to" placeholder="To"/>
+                  <input type="text" class="form-control range-filter form-filter input-sm" id="order_total_to" name="order_total_to" placeholder="To"/>
                 </td>
                 <td class='select_filter'>
                   <select name="order_status" class="form-control form-filter input-sm">
@@ -122,7 +122,9 @@
                   <td class="order_time"><%= order.request_time %></td>
                   <td class="order_customer_name"><%= order.user.name %></td>
                   <td class="order_total">$<%= order.total_bill %></td>
-                  <td class="order_status"><%= order.status %></td>
+                  <td class="order_status"><span class="label <%= "label-primary" if order.status == 'pending' %> <%= "label-success" if order.status == 'confirm' %>
+                    <%= "label-danger" if order.status == 'reject' %>" >
+                    <%= order.status %></span></td>
                   <td class="order_action">
                     <%= link_to "View", order_restaurant_dashboard_path(order), :class => "btn default btn-xs green-stripe" %>
                   </td>
