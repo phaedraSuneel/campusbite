@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Ordering</title>
+    <%= stylesheet_link_tag    "admin_restaurant", :media => "all" %>
+    <%= javascript_include_tag "admin_restaurant" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="page-header-fixed" >
+    <%= render :partial => "admin/header" %> 
+    <div class="page-container">
+      <div class="page-sidebar-wrapper">
+        <div class="page-sidebar navbar-collapse collapse">
+          <%= render :partial => "restaurant/slidebar_menu" %> 
+        </div>  
+      </div>
+      <div class="page-content-wrapper">
+        <div class="page-content">
+          <%= yield %>
+        </div>  
+      </div>  
+    </div>  
+    <%= render :partial => "admin/footer" %> 
+  </body>
+</html>

@@ -10,7 +10,13 @@ class ApplicationController < ActionController::Base
 
 	def change_layout
     if current_user
-      current_user.admin_restaurant? ? 'admin_restaurant' : 'application'
+      if current_user.admin_restaurant? 
+       'admin_restaurant'
+      elsif current_user.user_admin? 
+       'super_admin'
+      else
+       'application'
+      end  
     else
       'application'
     end  
