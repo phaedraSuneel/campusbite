@@ -1,16 +1,16 @@
 <div class="row">
   <div class="col-md-12">
     <h3 class="page-title">
-     Dashboard <small> <%= @restaurant.restaurant_name %> </small>
+     Dashboard <small> Restaurants </small>
     </h3>
     <ul class="page-breadcrumb breadcrumb">
       <li>
         <i class="fa fa-home"></i>
-        <%= link_to "Home", restaurant_dashboard_index_path %>
+        <%= link_to "Home", admin_dashboard_index_path %>
         <i class="fa fa-angle-right"></i>
       </li>
       <li>
-        <%= link_to "Dashboard", restaurant_dashboard_index_path %>
+        <%= link_to "Dashboard", admin_dashboard_index_path %>
       </li>
     </ul>  
   </div>
@@ -23,7 +23,7 @@
       </div>
       <div class="details">
         <div class="number">
-           $<%= @restaurant.life_time_sale.round(3) %>
+           $<%= @restaurants.collect(&:life_time_sale).sum.round(3) %>
         </div>
         <div class="desc">
            Lifetime Sales
@@ -38,7 +38,7 @@
       </div>
       <div class="details">
         <div class="number">
-           <%= @restaurant.orders.count %>
+           <%= @orders.count %>
         </div>
         <div class="desc">
            Total Orders
@@ -53,7 +53,7 @@
       </div>
       <div class="details">
         <div class="number">
-           $<%= (@restaurant.life_time_sale / @restaurant.orders.count).round(3) %>
+           $<%= (@restaurants.collect(&:life_time_sale).sum / @orders.count).round(3) %>
         </div>
         <div class="desc">
            Average Orders
@@ -81,13 +81,8 @@
       <div class="portlet-body">
         <ul class="nav nav-tabs">
           <li class="active">
-            <a href="#top_customer" data-toggle="tab">
-               Top Customers
-            </a>
-          </li>
-          <li>
-            <a href="#reviews" data-toggle="tab">
-              Reviews
+            <a href="#top_restaurant" data-toggle="tab">
+               Top Restaurants
             </a>
           </li>
           <li class="dropdown">
@@ -119,12 +114,12 @@
           </li>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane active" id="top_customer">
+          <div class="tab-pane active" id="top_restaurant">
             <table class="table table-striped table-hover table-bordered">
               <thead>
                 <tr>
                   <th>
-                     Customer Name
+                     Restaurant Name
                   </th>
                   <th>
                      Order Ammount
@@ -132,41 +127,15 @@
                 </tr>
               </thead>
               <tbody>
-                <% @customers.each do |customer|%>
+                <% @top_restaurants.each do |restaurant|%>
                   <tr>
-                    <td><%= customer.name %></td>
-                    <td>$<%= customer.total_order(@restaurant) %></td>
+                    <td><%= restaurant.restaurant_name %></td>
+                    <td>$<%= restaurant.life_time_sale %></td>
                   </tr>
                 <% end %>
               </tbody>
             </table>  
           </div>  
-          <div class="tab-pane" id="reviews">
-            <table class="table table-striped table-hover table-bordered">
-              <thead>
-                <tr>
-                  <th>
-                    Reviewer Name
-                  </th>
-                  <th>
-                    Rating
-                  </th>
-                  <th>
-                    Description
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <% @reviews.each do |review|%>
-                  <tr>
-                    <td><%= review.user.name %></td>
-                    <td><%= review.rating %></td>
-                    <td><%= review.description %></td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
-          </div>
           <div class="tab-pane" id="latest_ten_orders" >
             <div class="table-responsive">
               <table class="table table-striped table-hover table-bordered">
@@ -225,7 +194,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @orders.where(:status => "pending").each do |order| %>
+                  <% @pending_orders.each do |order| %>
                     <tr>
                       <td><%= order.user.name %></td>
                       <td><%= order.created_at.strftime('%e %B, %Y') %></td>
@@ -261,7 +230,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @orders.where(:status => "confirm").each do |order| %>
+                  <% @completed_orders.each do |order| %>
                     <tr>
                       <td><%= order.user.name %></td>
                       <td><%= order.created_at.strftime('%e %B, %Y') %></td>
@@ -297,7 +266,8 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <% @orders.where(:status => "reject").each do |order| %>
+
+                  <% @rejected_orders.each do |order| %>
                     <tr>
                       <td><%= order.user.name %></td>
                       <td><%= order.created_at.strftime('%e %B, %Y') %></td>

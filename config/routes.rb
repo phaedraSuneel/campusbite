@@ -5,7 +5,7 @@ Ordering::Application.routes.draw do
     
     get '/admin', to: 'admin#index'
 
-
+    resources :dashboard
     resources :schools do 
       collection do 
         post "create_building"

@@ -1,0 +1,25 @@
+<ul class="page-sidebar-menu" data-auto-scroll="true" data-slide-speed="200">
+	<li class="sidebar-toggler-wrapper">
+		<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+		<div class="sidebar-toggler hidden-phone">
+		</div>
+		<!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+		<li class="sidebar-search-wrapper">
+			<!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+			<form class="sidebar-search" action="javascript:;" method="POST">
+				<div class="form-container">
+					<div class="input-box">
+						<a href="javascript:;" class="remove">
+						</a>
+						<input type="text" placeholder="Search..."/>
+						<input type="button" class="submit" value=" "/>
+					</div>
+				</div>
+			</form>
+			<!-- END RESPONSIVE QUICK SEARCH FORM -->
+		</li>
+		<li class="start active">
+			<%= link_to raw('<i class="fa fa-home"></i><span class="title">Dashboard</span>'), admin_dashboard_index_path %>
+		</li>
+	</li>
+</ul>	

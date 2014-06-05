@@ -10,13 +10,7 @@ class ApplicationController < ActionController::Base
 
 	def change_layout
     if current_user
-      if current_user.admin_restaurant? 
-       'admin_restaurant'
-      elsif current_user.user_admin? 
-       'super_admin'
-      else
-       'application'
-      end  
+      current_user.admin_restaurant? ? 'admin_restaurant' : (current_user.user_admin? ? 'super_admin' : 'application')
     else
       'application'
     end  
@@ -26,10 +20,13 @@ class ApplicationController < ActionController::Base
     unless current_user.blank?
   		if params[:controller] == 'welcome'
         if current_user.admin_restaurant?
-          return redirect_to restaurant_dashboard_index_path
-        end  
+          return redirect_to restaurant_dashboard_index_path  
+        end
+        if current_user.user_admin?
+          return redirect_to admin_dashboard_index_path  
+        end
       end
-    end  
+    end
 	end
 	
   def check_status
@@ -46,7 +43,7 @@ class ApplicationController < ActionController::Base
     if resource.admin_restaurant?
       restaurant_dashboard_index_path
     elsif resource.user_admin?
-      admin_index_path
+      admin_dashboard_index_path
     else
       "/"
     end
