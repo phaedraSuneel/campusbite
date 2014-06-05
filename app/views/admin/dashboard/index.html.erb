@@ -23,7 +23,7 @@
       </div>
       <div class="details">
         <div class="number">
-           $<%= @restaurants.collect(&:life_time_sale).sum.round(3) %>
+           $<%= revenue =  @restaurants.collect(&:life_time_sale).sum.round(3) %>
         </div>
         <div class="desc">
            Lifetime Sales
@@ -165,7 +165,7 @@
                       <td><span class="label <%= "label-primary" if order.status == 'pending' %> <%= "label-success" if order.status == 'confirm' %> <%= "label-success" if order.status == 'completed' %>
                     <%= "label-danger" if order.status == 'reject' %>" ><%= order.status %></span></td>  
                       <td>
-                        <%= link_to "View", order_restaurant_dashboard_path(order), :class => "btn default btn-xs green-stripe" %>
+                        <%= link_to "View", admin_order_path(order), :class => "btn default btn-xs green-stripe" %>
                       </td>
                     </tr>
                   <% end %>
@@ -201,7 +201,7 @@
                       <td>$<%= order.total_bill %></td>
                       <td><%= order.status %></td>  
                       <td>
-                        <%= link_to "View", order_restaurant_dashboard_path(order), :class => "btn default btn-xs green-stripe" %>
+                        <%= link_to "View", admin_order_path(order), :class => "btn default btn-xs green-stripe" %>
                       </td>
                     </tr>
                   <% end %>
@@ -237,7 +237,7 @@
                       <td>$<%= order.total_bill %></td>
                       <td><%= order.status %></td>  
                       <td>
-                        <%= link_to "View", order_restaurant_dashboard_path(order), :class => "btn default btn-xs green-stripe" %>
+                        <%= link_to "View", admin_order_path(order), :class => "btn default btn-xs green-stripe" %>
                       </td>
                     </tr>
                   <% end %>
@@ -274,7 +274,7 @@
                       <td>$<%= order.total_bill %></td>
                       <td><%= order.status %></td>  
                       <td>
-                        <%= link_to "View", order_restaurant_dashboard_path(order), :class => "btn default btn-xs green-stripe" %>
+                        <%= link_to "View", admin_order_path(order), :class => "btn default btn-xs green-stripe" %>
                       </td>
                     </tr>
                   <% end %>
@@ -306,6 +306,11 @@
           <div class="tab-content">
             <div class="tab-pane active" id="portlet_tab1">
               <div id="statistics_1" class="chart" >
+              </div>
+              <div class="row text-center chart-results">
+                <div class="col-md-4 revenue"><label><label><span class="label label-success">Revenue</span></label><label>$<%= revenue %></label></div>
+                <div class="col-md-4 tax"><label><span class="label label-primary">Tax</span></label><label>$<%= @orders.collect(&:sale_tax).sum %></label></div>
+                <div class="col-md-4 order"><label><span class="label label-warning">Order</span></label><label><%= @orders.count %></label></div>
               </div>
             </div>
           </div>

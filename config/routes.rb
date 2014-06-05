@@ -6,6 +6,13 @@ Ordering::Application.routes.draw do
     get '/admin', to: 'admin#index'
 
     resources :dashboard
+    resources :orders do
+      member do 
+        get 'confirm'
+        get 'cancel'
+        get 'print'
+      end
+    end
     resources :schools do 
       collection do 
         post "create_building"
