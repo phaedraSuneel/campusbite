@@ -1,0 +1,41 @@
+<div class="portlet-body form">
+  <%= form_for(@banner, :url => set_banner_path(@banner), :html => {:class =>"form-horizontal"}) do |f| %>
+    <div class="form-body">
+      <% if @banner.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@banner.errors.count, "error") %> prohibited this banner from being saved:</h2>
+
+          <ul>
+          <% @banner.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Select Image Type </label>
+        <div class="col-md-10">
+          <%= f.select :image_type, options_for_select([["Select One", ""], "Main Image", "Slider Image"]), :class => 'form-control' %>
+        </div>  
+      </div>
+      <div class="form-group">
+        <label class="col-md-2 control-label">Upload Image </label>
+          
+        <div class="col-md-10">
+          <%= f.fields_for :uploads do |upload| %>
+            <% if upload.object.persisted? %>
+              <%= image_tag(upload.object.image(:thumb)) %>
+            <% end %>
+            <%= upload.file_field :image %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_banners_path,:class => "btn default "%>
+      </div>
+    </div>
+  <% end %>
+</div>

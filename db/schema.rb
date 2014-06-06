@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140523123425) do
+ActiveRecord::Schema.define(:version => 20140605121121) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -63,6 +63,12 @@ ActiveRecord::Schema.define(:version => 20140523123425) do
     t.integer  "restaurant_id"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
+  end
+
+  create_table "banners", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "image_type"
   end
 
   create_table "buildings", :force => true do |t|
@@ -378,6 +384,8 @@ ActiveRecord::Schema.define(:version => 20140523123425) do
     t.boolean  "delta",          :default => true, :null => false
   end
 
+  add_index "schools", ["delta"], :name => "index_schools_on_delta"
+
   create_table "sechedules", :force => true do |t|
     t.string   "day"
     t.time     "opening_time"
@@ -387,6 +395,16 @@ ActiveRecord::Schema.define(:version => 20140523123425) do
     t.integer  "sechedulable_id"
     t.string   "sechedulable_type"
     t.string   "status",            :default => "completed"
+  end
+
+  create_table "uploads", :force => true do |t|
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.integer  "banner_id"
   end
 
   create_table "users", :force => true do |t|

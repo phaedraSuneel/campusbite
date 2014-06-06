@@ -6,6 +6,7 @@ Ordering::Application.routes.draw do
     get '/admin', to: 'admin#index'
 
     resources :dashboard
+    resources :banners
     resources :orders do
       member do 
         get 'confirm'

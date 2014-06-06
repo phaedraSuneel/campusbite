@@ -3,30 +3,21 @@
   <div class='row'>
     <div id="carousel-generic" class="carousel slide" data-ride="carousel">
       <!-- Indicators -->
-
       <ol class="carousel-indicators">
-        <li data-target="#carousel-generic" data-slide-to="0" class="active"></li>
-        <li data-target="#carousel-generic" data-slide-to="1"></li>
-        <li data-target="#carousel-generic" data-slide-to="2"></li>
-        <li data-target="#carousel-generic" data-slide-to="3"></li>
-      </ol>  
+        <% @banners.each_with_index do |bander,index| %>
+          <li data-target="#carousel-generic" data-slide-to="<%= bander.id %>" "<%= ' class= "active"' if index == 0 %>"></li>
+        <% end %>
+      </ol> 
 
-       <!-- Wrapper for slides -->
-
+      <!-- Wrapper for slides -->
       <div class="carousel-inner">
-        <div class="item active">
-          <div class="slider-img"><img class="logo-image" alt="Smiley face" src="./assets/slider-1.png"></div>
-        </div>
-        <div class="item">
-          <div class="slider-img"><img class="logo-image" alt="Smiley face" src="./assets/slider-2.jpg"></div>
-        </div>
-        <div class="item">
-          <div class="slider-img"><img class="logo-image" alt="Smiley face" src="./assets/slider-3.jpg"></div>
-        </div>
-        <div class="item">
-          <div class="slider-img"><img class="logo-image" alt="Smiley face" src="./assets/slider-4.jpg"></div>
-        </div>
-      </div>
+        <% @banners.each_with_index do |bander,index| %>  
+          <div class="item <%='active' if index == 0 %>">
+            <div class="srclider-img"><img class="logo-image" alt="Smiley face" src="<%= bander.uploads.first.image(:original)%>"></div>
+          </div>
+        <% end %>
+      </div>  
+
     </div>        
   </div>
 </div>

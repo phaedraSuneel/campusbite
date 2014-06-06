@@ -3,7 +3,7 @@
     <%= link_to raw("<img class='logo-image' alt='Smiley face' src='/assets/logo.png'>"), '/' %>
   </div>
   <div class="col-md-8 add-side">
-    <img class="logo-image" alt="Smiley face" src="./assets/add.png">
+    <img class="logo-image" alt="Smiley face" src="<%= Banner.where(:image_type => "Main Image").last.uploads.first.image(:medium) %>">
   </div>
   <div class="row school-campus">
     <div class="col-md-10 col-md-offset-1">

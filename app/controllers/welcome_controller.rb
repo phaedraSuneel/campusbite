@@ -1,5 +1,9 @@
 class WelcomeController < ApplicationController
- 
+  
+  def index
+    @banners = Banner.where(:image_type => "Slider Image")
+  end
+
  	def result
     if !params[:search].blank?
       pick_up = params[:search][:is_pick_up] == "1" ? 1 : nil
