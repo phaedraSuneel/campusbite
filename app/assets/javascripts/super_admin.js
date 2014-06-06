@@ -37,6 +37,7 @@
 //= require order-table
 //= require subscriber_form
 //= require contact_us_form
+//= require restaurant_owner_form
 //= require FixedHeader
 //= require moment
 //= require bootstrap-datetimepicker

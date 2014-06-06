@@ -12,6 +12,7 @@ Ordering::Application.routes.draw do
     resources :banners
     resources :subscriber_forms
     resources :contact_us_forms
+    resources :restaurant_owner_forms
     resources :orders do
       member do 
         get 'confirm'
