@@ -111,14 +111,19 @@ class WelcomeController < ApplicationController
       render :action => 'add_restaurant' 
     end
   end
+  def add_campus
+    @campus = CampusSuggestion.new
+  end
 
   def campus_suggestion
-    if  UserMailer.campus_suggestion(params[:user]).deliver
+    @campus = CampusSuggestion.new(params[:campus_suggestion])
+    if @campus.save
+      UserMailer.campus_suggestion(@campus).deliver
       flash[:notice] = "Thank you for suggestion us we farword you request to our supporting team"
       redirect_to :back
     else
       flash[:warning] = "suggestion request failed"
-      redirect_to :back
+      render :action => 'add_campus' 
     end
   end
 end

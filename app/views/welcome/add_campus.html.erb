@@ -17,7 +17,18 @@
           <div class="row">
             <div class="col-md-12 about-heading">
               <div class="Add-forms">
-                <%= form_for("user", :url => 'campus_suggestion', :html =>{:class => 'contact-us-form', :method => :get }) do |f|%>
+                <%= form_for(@campus, :url => 'campus_suggestion', :html =>{:class => 'contact-us-form', :method => :get }) do |f|%>
+                  <% if @campus.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(@campus.errors.count, "error") %> prohibited this suggestion from being saved:</h2>
+
+                        <ul>
+                        <% @campus.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                        <% end %>
+                        </ul>
+                      </div>
+                  <% end %>
                   <div class="row field-category">
                     <div class="col-md-4 items">
                       <label>First Name: *</label>
