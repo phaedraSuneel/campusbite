@@ -405,6 +405,8 @@ ActiveRecord::Schema.define(:version => 20140606044919) do
     t.datetime "updated_at",  :null => false
   end
 
+  add_index "subscribes", ["email"], :name => "index_subscribes_on_email", :unique => true
+
   create_table "uploads", :force => true do |t|
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false

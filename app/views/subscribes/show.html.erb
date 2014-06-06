@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @subscribe.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @subscribe.email %>
+</p>
+
+<p>
+  <b>School name:</b>
+  <%= @subscribe.school_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_subscribe_path(@subscribe) %> |
+<%= link_to 'Back', subscribes_path %>

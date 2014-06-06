@@ -2,6 +2,7 @@ class WelcomeController < ApplicationController
   
   def index
     @banners = Banner.where(:image_type => "Slider Image")
+    @subscribe = Subscribe.new
   end
 
  	def result

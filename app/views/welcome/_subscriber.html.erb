@@ -1,10 +1,14 @@
 <div class="container">
+
     <div class="col-md-4 Subscribe">
+      <%= form_for(@subscribe) do |f| %>
       <div class="Sub-button-1"><button>Subscribe</button></div>
-      <span>Your Name</span><input type="text" class="name" />
-      <span>Your E-mail</span><input type="text" class="name" />
-      <span>School Name</span><input type="text" class="name" /> 
+      <span>Your Name</span><%= f.text_field :name %>
+      <span>Your E-mail</span><%= f.text_field :email %>
+      <span>School Name</span><%= f.text_field :school_name %> 
       <button class="sub-button-bottom">Subscribe</button>
+      
+      <% end %>
     </div>
     <div class="col-md-4 Connect-with">
       <div class="Sub-button-2"><button>Subscribe</button></div>
