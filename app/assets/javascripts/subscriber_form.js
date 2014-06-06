@@ -1,7 +1,6 @@
 var subscribers_Records = function() {
 
   $('#subscriber-table').dataTable( {
-
     "processing": true,
     "serverSide": true,
     "ajax": {
