@@ -7,7 +7,7 @@
       <span>Your E-mail</span><%= f.text_field :email %>
       <span>School Name</span><%= f.text_field :school_name %> 
       <button class="sub-button-bottom">Subscribe</button>
-      
+
       <% end %>
     </div>
     <div class="col-md-4 Connect-with">
@@ -25,6 +25,6 @@
     <div class="col-md-4 Feedback">
       <div class="Sub-button-3"><button>Subscribe</button></div>
       <p class="campus">Campus Bite is created to make your life easier and more enjoyable. So make our job a little easier by sending feedback to let us know how we are doing</p>
-      <button class="touch">Get in touch</button>
+      <%= link_to raw('<button class="touch">Get in touch</button>'), contact_us_path %>
     </div>
   </div>

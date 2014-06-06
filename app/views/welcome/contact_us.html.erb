@@ -17,7 +17,19 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="conecting-container-inner" id="conecting-container-inner-1">
-                  <%= form_for("contactus", :url => 'contact_us_mail', :html =>{:class => 'contact-us-form', :method => :get }) do |f|%>
+                  
+                  <%= form_for(@contact_us, :url => 'contact_us_save', :html =>{:class => 'contact-us-form', :method => :get }) do |f|%>
+                    <% if @contact_us.errors.any? %>
+                      <div id="error_explanation">
+                        <h2><%= pluralize(@contact_us.errors.count, "error") %> prohibited this subscribe from being saved:</h2>
+
+                        <ul>
+                        <% @contact_us.errors.full_messages.each do |msg| %>
+                          <li><%= msg %></li>
+                        <% end %>
+                        </ul>
+                      </div>
+                    <% end %>
                     <div class="row contact-form">
                       <div class="col-md-3">
                         <label>Name: *</label>

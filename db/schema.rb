@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140606044919) do
+ActiveRecord::Schema.define(:version => 20140606052106) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -131,6 +131,16 @@ ActiveRecord::Schema.define(:version => 20140606044919) do
     t.string   "map_photo_file_name"
     t.string   "map_photo_content_type"
     t.integer  "map_photo_file_size"
+  end
+
+  create_table "contact_us", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
+    t.boolean  "is_viewed",  :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "cuisines", :force => true do |t|

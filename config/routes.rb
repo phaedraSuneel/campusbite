@@ -264,12 +264,12 @@ Ordering::Application.routes.draw do
     end
   end
 
-  match '/welcome/aboutus' => 'welcome#aboutus', :as => :aboutus 
+  match 'aboutus' => 'welcome#aboutus', :as => :aboutus 
 
-  match '/welcome/restaurant_owners' => 'welcome#restaurant_owners', :as => :restaurant_owners 
-  match '/welcome/faqs' => 'welcome#faqs', :as => :faqs
-  match '/welcome/contact_us' => 'welcome#contact_us', :as => :contact_us 
-  match '/welcome/contact_us_mail' => 'welcome#contact_us_mail', :as => :contact_us_mail 
+  match 'restaurant_owners' => 'welcome#restaurant_owners', :as => :restaurant_owners 
+  match 'faqs' => 'welcome#faqs', :as => :faqs
+  match 'contact_us' => 'welcome#contact_us', :as => :contact_us 
+  match 'contact_us_save' => 'welcome#contact_us_save', :as => :contact_us_save
 
   match '/welcome/add_restaurant' => 'welcome#add_restaurant', :as => :add_restaurant 
 

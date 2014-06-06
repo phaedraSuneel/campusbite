@@ -61,17 +61,22 @@ class WelcomeController < ApplicationController
     render :partial => 'restaurant', collection: @restaurants
   end 
 
+  def contact_us
+    @contact_us = ContactUs.new 
+  end
 
-  def contact_us_mail
+  def contact_us_save
 
-   if  UserMailer.contact_us(params[:contactus]).deliver
-    flash[:notice] = "Successfully email sent"
-    redirect_to contact_us_path(:anchor => "sent")
-   else 
-    flash[:warning] = "Failed to send you email"
-    redirect_to :back
-   end
+    @contact_us = ContactUs.new(params[:contact_us])
 
+    if @contact_us.save
+      UserMailer.contact_us(@contact_us).deliver
+      flash[:notice] = "Successfully email sent" 
+      redirect_to :back
+    else
+      flash[:warning] = "Fail to submit your request" 
+      redirect_to 'contact_us'
+    end 
   end
 
   def join_us
