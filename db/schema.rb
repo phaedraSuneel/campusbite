@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140605121121) do
+ActiveRecord::Schema.define(:version => 20140606044919) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -395,6 +395,14 @@ ActiveRecord::Schema.define(:version => 20140605121121) do
     t.integer  "sechedulable_id"
     t.string   "sechedulable_type"
     t.string   "status",            :default => "completed"
+  end
+
+  create_table "subscribes", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "school_name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "uploads", :force => true do |t|

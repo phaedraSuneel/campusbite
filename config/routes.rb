@@ -1,6 +1,9 @@
 Ordering::Application.routes.draw do
 
   
+  resources :subscribes
+
+
   namespace :admin do
     
     get '/admin', to: 'admin#index'
