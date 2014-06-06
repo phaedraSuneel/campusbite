@@ -35,6 +35,8 @@
 //= require bootstrap-datepicker
 //= require datatable
 //= require order-table
+//= require subscriber_form
+//= require contact_us_form
 //= require FixedHeader
 //= require moment
 //= require bootstrap-datetimepicker

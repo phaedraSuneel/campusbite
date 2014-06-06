@@ -24,5 +24,42 @@
 		<li>
 			<%= link_to raw('<i class="fa fa-cogs"></i><span class="title">Content Management</span>'), admin_banners_path %>
 		</li>
+
+		<li>
+			<a href="javascript:;">
+				<i class="fa fa-envelope-o"></i>
+				<span class="title">
+					Form Management
+				</span>
+				<span class="arrow">
+				</span>
+			</a>
+			<ul class="sub-menu">
+				<li>
+					<%= link_to "Subscriber Forms", admin_subscriber_forms_path %>
+				</li>
+				<li>
+					<a href="#">
+						 <%= link_to "Contactus Forms", admin_contact_us_forms_path %>
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						 Restaurant Owners
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						 Restaurant Suggestions
+					</a>
+				</li>
+				<li>
+					<a href="#">
+						 Campus Suggestions
+					</a>
+				</li>
+			</ul>
+		</li>
+
 	</li>
-</ul>	
+</ul>

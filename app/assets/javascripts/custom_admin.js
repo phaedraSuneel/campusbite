@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+  App.init();
+  
   $(".add_more_property_link").click(function(e){
     e.preventDefault();
     parent = $(".radio-controls").find(".property-field");
