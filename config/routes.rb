@@ -271,14 +271,14 @@ Ordering::Application.routes.draw do
   match 'contact_us' => 'welcome#contact_us', :as => :contact_us 
   match 'contact_us_save' => 'welcome#contact_us_save', :as => :contact_us_save
 
-  match '/welcome/add_restaurant' => 'welcome#add_restaurant', :as => :add_restaurant 
+  match 'add_restaurant' => 'welcome#add_restaurant', :as => :add_restaurant 
 
-  match '/welcome/add_campus' => 'welcome#add_campus', :as => :add_campus 
-  match '/welcome/how_it_works' => 'welcome#how_it_works', :as => :how_it_works 
+  match 'add_campus' => 'welcome#add_campus', :as => :add_campus 
+  match 'how_it_works' => 'welcome#how_it_works', :as => :how_it_works 
 
-  match '/welcome/join_us' => 'welcome#join_us', :as => :join_us 
-  match '/welcome/restaurant_suggestion' => 'welcome#restaurant_suggestion', :as => :restaurant_suggestion 
-  match '/welcome/campus_suggestion' => 'welcome#campus_suggestion', :as => :campus_suggestion 
+  match 'join_us' => 'welcome#join_us', :as => :join_us 
+  match 'restaurant_suggestion' => 'welcome#restaurant_suggestion', :as => :restaurant_suggestion 
+  match 'campus_suggestion' => 'welcome#campus_suggestion', :as => :campus_suggestion 
 
 
   match '/payments/payment', :to => 'payments#payment', :as => 'paymentspayment', :via => [:get]

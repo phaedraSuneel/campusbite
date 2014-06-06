@@ -168,10 +168,22 @@
       <div class="row" id="join_us">
         <div class="col-md-12 padding-right-zero">
           <div class="business-form-container">
-            <%= form_for("joinus", :url => 'join_us', :html =>{:class => 'join-us-form', :method => :get }) do |f|%>
+            <%= form_for(@join_us, :url => 'join_us', :html =>{:class => 'join-us-form', :method => :get }) do |f|%>
+
               <div class="row business-form">
                 <h1>Join CampusBite Today and Expand Your Business</h1>
                 <h2>To join CampusBite.com please contact us at:  1-866-000-0000 or email us at Support@CampusBite.com or fill out the form below</h2>
+                <% if @join_us.errors.any? %>
+                  <div id="error_explanation">
+                    <h2><%= pluralize(@join_us.errors.count, "error") %> prohibited this subscribe from being saved:</h2>
+
+                    <ul>
+                    <% @join_us.errors.full_messages.each do |msg| %>
+                      <li><%= msg %></li>
+                    <% end %>
+                    </ul>
+                  </div>
+                <% end %>
                 <div class="col-md-4">
                   <label>First Name: *</label>
                   <%= f.text_field :first_name %>
@@ -192,7 +204,7 @@
                 </div>
                 <div class="col-md-4">
                   <label>Phone: *</label>
-                  <%= f.text_field :phone_no %>
+                  <%= f.text_field :phone_number %>
                 </div>
                 <div class="col-md-4">
                   <label>Zip Code:</label>

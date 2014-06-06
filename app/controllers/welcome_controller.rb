@@ -75,17 +75,24 @@ class WelcomeController < ApplicationController
       redirect_to :back
     else
       flash[:warning] = "Fail to submit your request" 
-      redirect_to 'contact_us'
+      render :action => 'contact_us'
     end 
   end
 
+  def restaurant_owners
+    @join_us = JoinUs.new 
+  end
+
   def join_us
-    if  UserMailer.join_us(params[:joinus]).deliver
+    @join_us = JoinUs.new(params[:join_us])
+
+    if @join_us.save
+      UserMailer.join_us(@join_us).deliver
       flash[:notice] = "Thank you for joining us we farword you request to our supporting team"
       redirect_to :back
     else
       flash[:warning] = "Joining request failed"
-      redirect_to :back
+      render :action => 'restaurant_owners' 
     end 
   end
 
