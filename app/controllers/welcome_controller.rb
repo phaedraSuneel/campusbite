@@ -96,13 +96,19 @@ class WelcomeController < ApplicationController
     end 
   end
 
+  def add_restaurant
+    @restaurant = RestaurantSuggestion.new
+  end
+
   def restaurant_suggestion
-    if  UserMailer.restaurant_suggestion(params[:user]).deliver
+    @restaurant = RestaurantSuggestion.new(params[:restaurant_suggestion])
+    if @restaurant.save
+      UserMailer.restaurant_suggestion(@restaurant).deliver
       flash[:notice] = "Thank you for suggestion us we farword you request to our supporting team"
       redirect_to :back
     else
       flash[:warning] = "suggestion request failed"
-      redirect_to :back
+      render :action => 'add_restaurant' 
     end
   end
 

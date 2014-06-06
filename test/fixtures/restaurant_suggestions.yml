@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  campus_name: MyString
+  restaurant_name_1: MyString
+  phone_number_1: 1
+  restaurant_name_2: MyString
+  phone_number_2: 1
+  restaurant_name_3: MyString
+  phone_number_3: 1
+  is_viewed: false
+
+two:
+  first_name: MyString
+  last_name: MyString
+  email: MyString
+  campus_name: MyString
+  restaurant_name_1: MyString
+  phone_number_1: 1
+  restaurant_name_2: MyString
+  phone_number_2: 1
+  restaurant_name_3: MyString
+  phone_number_3: 1
+  is_viewed: false

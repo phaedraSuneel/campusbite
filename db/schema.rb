@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140606054324) do
+ActiveRecord::Schema.define(:version => 20140606060237) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -364,6 +364,22 @@ ActiveRecord::Schema.define(:version => 20140606054324) do
     t.integer  "restaurant_info_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false
+  end
+
+  create_table "restaurant_suggestions", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "campus_name"
+    t.string   "restaurant_name_1"
+    t.integer  "phone_number_1"
+    t.string   "restaurant_name_2"
+    t.integer  "phone_number_2"
+    t.string   "restaurant_name_3"
+    t.integer  "phone_number_3"
+    t.boolean  "is_viewed",         :default => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "restaurants", :force => true do |t|

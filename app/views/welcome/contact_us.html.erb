@@ -17,7 +17,6 @@
             <div class="row">
               <div class="col-md-12">
                 <div class="conecting-container-inner" id="conecting-container-inner-1">
-                  
                   <%= form_for(@contact_us, :url => 'contact_us_save', :html =>{:class => 'contact-us-form', :method => :get }) do |f|%>
                     <% if @contact_us.errors.any? %>
                       <div id="error_explanation">
