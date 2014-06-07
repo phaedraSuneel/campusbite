@@ -4540,3 +4540,8 @@ UI Loading
   padding-bottom: 20px;
   background-color: #fff;
 }
+
+.chart-results label{
+  margin: 10px 0 0 0;
+  width: 100%;
+}
