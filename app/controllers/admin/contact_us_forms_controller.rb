@@ -12,7 +12,10 @@ class Admin::ContactUsFormsController < ApplicationController
     sorting_query = [attribute_name,order_by_type].join(' ')
 
 		@contact_requests = ContactUs.offset(offset).limit(limit)
-		respond_to do |format|
+		unless params[:search].nil?
+      @contact_requests = ContactUs.apply_search_filter(@contact_requests, params[:search][:value])
+    end
+    respond_to do |format|
 			format.json do 
 				return render :json =>  {draw: page,  recordsTotal: ContactUs.count,  recordsFiltered: ContactUs.count , :data => @contact_requests.collect{|a| [a.name,a.email,a.subject,a.message]} }
 			end

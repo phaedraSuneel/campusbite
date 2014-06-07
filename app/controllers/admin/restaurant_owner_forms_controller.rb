@@ -12,6 +12,10 @@ class Admin::RestaurantOwnerFormsController < ApplicationController
     sorting_query = [attribute_name,order_by_type].join(' ')
 		
 		@restaurant_requests = JoinUs.offset(offset).limit(limit)
+    unless params[:search].nil?
+      @restaurant_requests = JoinUs.apply_search_filter(@restaurant_requests, params[:search][:value])
+    end
+    
 		respond_to do |format|
 			format.json do 
 				return render :json =>  {draw: page,  recordsTotal: JoinUs.count,  recordsFiltered: JoinUs.count , :data => @restaurant_requests.collect{|a| [a.first_name, a.last_name, a.restaurant_name, a.email, a.phone_number,a.zip_code, a.comment]} }

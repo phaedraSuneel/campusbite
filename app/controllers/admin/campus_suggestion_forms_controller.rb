@@ -12,7 +12,10 @@ class Admin::CampusSuggestionFormsController < ApplicationController
     sorting_query = [attribute_name,order_by_type].join(' ')
 
 		@campus_requests = CampusSuggestion.offset(offset).limit(limit)
-		respond_to do |format|
+		unless params[:search].nil?
+      @campus_requests = CampusSuggestion.apply_search_filter(@campus_requests, params[:search][:value])
+    end
+    respond_to do |format|
 			format.json do 
 				return render :json =>  {draw: page,  recordsTotal: CampusSuggestion.count,  recordsFiltered: CampusSuggestion.count , :data => @campus_requests.collect{|a| [a.first_name, a.last_name, a.email, a.campus_name, a.street_address,a.city, a.state,a.zip_code, a.comment]} }
 			end
