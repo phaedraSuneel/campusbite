@@ -34,7 +34,6 @@ class Admin::BannersController < ApplicationController
   # POST /banners
   def create
     @banner = Banner.new(params[:banner])
-
     respond_to do |format|
       if @banner.save
         format.html { redirect_to admin_banner_path(@banner), notice: 'Banner was successfully created.' }

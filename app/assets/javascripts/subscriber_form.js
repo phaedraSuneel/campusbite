@@ -8,5 +8,4 @@ var subscribers_Records = function() {
         "type": "GET"
     }   
   });
-
 }
