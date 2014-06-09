@@ -9,17 +9,12 @@ class Order < ActiveRecord::Base
 
   attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip, :secure_code
 
+  scope :with_user, lambda {|user| where(user_id: user.id ) }
   after_save :update_user_points
 
-  # after_create :email_order_to_restaurant_resources
-
   def update_user_points
-    total = 0
-    self.user.orders.each do |user_order|
-      total += user_order.total_bill
-    end  
-    points = (total.floor) * 5
-    self.user.update_attributes(:points => points)
+    new_points = (self.total_bill.floor) * 5
+    self.user.update_attributes(:points => self.user.points + new_points)
   end
 
   def property_name(id)
@@ -73,4 +68,7 @@ class Order < ActiveRecord::Base
     end  
 	end
 
+  def restaurant_name
+    Restaurant.where(id: self.restaurant_id).first.restaurant_name
+  end
 end

@@ -27,6 +27,29 @@ class Admin::RewardPointsController < ApplicationController
 
   def show
     @user = User.where(id: params[:id]).first
+    
+    page = params[:draw].nil? ? 1 : params[:draw].to_i
+    limit = params[:length].to_i
+    offset = params[:start].to_i
+
+    @orders = Order.with_user(@user).offset(offset).limit(limit)
+
+    respond_to do |format|
+      format.json do 
+        return render :json => {draw: page,  recordsTotal: @user.orders.count,  recordsFiltered: @user.orders.count , :data => @orders.collect{|a| [a.restaurant_name, a.total_bill, a.created_at.strftime("%d %b %Y"), a.total_bill.floor*5 ]} }
+      end
+      format.html
+    end
+
+  end
+
+  def update_reward_points
+    @user = User.where(id: params[:id]).first
+    if @user.update_attributes(:points => params[:points])
+      redirect_to :back
+    else 
+      redirect_to :back
+    end
   end
 
   private
