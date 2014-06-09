@@ -51,6 +51,9 @@ class User < ActiveRecord::Base
     end  
   end 
 
+  def phone_number
+    self.addresses.collect(&:phone_number).first
+  end
 
   def user_admin?
     self.has_role? :admin
@@ -110,4 +113,10 @@ class User < ActiveRecord::Base
     search_keyword = ["%",key_word,"%"].join('')
     return data.where('first_name like ? OR last_name like ? OR points like ?', search_keyword, search_keyword, search_keyword)
   end
+
+  def self.apply_search_all_filter(data,key_word)
+    search_keyword = ["%",key_word,"%"].join('')
+    return data.where('first_name like ? OR last_name like ? OR email like ?', search_keyword, search_keyword, search_keyword)
+  end
+  
 end

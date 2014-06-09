@@ -20,6 +20,7 @@ Ordering::Application.routes.draw do
         post 'update_reward_points'
       end
     end
+    resources :customers
     
     resources :orders do
       member do 
