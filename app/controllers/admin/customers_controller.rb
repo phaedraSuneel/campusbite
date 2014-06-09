@@ -1,4 +1,5 @@
 class Admin::CustomersController < ApplicationController
+	
 	def index
 		page = params[:draw].nil? ? 1 : params[:draw].to_i
     limit = params[:length].to_i
@@ -23,11 +24,13 @@ class Admin::CustomersController < ApplicationController
       format.html
     end
 
-    def show
-    	@user = User.where(id: params[:id]).first
-    end
-	end
- 	
+  end  
+  
+  def show
+  	@user = User.find params[:id]
+  	@notes = @user.notes
+  end
+
  	private
 
   def get_sort_attribute_name(column_number)

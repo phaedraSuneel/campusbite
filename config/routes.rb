@@ -1,6 +1,5 @@
 Ordering::Application.routes.draw do
 
-  
   resources :subscribes
 
 
@@ -20,7 +19,9 @@ Ordering::Application.routes.draw do
         post 'update_reward_points'
       end
     end
-    resources :customers
+    resources :customers do
+      resources :notes
+    end
     
     resources :orders do
       member do 
@@ -299,6 +300,8 @@ Ordering::Application.routes.draw do
 
   match '/payments/receipt', :to => 'payments#receipt', :as => 'payments_receipt', :via => [:get]
 
+  match '/notes', :to => 'admin/notes#create', :via => [:post]
+  match '/notes/:id', :to => 'admin/notes#update', :via => [:put]
   # Sample resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

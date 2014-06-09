@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :cards, :dependent => :destroy
   has_many :payments, :dependent => :destroy
   has_many :restaurants, :dependent => :destroy
+  has_many :notes, :dependent => :destroy
   accepts_nested_attributes_for :addresses
 
   before_create :add_default_role
