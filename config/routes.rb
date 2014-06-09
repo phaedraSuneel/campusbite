@@ -15,6 +15,7 @@ Ordering::Application.routes.draw do
     resources :restaurant_owner_forms
     resources :restaurant_suggestion_forms
     resources :campus_suggestion_forms
+    resources :reward_points
     
     resources :orders do
       member do 

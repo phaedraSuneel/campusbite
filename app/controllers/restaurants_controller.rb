@@ -6,7 +6,6 @@ class RestaurantsController < ApplicationController
     p "rooback"
     unless current_user.user_admin?
     #roll back changes
-      p 'not admin'
       version = @restaurant.versions.count
       if version > 1
         @restaurant.reset_to!(version - 1)

@@ -17,7 +17,8 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :school_name, :customer_id, :points
   # attr_accessible :title, :body
-  
+  scope :with_orders, includes(:orders)
+
 
   has_many :authentications, :dependent => :destroy
   has_many :orders, :dependent => :destroy
@@ -105,4 +106,8 @@ class User < ActiveRecord::Base
     total
   end
 
+  def self.apply_search_filter(data,key_word)
+    search_keyword = ["%",key_word,"%"].join('')
+    return data.where('first_name like ? OR last_name like ? OR points like ?', search_keyword, search_keyword, search_keyword)
+  end
 end

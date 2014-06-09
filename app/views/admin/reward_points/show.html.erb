@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Dashboard
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Reward Points", admin_reward_points_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= @user.name %>
+      </li>
+    </ul>
+  </div>
+</div>

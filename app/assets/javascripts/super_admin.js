@@ -40,6 +40,7 @@
 //= require restaurant_owner_form
 //= require restaurant_suggestion_form
 //= require campus_suggestion_form
+//= require reward_points
 //= require FixedHeader
 //= require moment
 //= require bootstrap-datetimepicker
