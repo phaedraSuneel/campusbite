@@ -23,6 +23,12 @@ Ordering::Application.routes.draw do
       resources :notes
     end
     resources :locations
+    resources :reviews do
+      member do
+        get 'delete'
+        get 'change_status'
+      end
+    end
     
     resources :orders do
       member do 

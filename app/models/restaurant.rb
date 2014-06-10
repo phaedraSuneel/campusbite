@@ -180,4 +180,5 @@ class Restaurant < ActiveRecord::Base
     end
     total
   end
+  
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140609112129) do
+ActiveRecord::Schema.define(:version => 20140610101917) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -421,8 +421,9 @@ ActiveRecord::Schema.define(:version => 20140609112129) do
     t.integer  "user_id"
     t.integer  "restaurant_id"
     t.text     "description"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
+    t.string   "status",        :default => "reject"
   end
 
   create_table "roles", :force => true do |t|
