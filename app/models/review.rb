@@ -10,6 +10,10 @@ class Review < ActiveRecord::Base
 
   def self.apply_search_filter(data,key_word)
     search_keyword = ["%",key_word,"%"].join('')
-    return data.where('description like ? OR rating like ? OR status like ?'  , search_keyword, search_keyword, search_keyword)
+    return data.joins(:user).where('first_name like ? OR last_name like ? OR description like ? OR rating like ? OR status like ?'  , search_keyword, search_keyword, search_keyword, search_keyword, search_keyword)
+  end
+
+  def self.apply_order_filter(data, sorting_query)
+  	return data.joins(:user).order(sorting_query)
   end
 end

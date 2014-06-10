@@ -38,6 +38,15 @@ class Restaurant < ActiveRecord::Base
  	  self.build_menu
  	end
 
+  def self.apply_search_filter(data,key_word)
+    search_keyword = ["%",key_word,"%"].join('')
+    return data.joins(:contact_info).joins(:reviews).where('restaurant_name like ? OR rating like ? ' , search_keyword, search_keyword)
+  end
+
+  def self.apply_order_filter(data, sorting_query)
+    return data.joins(:contact_info).joins(:reviews).order(sorting_query)
+  end
+
   def assign_role_admin
     if self.user
       self.user.add_role :admin_restaurant

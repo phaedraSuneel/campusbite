@@ -6,8 +6,6 @@ $(document).ready(function(){
 
     "processing": true,
     "serverSide": true,
-    "searching": false,
-    "ordering":  false,
     "ajax": {
       "url": "/admin/reviews",
       "type": "GET"

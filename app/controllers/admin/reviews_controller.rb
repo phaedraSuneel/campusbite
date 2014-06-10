@@ -4,14 +4,19 @@ class Admin::ReviewsController < ApplicationController
     page = params[:draw].nil? ? 1 : params[:draw].to_i
     limit = params[:length].to_i
     offset = params[:start].to_i
+    @reviews = Restaurant.offset(offset).limit(limit)
 
     unless params[:order].nil?
       col_number = params[:order]["0"]["column"].to_i
       order_by_type  = params[:order]["0"]["dir"]
+      attribute_name = get_all_sort_attribute_name(col_number)
+      sorting_query = [attribute_name,order_by_type].join(' ') 
+      @reviews = Restaurant.apply_order_filter(@reviews, sorting_query)
     end
-
-    @reviews = Restaurant.offset(offset).limit(limit)
     
+    unless params[:search].nil?
+      @reviews  = Restaurant.apply_search_filter(@reviews , params[:search][:value])
+    end
     respond_to do |format|
       format.json do 
         return render :json =>  {draw: page,  recordsTotal: Restaurant.count,  recordsFiltered: Restaurant.count , :data => @reviews.collect{|a| [a.restaurant_name, a.avarage_rating , "<a src=#{admin_review_url(a)}> <span class='label label-sm label-success'> details </span> </a>" ]} }
@@ -28,15 +33,16 @@ class Admin::ReviewsController < ApplicationController
     limit = params[:length].to_i
     offset = params[:start].to_i
 
+    @reviews = @restaurant.reviews.offset(offset).limit(limit)
+
     unless params[:order].nil?
       col_number = params[:order]["0"]["column"].to_i
       order_by_type  = params[:order]["0"]["dir"]
+      attribute_name = get_sort_attribute_name(col_number)
+      sorting_query = [attribute_name,order_by_type].join(' ')
+      @reviews = Review.apply_order_filter(@reviews, sorting_query)      
     end
-    attribute_name = get_sort_attribute_name(col_number)
-    sorting_query = [attribute_name,order_by_type].join(' ')
-    
-   @reviews = @restaurant.reviews.offset(offset).limit(limit).order(sorting_query)
-    
+     
     unless params[:search].nil?
       @reviews  = Review.apply_search_filter(@reviews , params[:search][:value])
     end
@@ -46,7 +52,6 @@ class Admin::ReviewsController < ApplicationController
       end
       format.html
     end
-
   end
 
   def delete
@@ -72,11 +77,22 @@ class Admin::ReviewsController < ApplicationController
 
   private
 
-  def get_sort_attribute_name(column_number)
-  
-    case column_number
+  def get_all_sort_attribute_name(col_number)
+    case col_number
     when 0
+      return "restaurant_name"
+    when 1
+      return "rating"
+    else
       return "id"
+    end  
+  end
+
+  def get_sort_attribute_name(col_number)
+  
+    case col_number
+    when 0
+      return "first_name"
     when 1
       return "description"
     when 2
