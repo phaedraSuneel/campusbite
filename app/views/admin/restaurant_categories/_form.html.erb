@@ -1,23 +1,31 @@
+<div class="portlet-body form">
+  <%= form_for(@restaurant_category, :url => set_restaurant_category_path(@restaurant_category)) do |f| %>
+      <div class="form-body">
+        <% if @restaurant_category.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@restaurant_category.errors.count, "error") %> prohibited this restaurant_category from being saved:</h2>
 
-<%= form_for(@restaurant_category, :url => set_restaurant_category_path(@restaurant_category)) do |f| %>
-  <% if @restaurant_category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@restaurant_category.errors.count, "error") %> prohibited this restaurant_category from being saved:</h2>
+            <ul>
+            <% @restaurant_category.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-      <ul>
-      <% @restaurant_category.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+        <div class="form-group row">
+          <%= f.label :category_name, :class => "control-label col-md-3" %>
+          <div class="col-md-9">
+            <%= f.text_field :category_name %>
+          </div>  
+        </div>
+    </div>  
+
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_restaurant_categories_path,:class => "btn default "%>
+      </div>  
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :category_name %><br />
-    <%= f.text_field :category_name %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>

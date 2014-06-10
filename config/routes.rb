@@ -91,7 +91,11 @@ Ordering::Application.routes.draw do
         get 'reject_request'
       end
     end
-    resources :restaurant_categories
+    resources :restaurant_categories do
+      member do
+        get 'delete'
+      end
+    end
     resources :cuisines
 
   end 
@@ -304,6 +308,8 @@ Ordering::Application.routes.draw do
 
   match '/notes', :to => 'admin/notes#create', :via => [:post]
   match '/notes/:id', :to => 'admin/notes#update', :via => [:put]
+
+  
   # Sample resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales

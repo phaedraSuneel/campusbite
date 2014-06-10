@@ -1,24 +1,48 @@
-<h4>Listing of Restaurant Categories </h4>
-
-<table class="table table-striped user-result">
-  <tr>
-    <th>Category name</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @restaurant_categories.each do |restaurant_category| %>
-  <tr>
-    <td><%= restaurant_category.category_name %></td>
-    <td><%= link_to 'Show', admin_restaurant_category_path(restaurant_category) %></td>
-    <td><%= link_to 'Edit', edit_admin_restaurant_category_path(restaurant_category) %></td>
-    <td><%= link_to 'Destroy', admin_restaurant_category_path(restaurant_category), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-<% if can? :create, RestaurantCategory %>
-  <%= link_to 'New Restaurant category', new_admin_restaurant_category_path %>
-<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Food Category 
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        Location Manangement
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li> <%= link_to "Food Category", admin_restaurant_categories_path %></li>
+    </ul>  
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-user"></i>Category Listing
+        </div>
+        <div class="pull-right">
+          <%= link_to raw('<span class="label label-default">Add New Food Category </span>'), new_admin_restaurant_category_path %>
+        </div>  
+      </div>
+      <div class="portlet-body">
+        <div class="table-container food-category"> 
+          <table class="table table-striped table-bordered table-hover" id="food-categories-table">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>  
+            <tbody>
+            </tbody>                
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

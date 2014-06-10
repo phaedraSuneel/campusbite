@@ -1,7 +1,41 @@
-<h1>Editing restaurant_category</h1>
-
-<%= render 'form' %>
-<% if can? :read , RestaurantCategory %>
-	<%= link_to 'Show',  admin_restaurant_category_path(@restaurant_category) %> |
-	<%= link_to 'Back', admin_restaurant_categories_path %>
-<% end %>	
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Dashboard
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Food Categories", admin_restaurant_categories_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+      	Edit Food Category
+      </li>
+    </ul>  
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet box yellow">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-edit"></i>Edit Food Category
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>  
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

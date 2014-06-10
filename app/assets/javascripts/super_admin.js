@@ -44,6 +44,7 @@
 //= require reward_points
 //= require customers
 //= require locations
+//= require restaurant_categories
 //= require FixedHeader
 //= require moment
 //= require bootstrap-datetimepicker
