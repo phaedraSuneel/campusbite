@@ -1,5 +1,5 @@
 module RestaurantCategoriesHelper
-	def set_restaurant_category_path(restaurant_category)
-		restaurant_category.new_record? ? admin_restaurant_categories_path(restaurant_category) : admin_restaurant_category_path(restaurant_category)
+	def set_note_path(customer, note)
+		note.new_record? ? admin_customer_notes_path(customer,note) : admin_customer_note_path(customer,note)
 	end
 end

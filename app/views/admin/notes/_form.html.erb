@@ -1,5 +1,5 @@
 <div class="portlet-body form">
-  <%= form_for(@note) do |f| %>
+  <%= form_for(@note,:url => set_note_path(@customer, @note)) do |f| %>
     <div class="form-body">
       <% if @note.errors.any? %>
         <div id="error_explanation">
