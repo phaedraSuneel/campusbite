@@ -4549,3 +4549,7 @@ UI Loading
 table a {
   cursor: pointer !important;
 }
+
+a:hover{
+  text-decoration: none !important;
+}
