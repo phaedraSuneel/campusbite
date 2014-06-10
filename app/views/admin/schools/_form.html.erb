@@ -1,31 +1,43 @@
-<%= form_for(@school, :url => set_school_path(@school), :html => {:method => set_school_method(@school) } ) do |f| %>
-  <% if @school.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</h2>
+<div class="portlet-body form">
+  <%= form_for(@school, :url => set_school_path(@school), :html => {:method => set_school_method(@school) } ) do |f| %>
+    <div class="form-body">
+      <% if @school.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@school.errors.count, "error") %> prohibited this school from being saved:</h2>
 
-      <ul>
-      <% @school.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+          <ul>
+          <% @school.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
+
+      <div class="row form-group">
+        <%= f.label :school_name, :class => "col-md-2 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_field :school_name, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="row form-group">
+        <%= f.label :school_address, :class => "col-md-2 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_field :school_address, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="row form-group">
+        <%= f.label :branch_name, :class => "col-md-2 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_field :branch_name, :class => "form-control" %>
+        </div>
+      </div>
+    </div>  
+
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_schools_path,:class => "btn default "%>
+      </div>  
     </div>
   <% end %>
- 
-  <div class="field">
-    <%= f.label :school_name %><br />
-    <%= f.text_field :school_name %>
-  </div>
-  <div class="field">
-    <%= f.label :school_address %><br />
-    <%= f.text_field :school_address %>
-  </div>
-  <div class="field">
-    <%= f.label :branch_name %><br />
-    <%= f.text_field :branch_name %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Save" %>
-  </div>
-  
-<% end %>
+</div>

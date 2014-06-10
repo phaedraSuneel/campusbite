@@ -13,32 +13,21 @@
         Location Manangement
         <i class="fa fa-angle-right"></i>
       </li>
-      <li> <%= link_to "Locations", admin_schools_path %></li>
+      <li> <%= link_to "Locations", admin_locations_path %></li>
     </ul>  
   </div>
 </div>
-
 <div class="row">
   <div class="col-md-12">
     <div class="portlet">
-      <div class="portlet-title">
-        <div class="caption">
-          <i class="fa fa-user"></i>Category Listing
-        </div>
-        <div class="pull-right">
-          <%= link_to raw('<span class="label label-default">Add New Category </span>'), new_admin_school_path %>
-        </div>  
-      </div> 
       <div class="portlet-body">
         <div class="table-container">
           <table class="table table-striped table-bordered table-hover" id="locations-table">
             <thead>
               <tr>
-                <th>Category Name</th>
-                <th>View </th>
-                <th>Edit </th>
-                <th>Delete</th>
-                <th>Add Sub-Category</th>
+                <th>School Name</th>
+                <th>Branch Name </th>
+                <th>School Address</th>
               </tr>
             </thead>  
             <tbody>

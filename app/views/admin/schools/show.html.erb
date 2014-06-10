@@ -1,36 +1,101 @@
 <div class="row">
-	<div class="container">
-		<p>
-		  <b>School name:</b>
-		  <%= @school.school_name %>
-		</p>
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Dashboard
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Locations", admin_schools_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= @school.school_name %>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+	<div class="col-md-12">
+    <div class="portlet box yellow">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i>About <%= @school.school_name %>
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <ul class="feeds">
+          <li>
+            <div class="col-md-3"> <label> Name </label></div>
+            <div class="col-md-9"> <label> <%= @school.school_name %> </label></div>
+          </li>  
+          <li>
+          <li>
+            <div class="col-md-3"> <label> Address </label></div>
+            <div class="col-md-9"> <label><%= @school.school_address %> </label></div>
+          </li>
+          <li>
+            <div class="col-md-3"> <label>Branch Name </label></div>
+            <div class="col-md-9"> <label><%= @school.branch_name %> </label> </div>
+          </li>
+          <li>
+            <div class="col-md-3"> <label> No. of Subscategories </label></div>            
+            <div class="col-md-9"> <label> <%= @school.buildings.count %> </label></div>
+          </li>
+          <li>
+            <div class="col-md-3"> <label> No. of Near Restaurants </label></div>            
+            <div class="col-md-9"> <label> <%= @school.restaurants.count %> </label> 
+            </div>
+          </li>          
+        </ul>  
+      </div>
+    </div>      
+  </div>
+</div>
 
-		<p>
-		  <b>School address:</b>
-		  <%= @school.school_address %>
-		</p>
-
-		<p>
-		  <b>Branch name:</b>
-		  <%= @school.branch_name %>
-		</p>	
-		<% if can? :read, Restaurant %>  
-			<%= link_to "View Restaurants", admin_school_restaurants_path(@school) %> 
-		<% end %>	
-		<% if can? :create, Restaurant %>	
-			| <%= link_to 'Add More Restaurant', new_admin_school_restaurant_path(@school) %>
-		<% end %>	
-		<% if can? :read, Building %>  
-			| <%= link_to "View Buildings", buildings_admin_school_path(@school) %> 
-		<% end %>	
-		<% if can? :create, Building %>	
-			| <%= link_to 'Add More Building', new_building_admin_school_path(@school) %>
-		<% end %>
-		<% if can? :update, School %>
-			| <%= link_to 'Edit', edit_admin_school_path(@school) %> 
-		<% end %>	
-		<% if can? :read, School %>	
-			| <%= link_to 'Back', admin_schools_path %>
-		<% end %>
-	</div>
-</div>	
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i><%= @school.school_name %> Sub-categories
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="table-container school-buildings" data-school = "<%= @school.id %>">
+          <table class="table table-striped table-bordered table-hover" id="buildings-table" >
+            <thead>
+              <tr>
+                <th> Name </th>
+                <th> Address </th>
+                <th> City </th>
+                <th> Zip Code </th>
+                <th> State </th>
+              </tr>
+            </thead>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>        

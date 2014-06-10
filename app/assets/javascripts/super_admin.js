@@ -11,6 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 
+
 //= require jquery-1.10.2.min.js
 //= require jquery_ujs
 //= require jquery-migrate-1.2.1.min
@@ -42,6 +43,7 @@
 //= require campus_suggestion_form
 //= require reward_points
 //= require customers
+//= require locations
 //= require FixedHeader
 //= require moment
 //= require bootstrap-datetimepicker

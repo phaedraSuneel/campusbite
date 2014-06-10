@@ -1,5 +1,41 @@
-<h1>New school</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Back', admin_schools_path %>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Dashboard
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Locations", admin_schools_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+      	New Category
+      </li>
+    </ul>  
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet box yellow">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-edit"></i>New Category
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>  
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>   

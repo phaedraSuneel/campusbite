@@ -22,6 +22,7 @@ Ordering::Application.routes.draw do
     resources :customers do
       resources :notes
     end
+    resources :locations
     
     resources :orders do
       member do 
@@ -37,6 +38,7 @@ Ordering::Application.routes.draw do
       member do 
         get "new_building"
         get "buildings"
+        get "delete"
       end
       resources :restaurants do
         member do 

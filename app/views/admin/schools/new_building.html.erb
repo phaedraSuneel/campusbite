@@ -1,24 +1,87 @@
-<div class="row search-container result-page menupage checkout-page last-page">
-  <div class="container">
-	<%= form_for(@building, :url => create_building_admin_schools_path) do |f| %>
-		<%= hidden_field_tag :school_id, params[:id] %>
-		<div class="field">
-	    <%= f.label :building_name %><br />
-	    <%= f.text_field :building_name %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :city %><br />
-	    <%= f.text_field :city %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :state %><br />
-	    <%= f.text_field :state %>
-	  </div>
-	  <div class="field">
-	    <%= f.label :zip_code %><br />
-	    <%= f.text_field :zip_code %>
-	  </div>
-	  <%= f.submit %>
-	<% end %>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Dashboard
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Locations", admin_schools_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to @school.school_name, admin_school_path(@school) %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+      	New Sub Category
+      </li>
+    </ul>  
   </div>
-</div>  		
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet box yellow">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-edit"></i>New Sub Category
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>  
+      <div class="portlet-body form">
+      	<%= form_for(@building, :url => create_building_admin_schools_path) do |f| %>
+  				<%= hidden_field_tag :school_id, params[:id] %>
+          <div class="form-body">
+    				<div class="form-group row">
+    			    <%= f.label :building_name, :class => "col-md-2 control-label" %>
+              <div class="col-md-9">
+    			     <%= f.text_field :building_name, :class => "form-control" %>
+              </div> 
+    			  </div>
+            <div class="form-group row">
+              <%= f.label :street_adress, :class => "col-md-2 control-label" %>
+              <div class="col-md-9">
+               <%= f.text_field :street_adress, :class => "form-control" %>
+              </div> 
+            </div>
+    			  <div class="form-group row">
+    			    <%= f.label :city, :class => "col-md-2 control-label" %>
+              <div class="col-md-9">
+    			     <%= f.text_field :city, :class => "form-control" %>
+              </div> 
+    			  </div>
+    			  <div class="form-group row">
+    			    <%= f.label :state, :class => "col-md-2 control-label" %>
+              <div class="col-md-9">
+    			     <%= f.text_field :state, :class => "form-control" %>
+              </div> 
+    			  </div>
+    			  <div class="form-group row">
+    			    <%= f.label :zip_code, :class => "col-md-2 control-label" %>
+              <div class="col-md-9">
+    			     <%= f.text_field :zip_code, :class => "form-control" %>
+              </div> 
+    			  </div>
+
+             <div class="form-actions fluid">
+              <div class="col-md-offset-4 col-md-4">
+                <%= f.submit "Save", :class => "btn green" %>
+                <%= link_to "Cancel", admin_school_path(@school),:class => "btn default "%>
+              </div>  
+            </div>
+			  <% end %>
+      </div>		
+    </div>
+  </div>
+</div>

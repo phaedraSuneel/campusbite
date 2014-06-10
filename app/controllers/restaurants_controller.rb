@@ -3,7 +3,6 @@ class RestaurantsController < ApplicationController
   after_filter :rollback_if_not_admin, :only => [:update]
   
   def rollback_if_not_admin
-    p "rooback"
     unless current_user.user_admin?
     #roll back changes
       version = @restaurant.versions.count
