@@ -71,4 +71,10 @@ class Order < ActiveRecord::Base
   def restaurant_name
     Restaurant.where(id: self.restaurant_id).first.restaurant_name
   end
+
+  def self.schedule_orders
+    week_last_day = Time.now.beginning_of_week - 1.day 
+    week_first_day = week_last_day.beginning_of_week
+    where(:created_at => week_first_day..week_last_day).order("created_at desc")
+  end
 end

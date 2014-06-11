@@ -71,7 +71,29 @@
     <li>
       <%= link_to raw('<i class="fa fa-shopping-cart"></i><span class="title">Orders </span>'), admin_orders_path %>
     </li>
-
-
+    <li>
+			<a href="javascript:;">
+				<i class="fa fa-shopping-cart"></i>
+				<span class="title">
+					Order Management
+				</span>
+				<span class="arrow">
+				</span>
+			</a>
+      <ul class="sub-menu">
+        <li>
+          <%= link_to raw('<i class="fa fa-shopping-cart"></i><span class="title">All Orders </span>'), admin_orders_path %>
+        </li>
+        <li>
+          <%= link_to raw('<i class="fa fa-shopping-cart"></i><span class="title">New Orders </span>'), new_orders_admin_orders_path %>
+        </li>
+        <li>
+          <%= link_to raw('<i class="fa fa-shopping-cart"></i><span class="title">Schedule Orders </span>'), schedule_orders_admin_orders_path %>
+        </li>
+        <li>
+          <%= link_to raw('<i class="fa fa-shopping-cart"></i><span class="title">Cancel Orders </span>'), cancel_orders_admin_orders_path %>
+        </li>
+      </ul>  
+    </li>  
 	</li>
 </ul>

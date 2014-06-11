@@ -8,6 +8,18 @@ class Admin::OrdersController < ApplicationController
     @order = Order.where(id: params[:id]).first
 	end
 
+  def new_orders
+    @orders = Order.where(:status => "pending").order("created_at desc")
+  end
+
+  def schedule_orders
+    @orders = Order.schedule_orders
+  end
+
+  def cancel_orders
+    @orders = Order.where(:status => "reject").order("created_at desc")
+  end
+
   def confirm
     order = Order.find(params[:id])
     if order.update_attributes(:status => "confirm")

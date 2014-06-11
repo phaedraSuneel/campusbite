@@ -36,6 +36,11 @@ Ordering::Application.routes.draw do
         get 'cancel'
         get 'print'
       end
+      collection do
+        get 'new_orders'
+        get 'schedule_orders'
+        get 'cancel_orders'
+      end
     end
     
     resources :schools do 
