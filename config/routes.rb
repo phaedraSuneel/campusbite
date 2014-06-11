@@ -53,6 +53,12 @@ Ordering::Application.routes.draw do
         get 'cancel_orders_print'
       end
     end
+
+    resources :reports do
+      collection do
+        get 'report_print'
+      end
+    end
     
     resources :schools do 
       collection do 
