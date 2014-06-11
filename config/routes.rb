@@ -37,6 +37,7 @@ Ordering::Application.routes.draw do
         get 'print'
       end
     end
+    
     resources :schools do 
       collection do 
         post "create_building"
