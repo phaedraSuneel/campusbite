@@ -1,5 +1,9 @@
 class Admin::OrdersController < ApplicationController
 
+  def index
+    @orders = Order.order('created_at desc')
+  end
+
 	def show
     @order = Order.where(id: params[:id]).first
 	end
