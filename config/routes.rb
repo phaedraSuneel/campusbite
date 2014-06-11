@@ -40,6 +40,8 @@ Ordering::Application.routes.draw do
         get 'cancel'
         get 'print'
         get 'toggle_flag'
+        get 'email_receipt'
+        get 'fax_receipt'
       end
       collection do
         get 'new_orders'

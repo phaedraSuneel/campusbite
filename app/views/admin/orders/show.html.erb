@@ -48,8 +48,8 @@
     <div class="col-md-3 block-a block-c">
       <div class="inner-order-block inner-order-block-c">
         <h1>Admin Tool</h1>
-        <p><a href="#">Fax order restaurant</a></p>
-        <P><a href="#">Email Customer Receipt</a></p>
+        <p><%=  link_to "Fax order restaurant", fax_receipt_admin_order_path(@order) %></p>
+        <p><%=  link_to "Email Customer Receipt", email_receipt_admin_order_path(@order) %></p>  
         <p><%=  link_to @order.flag_value, toggle_flag_admin_order_path(@order) %></p>
         <p><%= link_to "Download Order", print_admin_order_path(@order), :format => "pdf" %></p>
 

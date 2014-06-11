@@ -78,7 +78,32 @@ class Admin::OrdersController < ApplicationController
     else
       flash[:warning] = "Order Fail to update"
       redirect_to :back
-    end  
+    end
+  end
+
+  def email_receipt
+    @order = Order.find(params[:id])
+    order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => @order}, :layout => false ) 
+    if UserMailer.new_order(@order, order_reciept).deliver
+      flash[:notice] = "Receipt successfully sent to Restaurant"
+      redirect_to :back
+    else
+      flash[:warning] = "Receipt Sending failed to Restaurant"
+      redirect_to :back
+    end
+  end
+
+  def fax_receipt
+    @order = Order.find(params[:id])
+    order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => @order}, :layout => false )
+    @fax = Phaxio.send_fax(to: @order.restaurant.fax_number ,string_data_type: 'html', string_data: order_reciept )
+    if @fax["success"]
+      flash[:notice] = "Receipt successfully faxed Restaurant"
+      redirect_to :back
+    else
+      flash[:warning] = "Receipt fax failed to Restaurant"
+      redirect_to :back
+    end
   end
 
 end
