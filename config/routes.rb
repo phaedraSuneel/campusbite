@@ -40,6 +40,10 @@ Ordering::Application.routes.draw do
         get 'new_orders'
         get 'schedule_orders'
         get 'cancel_orders'
+        get 'orders_print'
+        get 'new_orders_print'
+        get 'schedule_orders_print'
+        get 'cancel_orders_print'
       end
     end
     

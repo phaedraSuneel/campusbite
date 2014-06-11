@@ -20,6 +20,26 @@ class Admin::OrdersController < ApplicationController
     @orders = Order.where(:status => "reject").order("created_at desc")
   end
 
+  def orders_print
+    @orders = Order.order('created_at desc')
+    render orders_print_admin_orders_path, :layout => false
+  end
+  
+  def new_orders_print
+    @orders = Order.where(:status => "pending").order("created_at desc")
+    render orders_print_admin_orders_path, :layout => false
+  end
+
+  def schedule_orders_print
+    @orders = Order.schedule_orders
+    render orders_print_admin_orders_path, :layout => false
+  end
+
+  def cancel_orders_print
+    @orders = Order.where(:status => "reject").order("created_at desc")
+    render orders_print_admin_orders_path, :layout => false
+  end
+
   def confirm
     order = Order.find(params[:id])
     if order.update_attributes(:status => "confirm")
