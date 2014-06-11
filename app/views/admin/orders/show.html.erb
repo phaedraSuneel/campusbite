@@ -19,10 +19,77 @@
     </ul>  
   </div>
 </div>
-
+<div class="admin-page">
+  <div class="row content-body">
+    <div class="col-md-5">
+      <div class="inner-order-block">
+        <h1>Order details</h1>
+        <div class="content-field"><label class="left">Order Number:</label><label class="right"><%= @order.id %></label></div>
+        <div class="content-field"><label class="left">Method:</label><label class="right">FAX</label></div>
+        <div class="content-field"><label class="left">Confirmation Pin:</label><label class="right">4891</label></div>
+        <div class="content-field"><label class="left">Order Type</label><label class="right"><%= @order.order_type %></label></div>
+        <div class="content-field"><label class="left">Order Send at:</label><label class="right"><%= @order.created_at.strftime("%m/%d/%Y %H:%M %p") %></label></div>
+        <% if @order.status == "confirm" %>
+          <div class="content-field"><label class="left">Confirmed at:</label><label class="right"><%= @order.updated_at.strftime("%m/%d/%Y %H:%M %p") %></label></div>
+        <% end %>  
+        <div class="content-field"><label class="left">Time Required:</label><label class="right"><%= @order.request_time %></label></div>
+      </div>
+    </div>
+    <div class="col-md-4 block-a block-b">
+      <div class="inner-order-block inner-order-block-b">
+        <h1>Customer Information</h1>
+        <div class="content-field"><label class="left">Name:</label><label class="right"><%= @order.user.name %></label> </div>
+          <div class="content-field"><label class="left">Adress:</label>
+            <label class="right"><%= @order.get_address %></label>
+          </div>
+          <div class="content-field"><label class="left">Telephone:</label><label class="right"><%= @order.get_telephone_number %></label></div>
+      </div>
+    </div>
+    <div class="col-md-3 block-a block-c">
+      <div class="inner-order-block inner-order-block-c">
+        <h1>Admin Tool</h1>
+        <P><a href="#">Fax order restaurant</a></P>
+        <P><a href="#">Email Customer Receipt</a></P>
+        <P><a href="#">Flag Order</a></P>
+        <P><a href="#">Download Order</a></P>
+      </div>
+    </div>
+  </div>
+  <div class="row content-body content-body-sec">
+    <div class="col-md-5">
+      <div class="inner-order-block">
+        <h1>Restaurant Details</h1>
+        <div class="content-field"><label class="left">Restaurant Name:</label><label class="right"><%= @order.restaurant.restaurant_name %></label></div>
+        <div class="content-field"><label class="left">Restaurant Adress:</label><label class="right"><%= @order.restaurant.address %></label></div>
+        <div class="content-field"><label class="left">Order number</label><label class="right">14563</label></div>
+        <div class="content-field"><label class="left">Restaurant Telephone:</label><label class="right"><%= @order.restaurant.phone %></label></div>
+        <div class="content-field"><label class="left">Email:</label><label class="right"><%= @order.restaurant.email%></label></div>
+        <div class="content-field"><label class="left">Schedule:</label><label class="right">Today closes at <%= @order.restaurant.close_time %></label></div>
+      </div>
+    </div>
+    <div class="col-md-4 block-a block-b">
+      <div class="inner-order-block">
+        <h1>Payment</h1>
+        <div class="content-field"><label class="left text-right">Payment Meathod:</label><label class="right"><%= @order.method_type %></label></div>
+        <% if @order.method_type == "Credit Card"%>
+          <div class="content-field"><label class="left text-right">Last 4digits of the card:</label><label class="right"><%= @order.card_digits %></label></div>
+          <div class="content-field"><label class="left text-right">Approved at:</label><label class="right"><%= @order.approval_at %></label></div>
+          <div class="content-field"><label class="left">Reference:</label><label class="right"><%= @order.reference%></label></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md-3 block-a block-c">
+      <div class="inner-order-block inner-order-block-c">
+        <h1>History</h1>
+        <P><a href="#">Comments on this order</a></P>
+        <P>Note:</P>
+        <P>Customer was refunded $4.95 because the chocolate was melted</P>
+      </div>
+    </div>
+  </div>
+</div>
 <div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-9 ">
+  <div class="col-md-12">
     <div class="order-detail border-green  order_<%= @order.id %>">
       <div class="row border-bottom">
         <div class="col-md-4 img-black">
@@ -61,13 +128,7 @@
                 <% unless @order.order_type == 'delivery'%>
                   <span>Costumer will pickup order</span>
                 <% else %>  
-                    <%= @order.address.address_type %>
-                    <% if @order.address.address_type == "On Campus" %>
-                     <%= @order.address.school.school_name %> <%= @order.address.room_number %> <%= @order.address.building.try(:street_adress) %></span>
-                   <% else %>
-                     <%= @order.address.room_number %> <%= @order.address.street_adress %>
-                   <% end %>  
-                  </label>
+                    <span><%= @order.get_address %> <span>
                 <% end %>
               </li>
             </ul>
@@ -143,17 +204,4 @@
       </div>  
     </div>  
   </div>
-</div>   
-
-<div class="row order-action"> 
-  <div class="col-md-3"></div>
-  <div class="col-md-3">
-    <%= link_to "Confirm", confirm_admin_order_path(@order), :class => "btn btn-lg green"%>
-  </div>
-  <div class="col-md-3">
-    <%= link_to raw("<i class='fa  fa-5x fa-print'></i> Print"), print_admin_order_path(@order), :class => "btn btn btn-lg blue" , :target => "_blank"%>
-  </div>
-  <div class="col-md-3">
-    <%= link_to "Cancel", cancel_admin_order_path(@order), :class => "btn btn-lg red"%>
-  </div>  
-</div> 
+</div>

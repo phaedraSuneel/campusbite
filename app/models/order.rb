@@ -25,7 +25,6 @@ class Order < ActiveRecord::Base
   	MenuItemProperty.find(id).price
   end
 
-
   def sub_total
   	price = 0
   	self.menu_item_orders.each do |item|
@@ -76,5 +75,36 @@ class Order < ActiveRecord::Base
     week_last_day = Time.now.beginning_of_week - 1.day 
     week_first_day = week_last_day.beginning_of_week
     where(:created_at => week_first_day..week_last_day).order("created_at desc")
+  end
+
+  def get_address_type
+    self.address.try(:address_type)
+  end
+
+  def get_address
+    address_type = get_address_type
+    if address_type == "On Campus"
+      [address.room_number, address.building.try(:street_adress), address.school.school_name ].join(' ')
+    elsif address_type == "Off Campus"
+      [address.try(:room_number), address.building.try(:street_adress), address.building.try(:city), address.building.try(:state), address.building.try(:zip_code) ].join(" ")
+    elsif address_type.nil?
+      ""
+    end  
+  end
+
+  def get_telephone_number
+    address.try(:phone_number)
+  end
+
+  def card_digits
+    card.masked_number.last(4)
+  end
+
+  def approval_at
+    payment.try(:transaction_at).nil? ?  '' : payment.try(:transaction_at).strftime("%m/%d/%Y %H:%M %p")
+  end
+
+  def reference
+    payment.try(:transaction_id)
   end
 end
