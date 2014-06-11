@@ -66,8 +66,12 @@ $(document).ready(function() {
 
   var oTable = $('#all_orders_data').dataTable({
     "aaSorting": [[ 1, "asc" ]],
-    "bSortCellsTop": true
+    "bSortCellsTop": true,
   });
+
+  var tt = new $.fn.dataTable.TableTools(oTable);
+ 
+  $( tt.fnContainer() ).insertBefore('div.dataTables_wrapper');
    
   $("thead tr.filter .select_filter").each( function ( i ) {
     var i = $(this).index();

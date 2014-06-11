@@ -17,6 +17,8 @@
  *= require select2-metronic
  *= require bootstrap-datetimepicker
  *= require jquery.dataTables
+ *= require dataTables.tableTools
+ *= require dataTables.bootstrap
  *= require datepicker
  *= require style-metronic
  *= require restaurant-style

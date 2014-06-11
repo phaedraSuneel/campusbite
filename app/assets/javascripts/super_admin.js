@@ -12,7 +12,7 @@
 //
 
 
-//= require jquery-1.10.2.min.js
+//= require jquery-1.10.2.min
 //= require jquery_ujs
 //= require jquery-migrate-1.2.1.min
 //= require jquery-ui-1.10.3.custom.min
@@ -35,6 +35,8 @@
 //= require DT_bootstrap
 //= require bootstrap-datepicker
 //= require datatable
+//= require dataTables.tableTools
+//= requrie dataTables.bootstrap
 //= require order-table
 //= require subscriber_form
 //= require contact_us_form
