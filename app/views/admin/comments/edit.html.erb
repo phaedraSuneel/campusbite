@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Edit Comment
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Orders", admin_orders_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Order", admin_orders_path(@order) %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+      	Edit Comment
+      </li>
+    </ul>  
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-edit"></i>Edit Comment
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>  
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>

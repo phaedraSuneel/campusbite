@@ -48,10 +48,11 @@
     <div class="col-md-3 block-a block-c">
       <div class="inner-order-block inner-order-block-c">
         <h1>Admin Tool</h1>
-        <P><a href="#">Fax order restaurant</a></P>
-        <P><a href="#">Email Customer Receipt</a></P>
-        <P><a href="#">Flag Order</a></P>
-        <P><a href="#">Download Order</a></P>
+        <p><a href="#">Fax order restaurant</a></p>
+        <P><a href="#">Email Customer Receipt</a></p>
+        <p><%=  link_to @order.flag_value, toggle_flag_admin_order_path(@order) %></p>
+        <p><%= link_to "Download Order", print_admin_order_path(@order), :format => "pdf" %></p>
+
       </div>
     </div>
   </div>
@@ -81,9 +82,12 @@
     <div class="col-md-3 block-a block-c">
       <div class="inner-order-block inner-order-block-c">
         <h1>History</h1>
-        <P><a href="#">Comments on this order</a></P>
+        <P><%= link_to 'Comments on this order', new_admin_order_comment_path(@order) %> </P>
         <P>Note:</P>
-        <P>Customer was refunded $4.95 because the chocolate was melted</P>
+        <P><%= @order.last_comment %></P>
+        <% if @order.comments.count > 1 %>
+          <p class="pull-right"><%= link_to "view more", admin_order_comments_path(@order) %></p>
+        <% end %>  
       </div>
     </div>
   </div>

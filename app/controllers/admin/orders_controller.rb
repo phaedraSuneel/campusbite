@@ -69,4 +69,16 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
+  def toggle_flag
+    @order = Order.find(params[:id]) 
+    @order.flag = @order.flag? ? false : true
+    if @order.save
+      flash[:notice] = "Order Successfully update"
+      redirect_to :back
+    else
+      flash[:warning] = "Order Fail to update"
+      redirect_to :back
+    end  
+  end
+
 end

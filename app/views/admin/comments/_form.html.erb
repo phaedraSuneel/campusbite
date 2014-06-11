@@ -1,0 +1,29 @@
+<div class="portlet-body form">
+  <%= form_for(@comment, :url => set_comment_path(@order, @comment)) do |f| %>
+    <div class="form-body">
+      <% if @comment.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+          <ul>
+          <% @comment.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+     
+      <div class="form-group">
+        <%= f.label :message, :class => "control-label col-md-3" %>
+        <div class="col-md-9">
+          <%= f.text_field :message, :class => "form-control" %>
+        </div>  
+      </div>
+    </div>  
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_order_path(@order),:class => "btn default "%>
+      </div>  
+    </div>
+  <% end %>  
+</div>  

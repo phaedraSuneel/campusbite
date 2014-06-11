@@ -6,8 +6,9 @@ class Order < ActiveRecord::Base
   belongs_to :payment
   has_many :menu_items, through: :menu_item_orders
   has_many :menu_item_orders
+  has_many :comments, :dependent => :destroy
 
-  attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip, :secure_code
+  attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip, :secure_code, :flag
 
   scope :with_user, lambda {|user| where(user_id: user.id ) }
   after_save :update_user_points
@@ -107,4 +108,13 @@ class Order < ActiveRecord::Base
   def reference
     payment.try(:transaction_id)
   end
+
+  def last_comment
+    comments.last.try(:message)
+  end
+
+  def flag_value
+    flag? ? "Unflag Order" : "Flag Order"
+  end
+  
 end

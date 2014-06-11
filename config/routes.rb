@@ -1,5 +1,8 @@
 Ordering::Application.routes.draw do
 
+  
+
+
   resources :subscribes
 
 
@@ -31,10 +34,12 @@ Ordering::Application.routes.draw do
     end
     
     resources :orders do
+      resources :comments
       member do 
         get 'confirm'
         get 'cancel'
         get 'print'
+        get 'toggle_flag'
       end
       collection do
         get 'new_orders'

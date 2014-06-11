@@ -4567,6 +4567,7 @@ a:hover{
   font-size: 16px;
   color: #000;
   font-weight: 600;
+  padding-bottom: 15px;
 }
 .admin-page .container{
   padding: 0;

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140610101917) do
+ActiveRecord::Schema.define(:version => 20140611083651) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -127,6 +127,13 @@ ActiveRecord::Schema.define(:version => 20140610101917) do
     t.datetime "updated_at",                            :null => false
     t.integer  "restaurant_id"
     t.string   "order_type",    :default => "delivery"
+  end
+
+  create_table "comments", :force => true do |t|
+    t.integer  "order_id"
+    t.text     "message"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "contact_infos", :force => true do |t|
@@ -302,8 +309,8 @@ ActiveRecord::Schema.define(:version => 20140610101917) do
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
     t.string   "delievery_address"
     t.string   "order_type"
     t.string   "request_time"
@@ -317,6 +324,7 @@ ActiveRecord::Schema.define(:version => 20140610101917) do
     t.integer  "payment_id"
     t.float    "tip",                  :default => 0.0
     t.string   "secure_code"
+    t.boolean  "flag",                 :default => false
   end
 
   create_table "payments", :force => true do |t|
