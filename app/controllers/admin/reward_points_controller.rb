@@ -19,7 +19,7 @@ class Admin::RewardPointsController < ApplicationController
     end
     respond_to do |format|
       format.json do 
-        return render :json =>  {draw: page,  recordsTotal: User.count,  recordsFiltered: User.count , :data => @customers.collect{|a| ["<a src='#{admin_reward_point_url(a)}'>#{a.name}</a>",a.points]} }
+        return render :json =>  {draw: page,  recordsTotal: User.count,  recordsFiltered: User.count , :data => @customers.collect{|a| [a.name, a.points, "<a src='#{admin_reward_point_url(a)}'><span class='label label-sm label-success'> details </span></a>"]} }
       end
       format.html
     end
