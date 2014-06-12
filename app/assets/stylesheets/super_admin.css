@@ -19,6 +19,7 @@
  *= require jquery.dataTables
  *= require dataTables.tableTools
  *= require dataTables.bootstrap
+ *= require bootstrap-timepicker.min
  *= require datepicker
  *= require style-metronic
  *= require restaurant-style

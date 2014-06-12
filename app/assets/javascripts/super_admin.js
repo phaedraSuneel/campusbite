@@ -27,6 +27,10 @@
 //= require jquery.flot
 //= require jquery.flot.resize
 //= require jquery.flot.categories
+//= require jquery.validate
+//= require additional-methods.min
+//= require jquery.bootstrap.wizard.min
+//= require multi-step-form
 //= require custom_admin
 //= require app
 //= require ecommerce-index
@@ -50,6 +54,8 @@
 //= require reviews
 //= require FixedHeader
 //= require moment
+//= require bootstrap-timepicker.min
 //= require bootstrap-datetimepicker
+//= require commponent-picker
 //= require ecommerce-orders
 //= require new_orders

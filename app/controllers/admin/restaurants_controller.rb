@@ -1,4 +1,4 @@
-class Admin::RestaurantsController < AdminController
+class Admin::RestaurantsController < ApplicationController
 
   after_filter :rollback_if_not_admin, :only => [:update]
   

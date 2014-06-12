@@ -4077,6 +4077,7 @@ textarea.placeholder {
 
 .form-horizontal .radio-list .radio {
   padding-top: 1px;
+  margin-right: 10px;
 }
 
 .form-horizontal .radio-list > label {
@@ -4734,4 +4735,14 @@ a:hover{
 }
 .admin-page .receipt-table table tr.even{
   background-color: #fffbb2; 
+}
+
+.restaurant-form span.input-group-btn button{
+  height: 34px !important;
+}
+
+.restaurant-form .time-headings
+{
+  margin-bottom: 10px;
+  font-weight: bold;
 }
