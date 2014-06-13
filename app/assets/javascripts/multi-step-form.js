@@ -130,9 +130,9 @@ var FormWizard = function () {
                         label
                             .closest('.form-group').removeClass('has-error').addClass('has-success');
                         label.remove(); // remove error label here
+                        
                     } else { // display success icon for other inputs
-                        label
-                            .addClass('valid') // mark the current input as valid and display OK icon
+                        label.addClass('valid') // mark the current input as valid and display OK icon
                         .closest('.form-group').removeClass('has-error').addClass('has-success'); // set success class to the control group
                     }
                 },
@@ -140,13 +140,13 @@ var FormWizard = function () {
                 submitHandler: function (form) {
                     success.show();
                     error.hide();
+                    form.submit();
                     //add here some ajax code to submit your form or just call form.submit() if you want to submit the form without ajax
                 }
-
             });
 
             var displayConfirm = function() {
-                $('#tab4 .form-control-static', form).each(function(){
+                $('#tab8 .form-control-static', form).each(function(){
                     var input = $('[name="'+$(this).attr("data-display")+'"]', form);
                     if (input.is(":radio")) {
                         input = $('[name="'+$(this).attr("data-display")+'"]:checked', form);
@@ -189,6 +189,8 @@ var FormWizard = function () {
                     $('#form_wizard_1').find('.button-next').hide();
                     $('#form_wizard_1').find('.button-submit').show();
                     displayConfirm();
+
+
                 } else {
                     $('#form_wizard_1').find('.button-next').show();
                     $('#form_wizard_1').find('.button-submit').hide();
@@ -236,7 +238,7 @@ var FormWizard = function () {
 
             $('#form_wizard_1').find('.button-previous').hide();
             $('#form_wizard_1 .button-submit').click(function () {
-                alert('Finished! Hope you like it :)');
+                //alert('Finished! Hope you like it :)');
             }).hide();
         }
 

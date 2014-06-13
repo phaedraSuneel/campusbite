@@ -1,625 +1,621 @@
-<div class="row">
-  <div class="col-md-12">
-    <div class="portlet box blue" id="form_wizard_1">
-      <div class="portlet-title">
-        <div class="caption">
-          <i class="fa fa-reorder"></i> New Restaurant
+<div class="portlet-body form">
+  <%= form_for([@school, @restaurant], :url => set_restaurant_url(@school, @restaurant) , :html => { :multipart => true, :class => "form-horizontal restaurant-form", :id => "submit_form"}) do |f| %>
+    
+    <div class="form-wizard">
+      <div class="form-body">
+        <ul class="nav nav-pills nav-justified steps">
+          <li class="active">
+            <a href="#tab1" data-toggle="tab" class="step">
+              <span class="number">
+                 1
+              </span>
+              <span class="desc">
+                <i class="fa fa-check"></i> Contact Info
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#tab2" data-toggle="tab" class="step">
+              <span class="number">
+                 2
+              </span>
+              <span class="desc">
+                <i class="fa fa-check"></i> Restaurnat Info
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#tab3" data-toggle="tab" class="step active">
+              <span class="number">
+                 3
+              </span>
+              <span class="desc">
+                <i class="fa fa-check"></i> Delivery Info
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#tab4" data-toggle="tab" class="step">
+              <span class="number">
+                 4
+              </span>
+              <span class="desc">
+                <i class="fa fa-check"></i> Order Info
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#tab5" data-toggle="tab" class="step">
+              <span class="number">
+                 5
+              </span>
+              <span class="desc">
+                <i class="fa fa-check"></i> Bank Info
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#tab6" data-toggle="tab" class="step">
+              <span class="number">
+                 6
+              </span>
+              <span class="desc">
+                <i class="fa fa-check"></i> Timming Info
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#tab7" data-toggle="tab" class="step">
+              <span class="number">
+                 7
+              </span>
+              <span class="desc">
+                <i class="fa fa-check"></i> Food Category Info
+              </span>
+            </a>
+          </li>
+          <li>
+            <a href="#tab8" data-toggle="tab" class="step">
+              <span class="number">
+                 8
+              </span>
+              <span class="desc">
+                <i class="fa fa-check"></i> Admin Info
+              </span>
+            </a>
+          </li>
+        </ul>
+        <div id="bar" class="progress progress-striped" role="progressbar">
+          <div class="progress-bar progress-bar-success">
+          </div>
         </div>
-        <div class="tools hidden-xs">
-          <a href="javascript:;" class="collapse">
-          </a>
-          <a href="javascript:;" class="reload">
-          </a>
-          <a href="javascript:;" class="remove">
-          </a>
-        </div>
-      </div>
-      <div class="portlet-body form">
-        <%= form_for([@school, @restaurant], :url => set_restaurant_url(@school, @restaurant) , :html => { :multipart => true, :class => "form-horizontal restaurant-form", :id => "submit_form"}) do |f| %>
-          
-          <div class="form-wizard">
-            <div class="form-body">
-              <ul class="nav nav-pills nav-justified steps">
-                <li class="active">
-                  <a href="#tab1" data-toggle="tab" class="step">
-                    <span class="number">
-                       1
-                    </span>
-                    <span class="desc">
-                      <i class="fa fa-check"></i> Contact Info
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#tab2" data-toggle="tab" class="step">
-                    <span class="number">
-                       2
-                    </span>
-                    <span class="desc">
-                      <i class="fa fa-check"></i> Restaurnat Info
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#tab3" data-toggle="tab" class="step active">
-                    <span class="number">
-                       3
-                    </span>
-                    <span class="desc">
-                      <i class="fa fa-check"></i> Delivery Info
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#tab4" data-toggle="tab" class="step">
-                    <span class="number">
-                       4
-                    </span>
-                    <span class="desc">
-                      <i class="fa fa-check"></i> Order Info
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#tab5" data-toggle="tab" class="step">
-                    <span class="number">
-                       5
-                    </span>
-                    <span class="desc">
-                      <i class="fa fa-check"></i> Bank Info
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#tab6" data-toggle="tab" class="step">
-                    <span class="number">
-                       6
-                    </span>
-                    <span class="desc">
-                      <i class="fa fa-check"></i> Timming Info
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#tab7" data-toggle="tab" class="step">
-                    <span class="number">
-                       7
-                    </span>
-                    <span class="desc">
-                      <i class="fa fa-check"></i> Food Category Info
-                    </span>
-                  </a>
-                </li>
-                <li>
-                  <a href="#tab8" data-toggle="tab" class="step">
-                    <span class="number">
-                       8
-                    </span>
-                    <span class="desc">
-                      <i class="fa fa-check"></i> Admin Info
-                    </span>
-                  </a>
-                </li>
+        <div class="tab-content">
+
+          <% if @restaurant.errors.any? %>
+          <div class="alert alert-danger" id="error_explanation">
+            <h2><%= pluralize(@restaurant.errors.count, "error") %> prohibited this restaurant from being saved:</h2>
+            <ul>
+              <% @restaurant.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
               </ul>
-              <div id="bar" class="progress progress-striped" role="progressbar">
-                <div class="progress-bar progress-bar-success">
+            </div>
+          <% end %>
+
+          <div class="alert alert-danger display-none">
+            <button class="close" data-dismiss="alert"></button>
+            You have some form errors. Please check below.
+          </div>
+          <div class="alert alert-success display-none">
+            <button class="close" data-dismiss="alert"></button>
+            Your form validation is successful!
+          </div>
+          
+          <div class="tab-pane active" id="tab1">
+            <h3 class="block">Restaurant Contact Information</h3>
+            <%= f.fields_for :contact_info do |f| %>
+              
+              <div class="form-group">
+                <%= f.label :restaurant_name, :class => "col-md-3 control-label" %>
+                <div class="col-md-9">
+                  <%= f.text_field :restaurant_name, :class => "form-control required" %>
+                </div>  
+              </div>
+              
+              <div class="form-group">
+                <%= f.label :restaurant_phone, :class => "col-md-3 control-label" %>
+                <div class="col-md-9">
+                  <%= f.text_field :restaurant_phone, :class => "form-control required" %>
                 </div>
               </div>
-              <div class="tab-content">
-                <div class="alert alert-danger display-none">
-                  <button class="close" data-dismiss="alert"></button>
-                  You have some form errors. Please check below.
+
+              <div class="form-group">
+                <%= f.label :restaurant_website, :class => "col-md-3 control-label" %>
+                <div class="col-md-9">
+                  <%= f.text_field :restaurant_website, :class => "form-control required" %>
                 </div>
-                <div class="alert alert-success display-none">
-                  <button class="close" data-dismiss="alert"></button>
-                  Your form validation is successful!
-                </div>
-                
-                <div class="tab-pane active" id="tab1">
-                  <h3 class="block">Restaurant Contact Information</h3>
-                  <%= f.fields_for :contact_info do |f| %>
-                    
-                    <div class="form-group">
-                      <%= f.label :restaurant_name, :class => "col-md-3 control-label" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :restaurant_name, :class => "form-control" %>
-                      </div>  
-                    </div>
-                    
-                    <div class="form-group">
-                      <%= f.label :restaurant_phone, :class => "col-md-3 control-label" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :restaurant_phone, :class => "form-control" %>
-                      </div>
-                    </div>
+              </div>
 
-                    <div class="form-group">
-                      <%= f.label :restaurant_website, :class => "col-md-3 control-label" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :restaurant_website, :class => "form-control" %>
-                      </div>
-                    </div>
+              <div class="form-group">
+                <%= f.label :restaurant_street_address, :class => "col-md-3 control-label" %>
+                <div class="col-md-9">
+                  <%= f.text_field :restaurant_street_address, :class => "form-control required" %>
+                </div>  
+              </div>
 
-                    <div class="form-group">
-                      <%= f.label :restaurant_street_address, :class => "col-md-3 control-label" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :restaurant_street_address, :class => "form-control" %>
-                      </div>  
-                    </div>
-
-                    <div class="form-group">
-                      <%= f.label :state, :class => "col-md-3 control-label" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :state, :class => "form-control" %>
-                      </div>
-                    </div>  
-
-                    <div class="form-group">
-                      <%= f.label :city, :class => "col-md-3 control-label" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :city, :class => "form-control" %>
-                      </div> 
-                    </div>
-
-                    <div class="form-group">
-                      <%= f.label :zip_code, :class => "col-md-3 control-label" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :zip_code, :class => "form-control" %>
-                      </div>  
-                    </div>
-
-                    <div class="form-group">
-                      <%= f.label :map_photo, "Restaurant Map Picture", :class => "col-md-3 control-label" %>
-                      <div class="col-md-9">
-                        <%= f.file_field :map_photo, :class => "form-control" %>
-                      </div>  
-                    </div>
-
-                    <div class="form-group">
-                      <%= f.label :contact_name, :class => "col-md-3 control-label" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :contact_name, :class => "form-control"%>
-                      </div>  
-                    </div>
-
-                    <div class="form-group">
-                      <%= f.label :contact_email, :class => "col-md-3 control-label" %>
-                      <div class="col-md-9">
-                        <%= f.email_field :contact_email, :class => "form-control" %>
-                      </div>  
-                    </div>
-                  <% end %>
-                </div>
-                
-                <div class="tab-pane" id="tab2">
-                  <h3 class="block">Restaurant Information</h3>
-                  <%= f.fields_for :restaurant_info do |f| %>
-                    <div class="form-group">
-                      <%= f.label :logo, "Restaurant logo", :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <%= f.file_field :logo, :class => 'form-control'%>
-                      </div>  
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :about_restaurant, :class => "control-label col-md-3"  %>
-                      <div class="col-md-9">
-                        <%= f.text_area :about_restaurant , :cols => 40, :rows => 4, :class => 'form-control' %>
-                      </div>
-                    </div> 
-
-                    <div class="form-group">
-                      <%= f.label :is_pick_up, "Pick Up", :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <div class="radio-list">
-                          <label>
-                            <div class="radio">
-                              <span class="checked"><%= f.radio_button :is_pick_up, true, :checked => true %></span>
-                            </div>Yes 
-                          </label>
-                          <label>
-                            <div class="radio">
-                              <span><%= f.radio_button :is_pick_up, false %></span>
-                            </div>No
-                          </label>
-                        </div>  
-                      </div>
-                    </div> 
-                    <div class="form-group">
-                      <%= f.label :is_featured, "Feature", :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <div class="radio-list">
-                          <label>
-                            <div class="radio">
-                              <span class="checked"><%= f.radio_button :is_featured, true, :checked => true %></span>
-                            </div>Yes 
-                          </label>
-                          <label>
-                            <div class="radio">
-                              <span><%= f.radio_button :is_featured, false %></span>
-                            </div>No
-                          </label>
-                        </div>  
-                      </div>
-                    </div> 
-                    <div class="form-group">
-                      <%= f.label :min_order, :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :min_order, :class => "form-control" %>
-                      </div>  
-                    </div>
-
-                    <div class="form-group">
-                      <%= f.label :sale_tax, "Sale Tax (%)", :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :sale_tax, :class => "form-control col-md-9" %>
-                      </div>
-                    </div>  
-                  <% end %>
-                </div>
-
-                <div class="tab-pane" id="tab3">
-                  <h3 class="block"> Delivery Information </h3>
-                  <%= f.fields_for :delivery_info do |f| %>
-                    
-                    <div class="form-group">
-                      <%= f.label :is_delivery, "Delivery", :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <div class="radio-list">
-                          <label>
-                            <div class="radio">
-                              <span class="checked"><%= f.radio_button :is_delivery, true, :checked => true %></span>
-                            </div>Yes 
-                          </label>
-                          <label>
-                            <div class="radio">
-                              <span><%= f.radio_button :is_delivery, false %></span>
-                            </div>No
-                          </label>
-                        </div>  
-                      </div>
-                    </div> 
-              
-                    <div class="form-group">
-                      <%= f.label :delivery_estimated_time, "Restaurant delivery estimated time", :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <%= f.number_field  :delivery_estimated_time, :min => 0 , :class => "form-control" %>
-                      </div>
-                    </div>  
-
-                    <div class="form-group">
-                      <%= f.label :delivery_charges, :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :delivery_charges, :class => "form-control" %>
-                      </div>  
-                    </div>
-
-                    <div class="form-group">
-                      <%= f.label :delivery_distance, "Delivery Distance (miles)", :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :delivery_distance, :class => "form-control" %>
-                      </div>
-                    </div>  
-                  <% end -%>
-                </div>
-
-                <div class="tab-pane" id="tab4">
-                  <h3 class="block">Ordering Information </h3>
-                  <%= f.fields_for :order_info do |f| %>
-
-                    <div class="form-group">
-
-                      <%= f.label :info_way, " Please select way of get order information.. ", :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <div class="radio-list">
-                          <label>
-                            <div class="radio">
-                              <span ><%= f.radio_button :info_way, "email" %></span>
-                            </div> Email 
-                          </label>
-                          <label>
-                            <div class="radio">
-                              <span class="checked"><%= f.radio_button :info_way, "fax", :checked => true %></span>
-                            </div>Fax
-                          </label>
-                          <label>
-                            <div class="radio">
-                              <span><%= f.radio_button :info_way, "GPRS" %></span>
-                            </div>GPRS
-                          </label>
-                          <label>
-                            <div class="radio">
-                              <span><%= f.radio_button :info_way, "POS" %></span>
-                            </div>POS
-                          </label>
-                          <label>
-                            <div class="radio">
-                              <span><%= f.radio_button :info_way, "SMS" %></span>
-                            </div>SMS
-                          </label>
-                        </div>  
-                      </div>
-                    </div> 
-                   
-                    <div class="form-group">
-                      <%= f.label :email_order, :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <%= f.email_field :email_order, :class => "form-control" %>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :fax_number, "Restaurant Fax No." , :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <%= f.text_field :fax_number, :class => "form-control" %>
-                      </div>
-                    </div>
-                    
-                    <div class="form-group">
-                      <%= f.label :gprs, "GPRS Option", :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <div class="radio-list">
-                         <label>
-                            <div class="radio">
-                              <span ><%= f.radio_button :gprs, true %></span>
-                            </div> Yes 
-                          </label> 
-                          <label>
-                            <div class="radio">
-                              <span ><%= f.radio_button :gprs, false, :checked => true %></span>
-                            </div> No 
-                          </label> 
-                        </div>
-                      </div>  
-                    </div>
-                    
-                    <div class="form-group">
-                      <%= f.label :cloud_printer_email, :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <%= f.email_field :cloud_printer_email, :class => "form-control" %>
-                      </div>  
-                    </div>
-
-                    <div class="form-group">
-                      <%= f.label :cloud_printer_password, :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <%= f.password_field :cloud_printer_password, :class => "form-control" %>
-                      </div>  
-                    </div>
-
-                    <div class="form-group">
-                      <%= f.label :sms_option, "Sms Option", :class => "control-label col-md-3" %>
-                      <div class="col-md-9">
-                        <div class="radio-list">
-                         <label>
-                            <div class="radio">
-                              <span ><%= f.radio_button :sms_option, true %></span>
-                            </div> Yes 
-                          </label> 
-                          <label>
-                            <div class="radio">
-                              <span ><%= f.radio_button :sms_option, false, :checked => true %></span>
-                            </div> No 
-                          </label> 
-                        </div>
-                      </div>  
-                    </div>
-                  <% end -%>
-                </div>
-                <div class="tab-pane" id="tab5">
-                  <h3 class="block"> Bank Information </h3>
-                  <%= f.fields_for :bank_info do |f| %>
-                    <div class="form-group">
-                      <%= f.label :bank_name, :class=> "control-label col-md-3"%>
-                      <div class="col-md-9">
-                      <%= f.text_field :bank_name , :class => "form-control"%>
-                    </div>
-                    </div>
-                     <div class="form-group">
-                      <%= f.label :bank_account_number, :class=> "control-label col-md-3"%>
-                      <div class="col-md-9">
-                        <%= f.text_field :bank_account_number , :class => "form-control"%>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :routine_number, :class=> "control-label col-md-3"%>
-                      <div class="col-md-9">
-                        <%= f.text_field :routine_number , :class => "form-control"%>
-                      </div>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :swift_code, :class=> "control-label col-md-3"%>
-                      <div class="col-md-9">
-                        <%= f.text_field :swift_code , :class => "form-control"%>
-                      </div>
-                    </div>
-                  <% end -%>
-                </div>
-                <div class="tab-pane" id="tab6">
-                  
-                  <h3 class="block">Restaurant Opening & Closing Time </h3>
-                  
-                  <div class="row time-headings">
-                    <div class="col-md-4"> Day </div>
-                    <div class="col-md-4"> Opening Time</div>
-                    <div class="col-md-4"> Closing Time</div>
-                  </div>
-
-                  <%= f.fields_for :operation do |f| %>
-                    <%= f.fields_for :sechedules do |f| %>
-                      <div class="form-group">
-                        <div class="col-md-2">
-                          <label class="control-label"> <%= f.object.day %></label>
-                        </div>  
-                      
-                        <div class="col-md-4">
-                          <div class="input-group">
-                            <%= f.text_field :opening_time, :class => "form-control timepicker timepicker-no-seconds" %>
-                            <span class="input-group-btn">
-                              <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
-                            </span>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="input-group">
-                            <%= f.text_field :closing_time, :class => "form-control timepicker timepicker-no-seconds" %>
-                            <span class="input-group-btn">
-                              <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
-                            </span>
-                          </div>
-                        </div> 
-                      </div>  
-                    <% end %>  
-                  <% end %>
-                
-                  <h3 class="block"> Restaurant Order Pick Time </h3>
-                  <div class="row time-headings">
-                    <div class="col-md-4"> Day </div>
-                    <div class="col-md-4"> Opening Time</div>
-                    <div class="col-md-4"> Closing Time</div>
-                  </div>
-
-                  <%= f.fields_for :pick_up do |f| %>
-                    <%= f.fields_for :sechedules do |f| %>
-                      <div class="form-group">
-                        <div class="col-md-2">
-                          <label class="control-label"> <%= f.object.day %></label>
-                        </div>  
-                      
-                        <div class="col-md-4">
-                          <div class="input-group">
-                            <%= f.text_field :opening_time, :class => "form-control timepicker timepicker-no-seconds" %>
-                            <span class="input-group-btn">
-                              <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
-                            </span>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="input-group">
-                            <%= f.text_field :closing_time, :class => "form-control timepicker timepicker-no-seconds" %>
-                            <span class="input-group-btn">
-                              <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
-                            </span>
-                          </div>
-                        </div> 
-                      </div>
-                    <% end %>  
-                  <% end %>
-
-                  <h3 class="block"> Restarant Order Deliver Time </h3>
-                  <div class="row time-headings">
-                    <div class="col-md-4"> Day </div>
-                    <div class="col-md-4"> Opening Time</div>
-                    <div class="col-md-4"> Closing Time</div>
-                  </div>
-
-                  <%= f.fields_for :delivery do |f| %>
-                    <%= f.fields_for :sechedules do |f| %>
-                      <div class="form-group">
-                        <div class="col-md-2">
-                          <label class="control-label"> <%= f.object.day %></label>
-                        </div>  
-                      
-                        <div class="col-md-4">
-                          <div class="input-group">
-                            <%= f.text_field :opening_time, :class => "form-control timepicker timepicker-no-seconds" %>
-                            <span class="input-group-btn">
-                              <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
-                            </span>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="input-group">
-                            <%= f.text_field :closing_time, :class => "form-control timepicker timepicker-no-seconds" %>
-                            <span class="input-group-btn">
-                              <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
-                            </span>
-                          </div>
-                        </div> 
-                      </div>  
-                    <% end %>  
-                  <% end %>
-                </div>
-
-
-                <div class="tab-pane" id="tab7">
-                  <h3 class="block"> Select Food Categories of Restaurant </h3>
-                  <div class="from-group">
-                    <div class="checkbox-list">
-                      <% RestaurantCategory.all.each do |cat| %>
-                        <label><%= check_box_tag "restaurant[restaurant_category_ids][]", cat.id, @restaurant.restaurant_category_ids.include?(cat.id), id: dom_id(cat), :class => 'checkbox-inline' %>
-                          <%= cat.category_name %>
-                        </label>    
-                      <% end %>
-                    </div>
-                  </div>
-                </div>
-                <div class="tab-pane" id="tab8">
-                    <h3 class="block"> Restaurant Admin Information </h3>
-                    <%= f.fields_for :user do |f| %>
-                      <div class="form-group">
-                        <%= f.label :first_name, :class => "col-md-3 control-label" %>
-                        <div class="col-md-9">
-                          <%= f.text_field :first_name , :class => "form-control"%>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <%= f.label :last_name, :class => "col-md-3 control-label" %>
-                        <div class="col-md-9">
-                          <%= f.text_field :last_name , :class => "form-control"%>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <%= f.label :email, :class => "col-md-3 control-label" %>
-                        <div class="col-md-9">
-                          <%= f.email_field :email , :class => "form-control"%>
-                        </div>
-                      </div>
-
-                      <div class="form-group">
-                        <%= f.label :password, :class => "col-md-3 control-label" %>
-                        <div class="col-md-9">
-                          <%= f.password_field :password , :class => "form-control"%>
-                        </div>
-                      </div>
-
-                      <div class="form-group" >
-                        <%= f.label :password_confirmation, :class => "col-md-3 control-label" %>
-                        <div class="col-md-9">
-                          <%= f.password_field :password_confirmation , :class => "form-control"%>
-                        </div>
-                      </div>
-
-                    <% end %>
+              <div class="form-group">
+                <%= f.label :state, :class => "col-md-3 control-label" %>
+                <div class="col-md-9">
+                  <%= f.text_field :state, :class => "form-control required" %>
                 </div>
               </div>  
-            </div>
-            <div class="form-actions fluid">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="col-md-offset-3 col-md-9">
-                    <a href="javascript:;" class="btn default button-previous">
-                      <i class="m-icon-swapleft"></i> Back
-                    </a>
-                    <a href="javascript:;" class="btn blue button-next">
-                       Continue <i class="m-icon-swapright m-icon-white"></i>
-                    </a>
-                    <%= button_tag(type: 'submit', class: "btn green button-submit") do %>
-                       <i class= 'm-icon-swapright m-icon-white'></i> Save
-                    <% end %>
-                  </div>
+
+              <div class="form-group">
+                <%= f.label :city, :class => "col-md-3 control-label" %>
+                <div class="col-md-9">
+                  <%= f.text_field :city, :class => "form-control required" %>
+                </div> 
+              </div>
+
+              <div class="form-group">
+                <%= f.label :zip_code, :class => "col-md-3 control-label" %>
+                <div class="col-md-9">
+                  <%= f.text_field :zip_code, :class => "form-control required" %>
+                </div>  
+              </div>
+
+              <div class="form-group">
+                <%= f.label :map_photo, "Restaurant Map Picture", :class => "col-md-3 control-label" %>
+                <div class="col-md-9">
+                  <%= f.file_field :map_photo, :class => "form-control" %>
+                </div>  
+              </div>
+
+              <div class="form-group">
+                <%= f.label :contact_name, :class => "col-md-3 control-label" %>
+                <div class="col-md-9">
+                  <%= f.text_field :contact_name, :class => "form-control required"%>
+                </div>  
+              </div>
+
+              <div class="form-group">
+                <%= f.label :contact_email, :class => "col-md-3 control-label" %>
+                <div class="col-md-9">
+                  <%= f.email_field :contact_email, :class => "form-control required" %>
+                </div>  
+              </div>
+            <% end %>
+          </div>
+          
+          <div class="tab-pane" id="tab2">
+            <h3 class="block">Restaurant Information</h3>
+            <% unless @school.present? %>
+              <div class=" form-group">
+                <%= f.label :school_id,"Select Campus", :class => 'control-label col-md-3' %>
+                <div class="col-md-9 school">
+                  <%= f.collection_select :school_id, School.all,:id,:school_name, {include_blank: true}, {:class => 'required form-control'} %>
                 </div>
               </div>
+            <% end %>    
+            <%= f.fields_for :restaurant_info do |f| %>
+              <div class="form-group">
+                <%= f.label :logo, "Restaurant logo", :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <%= f.file_field :logo, :class => 'form-control'%>
+                </div>  
+              </div>
+              <div class="form-group">
+                <%= f.label :about_restaurant, :class => "control-label col-md-3"  %>
+                <div class="col-md-9">
+                  <%= f.text_area :about_restaurant , :cols => 40, :rows => 4, :class => 'form-control required' %>
+                </div>
+              </div> 
+
+              <div class="form-group">
+                <%= f.label :is_pick_up, "Pick Up", :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <div class="radio-list">
+                    <label>
+                      <div class="radio">
+                        <span class="checked"><%= f.radio_button :is_pick_up, true, :checked => true %></span>
+                      </div>Yes 
+                    </label>
+                    <label>
+                      <div class="radio">
+                        <span><%= f.radio_button :is_pick_up, false %></span>
+                      </div>No
+                    </label>
+                  </div>  
+                </div>
+              </div> 
+              <div class="form-group">
+                <%= f.label :is_featured, "Feature", :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <div class="radio-list">
+                    <label>
+                      <div class="radio">
+                        <span class="checked"><%= f.radio_button :is_featured, true, :checked => true %></span>
+                      </div>Yes 
+                    </label>
+                    <label>
+                      <div class="radio">
+                        <span><%= f.radio_button :is_featured, false %></span>
+                      </div>No
+                    </label>
+                  </div>  
+                </div>
+              </div> 
+              <div class="form-group">
+                <%= f.label :min_order, :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <%= f.text_field :min_order, :class => "form-control required" %>
+                </div>  
+              </div>
+
+              <div class="form-group">
+                <%= f.label :sale_tax, "Sale Tax (%)", :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <%= f.text_field :sale_tax, :class => "form-control required col-md-9" %>
+                </div>
+              </div>  
+            <% end %>
+          </div>
+
+          <div class="tab-pane" id="tab3">
+            <h3 class="block"> Delivery Information </h3>
+            <%= f.fields_for :delivery_info do |f| %>
+              
+              <div class="form-group">
+                <%= f.label :is_delivery, "Delivery", :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <div class="radio-list">
+                    <label>
+                      <div class="radio">
+                        <span class="checked"><%= f.radio_button :is_delivery, true, :checked => true %></span>
+                      </div>Yes 
+                    </label>
+                    <label>
+                      <div class="radio">
+                        <span><%= f.radio_button :is_delivery, false %></span>
+                      </div>No
+                    </label>
+                  </div>  
+                </div>
+              </div> 
+        
+              <div class="form-group">
+                <%= f.label :delivery_estimated_time, "Restaurant delivery estimated time (mintus)", :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <%= f.number_field  :delivery_estimated_time, :min => 0 , :class => "form-control required" %>
+                </div>
+              </div>  
+
+              <div class="form-group">
+                <%= f.label :delivery_charges, :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <%= f.text_field :delivery_charges, :class => "form-control required" %>
+                </div>  
+              </div>
+
+              <div class="form-group">
+                <%= f.label :delivery_distance, "Delivery Distance (miles)", :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <%= f.text_field :delivery_distance, :class => "form-control required" %>
+                </div>
+              </div>  
+            <% end -%>
+          </div>
+
+          <div class="tab-pane" id="tab4">
+            <h3 class="block">Ordering Information </h3>
+            <%= f.fields_for :order_info do |f| %>
+
+              <div class="form-group">
+
+                <%= f.label :info_way, " Please select way of get order information.. ", :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <div class="radio-list">
+                    <label>
+                      <div class="radio">
+                        <span ><%= f.radio_button :info_way, "email" %></span>
+                      </div> Email 
+                    </label>
+                    <label>
+                      <div class="radio">
+                        <span class="checked"><%= f.radio_button :info_way, "fax", :checked => true %></span>
+                      </div>Fax
+                    </label>
+                    <label>
+                      <div class="radio">
+                        <span><%= f.radio_button :info_way, "GPRS" %></span>
+                      </div>GPRS
+                    </label>
+                    <label>
+                      <div class="radio">
+                        <span><%= f.radio_button :info_way, "POS" %></span>
+                      </div>POS
+                    </label>
+                    <label>
+                      <div class="radio">
+                        <span><%= f.radio_button :info_way, "SMS" %></span>
+                      </div>SMS
+                    </label>
+                  </div>  
+                </div>
+              </div> 
+             
+              <div class="form-group">
+                <%= f.label :email_order, :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <%= f.email_field :email_order, :class => "form-control required" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :fax_number, "Restaurant Fax No." , :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <%= f.text_field :fax_number, :class => "form-control required" %>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <%= f.label :gprs, "GPRS Option", :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <div class="radio-list">
+                   <label>
+                      <div class="radio">
+                        <span ><%= f.radio_button :gprs, true %></span>
+                      </div> Yes 
+                    </label> 
+                    <label>
+                      <div class="radio">
+                        <span ><%= f.radio_button :gprs, false, :checked => true %></span>
+                      </div> No 
+                    </label> 
+                  </div>
+                </div>  
+              </div>
+              
+              <div class="form-group">
+                <%= f.label :cloud_printer_email, :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <%= f.email_field :cloud_printer_email, :class => "form-control required" %>
+                </div>  
+              </div>
+
+              <div class="form-group">
+                <%= f.label :cloud_printer_password, :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <%= f.password_field :cloud_printer_password, :class => "form-control required" %>
+                </div>  
+              </div>
+
+              <div class="form-group">
+                <%= f.label :sms_option, "Sms Option", :class => "control-label col-md-3" %>
+                <div class="col-md-9">
+                  <div class="radio-list">
+                   <label>
+                      <div class="radio">
+                        <span ><%= f.radio_button :sms_option, true %></span>
+                      </div> Yes 
+                    </label> 
+                    <label>
+                      <div class="radio">
+                        <span ><%= f.radio_button :sms_option, false, :checked => true %></span>
+                      </div> No 
+                    </label> 
+                  </div>
+                </div>  
+              </div>
+            <% end -%>
+          </div>
+          <div class="tab-pane" id="tab5">
+            <h3 class="block"> Bank Information </h3>
+            <%= f.fields_for :bank_info do |f| %>
+              <div class="form-group">
+                <%= f.label :bank_name, :class=> "control-label col-md-3"%>
+                <div class="col-md-9">
+                <%= f.text_field :bank_name , :class => "form-control required"%>
+              </div>
+              </div>
+               <div class="form-group">
+                <%= f.label :bank_account_number, :class=> "control-label col-md-3"%>
+                <div class="col-md-9">
+                  <%= f.text_field :bank_account_number , :class => "form-control required"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :routine_number, :class=> "control-label col-md-3"%>
+                <div class="col-md-9">
+                  <%= f.text_field :routine_number , :class => "form-control required"%>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :swift_code, :class=> "control-label col-md-3"%>
+                <div class="col-md-9">
+                  <%= f.text_field :swift_code , :class => "form-control required"%>
+                </div>
+              </div>
+            <% end -%>
+          </div>
+          <div class="tab-pane" id="tab6">
+            
+            <h3 class="block">Restaurant Opening & Closing Time </h3>
+            
+            <div class="row time-headings">
+              <div class="col-md-4"> Day </div>
+              <div class="col-md-4"> Opening Time</div>
+              <div class="col-md-4"> Closing Time</div>
             </div>
-          </div>  
-        <% end %>
+
+            <%= f.fields_for :operation do |f| %>
+              <%= f.fields_for :sechedules do |f| %>
+                <div class="form-group">
+                  <div class="col-md-2">
+                    <label class="control-label"> <%= f.object.day %> <%= f.hidden_field :day,  :readonly => true, :class => "convert-label" %></label>
+                  </div>  
+                
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                      <span class="input-group-btn">
+                        <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <%= f.text_field :closing_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                      <span class="input-group-btn">
+                        <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                      </span>
+                    </div>
+                  </div> 
+                </div>  
+              <% end %>  
+            <% end %>
+          
+            <h3 class="block"> Restaurant Order Pick Time </h3>
+            <div class="row time-headings">
+              <div class="col-md-4"> Day </div>
+              <div class="col-md-4"> Opening Time</div>
+              <div class="col-md-4"> Closing Time</div>
+            </div>
+
+            <%= f.fields_for :pick_up do |f| %>
+              <%= f.fields_for :sechedules do |f| %>
+                <div class="form-group">
+                  <div class="col-md-2">
+                    <label class="control-label"> <%= f.object.day %> <%= f.hidden_field :day,  :readonly => true, :class => "convert-label" %></label>
+                  </div>  
+                
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                      <span class="input-group-btn">
+                        <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <%= f.text_field :closing_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                      <span class="input-group-btn">
+                        <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                      </span>
+                    </div>
+                  </div> 
+                </div>
+              <% end %>  
+            <% end %>
+
+            <h3 class="block"> Restarant Order Deliver Time </h3>
+            <div class="row time-headings">
+              <div class="col-md-4"> Day </div>
+              <div class="col-md-4"> Opening Time</div>
+              <div class="col-md-4"> Closing Time</div>
+            </div>
+
+            <%= f.fields_for :delivery do |f| %>
+              <%= f.fields_for :sechedules do |f| %>
+                <div class="form-group">
+                  <div class="col-md-2">
+                    <label class="control-label"><%= f.object.day %> <%= f.hidden_field :day,  :readonly => true, :class => "convert-label" %> </label>
+                  </div>  
+                
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                      <span class="input-group-btn">
+                        <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="input-group">
+                      <%= f.text_field :closing_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                      <span class="input-group-btn">
+                        <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                      </span>
+                    </div>
+                  </div> 
+                </div>  
+              <% end %>  
+            <% end %>
+          </div>
+
+
+          <div class="tab-pane" id="tab7">
+            <h3 class="block"> Select Food Categories of Restaurant </h3>
+            <div class="from-group">
+              <div class="checkbox-list">
+                <% RestaurantCategory.all.each do |cat| %>
+                  <label><%= check_box_tag "restaurant[restaurant_category_ids][]", cat.id, @restaurant.restaurant_category_ids.include?(cat.id), id: dom_id(cat), :class => 'checkbox-inline' %>
+                    <%= cat.category_name %>
+                  </label>    
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="tab8">
+              <h3 class="block"> Restaurant Admin Information </h3>
+              <%= f.fields_for :user do |f| %>
+                <div class="form-group">
+                  <%= f.label :first_name, :class => "col-md-3 control-label" %>
+                  <div class="col-md-9">
+                    <%= f.text_field :first_name , :class => "form-control required"%>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :last_name, :class => "col-md-3 control-label" %>
+                  <div class="col-md-9">
+                    <%= f.text_field :last_name , :class => "form-control required"%>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :email, :class => "col-md-3 control-label" %>
+                  <div class="col-md-9">
+                    <%= f.email_field :email , :class => "form-control required"%>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <%= f.label :password, :class => "col-md-3 control-label" %>
+                  <div class="col-md-9">
+                    <%= f.password_field :password , :class => "form-control required"%>
+                  </div>
+                </div>
+
+                <div class="form-group" >
+                  <%= f.label :password_confirmation, :class => "col-md-3 control-label" %>
+                  <div class="col-md-9">
+                    <%= f.password_field :password_confirmation , :class => "form-control required"%>
+                  </div>
+                </div>
+
+              <% end %>
+          </div>
+        </div>  
       </div>
-    </div>
-  </div>
+      <div class="form-actions fluid">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-offset-3 col-md-9">
+              <a href="javascript:;" class="btn default button-previous">
+                <i class="m-icon-swapleft"></i> Back
+              </a>
+              <a href="javascript:;" class="btn blue button-next">
+                 Continue <i class="m-icon-swapright m-icon-white"></i>
+              </a>
+              <%#= button_tag(type: 'submit', class: "btn green button-submit") do %>
+                 <!-- <i class= 'm-icon-swapright m-icon-white'></i> Save -->
+              <%# end %>
+              <%= f.submit "Save", :class => "btn green button-submit" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  <% end %>
 </div>
-<script>
-  $(document).ready(function() {       
-   ComponentsPickers.init();
-   FormWizard.init();
-  });
-</script>
