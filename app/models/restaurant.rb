@@ -40,11 +40,20 @@ class Restaurant < ActiveRecord::Base
 
   def self.apply_search_filter(data,key_word)
     search_keyword = ["%",key_word,"%"].join('')
-    return data.joins(:contact_info).joins(:reviews).where('restaurant_name like ? OR rating like ? ' , search_keyword, search_keyword)
+    return data.joins("LEFT OUTER JOIN reviews ON reviews.restaurant_id = restaurants.id").joins(:contact_info).where('restaurant_name like ? OR rating like ?' ,search_keyword, search_keyword)
   end
 
   def self.apply_order_filter(data, sorting_query)
-    return data.joins(:contact_info).joins(:reviews).order(sorting_query)
+    return data.joins("LEFT OUTER JOIN reviews ON reviews.restaurant_id = restaurants.id").joins(:contact_info).order(sorting_query)
+  end
+
+  def self.apply_search_filter_with_school(data,key_word)
+    search_keyword = ["%",key_word,"%"].join('')
+    return data.joins("LEFT OUTER JOIN schools ON schools.id = restaurants.school_id").joins(:contact_info).joins(:contact_info).where('restaurant_name like ? OR school_name like ? OR branch_name like ?' ,search_keyword, search_keyword, search_keyword)
+  end
+
+   def self.apply_order_filter_with_school(data, sorting_query)
+    return data.joins("LEFT OUTER JOIN schools ON schools.id = restaurants.school_id").joins(:contact_info).order(sorting_query)
   end
 
   def assign_role_admin
@@ -54,20 +63,60 @@ class Restaurant < ActiveRecord::Base
   end
 
   def restaurant_name
-    self.contact_info.restaurant_name
+    contact_info.restaurant_name
+  end
+
+  def school_name
+    school.try(:school_name)
+  end
+
+  def about_us
+    restaurant_info.about_restaurant
   end
 
   def address
-    self.contact_info.restaurant_street_address
+    contact_info.restaurant_street_address
   end
 
   def phone
-    self.contact_info.contact_phone
+    contact_info.contact_phone
   end
 
   def email
-    self.contact_info.contact_email
+    contact_info.contact_email
   end
+
+  def website
+    contact_info.restaurant_website
+  end
+
+  def state
+    contact_info.state
+  end
+
+  def city
+    contact_info.city
+  end
+
+  def zip_code
+    contact_info.zip_code
+  end
+
+  def is_delivery
+    delivery_info.is_delivery? ? "Yes" : "No"
+  end
+
+  def is_pickup
+    restaurant_info.is_pick_up? ? "Yes" : "No"
+  end
+
+  def is_featured
+    restaurant_info.is_featured? ? "Yes" : "No"
+  end
+
+  def transmit_way
+    order_info.info_way
+  end 
 
   def close_time
     today = Time.now.strftime('%A')
@@ -188,6 +237,22 @@ class Restaurant < ActiveRecord::Base
       total += order.total_bill
     end
     total
+  end
+
+  def bank_name
+    bank_info.bank_name
+  end
+
+  def bank_account_number
+    bank_info.bank_account_number
+  end
+
+  def routine_number
+    bank_info.routine_number
+  end
+
+  def swift_code
+    bank_info.swift_code
   end
   
 end

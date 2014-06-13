@@ -4746,3 +4746,8 @@ a:hover{
   margin-bottom: 10px;
   font-weight: bold;
 }
+
+.font-bold
+{
+  font-weight: bold !important;
+}

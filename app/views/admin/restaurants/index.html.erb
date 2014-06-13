@@ -1,37 +1,47 @@
 <div class="row">
-  <div class="container"> 
-    <h4>Listing of  Restaurants </h4>
-    <table class="table table-striped user-result" >
-      <tr>
-        <th>Restaurant name</th>
-        <th>View</th>
-        <th>Update</th>
-        <th>Delete</th>
-      </tr>
-      <% @restaurants.each do |restaurant| %>
-        <tr>
-          <td><%= restaurant.contact_info.restaurant_name %></td>
-          <% unless params[:school_id].blank? %>
-            
-              <td><%= link_to 'Show', admin_school_restaurant_path(@school,restaurant) %></td> 
-              <td><%= link_to 'Edit', edit_admin_school_restaurant_path(@school,restaurant) %></td>
-              <td><%= link_to 'Destroy', admin_school_restaurant_path(@school,restaurant), method: :delete, data: { confirm: 'Are you sure?' } %>
-              </td>
-          <% else %>  
-              <td><%= link_to 'Show', admin_restaurant_path(restaurant) %></td>
-              <td><%= link_to 'Edit', edit_admin_restaurant_path(restaurant) %></td>
-              <td><%= link_to 'Destroy', admin_restaurant_path(restaurant), method: :delete, data: { confirm: 'Are you sure?' } %>
-              </td>
-          <% end %>  
-        </tr>
-      <% end %>
-    </table>
-    <br />
-    <% unless params[:school_id].blank? %>
-        <%= link_to 'New Restaurant', new_admin_school_restaurant_path(@school) %> | 
-        <%= link_to 'Back', admin_school_path(@school) %> 
-    <%else %>
-        <%= link_to 'New Restaurant', new_admin_restaurant_path %>
-    <% end %>  
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Restaurants
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li> <%= link_to "Restaurnats", admin_restaurants_path %></li>
+    </ul>  
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-home"></i>Listing of  Restaurants
+        </div>
+        <div class="pull-right">
+          <%= link_to raw('<span class="label label-default">Add New Restaurant </span>'), new_admin_restaurant_path %>
+        </div>  
+      </div> 
+      <div class="portlet-body">
+        <div class="table-container">
+          <table class="table table-striped table-bordered table-hover" id="restaurants-table">
+            <thead>
+              <tr>
+                <th>Restaurant Name </th>
+                <th>School Name </th>
+                <th>Branch Name </th>
+                <th>View </th>
+                <th>Edit </th>
+                <th>Delete</th>
+              </tr>
+            </thead>  
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

@@ -73,8 +73,10 @@ Ordering::Application.routes.draw do
         member do 
           get 'order'
           get 'order_detail'
+          get 'delete'
         end
       end
+
     end 
 
     resources :restaurants do
@@ -83,6 +85,7 @@ Ordering::Application.routes.draw do
         get 'order_detail'
         get 'accept_request'
         get 'reject_request'
+        get 'delete'
       end
     end
 
@@ -126,7 +129,6 @@ Ordering::Application.routes.draw do
       end
     end
     resources :cuisines
-
   end 
 
   namespace :restaurant do

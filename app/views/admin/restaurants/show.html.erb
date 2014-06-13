@@ -1,87 +1,370 @@
 <div class="row">
-  <div class="container">  
-    <p>
-      <b>Restaurant name:</b>
-      <%= @restaurant.contact_info.restaurant_name %>
-    </p>
-
-    <p>
-      <b>Restaurant phone:</b>
-      <%= @restaurant.contact_info.restaurant_phone %>
-    </p>
-
-    <p>
-      <b>Restaurant website:</b>
-      <%= @restaurant.contact_info.restaurant_website %>
-    </p>
-
-    <p>
-      <b>Restaurant street address:</b>
-      <%= @restaurant.contact_info.restaurant_street_address %>
-    </p>
-
-    <p>
-      <b>State:</b>
-      <%= @restaurant.contact_info.state %>
-    </p>
-
-    <p>
-      <b>City:</b>
-      <%= @restaurant.contact_info.city %>
-    </p>
-
-    <p>
-      <b>Zip code:</b>
-      <%= @restaurant.contact_info.zip_code %>
-    </p>
-
-    <p>
-      <b>About restaurant:</b>
-      <%= @restaurant.restaurant_info.about_restaurant %>
-    </p>
-
-    <p>
-      <b>Is pick up:</b>
-      <%= @restaurant.restaurant_info.is_pick_up %>
-    </p>
-
-    <p>
-      <b>Is deliver:</b>
-      <%= @restaurant.delivery_info.is_delivery %>
-    </p>
-
-    <p>
-      <b>Min delivery:</b>
-      <%= @restaurant.restaurant_info.min_order %>
-    </p>
-
-    <p>
-      <b>Delivery Estimate Time:</b>
-      <%= @restaurant.delivery_info.delivery_estimated_time %>
-    </p>
-
-    <p>
-      <b>Featured:</b>
-      <%= @restaurant.restaurant_info.is_featured %>
-    </p>
-
-    <p>
-      <label>Restaurant Categories</label> <br>
-      <% @restaurant.restaurant_categories.each do |cat| %>
-        <span><%= cat.category_name%> </span> <br>
-      <% end %> 
-    </p>
-    <p>
-      <%= link_to "View Menu" , admin_menu_path(@restaurant.menu) %>  
-    </p>  
-    <% unless params[:school_id].blank? %>
-      <%= link_to 'Edit', edit_admin_school_restaurant_path(@school, @restaurant) %> 
-      | <%= link_to 'Back', admin_school_restaurants_path(@school) %> 
-      | <%= link_to "View Orders", order_admin_school_restaurant_path(@restaurant) %>
-    <% else %>
-      <%= link_to 'Edit', edit_admin_restaurant_path(@restaurant) %> |
-      <%= link_to 'Back', admin_restaurants_path %> |
-      <%= link_to "View Orders", order_admin_restaurant_path(@restaurant) %>
-    <% end %>  
+  <div class="col-md-12">
+    <h3 class="page-title">
+     <%= @restaurant.restaurant_name %>
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li> <%= link_to "Restaurnats", admin_restaurants_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li><%= @restaurant.restaurant_name %> </li>
+    </ul>  
   </div>
 </div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i>Basic Information
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <ul class="feeds">
+          <li>
+            <div class="col-md-6"><label>Restaurant Name </label></div>
+            <div class="col-md-6"><label><%= @restaurant.restaurant_name %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>School Name </label></div>
+            <div class="col-md-6"><label><%= @restaurant.school_name %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>About Restaurant</label></div>
+            <div class="col-md-6"><label><%= @restaurant.about_us %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>Pick Up </label></div>
+            <div class="col-md-6"><label><%= @restaurant.is_pickup %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>Delivery</label></div>
+            <div class="col-md-6"><label><%= @restaurant.is_delivery %></label></div>
+          </li>
+           <li>
+            <div class="col-md-6"><label>Min Order</label></div>
+            <div class="col-md-6"><label><%= @restaurant.min_delivery %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>Delivery Charges</label></div>
+            <div class="col-md-6"><label><%= @restaurant.delivery_charges %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>Delivery Time</label></div>
+            <div class="col-md-6"><label><%= @restaurant.estimated_time %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>Featured</label></div>
+            <div class="col-md-6"><label><%= @restaurant.is_featured %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>Sale Tax</label></div>
+            <div class="col-md-6"><label><%= @restaurant.sale_tax %></label></div>
+          </li>
+        </ul>  
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i>Contact Infonformation
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <ul class="feeds">
+          <li>
+            <div class="col-md-6"><label>Restaurant Email </label></div>
+            <div class="col-md-6"><label><%= @restaurant.email %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>Phone Number</label></div>
+            <div class="col-md-6"><label><%= @restaurant.phone %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>Website</label></div>
+            <div class="col-md-6"><label><%= @restaurant.website %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>Street Address </label></div>
+            <div class="col-md-6"><label><%= @restaurant.address %></label></div>
+          </li>
+          <li>
+            <div class="col-md-6"><label>State</label></div>
+            <div class="col-md-6"><label><%= @restaurant.state%></label></div>
+          </li>
+           <li>
+            <div class="col-md-6"><label>City</label></div>
+            <div class="col-md-6"><label><%= @restaurant.city %></label></div>
+          </li>
+           <li>
+            <div class="col-md-6"><label>Zip Code</label></div>
+            <div class="col-md-6"><label><%= @restaurant.zip_code %></label></div>
+          </li>
+        </ul>  
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i>Order Information
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+          <ul class="feeds">
+            <li>
+              <div class="col-md-6"><label>Order Transmit way </label></div>
+              <div class="col-md-6"><label><%= @restaurant.transmit_way %></label></div>
+            </li>
+            <li>
+              <div class="col-md-6"><label>Order Email </label></div>
+              <div class="col-md-6"><label><%= @restaurant.order_email %></label></div>
+            </li>
+            <% if @restaurant.can_fax? %>
+              <li>
+                <div class="col-md-6"><label>Fax Number </label></div>
+                <div class="col-md-6"><label><%= @restaurant.fax_number %></label></div>
+              </li>
+            <% end %>  
+          </ul>
+        </div>  
+    </div>  
+  </div>
+  <div class="col-md-6">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i>Bank Information
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+          <ul class="feeds">
+            <li>
+              <div class="col-md-6"><label>Bank Name </label></div>
+              <div class="col-md-6"><label><%= @restaurant.bank_name %></label></div>
+            </li>
+            <li>
+              <div class="col-md-6"><label>Bank Account Number </label></div>
+              <div class="col-md-6"><label><%= @restaurant.bank_account_number %></label></div>
+            </li>
+            <li>
+              <div class="col-md-6"><label>Routine Number </label></div>
+              <div class="col-md-6"><label><%= @restaurant.routine_number %></label></div>
+            </li>
+            <li>
+              <div class="col-md-6"><label>Swift Code </label></div>
+              <div class="col-md-6"><label><%= @restaurant.swift_code %></label></div>
+            </li>
+          </ul>
+        </div>  
+    </div>
+  </div>  
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i> Opening-Closing Timing
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <ul class="feeds">
+          <li>
+            <div class="col-md-4 font-bold"> Day  </div>
+            <div class="col-md-4 font-bold"> Open Time </div>
+            <div class="col-md-4 font-bold"> Close Time </div>
+          </li>
+          <% @restaurant.operation.sechedules.each do |schedule| %>
+            <li>
+              <div class="col-md-4"> <label> <%= schedule.day %> </label></div>
+              <div class="col-md-4"> <label> <%= schedule.opening_time.strftime("%I:%M%p")  %> </label></div>
+              <div class="col-md-4"> <label> <%= schedule.closing_time.strftime("%I:%M%p")  %> </label> </div>
+            </li>
+          <% end %>
+        </ul>  
+      </div>  
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i> Order Delivery Time
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <ul class="feeds">
+          <li>
+            <div class="col-md-4 font-bold"> Day  </div>
+            <div class="col-md-4 font-bold"> Open Time </div>
+            <div class="col-md-4 font-bold"> Close Time  </div>
+          </li>
+          <% @restaurant.delivery.sechedules.each do |schedule| %>
+            <li>
+              <div class="col-md-4"> <label> <%= schedule.day %> </label></div>
+              <div class="col-md-4"> <label> <%= schedule.opening_time.strftime("%I:%M%p")  %></label></div>
+              <div class="col-md-4"> <label> <%= schedule.closing_time.strftime("%I:%M%p")  %> </label></div>
+            </li>
+          <% end %>
+        </ul>  
+      </div>  
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i> Order Pickup Time
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <ul class="feeds">
+          <li>
+            <div class="col-md-4 font-bold"> Day </div>
+            <div class="col-md-4 font-bold"> Open Time</div>
+            <div class="col-md-4 font-bold"> Close Time </div>
+          </li>
+          <% @restaurant.pick_up.sechedules.each do |schedule| %>
+            <li>
+              <div class="col-md-4"> <label><%= schedule.day %> </label></div>
+              <div class="col-md-4"> <label><%= schedule.opening_time.strftime("%I:%M%p")  %></label></div>
+              <div class="col-md-4"> <label><%= schedule.closing_time.strftime("%I:%M%p")  %></label> </div>
+            </li>
+          <% end %>
+        </ul>  
+      </div>  
+    </div>
+  </div>  
+</div>
+
+<div class="row">
+   <div class="col-md-6">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i> Food Categories 
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <ul class="feeds">
+          <% @restaurant.restaurant_categories.each do |category| %>
+            <li>
+              <%= category.category_name %>
+            </li>
+          <% end %>
+        </ul>  
+      </div>  
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i> Admin Information
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <ul class="feeds">
+          <li>
+            <div class="col-md-6">First Name</div>
+            <div class="col-md-6"><%= @restaurant.user.first_name %></div>
+          <li>
+          <li>
+            <div class="col-md-6">Last Name</div>
+            <div class="col-md-6"><%= @restaurant.user.last_name %></div>
+          <li>
+          <li>
+            <div class="col-md-6">Email Address</div>
+            <div class="col-md-6"><%= @restaurant.user.email %></div>
+          <li>
+        </ul>  
+      </div>  
+    </div>
+  </div>
+</div>  

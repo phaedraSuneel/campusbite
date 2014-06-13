@@ -52,6 +52,7 @@
 //= require locations
 //= require restaurant_categories
 //= require reviews
+//= require custom-restaurant
 //= require FixedHeader
 //= require moment
 //= require bootstrap-timepicker.min
