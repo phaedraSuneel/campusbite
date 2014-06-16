@@ -61,8 +61,13 @@ class Admin::MenuItemsController < ApplicationController
   end
 
   def get_group
-    p params[:length].to_i
     render(:partial => "admin/menu_items/get_group_field", :locals => {:length => params[:length].to_i})
+  end
+
+  def get_group_item
+    p params[:index]
+    p params[:length]
+    render(:partial => "admin/menu_items/get_group_item_field", :locals => {:length => params[:length].to_i, :index => params[:index].to_i})
   end
 
   def accept_request

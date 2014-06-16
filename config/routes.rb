@@ -100,6 +100,7 @@ Ordering::Application.routes.draw do
         end
         collection do 
           get 'get_group'
+          get 'get_group_item'
         end
       end
     end

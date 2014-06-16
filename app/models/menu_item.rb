@@ -20,7 +20,7 @@ class MenuItem < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/ 
               
   accepts_nested_attributes_for :menu_item_properties
-  accepts_nested_attributes_for :groups
+  accepts_nested_attributes_for :groups, :allow_destroy => true
 
   def restaurant
      self.menu_category.menu.restaurant

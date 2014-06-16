@@ -1,0 +1,46 @@
+<div class="property">
+  <div class="group-item">
+    <div class="form-group row">
+      <label class="col-md-3 control-label">Group Item Name</label>
+      <div class="col-md-9">
+        <input class="form-control index" name="menu_item[groups_attributes][<%= index %>][group_items_attributes][<%= length %>][name]" size="30" type="text" >
+      </div>  
+    </div>
+    <div class="form-group row">
+      <label class="col-md-3 control-label">Group Item Price</label>
+      <div class="col-md-9">
+        <input class="form-control" name="menu_item[groups_attributes][<%= index %>][group_items_attributes][<%= length %>][price]" size="30" type="text" >
+      </div>  
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-md-3" >Pizza</label>
+      <div class="col-md-9">
+        <div class="radio-list">
+          <label>
+            <div class="radio">
+              <span class="checked"><div class="radio"><span class="checked"><input checked="checked" name="menu_item[groups_attributes][<%= index %>][group_items_attributes][<%= length %>][is_pizza]" type="radio" value="true"></span></div></span>
+            </div>&nbsp;&nbsp; Yes 
+          </label>
+          <label>
+            <div class="radio">
+              <span><div class="radio"><span><input name="menu_item[groups_attributes][<%= index %>][group_items_attributes][<%= length %>][is_pizza]" type="radio" value="false"></span></div></span>
+            </div>&nbsp;&nbsp; No
+          </label>
+        </div>  
+      </div>
+    </div>
+  </div>  
+	<div class="form-group row">
+    <div class="col-md-12">
+      <a href="javascript:;" class="remove-group-item-property-field btn red pull-right "> Remove Item </a>
+    </div>  
+  </div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $(".remove-group-item-property-field").click(function(){
+        $(this).parent().parent().parent().remove();
+      });
+  });
+</script>

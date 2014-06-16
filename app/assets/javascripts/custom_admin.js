@@ -8,7 +8,7 @@ $(document).ready(function(){
     id = parent.data('menu');
     length = parent.find('input.length').length;
     console.log(length);
-    
+
     $.ajax ({
         url:  '/admin/menu/'+ id +'/menu_items/get_group',
         data: {length: length },
@@ -17,6 +17,23 @@ $(document).ready(function(){
           parent.append(data);
         }
      });
+  });
+
+  $(".add-group-item-link").on('click', function(e){
+    parent = $(this).parent();
+    console.log(parent);
+    id = $(".group-content").data('menu');
+    sub_parent = parent.find(".group-item-content");
+    index = parent.find('input.length').length;
+    length = sub_parent.find('input.index').length;
+    $.ajax ({
+      url:  '/admin/menu/'+ id +'/menu_items/get_group_item',
+      data: {length: length, index: index },
+      success: function(data)
+      {
+        sub_parent.append(data);
+      }
+    });
   });
 
   $(".add_more_property_link").click(function(e){
