@@ -237,8 +237,7 @@ ActiveRecord::Schema.define(:version => 20140616071239) do
     t.integer  "max_limit"
     t.string   "message"
     t.string   "message_color"
-    t.string   "required"
-    t.string   "boolean"
+    t.boolean  "required"
     t.integer  "menu_item_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false

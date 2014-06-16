@@ -98,6 +98,9 @@ Ordering::Application.routes.draw do
           get 'accept_request'
           get 'reject_request'
         end
+        collection do 
+          get 'get_group'
+        end
       end
     end
     

@@ -6,8 +6,7 @@ class CreateGroups < ActiveRecord::Migration
       t.integer :max_limit
       t.string :message
       t.string :message_color
-      t.string :required
-      t.string :boolean
+      t.boolean :required
       t.integer :menu_item_id
 
       t.timestamps

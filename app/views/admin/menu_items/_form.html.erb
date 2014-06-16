@@ -43,10 +43,63 @@
           <%= f.text_area :description , :cols => 40, :rows => 4, :class => 'form-control' %>
         </div>  
       </div>
-    </div>  
+      
+      <div class="group-content" data-menu = '<%= @menu.id %>'>
+        <%= f.fields_for :groups do |f| %>
+          <div class="form-group row">
+            <%= f.label :name , "Group Name", :class => "col-md-3 control-label"%>
+            <div class="col-md-9">
+              <%= f.text_field :name, :class => "form-control" %>
+            </div>  
+          </div>
+          <div class="form-group row">
+            <%= f.label :min_limit, "Min Limit", :class => "col-md-3 control-label" %>
+            <div class="col-md-9">
+              <%= f.number_field  :min_limit, :min => 0 , :class => "form-control" %>
+            </div>  
+          </div> 
+          <div class="form-group row">
+            <%= f.label :max_limit, "Min Limit", :class => "col-md-3 control-label" %>
+            <div class="col-md-9">
+              <%= f.number_field  :max_limit, :min => 0 , :class => "form-control" %>
+            </div>  
+          </div>
+          <div class="form-group row">
+            <%= f.label :message, "Display Message", :class => "col-md-3 control-label" %>
+            <div class="col-md-9">
+              <%= f.text_field  :message, :class => "form-control" %>
+            </div>  
+          </div> 
+          <div class="form-group row">
+            <label class="col-md-3 control-label">Select Message Color </label>
+            <div class="col-md-9">
+              <%= f.select :message_color, options_for_select(["Red", "Grey"]),{include_blank: false},{:class => 'form-control'} %>
+            </div>  
+          </div> 
+          <div class="form-group row">
+            <%= f.label :required, "Required", :class => "control-label col-md-3" %>
+            <div class="col-md-9">
+              <div class="radio-list">
+                <label>
+                  <div class="radio">
+                    <span class="checked"><%= f.radio_button :required, true, :checked => true %></span>
+                  </div>&nbsp&nbsp Yes 
+                </label>
+                <label>
+                  <div class="radio">
+                    <span><%= f.radio_button :required, false %></span>
+                  </div>&nbsp&nbsp No
+                </label>
+              </div>  
+            </div>
+          </div>
+        <% end %>
+      </div>  
+    </div> 
     
     <div class="form-actions fluid">
       <div class="col-md-offset-4 col-md-4">
+        <%= link_to "Add Group", 'javascript:;', :class => 'add-group-link btn blue '%>
         <%= f.submit "Save", :class => "btn green" %>
         <%= link_to "Cancel", admin_menu_path(@menu),:class => "btn default "%>
       </div>  

@@ -17,7 +17,6 @@ class Admin::MenuItemsController < ApplicationController
     @menu = Menu.find(params[:menu_id])
     @menu_category = @menu.menu_categories.all
     @menu_item = MenuItem.new
-    @menu_item.groups.build
   end
 
   def edit
@@ -59,6 +58,11 @@ class Admin::MenuItemsController < ApplicationController
 
   def property_field
     render(:partial => "admin/menu_items/get_property_field", :locals => {:length => params[:length].to_i})
+  end
+
+  def get_group
+    p params[:length].to_i
+    render(:partial => "admin/menu_items/get_group_field", :locals => {:length => params[:length].to_i})
   end
 
   def accept_request

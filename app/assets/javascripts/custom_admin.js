@@ -2,6 +2,23 @@ $(document).ready(function(){
 
   App.init();
   
+  $(".add-group-link").click(function(e){
+    e.preventDefault();
+    parent = $(".group-content");
+    id = parent.data('menu');
+    length = parent.find('input.length').length;
+    console.log(length);
+    
+    $.ajax ({
+        url:  '/admin/menu/'+ id +'/menu_items/get_group',
+        data: {length: length },
+        success: function(data)
+        {
+          parent.append(data);
+        }
+     });
+  });
+
   $(".add_more_property_link").click(function(e){
     e.preventDefault();
     parent = $(".radio-controls").find(".property-field");
