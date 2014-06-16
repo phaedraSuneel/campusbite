@@ -40,7 +40,7 @@
         </div>
       </div>
       <div class="portlet-body">
-        <span class="pull-right">
+        <span class="margin-bottom-10x pull-right">
           <%= link_to raw("<span class='label label-primary'>Add New</span>"),new_admin_menu_menu_category_path(@menu) %>
         </span> 
         <div class="table-responsive">
@@ -90,7 +90,7 @@
         </div>
       </div>
       <div class="portlet-body">
-        <span class="pull-right">
+        <span class="margin-bottom-10x pull-right">
           <%= link_to raw("<span class='label label-primary'>Add New</span>"),new_admin_menu_menu_item_path(@menu) %>
         </span> 
         <div class="table-responsive">
@@ -98,6 +98,7 @@
             <thead>
               <tr>
                 <th> Name </th>
+                <th> Category Name </th>
                 <th> Show </th>
                 <th> Edit </th>
                 <th> Delete</th>
@@ -107,6 +108,7 @@
               <% @items.each do |item|%>
                 <tr>
                   <td> <%= item.item_name %></td>
+                  <td> <%= item.menu_category.category_name %></td>
                   <td> <%= link_to raw("<span class='label label-success'>Show </span>"), admin_menu_menu_item_path(@menu, item) %></td>
                   <td> <%= link_to raw("<span class='label label-default'>Edit </span>"), edit_admin_menu_menu_item_path(@menu, item) %></td>
                   <td> <%= link_to raw("<span class='label label-danger'>delete </span>"), admin_menu_menu_item_path(@menu, item), :method => :delete, :confirm => "are you sure?" %></td>

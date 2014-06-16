@@ -7,8 +7,6 @@ $(document).ready(function(){
     parent = $(".group-content");
     id = parent.data('menu');
     length = parent.find('input.length').length;
-    console.log(length);
-
     $.ajax ({
         url:  '/admin/menu/'+ id +'/menu_items/get_group',
         data: {length: length },
@@ -21,7 +19,6 @@ $(document).ready(function(){
 
   $(".add-group-item-link").on('click', function(e){
     parent = $(this).parent();
-    console.log(parent);
     id = $(".group-content").data('menu');
     sub_parent = parent.find(".group-item-content");
     index = parent.find('input.length').length;

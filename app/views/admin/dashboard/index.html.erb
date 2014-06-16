@@ -15,53 +15,55 @@
     </ul>  
   </div>
 </div>
-<div class="row">
-  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
-    <div class="dashboard-stat blue">
-      <div class="visual">
-        <i class="fa fa-briefcase fa-icon-medium"></i>
-      </div>
-      <div class="details">
-        <div class="number">
-           $<%= revenue =  @restaurants.collect(&:life_time_sale).sum.round(3) %>
+<% unless Order.all.blank? %>
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 margin-bottom-10">
+      <div class="dashboard-stat blue">
+        <div class="visual">
+          <i class="fa fa-briefcase fa-icon-medium"></i>
         </div>
-        <div class="desc">
-           Lifetime Sales
+        <div class="details">
+          <div class="number">
+             $<%= revenue =  @restaurants.collect(&:life_time_sale).sum.round(3) %>
+          </div>
+          <div class="desc">
+             Lifetime Sales
+          </div>
         </div>
       </div>
     </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+      <div class="dashboard-stat green">
+        <div class="visual">
+          <i class="fa fa-shopping-cart"></i>
+        </div>
+        <div class="details">
+          <div class="number">
+             <%= @orders.count %>
+          </div>
+          <div class="desc">
+             Total Orders
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+      <div class="dashboard-stat yellow">
+        <div class="visual">
+          <i class="fa fa-group fa-icon-medium"></i>
+        </div>
+        <div class="details">
+          <div class="number">
+             $<%= (@restaurants.collect(&:life_time_sale).sum / @orders.count).round(3) %>
+          </div>
+          <div class="desc">
+             Average Orders
+          </div>
+        </div>
+      </div>
+    </div> 
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-    <div class="dashboard-stat green">
-      <div class="visual">
-        <i class="fa fa-shopping-cart"></i>
-      </div>
-      <div class="details">
-        <div class="number">
-           <%= @orders.count %>
-        </div>
-        <div class="desc">
-           Total Orders
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-    <div class="dashboard-stat yellow">
-      <div class="visual">
-        <i class="fa fa-group fa-icon-medium"></i>
-      </div>
-      <div class="details">
-        <div class="number">
-           $<%= (@restaurants.collect(&:life_time_sale).sum / @orders.count).round(3) %>
-        </div>
-        <div class="desc">
-           Average Orders
-        </div>
-      </div>
-    </div>
-  </div> 
-</div>
+<% end %>  
 <div class="row dashboard-data" data-orders="<%= @chart_data%>" >
   <div class="col-md-6">
     <div class="portlet box yellow">

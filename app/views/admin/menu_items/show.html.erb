@@ -1,66 +1,159 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     <%= @menu_item.item_name %>
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li> <%= link_to "Restaurnats", admin_restaurants_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to @menu.restaurant.restaurant_name, admin_restaurant_path(@menu.restaurant) %> 
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to 'Menu', admin_menu_path(@menu) %> 
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to @category.category_name, admin_menu_menu_category_path(@menu,@category) %> 
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= @menu_item.item_name %>
+      </li>
+    </ul>  
+  </div>
+</div>
 
-<p>
-  <b>Item name:</b>
-  <%= @menu_item.item_name %>
-</p>
-
-<p>
-  <b>Menu category:</b>
-  <%= @menu_item.menu_category.category_name %>
-</p>
-<p>
-  <b>Type:</b>
-  <%= @menu_item.menu_item_type %>
-</p>
-
-<p>
-  <b>Addons:</b>
-  <%= @menu_item.addons %>
-</p>
-<p>
-  <b>Price:</b>
-  <%= @menu_item.price %>
-</p>
-
-<p>
-	<b>Properties </b>
-	<% unless @menu_item.menu_item_properties.blank? %>
-		<% @menu_item.menu_item_properties.each do |property| %>
-			Name : <%= property.name %>    Price : $<%= property.price %>
-		<% end -%>
-	<% end -%>
-
-</p>	
-
-<p>
-  <b>Short description:</b>
-  <%= @menu_item.short_description %>
-</p>
-
-<p>
-  <b>Special Instructions:</b>
-  <%= @menu_item.instruction %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @menu_item.description %>
-</p>
-
-<p>
-	<b>Photo</b>
-	<%= image_tag(@menu_item.photo(:small)) %>
-</p>
-
-<p>
-  <b>Popular Dish:</b>
-  <%= @menu_item.popluar_dish %>
-</p>
-<p>
-  <b>Spicy Dish:</b>
-  <%= @menu_item.spicy_dish %>
-</p>
-
-<%= link_to 'Edit', edit_menu_menu_item_path(@menu,@menu_item) %> |
-<%= link_to 'Back', menu_path(@menu) %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i>About <%= @menu_item.item_name %>
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <ul class="feeds"> 
+          <li>
+            <div class="col-md-6"> Item Name </div>
+            <div class="col-md-6"> <%= @menu_item.item_name %> </div>
+          </li>
+          <li>
+            <div class="col-md-6"> Category Name </div>
+            <div class="col-md-6"> <%= @category.category_name %> </div>
+          </li>
+          <li>
+            <div class="col-md-6"> Sub Name </div>
+            <div class="col-md-6"> <%= @menu_item.short_description %> </div>
+          </li>
+          <li>
+            <div class="col-md-6"> Item Price </div>
+            <div class="col-md-6"> <%= @menu_item.price %> </div>
+          </li>
+          <li>
+            <div class="col-md-6"> No. Of Groups </div>
+            <div class="col-md-6"> <%= @menu_item.groups.count %> </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<% unless @menu_item.groups.blank? %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="portlet box blue">
+        <div class="portlet-title">
+          <div class="caption">
+            <i class="fa fa-thumb-tack"></i>About <%= @menu_item.item_name %> Groups
+          </div>
+          <div class="tools">
+            <a href="javascript:;" class="collapse">
+            </a>
+            <a href="javascript:;" class="reload">
+            </a>
+            <a href="javascript:;" class="remove">
+            </a>
+          </div>
+        </div>
+        <div class="portlet-body">
+          <ul class="feeds"> 
+            <% @menu_item.groups.each_with_index do |group, index| %>
+              <li>
+                <div> <b>Group #<%= index+1%></b></div>
+              </li>
+              <li>
+                <ul class="feeds col-md-11 col-md-offset-1">
+                  <li>
+                    <div class="col-md-6">Group Name</div>
+                    <div class="col-md-6"><%= group.name %></div>
+                  </li>
+                  <li>
+                    <div class="col-md-6">Min Limit</div>
+                    <div class="col-md-6"><%= group.min_limit %></div>
+                  </li>
+                  <li>
+                    <div class="col-md-6">Max Limit</div>
+                    <div class="col-md-6"><%= group.max_limit %></div>
+                  </li>
+                  <li>
+                    <div class="col-md-6">Message</div>
+                    <div class="col-md-6"><%= group.message %></div>
+                  </li>
+                  <li>
+                    <div class="col-md-6">Message Color</div>
+                    <div class="col-md-6"><%= group.message_color %></div>
+                  </li>
+                  <li>
+                    <div class="col-md-6">Required</div>
+                    <div class="col-md-6"><%= group.required %></div>
+                  </li>
+                  <li>
+                    <div class="col-md-6">No. of Group Item</div>
+                    <div class="col-md-6"><%= group.group_items.count %></div>
+                  </li>
+                  <% if group.group_items.count != 0 %>
+                    <li>
+                      <% group.group_items.each_with_index do |item, index| %>
+                        <li>
+                          <div> <b>Group Item #<%= index+1%></b></div>
+                        </li>  
+                        <li>
+                          <div class="col-md-6"> Group Item Name</div>
+                          <div class="col-md-6"> <%= item.name %></div>
+                        </li>
+                        <li>
+                          <div class="col-md-6"> Group Item Price</div>
+                          <div class="col-md-6"> <%= item.price %></div>
+                        </li>
+                        <li>
+                          <div class="col-md-6"> Group Item Pizza</div>
+                          <div class="col-md-6"> <%= item.is_pizza %></div>
+                        </li>
+                      <% end %>  
+                    </li>
+                  <% end %>    
+                </ul>
+              </li>  
+            <% end -%>  
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>          

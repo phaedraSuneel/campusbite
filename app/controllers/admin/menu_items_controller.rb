@@ -10,6 +10,7 @@ class Admin::MenuItemsController < ApplicationController
     authorize! :read, MenuItem
     @menu = Menu.find(params[:menu_id])
     @menu_item = MenuItem.find(params[:id])
+    @category = @menu_item.menu_category
   end
 
   def new
