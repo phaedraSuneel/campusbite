@@ -1,0 +1,37 @@
+<h1>Listing coupons</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Amount</th>
+    <th>Unit</th>
+    <th>Min amount</th>
+    <th>Start date</th>
+    <th>End date</th>
+    <th>Max user</th>
+    <th>Max use</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @coupons.each do |coupon| %>
+  <tr>
+    <td><%= coupon.code %></td>
+    <td><%= coupon.amount %></td>
+    <td><%= coupon.unit %></td>
+    <td><%= coupon.min_amount %></td>
+    <td><%= coupon.start_date %></td>
+    <td><%= coupon.end_date %></td>
+    <td><%= coupon.max_user %></td>
+    <td><%= coupon.max_use %></td>
+    <td><%= link_to 'Show', admin_coupon_path(coupon) %></td>
+    <td><%= link_to 'Edit', edit_admin_coupon_path(coupon) %></td>
+    <td><%= link_to 'Destroy', admin_coupon_path(coupon), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Coupon', new_admin_coupon_path %>

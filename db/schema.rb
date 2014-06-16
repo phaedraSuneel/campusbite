@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140616071239) do
+ActiveRecord::Schema.define(:version => 20140616134040) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -171,6 +171,24 @@ ActiveRecord::Schema.define(:version => 20140616071239) do
     t.boolean  "is_viewed",  :default => false
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "coupons", :force => true do |t|
+    t.string   "code"
+    t.float    "amount"
+    t.string   "unit"
+    t.float    "min_amount"
+    t.datetime "start_date"
+    t.datetime "end_date"
+    t.integer  "max_user"
+    t.integer  "max_use"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "coupons_schools", :force => true do |t|
+    t.integer "coupon_id"
+    t.integer "school_id"
   end
 
   create_table "cuisines", :force => true do |t|

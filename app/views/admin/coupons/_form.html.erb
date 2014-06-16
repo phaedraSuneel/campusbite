@@ -1,0 +1,81 @@
+<div class="portlet-body form">
+  <%= form_for(@coupon, :url => set_coupon_url(@coupon),:html => {:class =>"form-horizontal"}) do |f| %>
+    <div class="form-body">
+      <% if @coupon.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@coupon.errors.count, "error") %> prohibited this coupon from being saved:</h2>
+
+          <ul>
+          <% @coupon.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.label :code , :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.text_field :code, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :amount , :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.text_field :amount, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :unit , :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.text_field :unit, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :min_amount , :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.text_field :min_amount, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :start_date , :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.datetime_select :start_date, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :end_date , :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.datetime_select :end_date, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :max_user , :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.number_field :max_user, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :max_use , :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.number_field :max_use, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="from-group row">
+        <label class="control-label col-md-3"> Coupon Applies To </label>
+        <div class="checkbox-list col-md-9">
+          <% School.all.each do |school| %>
+            <label><%= check_box_tag "coupon[school_ids][]", school.id, @coupon.school_ids.include?(school.id), id: dom_id(school), :class => 'checkbox-inline' %>
+              <%= school.school_name %>
+            </label>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_coupons_path,:class => "btn default "%>
+      </div>
+    </div>
+  <% end %>
+</div>  

@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  code: MyString
+  amount: 1.5
+  unit: MyString
+  min_amount: 1.5
+  start_date: 2014-06-16 18:37:15
+  end_date: 
+  max_user: 1
+  max_use: 1
+
+two:
+  code: MyString
+  amount: 1.5
+  unit: MyString
+  min_amount: 1.5
+  start_date: 2014-06-16 18:37:15
+  end_date: 
+  max_user: 1
+  max_use: 1
