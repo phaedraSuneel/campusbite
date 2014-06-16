@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140616063526) do
+ActiveRecord::Schema.define(:version => 20140616071239) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -218,6 +218,28 @@ ActiveRecord::Schema.define(:version => 20140616063526) do
   create_table "favorites", :force => true do |t|
     t.integer  "user_id"
     t.integer  "restaurant_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "group_items", :force => true do |t|
+    t.string   "name"
+    t.float    "price"
+    t.boolean  "is_pizza"
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "groups", :force => true do |t|
+    t.string   "name"
+    t.integer  "min_limit"
+    t.integer  "max_limit"
+    t.string   "message"
+    t.string   "message_color"
+    t.string   "required"
+    t.string   "boolean"
+    t.integer  "menu_item_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
   end

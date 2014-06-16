@@ -1,9 +1,71 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     <%= @menu_category.category_name %>
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li> <%= link_to "Restaurnats", admin_restaurants_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to @menu.restaurant.restaurant_name, admin_restaurant_path(@menu.restaurant) %> 
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to 'Menu', admin_menu_path(@menu) %> 
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        Menu Category
+      </li>
+      <li>
+        <%= @menu_category.category_name %>
+      </li>
+    </ul>  
+  </div>
+</div>
 
-<p>
-  <b>Category name:</b>
-  <%= @menu_category.category_name %>
-</p>
-
-<%= link_to 'Edit', edit_menu_menu_category_path(@menu, @menu_category) %> |
-<%= link_to 'Back', @menu %>
+<div class="row">
+  <div class="col-md-6">
+    <div class="portlet box blue">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i>Menu Categories
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+      	<ul class="feeds"> 
+      		<li>
+      			<div class="col-md-6"> Category Name </div>
+      			<div class="col-md-6"> <%= @menu_category.category_name %> </div>
+      		</li>
+      		<li>
+      			<div class="col-md-6"> Open Time </div>
+      			<div class="col-md-6"> <%= @menu_category.opening_time.strftime("%I:%M%p") %> </div>
+      		</li>
+      		<li>
+      			<div class="col-md-6"> Closing Time  </div>
+      			<div class="col-md-6"> <%= @menu_category.closing_time.strftime("%I:%M%p") %> </div>
+      		</li>
+      		<li>
+      			<div class="col-md-6"> Total Menu Items</div>
+      			<div class="col-md-6"> <%= @menu_category.menu_items.count %> </div>
+      		</li>
+      	</ul>
+      </div>
+    </div>
+  </div>
+</div>      	

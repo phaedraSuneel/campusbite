@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  name: MyString
+  min_limit: 1
+  max_limit: 1
+  message: MyString
+  message_color: MyString
+  required: MyString
+  boolean: MyString
+  menu_item_id: 1
+
+two:
+  name: MyString
+  min_limit: 1
+  max_limit: 1
+  message: MyString
+  message_color: MyString
+  required: MyString
+  boolean: MyString
+  menu_item_id: 1

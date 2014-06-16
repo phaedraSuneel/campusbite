@@ -7,8 +7,8 @@ class MenuItem < ActiveRecord::Base
   has_many :cart_menu_items
   has_many :menu_item_orders
   has_many :menu_item_properties, :dependent => :destroy
-  
-  attr_accessible :item_name, :menu_category_id, :price, :short_description, :description, :menu_item_type, :addons, :instruction, :popluar_dish, :spicy_dish, :photo, :menu_item_properties_attributes, :cuisine_id, :status
+  has_many :groups, :dependent => :destroy
+  attr_accessible :item_name, :menu_category_id, :price, :short_description, :description, :menu_item_type, :addons, :instruction, :popluar_dish, :spicy_dish, :photo, :menu_item_properties_attributes, :cuisine_id, :status, :groups_attributes
   has_attached_file :photo,
                     :styles => {
                         :thumb => "75x75#",
@@ -20,7 +20,7 @@ class MenuItem < ActiveRecord::Base
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/ 
               
   accepts_nested_attributes_for :menu_item_properties
-
+  accepts_nested_attributes_for :groups
 
   def restaurant
      self.menu_category.menu.restaurant

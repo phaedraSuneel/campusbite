@@ -8,6 +8,8 @@ class Admin::MenuController < Admin::RestaurantsController
   def show
     authorize! :read, Menu
     @menu = Menu.find(params[:id])
+    @categories = @menu.menu_categories
+    @items =  @categories.collect(&:menu_items).flatten
     @restaurant = @menu.restaurant
   end
 

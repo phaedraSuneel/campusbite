@@ -1,4 +1,4 @@
-class Admin::MenuItemsController < AdminController
+class Admin::MenuItemsController < ApplicationController
 
   def index
     authorize! :read, MenuItem
@@ -17,6 +17,7 @@ class Admin::MenuItemsController < AdminController
     @menu = Menu.find(params[:menu_id])
     @menu_category = @menu.menu_categories.all
     @menu_item = MenuItem.new
+    @menu_item.groups.build
   end
 
   def edit

@@ -1,110 +1,56 @@
-<%= form_for([@menu, @menu_item] , :url => set_menu_item_path(@menu,@menu_item), :html => { :multipart => true}) do |f| %>
-  <% if @menu_item.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@menu_item.errors.count, "error") %> prohibited this menu_item from being saved:</h2>
+<div class="portlet-body form">
+  <%= form_for([@menu, @menu_item] , :url => set_menu_item_path(@menu,@menu_item), :html => { :multipart => true}) do |f| %>
+    <div class="form-body">
+      <% if @menu_item.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@menu_item.errors.count, "error") %> prohibited this menu_item from being saved:</h2>
 
-      <ul>
-      <% @menu_item.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+          <ul>
+          <% @menu_item.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
+      
+      <div class="form-group row">
+        <%= f.label :menu_category_id,"Menu Category", :class => 'control-label col-md-3' %>
+        <div class="col-md-9">
+          <%= f.collection_select :menu_category_id, @menu.menu_categories,:id,:category_name, {include_blank: false}, {:class => 'form-control'} %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :item_name , "Item Name", :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.text_field :item_name, :class => "form-control" %>
+        </div>  
+      </div>
+      <div class="form-group row">
+        <%= f.label :short_description , "Sub Name", :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.text_field :short_description, :class => "form-control" %>
+        </div>  
+      </div>
+      <div class="form-group row">
+        <%= f.label :price , "Price", :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.text_field :price, :class => "form-control" %>
+        </div>  
+      </div>
+      <div class="form-group row">
+        <%= f.label :description , "Description", :class => "col-md-3 control-label"%>
+        <div class="col-md-9">
+          <%= f.text_area :description , :cols => 40, :rows => 4, :class => 'form-control' %>
+        </div>  
+      </div>
+    </div>  
+    
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_menu_path(@menu),:class => "btn default "%>
+      </div>  
     </div>
+
   <% end %>
-
-  <div class="field">
-    <%= f.label :item_name , "Menu Item Name "%>
-    <%= f.text_field :item_name %>
-  </div> <br>
-
-  <div class="field">
-    <%= f.label :menu_item_type , "Menu Item Type : "%>
-    <%= f.label :menu_item_type, "Veg"%>
-    <%= f.radio_button :menu_item_type,"veg", :checked => true%>
-    <%= f.label :menu_item_type, "Non-veg" %>
-    <%= f.radio_button :menu_item_type, "non-veg" %>
-    <%= f.label :menu_item_type, "Other"  %>
-    <%= f.radio_button :menu_item_type, "other"  %>
-   </div> <br>
-  
-  <div class="field">
-    <%= f.label :menu_category_id, "Menu Category" %> 
-    <%= f.collection_select :menu_category_id, @menu.menu_categories,:id,:category_name %>
-  </div> <br>
-
-  <div class="field">
-    <%= f.label :cuisine_id, "Menu Cuisine (Not mandatory Field)" %> 
-    <%= f.collection_select :cuisine_id, Cuisine.all,:id,:name , :include_blank => :true%>
-  </div> <br>
-
-  <div class="field">
-    <%= f.label :addons, "Addons" %>
-    <%= f.label :addons, "Yes", :value => "true"  %>
-    <%= f.radio_button :addons, true %>
-    <%= f.label :addons, "No", :value => "false" %>
-    <%= f.radio_button :addons, false, :checked => true %>
-  </div> <br>
-
-  <div class="field">
-    <%= f.label :price, "Menu Item Price" %>
-    <%= f.text_field :price %>
-  </div> <br>
-
-  <div class="radio-controls field" remote = "true">
-    <label> Menu Item Properties : </label>
-    <label class="property_radio">
-      <%= radio_button_tag "Property", "1" %>Yes
-    </label>
-    <label class="property_radio">
-      <%= radio_button_tag "Property", "0" , :checked => "checked" %>No
-    </label>
-    <br>
-    <div class="property-field">
-
-    </div>
-    <%= link_to "Add more property", "#", :remote => :true , :class => "hide add_more_property_link" %>
-  </div>
-  <br>
-  <div class="field">
-    <%= f.label :short_description %>
-    <%= f.text_field :short_description %>
-  </div> <br>
-
-  <div class="field">
-    <%= f.label :instruction, "Menu Item Special Instruction" %>
-    <%= f.label :instruction, "Yes", :value => "true"  %>
-    <%= f.radio_button :instruction, true %>
-    <%= f.label :instruction, "No", :value => "false" %>
-    <%= f.radio_button :instruction, false, :checked => true %>
-  </div> <br>
-
-  <div class="field">
-    <%= f.label :description, "Menu Description" %>
-    <%= f.text_area :description , :cols => 40, :rows => 4 %>
-  </div> <br>
-
-  <div class="field">
-    <%= f.label :photo, "Menu Item photo" %>
-    <%= f.file_field :photo %>
-  </div> <br>
-
-  <div class="field">
-    <%= f.label :popluar_dish, "Popular Dish" %>
-    <%= f.label :popluar_dish, "Yes", :value => "true"  %>
-    <%= f.radio_button :popluar_dish, true %>
-    <%= f.label :popluar_dish, "No", :value => "false" %>
-    <%= f.radio_button :popluar_dish, false, :checked => true %>
-  </div> <br>
-
-  <div class="field">
-    <%= f.label :spicy_dish, "Spicy Dish" %>
-    <%= f.label :spicy_dish, "Yes", :value => "true"  %>
-    <%= f.radio_button :spicy_dish, true %>
-    <%= f.label :spicy_dish, "No", :value => "false" %>
-    <%= f.radio_button :spicy_dish, false, :checked => true %>
-  </div> <br>
-
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
