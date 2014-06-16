@@ -70,29 +70,50 @@ class Admin::RestaurantsController < ApplicationController
     pick_up = @restaurant.build_pick_up
     delivery = @restaurant.build_delivery
     
-    operation.sechedules.build :day => "Monday"
-    operation.sechedules.build :day => "Tuesday"
-    operation.sechedules.build :day => "Wednesday"
-    operation.sechedules.build :day => "Thursday"
-    operation.sechedules.build :day => "Friday"
-    operation.sechedules.build :day => "Saturday"
-    operation.sechedules.build :day => "Sunday"
+    schedule =  operation.sechedules.build :day => "Monday"
+    schedule.build_break_schedule
+    schedule =  operation.sechedules.build :day => "Tuesday"
+    schedule.build_break_schedule
+    schedule =  operation.sechedules.build :day => "Wednesday"
+    schedule.build_break_schedule
+    schedule =  operation.sechedules.build :day => "Thursday"
+    schedule.build_break_schedule
+    schedule =  operation.sechedules.build :day => "Friday"
+    schedule.build_break_schedule
+    schedule =  operation.sechedules.build :day => "Saturday"
+    schedule.build_break_schedule
+    schedule =  operation.sechedules.build :day => "Sunday"
+    schedule.build_break_schedule
 
-    pick_up.sechedules.build :day => "Monday"
-    pick_up.sechedules.build :day => "Tuesday"
-    pick_up.sechedules.build :day => "Wednesday"
-    pick_up.sechedules.build :day => "Thursday"
-    pick_up.sechedules.build :day => "Friday"
-    pick_up.sechedules.build :day => "Saturday"
-    pick_up.sechedules.build :day => "Sunday"
+    schedule = pick_up.sechedules.build :day => "Monday"
+    schedule.build_break_schedule
+    schedule = pick_up.sechedules.build :day => "Tuesday"
+    schedule.build_break_schedule
+    schedule = pick_up.sechedules.build :day => "Wednesday"
+    schedule.build_break_schedule
+    schedule = pick_up.sechedules.build :day => "Thursday"
+    schedule.build_break_schedule
+    schedule = pick_up.sechedules.build :day => "Friday"
+    schedule.build_break_schedule
+    schedule = pick_up.sechedules.build :day => "Saturday"
+    schedule.build_break_schedule
+    schedule = pick_up.sechedules.build :day => "Sunday"
+    schedule.build_break_schedule
 
-    delivery.sechedules.build :day => "Monday"
-    delivery.sechedules.build :day => "Tuesday"
-    delivery.sechedules.build :day => "Wednesday"
-    delivery.sechedules.build :day => "Thursday"
-    delivery.sechedules.build :day => "Friday"
-    delivery.sechedules.build :day => "Saturday"
-    delivery.sechedules.build :day => "Sunday"
+    schedule = delivery.sechedules.build :day => "Monday"
+    schedule.build_break_schedule
+    schedule = delivery.sechedules.build :day => "Tuesday"
+    schedule.build_break_schedule
+    schedule = delivery.sechedules.build :day => "Wednesday"
+    schedule.build_break_schedule
+    schedule = delivery.sechedules.build :day => "Thursday"
+    schedule.build_break_schedule
+    schedule = delivery.sechedules.build :day => "Friday"
+    schedule.build_break_schedule
+    schedule = delivery.sechedules.build :day => "Saturday"
+    schedule.build_break_schedule
+    schedule = delivery.sechedules.build :day => "Sunday"
+    schedule.build_break_schedule
   end
 
   def edit

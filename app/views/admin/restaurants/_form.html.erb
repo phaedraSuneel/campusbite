@@ -60,7 +60,7 @@
                  6
               </span>
               <span class="desc">
-                <i class="fa fa-check"></i> Timming Info
+                <i class="fa fa-check"></i> Hours of Operation
               </span>
             </a>
           </li>
@@ -439,7 +439,7 @@
           </div>
           <div class="tab-pane" id="tab6">
             
-            <h3 class="block">Restaurant Opening & Closing Time </h3>
+            <h3 class="block">Business hours </h3>
             
             <div class="row time-headings">
               <div class="col-md-4"> Day </div>
@@ -470,8 +470,32 @@
                       </span>
                     </div>
                   </div> 
-                </div>  
-              <% end %>  
+                </div>
+                <%= f.fields_for :break_schedule do |f| %>
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label class="control-label"> Apply break time </label>
+                    </div>  
+                  
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                        <span class="input-group-btn">
+                          <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <%= f.text_field :closing_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                        <span class="input-group-btn">
+                          <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                        </span>
+                      </div>
+                    </div> 
+                  </div>
+                <% end %>  
+              <% end %>
             <% end %>
           
             <h3 class="block"> Restaurant Order Pick Time </h3>
@@ -505,6 +529,30 @@
                     </div>
                   </div> 
                 </div>
+                <%= f.fields_for :break_schedule do |f| %>
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label class="control-label"> Apply break time </label>
+                    </div>  
+                  
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                        <span class="input-group-btn">
+                          <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <%= f.text_field :closing_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                        <span class="input-group-btn">
+                          <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                        </span>
+                      </div>
+                    </div> 
+                  </div>
+                <% end %>
               <% end %>  
             <% end %>
 
@@ -538,7 +586,31 @@
                       </span>
                     </div>
                   </div> 
-                </div>  
+                </div>
+                <%= f.fields_for :break_schedule do |f| %>
+                  <div class="form-group">
+                    <div class="col-md-2">
+                      <label class="control-label"> Apply break time </label>
+                    </div>  
+                  
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                        <span class="input-group-btn">
+                          <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                        </span>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="input-group">
+                        <%= f.text_field :closing_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+                        <span class="input-group-btn">
+                          <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+                        </span>
+                      </div>
+                    </div> 
+                  </div>
+                <% end %> 
               <% end %>  
             <% end %>
           </div>

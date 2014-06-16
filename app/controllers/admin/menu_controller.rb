@@ -1,4 +1,4 @@
-class Admin::MenuController < AdminController
+class Admin::MenuController < Admin::RestaurantsController
   
   def index
     authorize! :read, Menu
@@ -7,7 +7,8 @@ class Admin::MenuController < AdminController
 
   def show
     authorize! :read, Menu
-    @menu = Menu.find(params[:id]) 
+    @menu = Menu.find(params[:id])
+    @restaurant = @menu.restaurant
   end
 
   def new

@@ -1,8 +1,5 @@
 Ordering::Application.routes.draw do
 
-  
-
-
   resources :subscribes
 
 

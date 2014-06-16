@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140611083651) do
+ActiveRecord::Schema.define(:version => 20140616060428) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -69,6 +69,14 @@ ActiveRecord::Schema.define(:version => 20140611083651) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
     t.string   "image_type"
+  end
+
+  create_table "break_schedules", :force => true do |t|
+    t.time     "opening_time"
+    t.time     "closing_time"
+    t.integer  "sechedule_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "buildings", :force => true do |t|
