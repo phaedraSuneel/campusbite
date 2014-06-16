@@ -48,6 +48,8 @@
             <thead>
               <tr>
                 <th> Name </th>
+                <th> Opening Time </th>
+                <th> Closing Time </th>
                 <th> Edit </th>
                 <th> Delete</th>
               </tr>
@@ -56,6 +58,8 @@
               <% @menu.menu_categories.each do |category|%>
                 <tr>
                   <td> <%= category.category_name %></td>
+                  <td><%= category.opening_time.strftime("%I:%M%p")  %></td>
+                  <td><%= category.closing_time.strftime("%I:%M%p")  %></td>
                   <td> <%= link_to raw("<span class='label label-default'>Edit </span>"), edit_admin_menu_menu_category_path(@menu, category) %></td>
                   <td> <%= link_to raw("<span class='label label-danger'>delete </span>"), admin_menu_menu_category_path(@menu, category), :method => :delete, :confirm => "are you sure?" %></td>
                 </tr>

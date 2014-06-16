@@ -1,4 +1,4 @@
-class Admin::MenuCategoriesController < AdminController
+class Admin::MenuCategoriesController < ApplicationController
 
   def index
     authorize! :read, MenuCategory

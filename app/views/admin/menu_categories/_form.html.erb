@@ -1,22 +1,56 @@
-<%= form_for([@menu, @menu_category], :url => set_menu_category_path(@menu, @menu_category) ) do |f| %>
-  <% if @menu_category.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@menu_category.errors.count, "error") %> prohibited this menu_category from being saved:</h2>
+<div class="portlet-body form">
+  <%= form_for([@menu, @menu_category], :url => set_menu_category_path(@menu, @menu_category) ) do |f| %>
+    <div class="form-body">
+      <% if @menu_category.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@menu_category.errors.count, "error") %> prohibited this menu_category from being saved:</h2>
 
-      <ul>
-      <% @menu_category.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+          <ul>
+          <% @menu_category.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
+
+      <div class="form-group row">
+        <%= f.label :category_name, :class => "control-label col-md-3 " %>
+        <div class="col-md-6">
+          <%= f.text_field :category_name, :class => "form-control" %>
+        </div>  
+      </div>
+
+      <div class="form-group row">
+        <label class="control-label col-md-3"> Opening Time </label>
+        <div class="input-group col-md-6">
+          <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+          <span class="input-group-btn">
+            <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+          </span>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="control-label col-md-3"> Closing Time </label>
+        <div class="input-group col-md-6">
+          <%= f.text_field :closing_time, :class => "form-control required timepicker timepicker-no-seconds" %>
+          <span class="input-group-btn">
+            <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_menu_path(@menu),:class => "btn default "%>
+      </div>  
     </div>
   <% end %>
+</div>  
 
-  <div class="field">
-    <%= f.label :category_name %><br />
-    <%= f.text_field :category_name %>
-  </div>
-  <br />
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<script>
+  $(document).ready(function() {       
+   ComponentsPickers.init();
+  });
+</script>
