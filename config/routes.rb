@@ -34,7 +34,8 @@ Ordering::Application.routes.draw do
         get 'change_status'
       end
     end
-    
+    resources :permissions
+    resources :user_roles
     resources :orders do
       resources :comments
       member do 

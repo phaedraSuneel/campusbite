@@ -101,5 +101,23 @@
     <li>
       <%= link_to raw('<i class="fa fa-bookmark-o"></i><span class="title">Coupons</span>'), admin_coupons_path %>
     </li>
+    <li>
+    	<a href="javascript:;">
+				<i class="fa fa-lock"></i>
+				<span class="title">
+					Permission
+				</span>
+				<span class="arrow">
+				</span>
+			</a>
+      <ul class="sub-menu">
+      	<li>
+      		<%= link_to raw('<i class="fa fa-user"></i><span class="title">User Type</span>'), admin_permissions_path %>
+      	</li>
+      	<li>
+      		<%= link_to raw('<i class="fa fa-sitemap"></i><span class="title">User Role</span>'), admin_user_roles_path %>
+      	</li>
+      </ul>		
+    </li>
 	</li>
 </ul>

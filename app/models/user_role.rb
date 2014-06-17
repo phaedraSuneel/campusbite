@@ -48,4 +48,5 @@ class UserRole < ActiveRecord::Base
     end
     @@config[what]
   end
+  
 end

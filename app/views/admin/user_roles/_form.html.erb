@@ -1,0 +1,53 @@
+<div class="portlet-body form">
+  <%= form_for(@user_role, :url => set_user_role_url(@user_role)) do |f| %>
+    <div class="form-body">
+      <% if @user_role.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user_role.errors.count, "error") %> prohibited this user_role from being saved:</h2>
+
+          <ul>
+          <% @user_role.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="form-group row">
+        <%= f.label :name, :class => "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_field :name, :class => "required form-control" %>
+        </div>
+      </div>  
+
+      <div class="form-group row">
+        <%= f.label :entity, :class => "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= f.select :entity, options_for_select(UserRole.entities),{include_blank: false}, {:class => 'form-control select2me'} %>
+        </div>  
+      </div>
+
+      <div class="form-group row">
+        <%= f.label :action, :class => "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= f.select :action, options_for_select(UserRole.actions),{include_blank: false}, {:class => 'form-control select2me'} %>
+        </div>  
+      </div>
+      
+
+      <div class="form-group row">
+        <%= f.label :notes, :class => "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_area :notes,:cols => 40, :rows => 4, :class => "required form-control" %>
+        </div>
+      </div>
+
+    </div>  
+      
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_user_roles_path,:class => "btn default "%>
+      </div>  
+    </div>
+  <% end %>
+</div>

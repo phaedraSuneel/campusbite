@@ -1,7 +1,7 @@
 $(document).ready(function(){
 
   App.init();
-  
+    
   $(".add-group-link").click(function(e){
     e.preventDefault();
     parent = $(".group-content");

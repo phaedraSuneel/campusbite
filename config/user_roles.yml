@@ -9,3 +9,5 @@ entities:
   order: Order
   restaurant: Restaurant
   school: School
+  review: Review
+  

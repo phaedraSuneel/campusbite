@@ -35,6 +35,7 @@
 //= require app
 //= require ecommerce-index
 //= require select2.min
+//= require jquery.multi-select
 //= require jquery.dataTables
 //= require DT_bootstrap
 //= require bootstrap-datepicker
