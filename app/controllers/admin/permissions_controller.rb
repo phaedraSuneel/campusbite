@@ -4,7 +4,20 @@ class Admin::PermissionsController < ApplicationController
 		@roles = Role.all
 	end
 
-	def roles
-		@user_role = UserRole.all
+	def assign_permission
+		@role = Role.where(id: params[:id]).first
 	end
+
+	def create_permission
+		@role = Role.where(id: params[:id]).first
+		respond_to do |format|
+			if @role.update_attributes(params[:role])
+				format.html { redirect_to admin_permissions_path, notice: 'Roles was successfully assigned.' }
+			else
+				format.html { render action: "assign_permission", warning: 'Roles was failed assigned.' }
+			end
+		end			
+		
+	end
+
 end

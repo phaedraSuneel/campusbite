@@ -34,7 +34,14 @@ Ordering::Application.routes.draw do
         get 'change_status'
       end
     end
-    resources :permissions
+    
+    resources :permissions do
+      member do
+        get 'assign_permission'
+        put 'create_permission'
+      end
+    end
+
     resources :user_roles
     resources :orders do
       resources :comments

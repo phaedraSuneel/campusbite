@@ -20,9 +20,6 @@
         <div class="caption">
           <i class="fa fa-user"></i>User Type Listing
         </div>
-        <div class="pull-right">
-          <%= link_to "Add New User Type", "#", :class => "btn btn-primary" %>
-        </div>
       </div>
       <div class="portlet-body">
         <div class="table-container">
@@ -30,18 +27,20 @@
             <thead>
               <tr>
                 <th>User Type</th>
-                <th>View </th>
-                <th>Edit</h>
-                <th>Delete</th>
+                <th> Roles </th>
+                <th>Assign Permission</th>
               </tr>
             </thead>  
             <tbody>
               <% @roles.each do |role|%>
                 <tr>
                   <td><%= role.name %> </td>
-                  <td><%= link_to raw("<span class='label label-success'>show</span>"), '#'%></td>
-                  <td><%= link_to raw("<span class='label label-default'>edit</span>"), '#'%></td>
-                  <td><%= link_to raw("<span class='label label-danger'>delete</span>"), '#', :method => :delete, :confirm => "are you sure? " %>
+                  <td>
+                    <% role.user_roles.each do |r| %>
+                      <span class="label label-sm label-default"> <%= r.symbol %></span> 
+                    <% end %>
+                  </td>  
+                  <td><%= link_to raw("<span class='label label-success'>Assign Permession</span>"), assign_permission_admin_permission_path(role) %>
                   </td>
                 </tr>
               <% end %>
