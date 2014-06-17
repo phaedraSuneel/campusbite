@@ -1,0 +1,11 @@
+actions:
+  read: Read
+  create: Create
+  update: Update
+  manage: Manage (all)
+  destroy: Delete
+
+entities:
+  order: Order
+  restaurant: Restaurant
+  school: School

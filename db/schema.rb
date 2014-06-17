@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140616134040) do
+ActiveRecord::Schema.define(:version => 20140617065712) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -494,6 +494,13 @@ ActiveRecord::Schema.define(:version => 20140616134040) do
   add_index "roles", ["name", "resource_type", "resource_id"], :name => "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], :name => "index_roles_on_name"
 
+  create_table "roles_user_roles", :force => true do |t|
+    t.integer  "user_role_id"
+    t.integer  "role_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "schools", :force => true do |t|
     t.string   "school_name"
     t.string   "school_address"
@@ -535,6 +542,16 @@ ActiveRecord::Schema.define(:version => 20140616134040) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "banner_id"
+  end
+
+  create_table "user_roles", :force => true do |t|
+    t.string   "name"
+    t.string   "symbol"
+    t.text     "notes"
+    t.string   "action"
+    t.string   "entity"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

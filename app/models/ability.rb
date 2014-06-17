@@ -7,8 +7,13 @@ class Ability
     #   user ||= User.new # guest user (not logged in)
     if user.has_role? :admin
       can :manage, :all
-    elsif user.has_role? :admin_restaurant  
-      can :manage, :all
+    elsif user.has_role? :admin_restaurant
+      user.roles.where(name: 'admin_restaurant').first.each do |role|
+        if !role.entity.to_s.blank? and Object.const_defined? role.entity.to_s.strip
+          ent = role.entity.constantize
+          can role.action.to_sym, ent
+        end # if !role.entity ...
+      end
     else
       can :read, :all
     end
