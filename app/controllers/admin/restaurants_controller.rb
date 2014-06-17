@@ -66,6 +66,7 @@ class Admin::RestaurantsController < ApplicationController
     @restaurant.build_bank_info
     @restaurant.build_restaurant_info
     @restaurant.build_user
+    @restaurant.restaurant_coupons.build
     operation = @restaurant.build_operation
     pick_up = @restaurant.build_pick_up
     delivery = @restaurant.build_delivery

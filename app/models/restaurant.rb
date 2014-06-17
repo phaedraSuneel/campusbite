@@ -24,13 +24,14 @@ class Restaurant < ActiveRecord::Base
   has_one :operation, :dependent => :destroy
 
   attr_accessible :school_id, :restaurant_category_ids, :contact_info_attributes, :restaurant_info_attributes, :delivery_info_attributes, :order_info_attributes, :bank_info_attributes,
-                  :operation_attributes, :delivery_attributes, :pick_up_attributes, :avg_rating, :user_id, :user_attributes, :delta
+                  :operation_attributes, :delivery_attributes, :pick_up_attributes, :avg_rating, :user_id, :user_attributes, :delta, :restaurant_coupons_attributes
                  
   accepts_nested_attributes_for :restaurant_categories
   accepts_nested_attributes_for :favorites
   accepts_nested_attributes_for :contact_info, :restaurant_info, :delivery_info, :order_info, :bank_info, :operation, :delivery, :pick_up
   accepts_nested_attributes_for :reviews
   accepts_nested_attributes_for :user
+  accepts_nested_attributes_for :restaurant_coupons
   before_create :create_menu
   after_create :assign_role_admin
 
