@@ -15,11 +15,11 @@ class Admin::CouponsController < ApplicationController
     @coupons = Coupon.offset(offset).limit(limit).order(sorting_query)
     
     unless params[:search].nil?
-      @customers = Coupon.apply_search_filter(@coupons, params[:search][:value])
+      @coupons = Coupon.apply_search_filter(@coupons, params[:search][:value])
     end
     respond_to do |format|
       format.json do 
-        return render :json =>  {draw: page,  recordsTotal: Coupon.count,  recordsFiltered: Coupon.count , :data => @customers.collect{|a| [a.code, a.amount, a.max_user, a.max_use, "<a src='#{admin_coupon_url(a)}'><span class='label label-sm label-success'> details </span></a>", "<a src='#{edit_admin_coupon_url(a)}'><span class='label label-sm label-default'> Edit </span></a>", "<a src='#{delete_admin_coupon_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </span></a>" ]} }
+        return render :json =>  {draw: page,  recordsTotal: Coupon.count,  recordsFiltered: Coupon.count , :data => @coupons.collect{|a| [a.code, a.amount, a.max_user, a.max_use, "<a src='#{admin_coupon_url(a)}'><span class='label label-sm label-success'> details </span></a>", "<a src='#{edit_admin_coupon_url(a)}'><span class='label label-sm label-default'> Edit </span></a>", "<a src='#{delete_admin_coupon_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </span></a>" ]} }
       end
       format.html
     end

@@ -42,7 +42,11 @@ Ordering::Application.routes.draw do
       end
     end
 
-    resources :user_roles
+    resources :user_roles do
+      member do
+        get 'delete'
+      end
+    end
     resources :orders do
       resources :comments
       member do 

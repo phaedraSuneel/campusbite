@@ -52,6 +52,7 @@
 //= require customers
 //= require locations
 //= require coupons
+//= require user_roles
 //= require restaurant_categories
 //= require reviews
 //= require custom-restaurant

@@ -7,6 +7,11 @@ class UserRole < ActiveRecord::Base
 
   before_save :update_symbol
 
+  def self.apply_search_filter(data,key_word)
+    search_keyword = ["%",key_word,"%"].join('')
+    return data.where('name like ? OR action like ? OR entity like ? OR notes like ?', search_keyword, search_keyword, search_keyword, search_keyword)
+  end  
+
   def self.get (symbol)
     UserRole.find_by_symbol symbol.to_s
   end
