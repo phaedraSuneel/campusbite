@@ -50,6 +50,7 @@
 //= require reward_points
 //= require customers
 //= require locations
+//= require coupons
 //= require restaurant_categories
 //= require reviews
 //= require custom-restaurant

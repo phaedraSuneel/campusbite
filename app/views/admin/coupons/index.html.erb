@@ -1,37 +1,51 @@
 <h1>Listing coupons</h1>
-
-<table>
-  <tr>
-    <th>Code</th>
-    <th>Amount</th>
-    <th>Unit</th>
-    <th>Min amount</th>
-    <th>Start date</th>
-    <th>End date</th>
-    <th>Max user</th>
-    <th>Max use</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @coupons.each do |coupon| %>
-  <tr>
-    <td><%= coupon.code %></td>
-    <td><%= coupon.amount %></td>
-    <td><%= coupon.unit %></td>
-    <td><%= coupon.min_amount %></td>
-    <td><%= coupon.start_date %></td>
-    <td><%= coupon.end_date %></td>
-    <td><%= coupon.max_user %></td>
-    <td><%= coupon.max_use %></td>
-    <td><%= link_to 'Show', admin_coupon_path(coupon) %></td>
-    <td><%= link_to 'Edit', edit_admin_coupon_path(coupon) %></td>
-    <td><%= link_to 'Destroy', admin_coupon_path(coupon), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New Coupon', new_admin_coupon_path %>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Coupons
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Coupons", admin_coupons_path %>
+      </li>
+    </ul>  
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-shopping-cart"></i>Listing coupons
+        </div>
+        <div class="pull-right">
+          <%= link_to 'New Coupon', new_admin_coupon_path, :class => "btn btn-primary" %>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <div class="table-container">
+          <table class="table table-striped table-bordered table-hover" id="coupons-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Amount</th>
+                <th>Max user</th>
+                <th>Max use</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              </tr>  
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>             

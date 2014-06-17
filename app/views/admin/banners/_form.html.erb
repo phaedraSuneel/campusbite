@@ -15,7 +15,7 @@
       <div class="form-group">
         <label class="col-md-2 control-label">Select Image Type </label>
         <div class="col-md-10">
-          <%= f.select :image_type, options_for_select([["Select One", ""], "Main Image", "Slider Image"]), :class => 'form-control' %>
+          <%= f.select :image_type, options_for_select(["Main Image", "Slider Image"]),{include_blank: false},{:class => 'form-control'} %>
         </div>  
       </div>
       <div class="form-group">

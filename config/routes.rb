@@ -8,7 +8,11 @@ Ordering::Application.routes.draw do
     get '/admin', to: 'admin#index'
 
     resources :dashboard
-    resources :coupons
+    resources :coupons do
+      member do
+        get 'delete'
+      end
+    end
     resources :banners
     resources :subscriber_forms
     resources :contact_us_forms

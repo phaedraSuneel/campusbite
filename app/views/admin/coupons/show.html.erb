@@ -1,45 +1,89 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Code:</b>
-  <%= @coupon.code %>
-</p>
-
-<p>
-  <b>Amount:</b>
-  <%= @coupon.amount %>
-</p>
-
-<p>
-  <b>Unit:</b>
-  <%= @coupon.unit %>
-</p>
-
-<p>
-  <b>Min amount:</b>
-  <%= @coupon.min_amount %>
-</p>
-
-<p>
-  <b>Start date:</b>
-  <%= @coupon.start_date %>
-</p>
-
-<p>
-  <b>End date:</b>
-  <%= @coupon.end_date %>
-</p>
-
-<p>
-  <b>Max user:</b>
-  <%= @coupon.max_user %>
-</p>
-
-<p>
-  <b>Max use:</b>
-  <%= @coupon.max_use %>
-</p>
-
-
-<%= link_to 'Edit', edit_coupon_path(@coupon) %> |
-<%= link_to 'Back', coupons_path %>
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Dashboard
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "Coupons", admin_coupons_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        Coupon
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet box yellow">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i>About Coupon
+        </div>
+        <div class="tools">
+          <a href="javascript:;" class="collapse">
+          </a>
+          <a href="javascript:;" class="reload">
+          </a>
+          <a href="javascript:;" class="remove">
+          </a>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <ul class="feeds">
+          <li>
+            <div class="col-md-3"> <label> Coupon Code </label></div>
+            <div class="col-md-9"> <label> <%= @coupon.code %> </label></div>
+          </li>  
+          <li>
+          <li>
+            <div class="col-md-3"> <label> Ammount </label></div>
+            <div class="col-md-9"> <label><%= @coupon.amount %> </label></div>
+          </li>
+          <li>
+            <div class="col-md-3"> <label>Unit</label></div>
+            <div class="col-md-9"> <label><%= @coupon.unit %> </label> </div>
+          </li>
+          <li>
+            <div class="col-md-3"> <label> Min amount </label></div>            
+            <div class="col-md-9"> <label> <%= @coupon.min_amount %> </label></div>
+          </li>
+          <li>
+            <div class="col-md-3"> <label> Start date</label></div>            
+            <div class="col-md-9"> <label> <%= @coupon.start_date %> </label> 
+            </div>
+          </li>
+          <li>
+            <div class="col-md-3"> <label> End date</label></div>            
+            <div class="col-md-9"> <label> <%= @coupon.end_date %> </label> 
+            </div>
+          </li>
+          <li>
+            <div class="col-md-3"> <label> Max User</label></div>            
+            <div class="col-md-9"> <label> <%= @coupon.max_user %> </label> 
+            </div>
+          </li>
+          <li>
+            <div class="col-md-3"> <label> Max Use</label></div>            
+            <div class="col-md-9"> <label> <%= @coupon.max_use %> </label> 
+            </div>
+          </li>
+           <li>
+            <div class="col-md-3"> <label> Applied to </label></div>
+            <div class="col-md-9">
+              <% @coupon.schools.each do |school|%>
+                <label> <%= school.school_name %> </label> <br >
+              <% end %>  
+            </div>
+          </li>
+        </ul>  
+      </div>
+    </div>      
+  </div>
+</div>
