@@ -8,7 +8,7 @@ class Ability
     if user.has_role? :admin
       can :manage, :all
     elsif user.has_role? :admin_restaurant
-      user.roles.where(name: 'admin_restaurant').first.each do |role|
+      Role.where(name: 'admin_restaurant').first.user_roles.each do |role|
         if !role.entity.to_s.blank? and Object.const_defined? role.entity.to_s.strip
           ent = role.entity.constantize
           can role.action.to_sym, ent

@@ -19,6 +19,7 @@ class Restaurant::DashboardController < ApplicationController
   end
 
   def order
+    authorize! :read, Order
     @order = Order.find(params[:id])
   end
 
@@ -30,16 +31,19 @@ class Restaurant::DashboardController < ApplicationController
   end
 
   def new_orders
+    authorize! :read, Order
     @restaurant = current_user.restaurant
     @orders = @restaurant.orders.where(:status => "pending").order("created_at desc")
   end
 
   def confirm_orders
+    authorize! :read, Order
     @restaurant = current_user.restaurant
     @orders = @restaurant.orders.where(:status => "confirm").order("created_at desc")
   end
 
   def all_orders
+    authorize! :read, Order
     @restaurant = current_user.restaurant
     @orders = @restaurant.orders.order("created_at desc")
   end  

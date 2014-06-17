@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 	layout :change_layout
 
 	rescue_from CanCan::AccessDenied do |exception|
-	  redirect_to root_url, :notice => "You are not authorize for this action"
+	  redirect_to restaurant_dashboard_index_path , :notice => "You are not authorize for this action"
 	end	
 	protect_from_forgery
 
