@@ -235,11 +235,13 @@
               <div class="col-md-4"> <label> <%= schedule.opening_time.strftime("%I:%M%p")  %> </label></div>
               <div class="col-md-4"> <label> <%= schedule.closing_time.strftime("%I:%M%p")  %> </label> </div>
             </li>
-            <li>
-              <div class="col-md-4"> <label> Break </label></div>
-              <div class="col-md-4"> <label> <%= schedule.break_schedule.opening_time.strftime("%I:%M%p")  %> </label></div>
-              <div class="col-md-4"> <label> <%= schedule.break_schedule.closing_time.strftime("%I:%M%p")  %> </label> </div>
-            </li>
+            <% unless schedule.break_schedule.blank? %>
+              <li>
+                <div class="col-md-4"> <label> Break </label></div>
+                <div class="col-md-4"> <label> <%= schedule.break_schedule.opening_time.strftime("%I:%M%p")  %> </label></div>
+                <div class="col-md-4"> <label> <%= schedule.break_schedule.closing_time.strftime("%I:%M%p")  %> </label> </div>
+              </li>
+            <% end -%>  
           <% end %>
         </ul>  
       </div>  
@@ -273,12 +275,13 @@
               <div class="col-md-4"> <label> <%= schedule.opening_time.strftime("%I:%M%p")  %></label></div>
               <div class="col-md-4"> <label> <%= schedule.closing_time.strftime("%I:%M%p")  %> </label></div>
             </li>
-          
-            <li>
-              <div class="col-md-4"> <label> Break </label></div>
-              <div class="col-md-4"> <label> <%= schedule.break_schedule.opening_time.strftime("%I:%M%p")  %> </label></div>
-              <div class="col-md-4"> <label> <%= schedule.break_schedule.closing_time.strftime("%I:%M%p")  %> </label> </div>
-            </li>
+            <% unless schedule.break_schedule.blank? %>
+              <li>
+                <div class="col-md-4"> <label> Break </label></div>
+                <div class="col-md-4"> <label> <%= schedule.break_schedule.opening_time.strftime("%I:%M%p")  %> </label></div>
+                <div class="col-md-4"> <label> <%= schedule.break_schedule.closing_time.strftime("%I:%M%p")  %> </label> </div>
+              </li>
+            <% end %>  
           <% end %>  
         </ul>  
       </div>  
@@ -312,11 +315,13 @@
               <div class="col-md-4"> <label><%= schedule.opening_time.strftime("%I:%M%p")  %></label></div>
               <div class="col-md-4"> <label><%= schedule.closing_time.strftime("%I:%M%p")  %></label> </div>
             </li>
-            <li>
-              <div class="col-md-4"> <label> Break </label></div>
-              <div class="col-md-4"> <label> <%= schedule.break_schedule.opening_time.strftime("%I:%M%p")  %> </label></div>
-              <div class="col-md-4"> <label> <%= schedule.break_schedule.closing_time.strftime("%I:%M%p")  %> </label> </div>
-            </li>
+            <% unless schedule.break_schedule.blank? %>
+              <li>
+                <div class="col-md-4"> <label> Break </label></div>
+                <div class="col-md-4"> <label> <%= schedule.break_schedule.opening_time.strftime("%I:%M%p")  %> </label></div>
+                <div class="col-md-4"> <label> <%= schedule.break_schedule.closing_time.strftime("%I:%M%p")  %> </label> </div>
+              </li>
+            <% end %>  
           <% end %>  
         </ul>  
       </div>  
