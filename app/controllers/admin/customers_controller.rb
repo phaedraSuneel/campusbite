@@ -1,5 +1,5 @@
 class Admin::CustomersController < ApplicationController
-	
+	before_filter :set_view_all
 	def index
 		page = params[:draw].nil? ? 1 : params[:draw].to_i
     limit = params[:length].to_i
@@ -29,6 +29,13 @@ class Admin::CustomersController < ApplicationController
   def show
   	@user = User.find params[:id]
   	@notes = @user.notes.order("created_at desc")
+  end
+
+  def set_view_all
+    User.where(is_viewed: false).each do |s|
+     s.is_viewed = true
+     s.save 
+    end
   end
 
  	private

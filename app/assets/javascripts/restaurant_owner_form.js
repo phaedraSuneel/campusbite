@@ -1,6 +1,6 @@
 var restaurant_owner_Records = function() {
 
-  $('#reward-points-table').dataTable( {
+  $('#restaurant-owner-table').dataTable( {
 
     "processing": true,
     "serverSide": true,

@@ -1,4 +1,5 @@
 class Admin::ContactUsFormsController < ApplicationController
+  before_filter :set_view_all
 	def index
 		page = params[:draw].nil? ? 1 : params[:draw].to_i
 		limit = params[:length].to_i
@@ -23,6 +24,13 @@ class Admin::ContactUsFormsController < ApplicationController
 		end
 	end
 
+  def set_view_all
+    ContactUs.where(is_viewed: false).each do |s|
+     s.is_viewed = true
+     s.save 
+    end
+  end
+  
 	private
 
   def get_sort_attribute_name(column_number)

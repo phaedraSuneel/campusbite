@@ -1,9 +1,10 @@
 class Admin::RestaurantOwnerFormsController < ApplicationController
-	def index
+	before_filter :set_view_all
+  def index
 		page = params[:draw].nil? ? 1 : params[:draw].to_i
 		limit = params[:length].to_i
 		offset = params[:start].to_i
-
+    
 		unless params[:order].nil?
       col_number = params[:order]["0"]["column"].to_i
       order_by_type  = params[:order]["0"]["dir"]
@@ -12,6 +13,7 @@ class Admin::RestaurantOwnerFormsController < ApplicationController
     sorting_query = [attribute_name,order_by_type].join(' ')
 		
 		@restaurant_requests = JoinUs.offset(offset).limit(limit)
+    
     unless params[:search].nil?
       @restaurant_requests = JoinUs.apply_search_filter(@restaurant_requests, params[:search][:value])
     end
@@ -23,6 +25,13 @@ class Admin::RestaurantOwnerFormsController < ApplicationController
 			format.html
 		end
 	end
+
+  def set_view_all
+    JoinUs.where(is_viewed: false).each do |s|
+     s.is_viewed = true
+     s.save 
+    end
+  end
 
 	private
 

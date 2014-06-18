@@ -22,4 +22,17 @@ module ApplicationHelper
     end
     html
   end 
+
+  def pending_order
+    Order.where(status: "pending").count
+  end
+
+  def new_forms_submitted
+    JoinUs.where(is_viewed: false).count + RestaurantSuggestion.where(is_viewed: false).count + CampusSuggestion.where(is_viewed: false).count + ContactUs.where(is_viewed: false).count + Subscribe.where(is_viewed: false).count
+  end
+
+  def new_user_sign_up
+    User.where(is_viewed: false).count
+  end
+  
 end

@@ -1,5 +1,5 @@
 class Admin::SubscriberFormsController < ApplicationController
-  
+  before_filter :set_view_all
   def index
     page = params[:draw].nil? ? 1 : params[:draw].to_i
     limit = params[:length].to_i
@@ -22,6 +22,13 @@ class Admin::SubscriberFormsController < ApplicationController
         return render :json =>  {draw: page,  recordsTotal: Subscribe.count,  recordsFiltered: Subscribe.count , :data => @subscribe_requests.collect{|a| [a.name,a.email,a.school_name]} }
       end
       format.html
+    end
+  end
+
+  def set_view_all
+    Subscribe.where(is_viewed: false).each do |s|
+     s.is_viewed = true
+     s.save 
     end
   end
 
