@@ -11,8 +11,10 @@ class Cart < ActiveRecord::Base
   	price = 0
   	self.cart_menu_items.each do |item|
   		extra = 0
-  		if item.menu_item_property_id
-  			extra = item.property_price(item.menu_item_property_id)
+  		if item.group_items.present?
+        item.group_items.each do |group_item|
+  			 extra += group_item.price
+        end
   	  end		
   		price += (item.menu_item.price + extra) * item.quantity
   	end

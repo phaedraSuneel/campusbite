@@ -27,98 +27,47 @@
             </div>
             <img class="shadow-modal-img" alt="Smiley face" src="<%= '/assets/shadow.png' %>" />
           </div>
+            <% item.groups.each_with_index do |group,index| %>
+              <div class="name-field-container">
+                <div class="row res-name-field">
+                  <div class="col-md-6 name-restarant restarant-align-right">
+                    <h4><%= group.name %></h4>
+                  </div>
+                  <div class="col-md-4 col-md-offset-2 notice <%= (group.message_color == 'Grey') ? 'notice-gray' : 'notice-red'%>">
+                    <h5><%= group.message %></h5>
+                  </div>
+                  <div class="col-md-12 size-container">
+                    <% group.group_items.each do |group_item| %>
+                      <div class="col-md-4 choose-one">
+                        <label class="required">
+                          <% if group.max_limit == 1 %>
+                            <%= radio_button_tag "cart[group_item_ids][#{index}][]", group_item.id, id: dom_id(group_item) %>
+                          <% else %>
+                            <%= check_box_tag "cart[group_item_ids][#{index}][]", group_item.id, id: dom_id(group_item) %>
+                          <% end -%>
+                          <%= group_item.name %> $<%= group_item.price %>
+                        </label>
+                      </div>  
+                    <% end %>
+                  </div>
+                </div>
+                <img class="shadow-modal-img" alt="Smiley face" src="<%= '/assets/shadow.png' %>" />
+              </div>      
+            <% end %>
           <div class="name-field-container">
             <div class="row res-name-field">
-              <div class="col-md-6 name-restarant restarant-align-right">
-                <h4>Size</h4>
+              <div class="col-md-8 name-restarant restarant-align-right">
+                <h4>Special Instructions</h4>
               </div>
-              <div class="col-md-4 col-md-offset-2 notice">
-                <h5>Must Choose one</h5>
+              <div class="col-md-4 notice notice-gray">
+                <h5>Optional</h5>
               </div>
-              <div class= "col-md-12 size-container">
-                <% item.menu_item_properties.each do |property| %>
-                    <div class="col-md-4 choose-one">
-                      <label class="required">
-                        <%= radio_button_tag "cart[menu_item_property_id]", property.id %>
-                        <%= property.name  %>  $<%= property.price %>
-                      </label>  
-                    </div>  
-                  <% end %>
+              <div class="col-md-12 name-restarant">
+                <textarea class="area-text" placeholder="Example: Please no cheese on the burger." name= "cart[instruction]"></textarea>
               </div>
             </div>
             <img class="shadow-modal-img" alt="Smiley face" src="<%= '/assets/shadow.png' %>" />
           </div>
-          <!-- <div class="name-field-container">
-            <div class="row res-name-field">
-              <div class="col-md-6 name-restarant restarant-align-right">
-                <h4>Extras </h4>
-              </div>
-              <div class="col-md-4 col-md-offset-2 notice notice-gray">
-                <h5>Optional Choice</h5>
-              </div>
-              <div class="col-md-12 size-container">
-                <div class="col-md-4 choose-one">
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                </div>
-                <div class="col-md-4 choose-one">
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                </div>
-                <div class="col-md-4 choose-one">
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                  <label class="required"><input type="checkbox">Small $1.5</label>
-                  <label class="required"><input type="checkbox">Medium $2.00</label>
-                  <label class="required"><input type="checkbox">larg $1.5</label>
-                </div>
-              </div>
-            </div>
-            <img class="shadow-modal-img" alt="Smiley face" src="<%= '/assets/shadow.png' %>" />
-          </div> -->
-          <% if item.instruction? %>
-            <div class="name-field-container">
-              <div class="row res-name-field">
-                <div class="col-md-8 name-restarant restarant-align-right">
-                  <h4>Special Instructions</h4>
-                </div>
-                <div class="col-md-4 notice notice-gray">
-                  <h5>Optional</h5>
-                </div>
-                <div class="col-md-12 name-restarant">
-                  <textarea class="area-text" placeholder="Example: Please no cheese on the burger." name= "cart[instruction]"></textarea>
-                </div>
-              </div>
-              <img class="shadow-modal-img" alt="Smiley face" src="<%= '/assets/shadow.png' %>" />
-            </div>
-          <% end %>  
         </div>
 
         <div class="modal-footer order-item">

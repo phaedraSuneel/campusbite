@@ -7,8 +7,7 @@ class CartsController < ApplicationController
       @cart = User.get_cart(cookies[:cart_token],current_user,restaurant)
       cookies[:cart_token] = @cart.token
       params[:cart][:group_item_ids] = params[:cart][:group_item_ids].values.flatten
-      p params[:cart][:group_item_ids]
-
+  
       @cart_menu_item = @cart.cart_menu_items.new(params[:cart])
 
       @cart_menu_item.restaurant_id = restaurant.id
@@ -28,6 +27,7 @@ class CartsController < ApplicationController
 
   def edit_item
     @cart_menu_item = CartMenuItem.find(params[:id])
+    params[:cart][:group_item_ids] = params[:cart][:group_item_ids].values.flatten
     if @cart_menu_item.update_attributes(params[:cart])
       flash[:notice] = 'cart updated successfully'
       redirect_to :back

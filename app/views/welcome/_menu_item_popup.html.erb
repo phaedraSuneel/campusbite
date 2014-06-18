@@ -27,28 +27,6 @@
             </div>
             <img class="shadow-modal-img" alt="Smiley face" src="<%= '/assets/shadow.png' %>" />
           </div>
-          <!-- <div class="name-field-container">
-            <div class="row res-name-field">
-              <div class="col-md-6 name-restarant restarant-align-right">
-                <h4>Size</h4>
-              </div>
-              <div class="col-md-4 col-md-offset-2 notice">
-                <h5>Must Choose one</h5>
-              </div>
-              <div class= "col-md-12 size-container">
-                <% item.menu_item_properties.each do |property| %>
-                    <div class="col-md-4 choose-one">
-                      <label class="required">
-                        <%= radio_button_tag "cart[menu_item_property_id]", property.id %>
-                        <%= property.name  %>  $<%= property.price %>
-                      </label>  
-                    </div>  
-                  <% end %>
-              </div>
-            </div>
-            <img class="shadow-modal-img" alt="Smiley face" src="<%= '/assets/shadow.png' %>" />
-          </div> -->
-
           <% item.groups.each_with_index do |group,index| %>
             <div class="name-field-container">
               <div class="row res-name-field">
