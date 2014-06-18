@@ -18,15 +18,16 @@
 			</form>
 			<!-- END RESPONSIVE QUICK SEARCH FORM -->
 		</li>
-		<li class="start active">
+
+		<li class="start <%= 'active' if params[:controller] == 'admin/dashboard' %>" >
 			<%= link_to raw('<i class="fa fa-home"></i><span class="title">Dashboard</span>'), admin_dashboard_index_path %>
 		</li>
 
-		<li>
+		<li class="<%= 'active' if params[:controller] == 'admin/banners' %>">
 			<%= link_to raw('<i class="fa fa-cogs"></i><span class="title">Content Management</span>'), admin_banners_path %>
 		</li>
 
-		<li>
+		<li class="<%= 'active' if (params[:controller] == 'admin/subscriber_forms') or (params[:controller] == 'admin/contact_us_forms') or (params[:controller] == 'admin/restaurant_owner_forms') or (params[:controller] == 'admin/restaurant_suggestion_forms') or (params[:controller] == 'admin/campus_suggestion_forms') %>">
 			<a href="javascript:;">
 				<i class="fa fa-envelope-o"></i>
 				<span class="title">
@@ -36,39 +37,39 @@
 				</span>
 			</a>
 			<ul class="sub-menu">
-				<li>
+				<li class="<%= 'active' if params[:controller] == 'admin/subscriber_forms' %>">
 					<%= link_to "Subscriber Forms", admin_subscriber_forms_path %>
 				</li>
-				<li>
+				<li class= "<%= 'active' if params[:controller] == 'admin/contact_us_forms' %>" >
 					<%= link_to "Contactus Forms", admin_contact_us_forms_path %>
 				</li>
-				<li>
+				<li class= "<%= 'active' if params[:controller] == 'admin/restaurant_owner_forms' %>" >
 					<%= link_to "Restaurant Owner Request Forms", admin_restaurant_owner_forms_path %>
 				</li>
-				<li>
+				<li class= "<%= 'active' if params[:controller] == 'admin/restaurant_suggestion_forms' %>" >
 					<%= link_to "Restaurant Suggestion Forms", admin_restaurant_suggestion_forms_path %>
 				</li>
-				<li>
+				<li class= "<%= 'active' if params[:controller] == 'admin/campus_suggestion_forms' %>">
 					<%= link_to "Campus Suggestion Forms", admin_campus_suggestion_forms_path %>
 				</li>
 			</ul>
 		</li>
-    <li>
+    <li class="<%= 'active' if params[:controller] == 'admin/reward_points' %>">
       <%= link_to raw('<i class="fa fa-gift"></i><span class="title">Reward Points</span>'), admin_reward_points_path %>
     </li>
-    <li>
+    <li class="<%= 'active' if params[:controller] == 'admin/customers' %>">
       <%= link_to raw('<i class="fa fa-user"></i><span class="title">Customers</span>'), admin_customers_path %>
     </li>
-    <li>
+    <li class="<%= 'active' if params[:controller] == 'admin/schools' %>">
       <%= link_to raw('<i class="fa fa-map-marker"></i><span class="title">Locations</span>'), admin_schools_path %>
     </li>
-    <li>
+    <li class="<%= 'active' if params[:controller] == 'admin/restaurant_categories' %>">
       <%= link_to raw('<i class="fa fa-sitemap"></i><span class="title">Food Categories </span>'), admin_restaurant_categories_path %>
     </li>
-    <li>
+    <li class="<%= 'active' if params[:controller] == 'admin/reviews' %>">
       <%= link_to raw('<i class="fa fa-group"></i><span class="title">Reviews </span>'), admin_reviews_path %>
     </li>
-    <li>
+    <li class="<%= 'active' if params[:controller] == 'admin/orders' %>">
 			<a href="javascript:;">
 				<i class="fa fa-shopping-cart"></i>
 				<span class="title">
@@ -78,49 +79,30 @@
 				</span>
 			</a>
       <ul class="sub-menu">
-        <li>
+        <li class="<%= 'active' if params[:action] == 'index' %>">
           <%= link_to raw('<i class="fa fa-shopping-cart"></i><span class="title">All Orders </span>'), admin_orders_path %>
         </li>
-        <li>
+        <li class="<%= 'active' if params[:action] == 'new_orders' %>">
           <%= link_to raw('<i class="fa fa-shopping-cart"></i><span class="title">New Orders </span>'), new_orders_admin_orders_path %>
         </li>
-        <li>
+        <li class="<%= 'active' if params[:action] == 'schedule_orders' %>">
           <%= link_to raw('<i class="fa fa-shopping-cart"></i><span class="title">Schedule Orders </span>'), schedule_orders_admin_orders_path %>
         </li>
-        <li>
+        <li class="<%= 'active' if params[:action] == 'cancel_orders' %>">
           <%= link_to raw('<i class="fa fa-shopping-cart"></i><span class="title">Cancel Orders </span>'), cancel_orders_admin_orders_path %>
         </li>
       </ul>  
     </li>
-    <li>
+    <li class="<%= 'active' if params[:controller] == 'admin/reports' %>">
       <%= link_to raw('<i class="fa fa-tags"></i><span class="title">Reports</span>'), admin_reports_path %>
     </li>
-    <li>
+    <li class="<%= 'active' if params[:controller] == 'admin/restaurants' %>">
       <%= link_to raw('<i class="fa fa-home"></i><span class="title">Restaurants</span>'), admin_restaurants_path %>
     </li>
-    <li>
+    <li class="<%= 'active' if params[:controller] == 'admin/coupons' %>">
       <%= link_to raw('<i class="fa fa-bookmark-o"></i><span class="title">Coupons</span>'), admin_coupons_path %>
     </li>
-    <li>
+    <li class="<%= 'active' if params[:controller] == 'admin/permission' %>">
       <%= link_to raw('<i class="fa fa-lock"></i><span class="title">Permissions</span>'), admin_permissions_path %>
     </li>
-   <!--  <li>
-    	<a href="javascript:;">
-				<i class="fa fa-lock"></i>
-				<span class="title">
-					Permission
-				</span>
-				<span class="arrow">
-				</span>
-			</a>
-      <ul class="sub-menu">
-      	<li>
-      		<%#= link_to raw('<i class="fa fa-user"></i><span class="title">User Type</span>'), admin_permissions_path %>
-      	</li> -->
-      	<!-- <li>
-      		<%#= link_to raw('<i class="fa fa-sitemap"></i><span class="title">User Role</span>'), admin_user_roles_path %>
-      	</li> -->
-      <!-- </ul>		
-    </li> -->
-	</li>
 </ul>

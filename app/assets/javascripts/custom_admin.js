@@ -1,7 +1,21 @@
 $(document).ready(function(){
 
   App.init();
+  
+  $('.page-sidebar li > a').click(function(e){
+    App.scrollTop();
+    var menuContainer = jQuery('.page-sidebar ul');
     
+    menuContainer.children('li.active').removeClass('active');
+    menuContainer.children('arrow.open').removeClass('open');
+    
+    $(this).parents('li').each(function () {
+      $(this).addClass('active');
+      $(this).children('a > span.arrow').addClass('open');
+    });
+    $(this).parents('li').addClass('active');
+  });
+
   $(".add-group-link").click(function(e){
     e.preventDefault();
     parent = $(".group-content");

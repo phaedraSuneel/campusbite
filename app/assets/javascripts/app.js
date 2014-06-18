@@ -1018,7 +1018,7 @@ var App = function () {
             //layout handlers
             handleFixedSidebar(); // handles fixed sidebar menu
             handleFixedSidebarHoverable(); // handles fixed sidebar on hover effect 
-            handleSidebarMenu(); // handles main menu
+           // handleSidebarMenu(); // handles main menu
             handleHorizontalMenu(); // handles horizontal menu
             handleSidebarToggler(); // handles sidebar hide/show            
             handleFixInputPlaceholderForIE(); // fixes/enables html5 placeholder attribute for IE9, IE8
@@ -1168,7 +1168,7 @@ var App = function () {
 
         startPageLoading: function(message) {
             $('.page-loading').remove();
-            $('body').append('<div class="page-loading"><img src="assets/img/loading-spinner-grey.gif"/>&nbsp;&nbsp;<span>' + (message ? message : 'Loading...') + '</span></div>');
+            $('body').append('<div class="page-loading"><img src="/assets/loading-spinner-grey.gif"/>&nbsp;&nbsp;<span>' + (message ? message : 'Loading...') + '</span></div>');
         },
 
         stopPageLoading: function() {
