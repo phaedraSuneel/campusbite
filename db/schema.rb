@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140618071615) do
+ActiveRecord::Schema.define(:version => 20140618074127) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -533,6 +533,16 @@ ActiveRecord::Schema.define(:version => 20140618071615) do
   end
 
   add_index "subscribes", ["email"], :name => "index_subscribes_on_email", :unique => true
+
+  create_table "supports", :force => true do |t|
+    t.string   "name"
+    t.string   "restaurant_name"
+    t.integer  "phone_number"
+    t.text     "message"
+    t.boolean  "is_viewed",       :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
+  end
 
   create_table "uploads", :force => true do |t|
     t.datetime "created_at",         :null => false

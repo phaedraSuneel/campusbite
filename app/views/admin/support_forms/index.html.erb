@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+     Subscriber Resquests
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        Form Management
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li> <%= link_to "Subscriber Forms", admin_subscriber_forms_path %></li>
+    </ul>  
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet">
+      <div class="portlet-body">
+        <div class="table-container">
+          <table class="table table-striped table-bordered table-hover" id="supports-table">
+            <thead>
+              <tr>
+                <th> Name</th>
+                <th> Restaurant Name</th>
+                <th>  Phone Number </th>
+                <th>  Message </th>
+              </tr>
+            </thead>  
+            <tbody>
+            </tbody>                
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>      
+<script type="text/javascript">
+  $(document).ready(function(){
+    supports_Records();
+  });
+</script>

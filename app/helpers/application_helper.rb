@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def new_forms_submitted
-    JoinUs.where(is_viewed: false).count + RestaurantSuggestion.where(is_viewed: false).count + CampusSuggestion.where(is_viewed: false).count + ContactUs.where(is_viewed: false).count + Subscribe.where(is_viewed: false).count
+    JoinUs.where(is_viewed: false).count + RestaurantSuggestion.where(is_viewed: false).count + CampusSuggestion.where(is_viewed: false).count + ContactUs.where(is_viewed: false).count + Subscribe.where(is_viewed: false).count + Support.where(is_viewed: false).count
   end
 
   def new_user_sign_up

@@ -119,7 +119,9 @@ class Restaurant::DashboardController < ApplicationController
 
   def contact_admin
     @user = current_user
-    if  UserMailer.restaurant_admin(params[:contactus]).deliver
+    @contact_us = Support.new(params[:contactus])
+    if  @contact_us.save
+      UserMailer.restaurant_admin(@user,params[:contactus]).deliver
       flash[:notice] = "Successfully email sent"
       redirect_to support_restaurant_dashboard_index_path(:anchor => "sent")
    else 
