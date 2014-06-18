@@ -1,5 +1,5 @@
 <div class="property">
-  <div class="group">
+  <div class="group" data-length = "<%= length %>">
   	<div class="form-group row">
       <label class="col-md-3 control-label">Group Name</label>
       <div class="col-md-9">
@@ -73,12 +73,9 @@
     $(".add-group-item-link").on('click', function(e){
       parent = $(this).parent();
       id = $(".group-content").data('menu');
-      console.log(parent);
       sub_parent = parent.find(".group-item-content");
-      index = parent.find('input.length').length - 1;
-      console.log(index);
+      index = parent.data('length');
       length = sub_parent.find('input.index').length;
-      console.log(sub_parent);
       $.ajax ({
         url:  '/admin/menu/'+ id +'/menu_items/get_group_item',
         data: {length: length, index: index },
