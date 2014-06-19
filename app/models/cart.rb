@@ -1,11 +1,16 @@
 class Cart < ActiveRecord::Base
   
   has_many :menu_items , through: :cart_menu_items
-  has_many :cart_menu_items, :dependent => :destroy
+  has_many :cart_menu_items
   belongs_to :user
   belongs_to :restaurant
   attr_accessible :token, :user_id, :order_type, :restaurant_id
 
+  after_destroy :remove_associations
+
+  def remove_associations
+    self.cart_menu_items.clear
+  end
 
   def sub_total
   	price = 0

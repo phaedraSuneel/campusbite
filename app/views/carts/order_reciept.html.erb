@@ -21,12 +21,13 @@
             <td class="first">
               <h3><%= item.menu_item.item_name %></h3>
               <% extra = 0 %>
-              <% if item.menu_item_property_id %>
-                <label>Size: <%= order.property_name(item.menu_item_property_id) %> </label>
-                <% extra += order.property_price(item.menu_item_property_id) %>
-              <% end -%>  
-              <label>Extra Toppings: Mushrooms, Tomato, Onion</label>
-              <p>Instructions: <%= item.instruction %></p>
+              <% unless item.group_item_ids.blank? %>
+                <label> Extra: 
+                <% item.group_items.each do |group_item| %>
+                  <%= group_item.name + " " %>
+                  <% extra += group_item.price %>
+                <% end %>
+              <% end %>
             </td>
             <td class="first">$<%= extra + item.menu_item.price %></td>
             <td class="first"><%= item.quantity %></td>

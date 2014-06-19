@@ -131,7 +131,7 @@ class Restaurant < ActiveRecord::Base
     restaurant_info = self.operation.sechedules.where(:day => today)
     opened_info = restaurant_info.where('opening_time  <= ? and closing_time >= ?' , current_time, current_time)
 
-    return !opened_info.blank?
+    return opened_info.blank?
   end
 
   def opening_time

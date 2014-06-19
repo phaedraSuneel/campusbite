@@ -119,21 +119,17 @@ class CartsController < ApplicationController
           @order.restaurant = @cart.restaurant
           @order.secure_code = SecureRandom.random_number(10000)
           @order.save
-          payment = @order.build_payment
-          payment.user_id = current_user.id
-          payment.transaction_id = @result.transaction.id
-          payment.transaction_at = @result.transaction.created_at
-          payment.transaction_status = @result.transaction.status
-          payment.amount  = @result.transaction.amount
+          payment = @order.build_payment :user_id => current_user.id, :transaction_id => @result.transaction.id, :transaction_at => @result.transaction.created_at, :transaction_status => @result.transaction.status, :amount => @result.transaction.amount
           payment.save
-
           @cart.cart_menu_items.each do |item|
-            @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   
+            @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :restaurant_id => item.restaurant_id, :instruction => item.instruction
             @menu_item_order.menu_item = item.menu_item
+            @menu_item_order.group_item_ids = item.group_item_ids
             @menu_item_order.save 
           end
-          send_order(@order)
-          publish_order
+          @order.update_user_points
+         send_order(@order)
+         publish_order
           @cart.destroy
           flash[:notice] = 'Order was successfully created'
           respond_to do |format| 
@@ -209,10 +205,14 @@ class CartsController < ApplicationController
     @order.secure_code = SecureRandom.random_number(10000)
     @order.save
     @cart.cart_menu_items.each do |item|
-      @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :menu_item_property_id => item.menu_item_property_id, :restaurant_id => item.restaurant_id, :instruction => item.instruction   
+      @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :restaurant_id => item.restaurant_id, :instruction => item.instruction
       @menu_item_order.menu_item = item.menu_item
+      p item.group_items
+      @menu_item_order.group_items = item.group_items
       @menu_item_order.save 
+      p @menu_item_order.group_items
     end
+    @order.update_user_points
     send_order(@order)
     publish_order
     @cart.destroy
@@ -282,7 +282,7 @@ class CartsController < ApplicationController
     @fax = Phaxio.send_fax(to: order.restaurant.fax_number ,string_data_type: 'html', string_data: order_reciept )
     if @fax["success"]
       make_call(order.restaurant) 
-    else  
+    else
       p "Fax number format is incorrect"
     end
   end 

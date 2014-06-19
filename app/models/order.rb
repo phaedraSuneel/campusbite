@@ -11,7 +11,12 @@ class Order < ActiveRecord::Base
   attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip, :secure_code, :flag
 
   scope :with_user, lambda {|user| where(user_id: user.id ) }
-  after_save :update_user_points
+  
+  after_destroy :remove_associations
+
+  def remove_associations
+    self.menu_item_orders.clear
+  end
 
   def update_user_points
     new_points = (self.total_bill.floor) * 5
@@ -30,9 +35,11 @@ class Order < ActiveRecord::Base
   	price = 0
   	self.menu_item_orders.each do |item|
   		extra = 0
-  		if item.menu_item_property_id
-  			extra = property_price(item.menu_item_property_id)
-  	  end		
+  		unless item.group_item_ids.blank?
+        item.group_items.each do |group_item|
+          extra += group_item.price
+        end
+      end 	
   		price += (item.menu_item.price + extra) * item.quantity
   	end
   	return price
