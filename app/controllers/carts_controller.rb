@@ -139,7 +139,7 @@ class CartsController < ApplicationController
           end
           @order.update_user_points
           send_order(@order)
-          publish_order
+          #publish_order
           @cart.destroy
           flash[:notice] = 'Order was successfully created'
           respond_to do |format| 
@@ -223,7 +223,7 @@ class CartsController < ApplicationController
     end
     @order.update_user_points
     send_order(@order)
-    publish_order
+    #publish_order
     @cart.destroy
     flash[:notice] = 'Order was successfully created'
     redirect_to order_welcome_path(@order)  

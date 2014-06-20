@@ -71,7 +71,6 @@ var init_order_table = function() {
 
   var oTableTools = new TableTools( oTable, {
     "aButtons": [ { "sExtends": "copy", "oSelectorOpts": { filter : "applied" } },
-        { "sExtends": "pdf", "oSelectorOpts": { filter : "applied" } },
         { "sExtends": "xls", "oSelectorOpts": { filter : "applied" } },
         { "sExtends": "print", "oSelectorOpts": { filter : "applied" } }
       ]
