@@ -263,6 +263,7 @@ Ordering::Application.routes.draw do
     end
     member do
       post 'edit_item'
+      get 'apply_coupon'
     end
   end  
   # The priority is based upon order of creation:

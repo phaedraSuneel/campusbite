@@ -187,8 +187,8 @@
                 <p>$<%= @order.delivery_charges %></p>
                 <p>$<%= @order.tip_charges %></p>
                 <p><b>$<%= @order.total_bill %></b></p>
-                <p>$0</p>
-                <p>$<%= @order.total_bill %></p>
+                <p>-$<%= @order.detect_coupon_charges %></p>
+                <p>$<%= @order.total_after_discount %></p>
               </td>
             </tr>
           </table>  

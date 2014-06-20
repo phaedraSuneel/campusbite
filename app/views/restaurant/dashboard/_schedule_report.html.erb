@@ -92,8 +92,8 @@
           <td><%= order.total_bill %></td>
           <td>0</td>
           <td>0</td>
-          <% total_bill += order.total_bill %>
-          <td><%= order.total_bill %></td>
+          <% total_bill += order.total_after_discount %>
+          <td><%= order.total_after_discount %></td>
         </tr>
       <% end %>
       <tr>

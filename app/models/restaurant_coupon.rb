@@ -1,7 +1,7 @@
 class RestaurantCoupon < ActiveRecord::Base
   versioned
 	belongs_to :restaurant
-  attr_accessible :expiration_date, :restaurant_id, :coupon_image, :status
+  attr_accessible :expiration_date, :restaurant_id, :coupon_image, :status, :code, :charges, :max_use
   has_attached_file :coupon_image,
                     :styles => {
                         :thumb => "75x75#",
@@ -11,4 +11,12 @@ class RestaurantCoupon < ActiveRecord::Base
                     },
                     :default_url => '/assets/default.png'
   validates_attachment_content_type :coupon_image, :content_type => /\Aimage\/.*\Z/ 
+
+  def limit_avaible?
+    max_use == 0 ?  false : true
+  end
+
+  def model_name
+    "RestaurantCoupon"
+  end
 end

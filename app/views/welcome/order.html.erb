@@ -14,7 +14,7 @@
         </div>
         <div class="col-md-11 thanks-order">
           <h3>Thank You for your order</h3>
-          <p>Your order has has been sent to <%= @order.restaurant.restaurant_name %> . Our team of professionals will take it from here.You can now just sit back and relax.</p>
+          <p>Your order has  been sent to <%= @order.restaurant.restaurant_name %> . Our team of professionals will take it from here.You can now just sit back and relax.</p>
         </div>
       </div>
     </div>
@@ -167,14 +167,14 @@
           <div class="col-md-6 subtotal">
             <label><span>Subtotal:</span><span class="value">$<%= @order.sub_total%></span></label>
             <label class="green"><span>Online Discount(10% off):</span><span class="value">- $0</span></label>
-            <label class="green"><span>Coupon (Ketchup):</span><span class="value">-$0</span></label>
+            <label class="green"><span>Coupon Charges:</span><span class="value">-$<%= @order.detect_coupon_charges %></span></label>
             <label><span>Tax:</span><span class="value">$<%= @order.sale_tax %></span></label>
             <% if @order.order_type == "delivery" %>
               <label><span>Delivery Fee:</span><span class="value">$<%= @order.delivery_charges %></span></label>
             <% end %> 
               <label><span>Tip:</span><span class="value">$<%= @order.tip_charges %></span></label>
              
-            <label class="larg-size"><span>Total:</span><span class="value">$<%= @order.total_bill %></span></label>
+            <label class="larg-size"><span>Total:</span><span class="value">$<%= @order.total_after_discount %></span></label>
           </div>
         </div>
       </div>

@@ -53,6 +53,15 @@ class CartsController < ApplicationController
     end
   end
 
+  def apply_coupon
+    @restaurant = Restaurant.where(id: params[:id]).first
+    @coupon = @restaurant.valid_coupon_code(params[:code])
+    p @coupon
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def create_order
     @cart = current_user.carts.find_by_restaurant_id(params[:restaurant_id])
     params[:order][:tip] = params[:order][:tip] ||= 0.0
@@ -142,9 +151,9 @@ class CartsController < ApplicationController
         end  
       else
       unless params[:order][:order_type] == "pickup"
-          result = @cart.paypal_url(APP_CONFIG["domain"]+'carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s ,total_bill)
+          result = @cart.paypal_url(APP_CONFIG["domain"]+'carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s+'&coupon_id='+params[:order][:coupon_id]+'&coupon_off='+params[:order][:coupon_off] ,total_bill)
       else
-          result = @cart.paypal_url(APP_CONFIG["domain"]+'carts/paypal_order_create?cart_id='+@cart.id.to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s ,total_bill)
+          result = @cart.paypal_url(APP_CONFIG["domain"]+'carts/paypal_order_create?cart_id='+@cart.id.to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s+'&coupon_id='+params[:order][:coupon_id]+'&coupon_off='+params[:order][:coupon_off] ,total_bill)
       end
       redirect_to result
       end
@@ -195,9 +204,9 @@ class CartsController < ApplicationController
   def paypal_order_create
     @cart = Cart.find(params[:cart_id].to_i)
     if @cart.order_type == "pickup"
-      @order = Order.new(:order_type => 'pickup', :request_time => params[:request_time], :method_type => 'Paypal', :tip => params[:tip].to_f)
+      @order = Order.new(:order_type => 'pickup', :request_time => params[:request_time], :method_type => 'Paypal', :tip => params[:tip].to_f,:coupon_id => params[:coupon_id], :coupon_off => :params[:coupon_off])
     else
-      @order = Order.new(:address_id => params[:address_id].to_i, :order_type => 'delivery', :request_time => params[:request_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal', :tip => params[:tip].to_f)
+      @order = Order.new(:address_id => params[:address_id].to_i, :order_type => 'delivery', :request_time => params[:request_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal', :tip => params[:tip].to_f,:coupon_id => params[:coupon_id], :coupon_off => :params[:coupon_off])
     end 
     @order.user_id = current_user.id
     @order.status = "pending"

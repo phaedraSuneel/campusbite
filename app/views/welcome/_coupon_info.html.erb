@@ -1,0 +1,32 @@
+<div class="detail-req detail-req-node coupon-area" data-restaurant = "<%= @restaurant.id %>">
+  <h2>Coupon Code</h2>
+  <div class="row">
+    <div class="col-md-6 tip-items">
+      <p>Enter Your Code</p>
+    </div>
+    <div class="col-md-4 tip-items">
+      <input class="required-first code-field" type="text" placeholder="Promo Code" />
+    </div>
+    <%= hidden_field_tag "order[coupon_id]" , nil, :class => 'coupon_id' %>
+    <%= hidden_field_tag "order[coupon_off]" , nil, :class => 'coupon_off' %>
+    <div class="col-md-2 tip-items">
+      <%= link_to raw("<button class='coupon-btn'>Apply</button>"), '#', :remote => true, :class => "coupon-verification"%>
+      <div class="coupon-result"></div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  
+  $(document).ready(function(){
+    $(".coupon-verification").click(function(){
+      restaurant_id = $(".coupon-area").data("restaurant");
+      code = $(".code-field").val();
+      $.ajax ({
+        url:  '/carts/' + restaurant_id +'/apply_coupon',
+        data: {code: code}
+     });
+    });
+  });
+
+</script>

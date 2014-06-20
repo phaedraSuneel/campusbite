@@ -1,0 +1,9 @@
+<% if @coupon %>
+	$(".coupon-btn").text('Applied');
+	$(".coupon-btn").removeClass("red-btn");
+	$(".coupon_id").val(<%= @coupon.id %>);
+	$(".coupon_off").val("<%= @coupon.model_name %>");
+<% else %>
+	$(".coupon-btn").text('Failed');
+	$(".coupon-btn").addClass("red-btn");
+<% end %>

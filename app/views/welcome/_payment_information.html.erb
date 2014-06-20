@@ -16,7 +16,10 @@
         <%= render :partial => "welcome/order_payment_info" %>
         
         <%= render :partial => "welcome/order_tip_info" %>
-
+        <% if @restaurant.coupon_avaible? %>
+          <%= render :partial => "welcome/coupon_info"%>
+        <% end %>  
+        
         <%= render :partial => "welcome/order_promo_code_info" %>      
       </div>
     </div>
@@ -34,13 +37,17 @@
 
 <script type="text/javascript">
   $(".total").text($(".total-bill").text());
+  
   $(document).ready(function(){
+    
     $(".sumbit-order-btn").click(function(){
       $(".new-order-form").submit();
     });
+    
     request_time = $(".hidden_field_request_time").val();
     restaurant = $(".restaurant").val();
     $(".request_time").val(request_time);
     $(".restaurant_order").val(restaurant);
+
   });
 </script>

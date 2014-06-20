@@ -16,7 +16,6 @@ var EcommerceIndex = function () {
     var initChart1 = function () {
 
         var data = $(".dashboard-data").data("orders");
-
             var plot_statistics = $.plot(
                 $("#statistics_1"), 
                 [

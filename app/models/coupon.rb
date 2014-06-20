@@ -7,4 +7,13 @@ class Coupon < ActiveRecord::Base
   	search_keyword = ["%",key_word,"%"].join('')
   	return data.where('amount like ? OR code like ? OR max_user like ? OR max_use like ?', search_keyword, search_keyword, search_keyword, search_keyword)
   end
+
+  def model_name
+    "Coupon"
+  end
+
+  def limit_avaible?
+    max_use == 0 ?  false : true
+  end
+  
 end

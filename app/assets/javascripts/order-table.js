@@ -69,18 +69,17 @@ $(document).ready(function() {
     "bSortCellsTop": true,
   });
 
-
   // var tableTools = new $.fn.dataTable.TableTools( oTable, {
-  //     "buttons": [
-  //         "copy",
-  //         "csv",
-  //         "xls",
-  //         "pdf",
-  //         { "type": "print", "buttonText": "Print me!" }
-  //     ]
+  //   "buttons": [
+  //       "copy",
+  //       "csv",
+  //       "xls",
+  //       "pdf",
+  //       { "type": "print", "buttonText": "Print me!" }
+  //   ]
   // });
 
-  // $( tableTools.fnContainer() ).insertBefore('div.dataTables_wrapper');
+  //$( tableTools.fnContainer() ).insertBefore('div.dataTables_wrapper');
 
    
   $("thead tr.filter .select_filter").each( function ( i ) {

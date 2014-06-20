@@ -34,8 +34,13 @@
         <label class="pickup-head">Pickup</label>
         <% @restaurant.pick_up.sechedules.each_with_index do |sechedule, index |%>
           <div class="day-items <%= index%2 == 0 ? 'day-items-even' : 'day-items-odd' %>">
-            <label class="days-head"><%= sechedule.day %></label><span class="closing"><%= sechedule.opening_time.strftime("%I:%M%p")%></span><span class="dash-word">-</span><span class="closing"><%= sechedule.opening_time.strftime("%I:%M%p") %></span>
+            <label class="days-head"><%= sechedule.day %></label><span class="closing"><%= sechedule.opening_time.strftime("%I:%M%p")%></span><span class="dash-word">-</span><span class="closing"><%= sechedule.closing_time.strftime("%I:%M%p") %></span>
           </div>
+          <% unless sechedule.break_schedule.blank? %>
+            <div class="day-items <%= index%2 == 0 ? 'day-items-even' : 'day-items-odd' %>">
+              <label class="days-head">Break</label><span class="closing"><%= sechedule.break_schedule.opening_time.strftime("%I:%M%p")%></span><span class="dash-word">-</span><span class="closing"><%= sechedule.break_schedule.closing_time.strftime("%I:%M%p") %></span>
+            </div>  
+          <% end %>
         <% end %>  
       </div>
       <img class="info-shadow" src="/assets/shadow.png" alt="Smiley face">
@@ -45,8 +50,13 @@
         <label class="pickup-head">Delivery</label>
           <% @restaurant.delivery.sechedules.each_with_index do |sechedule, index |%>
           <div class="day-items <%= index%2 == 0 ? 'day-items-even' : 'day-items-odd' %>">
-            <label class="days-head"><%= sechedule.day %></label><span class="closing"><%= sechedule.opening_time.strftime("%I:%M%p")%></span><span class="dash-word">-</span><span class="closing"><%= sechedule.opening_time.strftime("%I:%M%p") %></span>
+            <label class="days-head"><%= sechedule.day %></label><span class="closing"><%= sechedule.opening_time.strftime("%I:%M%p")%></span><span class="dash-word">-</span><span class="closing"><%= sechedule.closing_time.strftime("%I:%M%p") %></span>
           </div>
+          <% unless sechedule.break_schedule.blank? %>
+            <div class="day-items <%= index%2 == 0 ? 'day-items-even' : 'day-items-odd' %>">
+              <label class="days-head">Break</label><span class="closing"><%= sechedule.break_schedule.opening_time.strftime("%I:%M%p")%></span><span class="dash-word">-</span><span class="closing"><%= sechedule.break_schedule.closing_time.strftime("%I:%M%p") %></span>
+            </div>  
+          <% end %>
         <% end %>
       </div>
       <img class="info-shadow" src="/assets/shadow.png" alt="Smiley face" />

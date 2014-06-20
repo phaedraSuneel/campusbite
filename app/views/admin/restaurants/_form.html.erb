@@ -647,6 +647,24 @@
                 </div>
               </div>
               <div class="form-group">
+                <%= f.label :code , :class => "col-md-3 control-label"%>
+                <div class="col-md-9">
+                  <%= f.text_field :code, :class => "form-control" %>
+                </div>
+              </div>
+              <div class="form-group row">
+                <%= f.label :charges , :class => "col-md-3 control-label"%>
+                <div class="col-md-9">
+                  <%= f.text_field :charges, :class => "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
+                <%= f.label :max_use , :class => "col-md-3 control-label"%>
+                <div class="col-md-9">
+                  <%= f.number_field :max_use, :class => "form-control" %>
+                </div>
+              </div>
+              <div class="form-group">
                 <%= f.label :expiration_date, :class => "control-label col-md-3" %>
                 <div class="col-md-9">
                   <%= f.datetime_select :expiration_date, :class => "form-control" %>

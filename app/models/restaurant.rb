@@ -212,6 +212,10 @@ class Restaurant < ActiveRecord::Base
     self.restaurant_coupons.where(:status => 'pending')
   end
 
+  def coupon_avaible?
+    self.restaurant_coupons.present?
+  end
+
   def can_fax?
     self.order_info.info_way == "fax" ? true : false
   end
@@ -255,5 +259,45 @@ class Restaurant < ActiveRecord::Base
   def swift_code
     bank_info.swift_code
   end
-  
+
+  def valid_coupon_code(code)
+    un_expire_coupons = self.un_expire_coupons
+    code_match_coupon = self.match_coupons(un_expire_coupons, code) unless un_expire_coupons.blank?
+    unless code_match_coupon.nil?
+      if code_match_coupon.limit_avaible?
+        return code_match_coupon
+      else
+        check_school_coupons(code)
+      end 
+    else
+      check_school_coupons(code)
+    end   
+  end
+
+  def un_expire_coupons
+    self.restaurant_coupons.where('expiration_date >= ?', Time.now.to_date)
+  end
+
+  def match_coupons(coupons, code)
+    coupons.where(code: code).first
+  end
+
+  def check_school_coupons(code)
+    school_coupons = self.un_expire_school_coupons(code)
+    code_match_coupon = self.match_coupons(school_coupons, code) unless school_coupons.blank?
+    unless code_match_coupon.nil?
+      if code_match_coupon.limit_avaible?
+        return code_match_coupon
+      else
+        return false
+      end
+    else
+      return false      
+    end
+  end
+
+  def un_expire_school_coupons(code)
+    self.school.coupons.where('start_date <= ? and end_date >= ?', Time.now.to_date, Time.now.to_date)
+  end
+
 end

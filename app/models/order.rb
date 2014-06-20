@@ -8,7 +8,7 @@ class Order < ActiveRecord::Base
   has_many :menu_item_orders
   has_many :comments, :dependent => :destroy
 
-  attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip, :secure_code, :flag
+  attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip, :secure_code, :flag, :coupon_id, :coupon_off
 
   scope :with_user, lambda {|user| where(user_id: user.id ) }
   
@@ -66,6 +66,32 @@ class Order < ActiveRecord::Base
     (total * self.tip) / 100
   end
 
+  def detect_coupon_charges
+    if self.coupon_off == "RestaurantCoupon"
+      detect_restaurant_coupon_charges
+    else
+      detect_school_coupon_charges
+    end  
+  end
+
+  def detect_school_coupon_charges
+    coupon = Coupon.where(id: self.coupon_id).first
+    unit = coupon.unit
+    if unit == "$ off"
+      coupon.amount
+    else
+      (self.sub_total * coupon.amount) / 100  
+    end
+  end
+
+  def detect_restaurant_coupon_charges
+    charge = RestaurantCoupon.where(id: self.coupon_id).first.charges
+    (self.sub_total * charge) / 100
+  end
+
+  def total_after_discount
+    self.total_bill - self.detect_coupon_charges
+  end
 
 	def total_bill
     if self.order_type == "delivery"
