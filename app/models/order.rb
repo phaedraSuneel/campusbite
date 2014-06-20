@@ -76,12 +76,16 @@ class Order < ActiveRecord::Base
 
   def detect_school_coupon_charges
     coupon = Coupon.where(id: self.coupon_id).first
-    unit = coupon.unit
-    if unit == "$ off"
-      coupon.amount
+    if coupon.present?
+      unit = coupon.unit
+      if unit == "$ off"
+        coupon.amount
+      else
+        (self.sub_total * coupon.amount) / 100  
+      end
     else
-      (self.sub_total * coupon.amount) / 100  
-    end
+      0.0
+    end  
   end
 
   def detect_restaurant_coupon_charges
