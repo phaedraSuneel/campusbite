@@ -1,5 +1,7 @@
 class CartsController < ApplicationController
+  
   respond_to :html, :xml, :json
+  
   def add_item
     menu_item = MenuItem.find(params[:cart][:menu_item_id])
     restaurant = menu_item.restaurant
@@ -56,7 +58,6 @@ class CartsController < ApplicationController
   def apply_coupon
     @restaurant = Restaurant.where(id: params[:id]).first
     @coupon = @restaurant.valid_coupon_code(params[:code])
-    p @coupon
     respond_to do |format|
       format.js
     end
@@ -137,8 +138,8 @@ class CartsController < ApplicationController
             @menu_item_order.save 
           end
           @order.update_user_points
-         send_order(@order)
-         publish_order
+          send_order(@order)
+          publish_order
           @cart.destroy
           flash[:notice] = 'Order was successfully created'
           respond_to do |format| 
@@ -305,5 +306,4 @@ class CartsController < ApplicationController
   def send_confirm_email_to_customer
     UserMailer.order_confirmation(current_user.email).deliver
   end
-
 end

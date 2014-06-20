@@ -58,7 +58,7 @@ $.fn.dataTableExt.afnFiltering.push(
   }
 );
 
-$(document).ready(function() {
+var init_order_table = function() {
 
   $(".date-picker").datetimepicker().change(function(){
     $('#order_from_date, #order_to_date').click();
@@ -69,18 +69,15 @@ $(document).ready(function() {
     "bSortCellsTop": true,
   });
 
-  // var tableTools = new $.fn.dataTable.TableTools( oTable, {
-  //   "buttons": [
-  //       "copy",
-  //       "csv",
-  //       "xls",
-  //       "pdf",
-  //       { "type": "print", "buttonText": "Print me!" }
-  //   ]
-  // });
+  var oTableTools = new TableTools( oTable, {
+    "aButtons": [ { "sExtends": "copy", "oSelectorOpts": { filter : "applied" } },
+        { "sExtends": "pdf", "oSelectorOpts": { filter : "applied" } },
+        { "sExtends": "xls", "oSelectorOpts": { filter : "applied" } },
+        { "sExtends": "print", "oSelectorOpts": { filter : "applied" } }
+      ]
+  });
 
-  //$( tableTools.fnContainer() ).insertBefore('div.dataTables_wrapper');
-
+  $( oTableTools.fnContainer()).insertBefore('div.dataTables_wrapper');
    
   $("thead tr.filter .select_filter").each( function ( i ) {
     var i = $(this).index();
@@ -150,4 +147,4 @@ $(document).ready(function() {
     $(this).removeClass("sorting_asc");
   });
 
-});
+};
