@@ -13,6 +13,18 @@ class Order < ActiveRecord::Base
   scope :with_user, lambda {|user| where(user_id: user.id ) }
   
   after_destroy :remove_associations
+  after_save :decrease_coupon_limit
+
+
+  def decrease_coupon_limit
+    if self.coupon_id?
+      if self.coupon_off == "RestaurantCoupon"
+        RestaurantCoupon.where(id: self.coupon_id).first.descrease_limit
+      else
+        Coupon.where(id: self.coupon_id).first.descrease_limit
+      end 
+    end
+  end
 
   def remove_associations
     self.menu_item_orders.clear

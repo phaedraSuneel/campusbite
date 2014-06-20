@@ -204,9 +204,9 @@ class CartsController < ApplicationController
   def paypal_order_create
     @cart = Cart.find(params[:cart_id].to_i)
     if @cart.order_type == "pickup"
-      @order = Order.new(:order_type => 'pickup', :request_time => params[:request_time], :method_type => 'Paypal', :tip => params[:tip].to_f,:coupon_id => params[:coupon_id], :coupon_off => :params[:coupon_off])
+      @order = Order.new(:order_type => 'pickup', :request_time => params[:request_time], :method_type => 'Paypal', :tip => params[:tip].to_f,:coupon_id => params[:coupon_id].to_i, :coupon_off => :params[:coupon_off])
     else
-      @order = Order.new(:address_id => params[:address_id].to_i, :order_type => 'delivery', :request_time => params[:request_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal', :tip => params[:tip].to_f,:coupon_id => params[:coupon_id], :coupon_off => :params[:coupon_off])
+      @order = Order.new(:address_id => params[:address_id].to_i, :order_type => 'delivery', :request_time => params[:request_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal', :tip => params[:tip].to_f, :coupon_id => params[:coupon_id].to_i, :coupon_off => :params[:coupon_off])
     end 
     @order.user_id = current_user.id
     @order.status = "pending"
@@ -216,10 +216,8 @@ class CartsController < ApplicationController
     @cart.cart_menu_items.each do |item|
       @menu_item_order = MenuItemOrder.new :order_id => @order.id, :quantity => item.quantity, :restaurant_id => item.restaurant_id, :instruction => item.instruction
       @menu_item_order.menu_item = item.menu_item
-      p item.group_items
       @menu_item_order.group_items = item.group_items
       @menu_item_order.save 
-      p @menu_item_order.group_items
     end
     @order.update_user_points
     send_order(@order)

@@ -19,4 +19,10 @@ class RestaurantCoupon < ActiveRecord::Base
   def model_name
     "RestaurantCoupon"
   end
+
+  def descrease_limit
+    self.max_use = self.max_use -  1
+    self.save
+  end
+
 end

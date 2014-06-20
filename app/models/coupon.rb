@@ -15,5 +15,11 @@ class Coupon < ActiveRecord::Base
   def limit_avaible?
     max_use == 0 ?  false : true
   end
+
+  def descrease_limit
+    self.max_use = self.max_use -  1
+    self.max_user = self.max_user -  1
+    self.save
+  end
   
 end
