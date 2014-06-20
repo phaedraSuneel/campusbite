@@ -6,7 +6,19 @@
 </div>
 <div class="row result-heading">
   <div class="col-md-12 resturant-heading">
-    <%= link_to raw("<h2>Back To All Restaurants</h2>"), result_welcome_index_path %>
+    <div class="row error-line">
+      <div class="col-md-3">
+        <%= link_to raw("<h2>Back To All Restaurants</h2>"), result_welcome_index_path %>
+      </div>
+      <% unless @restaurant.open? %>
+        <div class="col-md-9 flash-message">
+          <div class="error-mesg">
+            <p>This restaurant is current closed and will taking orders at <%= @restaurant.opening_time %></p>
+            <a href="javascript:;" class="flash-link"><span class="cross">x</span></a>
+          </div>
+        </div>
+      <% end -%>   
+    </div>  
   </div>
   <div class="comment-main-container">
     <div class="row comment-block odd">

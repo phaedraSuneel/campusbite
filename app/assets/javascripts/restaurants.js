@@ -243,6 +243,9 @@ $(document).ready(function(){
       $(".review-form").submit();
     });
   
+    $(".resturant-heading .flash-link").click(function(){
+      $(".resturant-heading .flash-message").addClass("hide");
+    });
 });
 
 function change_collapse_sign(){
