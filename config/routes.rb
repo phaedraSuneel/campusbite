@@ -4,7 +4,7 @@ Ordering::Application.routes.draw do
 
 
   namespace :admin do
-    
+
     get '/admin', to: 'admin#index'
 
     resources :dashboard
@@ -35,7 +35,7 @@ Ordering::Application.routes.draw do
         get 'change_status'
       end
     end
-    
+
     resources :permissions do
       member do
         get 'assign_permission'
@@ -50,7 +50,7 @@ Ordering::Application.routes.draw do
     end
     resources :orders do
       resources :comments
-      member do 
+      member do
         get 'confirm'
         get 'cancel'
         get 'print'
@@ -74,28 +74,28 @@ Ordering::Application.routes.draw do
         get 'report_print'
       end
     end
-    
-    resources :schools do 
-      collection do 
+
+    resources :schools do
+      collection do
         post "create_building"
-      end  
-      member do 
+      end
+      member do
         get "new_building"
         get "buildings"
         get "delete"
       end
       resources :restaurants do
-        member do 
+        member do
           get 'order'
           get 'order_detail'
           get 'delete'
         end
       end
 
-    end 
+    end
 
     resources :restaurants do
-      member do 
+      member do
         get 'order'
         get 'order_detail'
         get 'accept_request'
@@ -116,19 +116,19 @@ Ordering::Application.routes.draw do
           get 'accept_request'
           get 'reject_request'
         end
-        collection do 
+        collection do
           get 'get_group'
           get 'get_group_item'
         end
       end
     end
-    
+
     resources :addons do
-      collection do 
+      collection do
         get "category_field"
         get "sub_addon_field"
       end
-    end  
+    end
 
     resources :restaurant_coupons do
       member do
@@ -148,11 +148,11 @@ Ordering::Application.routes.draw do
       end
     end
     resources :cuisines
-  end 
+  end
 
   namespace :restaurant do
-    
-    resources :dashboard do 
+
+    resources :dashboard do
       get '/dashboard', to: 'dashboard#index'
       collection do
         get 'contact_admin'
@@ -170,7 +170,7 @@ Ordering::Application.routes.draw do
         get 'toggle_alert'
         get 'allOrders'
       end
-      member do 
+      member do
         get 'confirm_order'
         get 'cancel_order'
         get 'order'
@@ -192,9 +192,9 @@ Ordering::Application.routes.draw do
 
   resources :card
 
-  
 
-  resources :dashboard do 
+
+  resources :dashboard do
     collection do
       get 'account'
       get 'restaurant'
@@ -207,50 +207,50 @@ Ordering::Application.routes.draw do
       get 'delete_card'
       post 'add_user_card'
     end
-    member do 
+    member do
       post "edit_user_address"
       get 'remove_review'
     end
   end
-  
 
-    
 
-  resources :schools do 
-    collection do 
+
+
+  resources :schools do
+    collection do
       get "search"
       post "create_building"
-    end  
-    member do 
+    end
+    member do
       get "new_building"
       get "buildings"
     end
-    resources :restaurants   
+    resources :restaurants
   end
 
 
-  
+
 
   resources :restaurants do
-    member do 
+    member do
       get 'add_favorite'
       get 'order'
       get 'order_detail'
       post 'new_review'
       post 'edit_review'
     end
-  end 
-  
+  end
+
   resources :menu
-  resources :menu_categories    
+  resources :menu_categories
   resources :menu_items do
-    collection do 
+    collection do
       get "property_field"
-    end  
-  end 
+    end
+  end
 
   resources :carts do
-    collection do 
+    collection do
       get "add_item"
       get "checkout"
       get "create_order"
@@ -265,7 +265,7 @@ Ordering::Application.routes.draw do
       post 'edit_item'
       get 'apply_coupon'
     end
-  end  
+  end
   # The priority is based upon order of creation:
   # first created -> highest priority.
   devise_for :users , :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
@@ -310,10 +310,10 @@ Ordering::Application.routes.draw do
       put 'update_role'
       delete 'destroy_role'
     end
-  end  
+  end
 
-  resources :welcome do 
-    collection do 
+  resources :welcome do
+    collection do
       get 'result'
       get 'restaurant_search'
       get 'aboutus'
@@ -327,6 +327,7 @@ Ordering::Application.routes.draw do
       get 'join_us'
       get 'restaurant_suggestion'
       get 'campus_suggestion'
+      get 'careers'
     end
     member do
       get "menu"
@@ -334,21 +335,21 @@ Ordering::Application.routes.draw do
     end
   end
 
-  match 'aboutus' => 'welcome#aboutus', :as => :aboutus 
+  match 'aboutus' => 'welcome#aboutus', :as => :aboutus
 
-  match 'restaurant_owners' => 'welcome#restaurant_owners', :as => :restaurant_owners 
+  match 'restaurant_owners' => 'welcome#restaurant_owners', :as => :restaurant_owners
   match 'faqs' => 'welcome#faqs', :as => :faqs
-  match 'contact_us' => 'welcome#contact_us', :as => :contact_us 
+  match 'contact_us' => 'welcome#contact_us', :as => :contact_us
   match 'contact_us_save' => 'welcome#contact_us_save', :as => :contact_us_save
+  match 'careers' => 'welcome#careers', :as => :careers
+  match 'add_restaurant' => 'welcome#add_restaurant', :as => :add_restaurant
 
-  match 'add_restaurant' => 'welcome#add_restaurant', :as => :add_restaurant 
+  match 'add_campus' => 'welcome#add_campus', :as => :add_campus
+  match 'how_it_works' => 'welcome#how_it_works', :as => :how_it_works
 
-  match 'add_campus' => 'welcome#add_campus', :as => :add_campus 
-  match 'how_it_works' => 'welcome#how_it_works', :as => :how_it_works 
-
-  match 'join_us' => 'welcome#join_us', :as => :join_us 
-  match 'restaurant_suggestion' => 'welcome#restaurant_suggestion', :as => :restaurant_suggestion 
-  match 'campus_suggestion' => 'welcome#campus_suggestion', :as => :campus_suggestion 
+  match 'join_us' => 'welcome#join_us', :as => :join_us
+  match 'restaurant_suggestion' => 'welcome#restaurant_suggestion', :as => :restaurant_suggestion
+  match 'campus_suggestion' => 'welcome#campus_suggestion', :as => :campus_suggestion
 
 
   match '/payments/payment', :to => 'payments#payment', :as => 'paymentspayment', :via => [:get]

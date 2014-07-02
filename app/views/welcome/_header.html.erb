@@ -14,11 +14,11 @@
         <ul class="menu nav navbar-nav">
           <li><a href="/">Home</a><span class="border-right-img"></span></li>
           <li><a href="<%= aboutus_path %>">About Us</a><span class="border-right-img"></span></li>
-          <li><a href="#">Careers</a><span class="border-right-img"></span></li>
+          <li><a href="<%= careers_path %>">Careers</a><span class="border-right-img"></span></li>
           <li><a href="<%= restaurant_owners_path %>">Restaurant Qwners</a><span class="border-right-img"></span></li>
           <li><a href="<%= contact_us_path %>">Contact Us</a></li>
         </ul>
-        
+
         <ul class="login nav navbar-nav navbar-right">
           <% if current_user.blank? %>
             <li class="sign-in"><%= link_to "Sign In" , new_user_session_path %><span class="border-right-img"></span></li>
@@ -26,15 +26,15 @@
           <% else  %>
             <% if current_user.has_role? :admin_restaurant %>
               <li class="sign-up"><%= link_to "Restaurant Dashboard", restaurant_dashboard_index_path %> <span class="border-right-img"></span></li>
-            <% end %>  
+            <% end %>
             <% if current_user.user_admin? %>
               <li class="sign-up"><%= link_to "Admin Panel", "/admin" %> <span class="border-right-img"></span></li>
             <% end %>
             <li class="sign-up"><%= link_to "My Account", account_dashboard_index_path %> <span class="border-right-img"></span></li>
             <li class="sign-up"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %> <span class="border-right-img"></span></li>
-          <% end %>  
+          <% end %>
         </ul>
-        
+
       </div>
     </div>
   </nav>
