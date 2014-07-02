@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  
+
   rolify
 
   # Include default devise modules. Others available are:
@@ -23,9 +23,9 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
   has_many :orders, :dependent => :destroy
   has_many :carts, :dependent => :destroy
-  has_many :addresses, :dependent => :destroy 
+  has_many :addresses, :dependent => :destroy
   has_many :favorites, :dependent => :destroy
-  has_many :reviews, :dependent => :destroy  
+  has_many :reviews, :dependent => :destroy
   has_many :cards, :dependent => :destroy
   has_many :payments, :dependent => :destroy
   has_many :restaurants, :dependent => :destroy
@@ -40,6 +40,9 @@ class User < ActiveRecord::Base
     self.add_role :user if self.roles.blank?
   end
 
+  def is_subscribe?
+    Subscribe.where(email: self.email).first ? true : false
+  end
 
   def add_customer_id
     result = Braintree::Customer.create(
@@ -49,8 +52,8 @@ class User < ActiveRecord::Base
     if result.success?
       self.customer_id = result.customer.id
       self.save
-    end  
-  end 
+    end
+  end
 
   def phone_number
     self.addresses.collect(&:phone_number).first
@@ -90,23 +93,23 @@ class User < ActiveRecord::Base
   end
 
   def ordered?(restaurant)
-    self.orders.find_by_restaurant_id(restaurant.id).blank? 
-  end 
-  
+    self.orders.find_by_restaurant_id(restaurant.id).blank?
+  end
+
   def review?(restaurant)
     unless self.reviews.blank?
-      self.reviews.find_by_restaurant_id(restaurant.id).blank? 
+      self.reviews.find_by_restaurant_id(restaurant.id).blank?
     else
       true
-    end  
-  end 
+    end
+  end
 
   def total_order(restaurant)
     user_orders = self.orders.find_all_by_restaurant_id(restaurant.id)
     total = 0
     user_orders.each do |order|
       total += order.total_bill
-    end  
+    end
     total
   end
 
@@ -119,5 +122,5 @@ class User < ActiveRecord::Base
     search_keyword = ["%",key_word,"%"].join('')
     return data.where('first_name like ? OR last_name like ? OR email like ?', search_keyword, search_keyword, search_keyword)
   end
-  
+
 end

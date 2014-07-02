@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140702055645) do
+ActiveRecord::Schema.define(:version => 20140702084812) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -416,6 +416,14 @@ ActiveRecord::Schema.define(:version => 20140702055645) do
     t.datetime "updated_at",    :null => false
   end
 
+  create_table "redeams", :force => true do |t|
+    t.string   "item_id"
+    t.string   "item_name"
+    t.integer  "item_price"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "restaurant_categories", :force => true do |t|
     t.string   "category_name"
     t.datetime "created_at",    :null => false
@@ -579,6 +587,7 @@ ActiveRecord::Schema.define(:version => 20140702055645) do
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.integer  "banner_id"
+    t.integer  "redeam_id"
   end
 
   create_table "user_roles", :force => true do |t|

@@ -12,6 +12,8 @@ Ordering::Application.routes.draw do
         get 'delete'
       end
     end
+
+    resources :redeams
     resources :careers
     resources :banners
     resources :subscriber_forms

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Item:</b>
+  <%= @redeam.item_id %>
+</p>
+
+<p>
+  <b>Item name:</b>
+  <%= @redeam.item_name %>
+</p>
+
+<p>
+  <b>Reward Points:</b>
+  <%= @redeam.item_price %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_redeam_path(@redeam) %> |
+<%= link_to 'Back', admin_redeams_path %>

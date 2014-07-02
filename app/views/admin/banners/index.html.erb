@@ -12,7 +12,7 @@
       <li>
         <%= link_to "CMS", admin_banners_path %>
       </li>
-    </ul>  
+    </ul>
   </div>
 </div>
 <div class="row">
@@ -36,21 +36,21 @@
                 <th></th>
                 <th></th>
               </tr>
-            </thead>  
+            </thead>
             <tbody>
               <% @banners.each do |banner| %>
                 <tr>
                   <td><%= banner.image_type %></td>
-                  <td><%= image_tag(banner.uploads.first.image(:medium))%></td>
-                  <td><%= link_to 'Edit', edit_admin_banner_path(banner) %></td>
-                  <td><%= link_to 'Destroy', admin_banner_path(banner) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                  <td class="text-center"><%= image_tag(banner.uploads.first.image(:medium))%></td>
+                  <td><%= link_to raw("<span class='label label-sm label-default'> edit </span>"), edit_admin_banner_path(banner) %></td>
+                  <td><%= link_to raw("<span class='label label-sm label-danger'> delete </span>"), admin_banner_path(banner) , method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 </tr>
               <% end %>
-            </tbody>                
+            </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-</div>      
+</div>
 

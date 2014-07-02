@@ -1,0 +1,49 @@
+<div class="portlet-body form">
+  <%= form_for(@redeam, :url => set_redeam_url(@redeam)) do |f| %>
+    <div class="form-body">
+      <% if @redeam.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@redeam.errors.count, "error") %> prohibited this redeam from being saved:</h2>
+
+          <ul>
+          <% @redeam.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row form-group">
+        <%= f.label :item_name, :class => "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_field :item_name , :class => "form-control"%>
+        </div>
+      </div>
+      <div class="row form-group">
+        <%= f.label :item_price, "Reward Points", :class => "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_field :item_price , :class => "form-control"%>
+        </div>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-3 control-label">Upload Image </label>
+
+        <div class="col-md-9">
+          <%= f.fields_for :upload do |upload| %>
+            <% if upload.object.persisted? %>
+              <%= image_tag(upload.object.image(:thumb)) %>
+            <% end %>
+            <%= upload.file_field :image %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_redeams_path,:class => "btn default "%>
+      </div>
+    </div>
+  <% end %>
+</div>

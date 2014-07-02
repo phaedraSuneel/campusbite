@@ -1,0 +1,29 @@
+<%= form_for(@redeam) do |f| %>
+  <% if @redeam.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@redeam.errors.count, "error") %> prohibited this redeam from being saved:</h2>
+
+      <ul>
+      <% @redeam.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :item_id %><br />
+    <%= f.text_field :item_id %>
+  </div>
+  <div class="field">
+    <%= f.label :item_name %><br />
+    <%= f.text_field :item_name %>
+  </div>
+  <div class="field">
+    <%= f.label :item_price %><br />
+    <%= f.number_field :item_price %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
