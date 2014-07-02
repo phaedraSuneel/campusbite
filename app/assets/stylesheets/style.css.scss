@@ -62,8 +62,8 @@ border: 1px solid transparent;
 border-radius: 4px;
 }
 .row{
-  margin-left: 0 !important;
-  margin-right: 0 !important;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 /*.container{
   width: 990px;
@@ -5481,7 +5481,6 @@ span.icon-reject
 }
 
 /**** career page ****/
-
 .career-page .panel-default > .panel-heading{
   background-color: #8c796d !important;
   color: #fff;
@@ -5648,7 +5647,165 @@ span.icon-reject
   color: #000;
   font-family: 'PT Sans';
 }
+.RewardsPoints .house-logo-1 img {
+  position: relative;
+  z-index: 5555;
+  top: 133px;
+  left: 76%;
+}
+.RewardsPoints .reward-rule{
+  background-color: #fff;
+  border: 2px solid #767676;
+  padding: 10px;
+  border-radius: 5px;
+}
+.RewardsPoints .padding-both-zero{
+  padding:0px;
+}
+.RewardsPoints .reward-rule p{
+  font-size: 15px;
+  font-family: arial;
+}
+.RewardsPoints .reward-rule p a{
+  color: #316303;
+  text-decoration: underline;
+}
+.RewardsPoints .reward-rule p.redeem{
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+}
+.RewardsPoints .screen1{
+  text-align: left;
+  position: relative;
+}
+.RewardsPoints .screen1 .pick{
+  font-size: 15px;
+  font-weight: bold;
+  font-family: arial;
+  padding-left: 25px;
+  margin-bottom: 5px;
+}
+.RewardsPoints .screen1 .next-point{
+  position: absolute;
+  right: 40px;
+  top: 50%;
+}
+.RewardsPoints .screen3{
+  padding: 0px !important;
+  text-align: center;
+}
+.RewardsPoints .screen2{
+  padding-left: 50px;
+}
+.RewardsPoints .ipad-block{
+  background-color: #eaeaea;
+  border: 2px solid #767676;
+  border-radius: 5px;
+  margin: 15px 0;
+  text-align: center;
+  float: left;
+  width: 100%;
+}
+.RewardsPoints .ipad-block img{
+  margin-top: 10px;
+}
+.RewardsPoints .ipad-block img.phone{
+  margin: 0px;
+}
+.RewardsPoints .ipad-block p.get{
+  font-size: 15px;
+  font-family: arial;
+  border-bottom: 2px solid #767676;
+  min-height: 45px;
+}
+.RewardsPoints .ipad-block p.redeem{
+ font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  font-family: arial;
+  margin-bottom: 0px;
+}
+.RewardsPoints .ipad-block .redeem-item{
+  float: left;
+  width: 100%;
+}
+.RewardsPoints .ipad-block .redeem-item .left{
+  float: left;
+  width: 52%;
+}
+.RewardsPoints .ipad-block .redeem-item label{
+  float: left;
+  width: 100%;
+}
+.RewardsPoints .ipad-block .redeem-item label.item{
+  font-size: 20px;
+  font-family: 'PT Sans';
+  font-weight: bold;
+  color: #343434;
+  text-align: left;
+  padding-left: 5px;
+}
+.RewardsPoints .ipad-block .redeem-item label.amount{
+   font-size: 25px;
+  font-family: 'PT Sans';
+  font-weight: bold;
+  color: #619400;
+  text-align: center;
+  padding-left: 5px;
+}
+.RewardsPoints .ipad-block .redeem-item .right{
+  width: 45%;
+  float: left;
+}
+.RewardsPoints .ipad-block .redeem-item button.redeem-btn{
+  float: left;
+  width: 100%;
+  background: rgba(121,207,51,1);
+  background: -moz-linear-gradient(top, rgba(121,207,51,1) 0%, rgba(87,175,10,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(121,207,51,1)), color-stop(100%, rgba(87,175,10,1)));
+  background: -webkit-linear-gradient(top, rgba(121,207,51,1) 0%, rgba(87,175,10,1) 100%);
+  background: -o-linear-gradient(top, rgba(121,207,51,1) 0%, rgba(87,175,10,1) 100%);
+  background: -ms-linear-gradient(top, rgba(121,207,51,1) 0%, rgba(87,175,10,1) 100%);
+  background: linear-gradient(to bottom, rgba(121,207,51,1) 0%, rgba(87,175,10,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#79cf33', endColorstr='#57af0a', GradientType=0 );
+  border: 1px solid #919191;
+  border-radius: 5px;
+  color: #fff;
+  margin-left: 3px;
+  font-family: 'bignoodletitlingregular';
+  font-size: 28px;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  line-height: 57px;
+  height:50px;
+  margin: 5px 0;
 
+}
+.RewardsPoints .reward-margin{
+  margin: 0 -15px;
+}
+.RewardsPoints .search-container{
+  padding-bottom: 50px;
+}
+
+@media screen and (max-width: 991px){
+  .RewardsPoints .screen1 {
+    padding: 0px !important;
+    text-align: center;
+  }
+  .RewardsPoints .screen1 .pick{
+    padding: 0px;
+  }
+   .RewardsPoints .next-point{
+    display: none;
+  }
+  .RewardsPoints .house-logo-1 img {
+    position: relative;
+    z-index: 5555;
+    top: 25px !important;
+    left: 76%;
+  }
+}
 @media screen and (min-width: 768px){
   .career-page-popup .modal-dialog {
     width: 750px;

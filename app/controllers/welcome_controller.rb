@@ -147,4 +147,9 @@ class WelcomeController < ApplicationController
       render :action => "unsubscribe"
     end
   end
+
+  def reward_points
+    @reward_points = Redeam.all
+  end
+
 end

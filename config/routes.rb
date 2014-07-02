@@ -334,6 +334,8 @@ Ordering::Application.routes.draw do
       get 'term_of_service'
       get 'merchant_term_of_service'
       get 'unsubscribe'
+      get 'reward_points'
+      get 'reward_point_rules'
       post 'remove_subscriber'
     end
     member do
@@ -354,7 +356,8 @@ Ordering::Application.routes.draw do
   match 'privacy_policy' => 'welcome#privacy_policy', :as => :privacy_policy
   match 'term_of_service' => 'welcome#term_of_service', :as => :term_of_service
   match 'merchant_term_of_service' => 'welcome#merchant_term_of_service', :as => :merchant_term_of_service
-
+  match 'reward_points' => 'welcome#reward_points', :as => :reward_points
+  match 'reward_point_rules' => 'welcome#reward_point_rules', :as => :reward_point_rules
   match 'add_campus' => 'welcome#add_campus', :as => :add_campus
   match 'how_it_works' => 'welcome#how_it_works', :as => :how_it_works
 
