@@ -49,6 +49,7 @@
 //= require restaurant_owner_form
 //= require restaurant_suggestion_form
 //= require campus_suggestion_form
+//= require redeam_request_forms
 //= require reward_points
 //= require customers
 //= require locations

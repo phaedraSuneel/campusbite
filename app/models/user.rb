@@ -123,4 +123,10 @@ class User < ActiveRecord::Base
     return data.where('first_name like ? OR last_name like ? OR email like ?', search_keyword, search_keyword, search_keyword)
   end
 
+  def can_make_redeam_request?(item_id)
+    redeam = Redeam.where(item_id: item_id).first
+    return true if (self.points >= redeam.item_price)
+    return false
+  end
+
 end

@@ -22,6 +22,7 @@ Ordering::Application.routes.draw do
     resources :restaurant_suggestion_forms
     resources :campus_suggestion_forms
     resources :support_forms
+    resources :redeam_request_forms
     resources :reward_points do
       member do
         post 'update_reward_points'
@@ -337,6 +338,7 @@ Ordering::Application.routes.draw do
       get 'reward_points'
       get 'reward_point_rules'
       post 'remove_subscriber'
+      post 'request_for_redeam'
     end
     member do
       get "menu"
@@ -360,6 +362,7 @@ Ordering::Application.routes.draw do
   match 'reward_point_rules' => 'welcome#reward_point_rules', :as => :reward_point_rules
   match 'add_campus' => 'welcome#add_campus', :as => :add_campus
   match 'how_it_works' => 'welcome#how_it_works', :as => :how_it_works
+  match 'request_for_redeam' => 'welcome#request_for_redeam', :as => :request_for_redeam
 
   match 'join_us' => 'welcome#join_us', :as => :join_us
   match 'restaurant_suggestion' => 'welcome#restaurant_suggestion', :as => :restaurant_suggestion

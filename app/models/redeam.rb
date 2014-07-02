@@ -7,6 +7,10 @@ class Redeam < ActiveRecord::Base
 
   def generate_item_id
     self.item_id = self.item_name.gsub(' ','').downcase
-    #self.item_id = self.item_id.downcase
   end
+
+  def punch_line
+    ['Get this', self.item_name, 'with', self.item_price, "Rewards Points"].join(" ");
+  end
+
 end

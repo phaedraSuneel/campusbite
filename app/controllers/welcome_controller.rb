@@ -152,4 +152,26 @@ class WelcomeController < ApplicationController
     @reward_points = Redeam.all
   end
 
+  def request_for_redeam
+    @redeam = Redeam.where(item_id: params[:redeam][:item_id]).first
+    if current_user.email == params[:redeam][:email]
+      if current_user.can_make_redeam_request?(params[:redeam][:item_id])
+        @redeam_request = RedeamRequest.new(params[:redeam])
+        if @redeam_request.save
+          UserMailer.redeam_request(params[:redeam]).deliver
+          @success = "Thank You"
+        else
+          @error = "Sorry you can not make redeam resquest for this Item Please Check your reward points"
+        end
+      else
+        @error = "Sorry you can not make redeam resquest for this Item Please Check your reward points"
+      end
+    else
+      @error = "Invalid Eamil address"
+    end
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end
