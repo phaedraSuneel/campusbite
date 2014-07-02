@@ -24,7 +24,7 @@ class Admin::OrdersController < ApplicationController
     @orders = Order.order('created_at desc')
     render orders_print_admin_orders_path, :layout => false
   end
-  
+
   def new_orders_print
     @orders = Order.where(:status => "pending").order("created_at desc")
     render orders_print_admin_orders_path, :layout => false
@@ -48,7 +48,7 @@ class Admin::OrdersController < ApplicationController
     else
       flash[:warning] = "Order Failed Confirmed"
       redirect_to :back
-    end  
+    end
   end
 
   def cancel
@@ -59,18 +59,18 @@ class Admin::OrdersController < ApplicationController
     else
       flash[:warning] = "Order Fail Cancel"
       redirect_to :back
-    end  
+    end
   end
 
   def print
-    @order = Order.find(params[:id]) 
+    @order = Order.find(params[:id])
     respond_to do |format|
-      format.html { render "print", :layout => false  }  
+      format.html { render "print", :layout => false  }
     end
   end
 
   def toggle_flag
-    @order = Order.find(params[:id]) 
+    @order = Order.find(params[:id])
     @order.flag = @order.flag? ? false : true
     if @order.save
       flash[:notice] = "Order Successfully update"
@@ -83,7 +83,7 @@ class Admin::OrdersController < ApplicationController
 
   def email_receipt
     @order = Order.find(params[:id])
-    order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => @order}, :layout => false ) 
+    order_reciept = render_to_string(:template => "carts/order_reciept", :locals => {:order => @order}, :layout => false )
     if UserMailer.new_order(@order, order_reciept).deliver
       flash[:notice] = "Receipt successfully sent to Restaurant"
       redirect_to :back
@@ -105,5 +105,4 @@ class Admin::OrdersController < ApplicationController
       redirect_to :back
     end
   end
-
 end

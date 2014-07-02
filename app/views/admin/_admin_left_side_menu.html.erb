@@ -52,7 +52,8 @@
 				<li class= "<%= 'active' if params[:controller] == 'admin/campus_suggestion_forms' %>">
 					<%= link_to "Campus Suggestion Forms", admin_campus_suggestion_forms_path %>
 				</li>
-				<li class= "<%= 'active' if params[:controller] == 'admin/supports_forms' %>">
+                <% p  params[:controller]%>
+				<li class= "<%= 'active' if params[:controller] == 'admin/support_forms' %>">
 					<%= link_to "Support Forms", admin_support_forms_path %>
 				</li>
         <li class= "<%= 'active' if params[:controller] == 'admin/redeam_request_forms' %>">
