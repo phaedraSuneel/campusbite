@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140619120957) do
+ActiveRecord::Schema.define(:version => 20140702055645) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -115,6 +115,14 @@ ActiveRecord::Schema.define(:version => 20140619120957) do
     t.string   "card_type"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+  end
+
+  create_table "careers", :force => true do |t|
+    t.string   "title"
+    t.string   "location"
+    t.text     "responsibilities"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
   end
 
   create_table "cart_menu_item_group_items", :force => true do |t|

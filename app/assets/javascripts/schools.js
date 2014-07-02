@@ -1,18 +1,19 @@
 $(document).ready(function(){
-  
+
   $(".search-keyword").typeahead([
     {
       name: 'Schools',
       remote: '/schools/search.json?keyword=%QUERY'
     }
   ]);
-  
+  $(".add.pull-right")[0].click();
+
   $(".tt-dropdown-menu").click(function(){
     $(this).parent().parent().parent().submit();
   });
 
   $(".checkout-btn-link").click(function(){
-    $(".order_type").each(function(){ 
+    $(".order_type").each(function(){
       if($(this).is(':checked'))
         order_type = $(this).val();
     });
@@ -25,7 +26,7 @@ $(document).ready(function(){
         $(".cart-response").html(data);
       }
     });
-    
+
   });
 
   $(".order-delivery-btn").click(function(){
@@ -45,7 +46,7 @@ $(document).ready(function(){
       {
         $(".delivery-label").removeClass("hide");
         $(".delivery-charges").removeClass("hide");
-      } 
+      }
     });
   });
 
@@ -67,7 +68,7 @@ $(document).ready(function(){
       {
         $(".delivery-label").addClass("hide");
         $(".delivery-charges").addClass("hide");
-      } 
+      }
     });
 
   });
@@ -77,7 +78,7 @@ $(document).ready(function(){
     parent.toggleClass("hide");
     $(this).toggleClass("active");
   });
-  
+
 
   $(".edit-action-link").click(function(){
     $(".change_user_information_form input[type=text]").each(function(){
@@ -91,7 +92,7 @@ $(document).ready(function(){
   $(".save-btn").click(function(){
     $(".change_user_information_form").submit();
   });
-  
+
   $(".update-btn").click(function(){
     $(".change_user_password_form").submit();
   });
@@ -99,7 +100,7 @@ $(document).ready(function(){
     $(".on input[type=radio]").prop("checked", true);
     $(".address_type_field").val("On Campus");
 
-      
+
 
     $(".on").click(function(){
       $(".address_type_field").val("On Campus");
@@ -134,7 +135,7 @@ $(document).ready(function(){
           $(".building-selector select").addClass("Select-Campus");
         }
       });
-    });  
+    });
 
     $(".add-new-address-btn").click(function(){
       $(".add-new-address-form").submit();
@@ -190,7 +191,7 @@ $(document).ready(function(){
         });
       }
       else
-       return false  
+       return false
     });
 
     $(".delete-card-btn").click(function(){
@@ -209,7 +210,7 @@ $(document).ready(function(){
         });
       }
       else
-       return false  
+       return false
     });
 
     $(".delete-review-btn").click(function(){
@@ -228,7 +229,7 @@ $(document).ready(function(){
         });
       }
       else
-       return false  
+       return false
     });
 
     $(".printer-request").click(function(){

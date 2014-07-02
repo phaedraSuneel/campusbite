@@ -1,7 +1,7 @@
 class Admin::SchoolsController < ApplicationController
 
   def index
-    
+
     page = params[:draw].nil? ? 1 : params[:draw].to_i
     limit = params[:length].to_i
     offset = params[:start].to_i
@@ -10,19 +10,19 @@ class Admin::SchoolsController < ApplicationController
       col_number = params[:order]["0"]["column"].to_i
       order_by_type  = params[:order]["0"]["dir"]
     end
-    
+
     attribute_name = get_sort_attribute_name(col_number)
     sorting_query = [attribute_name,order_by_type].join(' ')
 
     @schools = School.offset(offset).limit(limit).order(sorting_query)
-    
+
     unless params[:search].nil?
       @schools = School.apply_search_filter(@schools, params[:search][:value])
     end
-    
+
     respond_to do |format|
-      format.json do 
-        return render :json =>  {draw: page,  recordsTotal: School.count,  recordsFiltered: School.count , :data => @schools.collect{|a| [a.school_name, "<a src='#{admin_school_url(a)}'><span class='label label-sm label-success'> show </a>", "<a src='#{edit_admin_school_url(a)}'><span class='label label-sm label-default'> edit </a>", "<a src='#{delete_admin_school_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </a>", "<a src='#{new_building_admin_school_url(a)}'><span class='label label-sm label-primary'> Add SubCategory </a>"]} }
+      format.json do
+        return render :json =>  {draw: page,  recordsTotal: School.count,  recordsFiltered: School.count , :data => @schools.collect{|a| [a.school_name, "<a src='#{admin_school_url(a)}'><span class='label label-sm label-success'> show </span></a>", "<a src='#{edit_admin_school_url(a)}'><span class='label label-sm label-default'> edit </span> </a>", "<a src='#{delete_admin_school_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </span> </a>", "<a src='#{new_building_admin_school_url(a)}'><span class='label label-sm label-primary'> Add SubCategory </a>"]} }
       end
       format.html
     end
@@ -40,20 +40,20 @@ class Admin::SchoolsController < ApplicationController
     end
     attribute_name = get_building_sort_attribute_name(col_number)
     sorting_query = [attribute_name,order_by_type].join(' ')
-    
+
     @buildings = @school.buildings.offset(offset).limit(limit).order(sorting_query)
-    
+
     unless params[:search].nil?
       @buildings  = Building.apply_search_filter(@buildings , params[:search][:value])
     end
     respond_to do |format|
-      format.json do 
+      format.json do
         return render :json =>  {draw: page,  recordsTotal: @school.buildings.count,  recordsFiltered: @school.buildings.count , :data => @buildings.collect{|a| [a.building_name, a.street_adress, a.city, a.zip_code, a.state]} }
       end
       format.html
     end
   end
-  
+
   def new
     authorize! :create, School
     @school = School.new
@@ -113,7 +113,7 @@ class Admin::SchoolsController < ApplicationController
     else
       flash[:notice] = "Building was not created"
       redirect_to admin_school_path(@school)
-    end  
+    end
   end
 
   def buildings
@@ -125,15 +125,15 @@ class Admin::SchoolsController < ApplicationController
   private
 
   def get_sort_attribute_name(column_number)
-  
+
     case column_number
     when 0
       return "school_name"
-    else 
-      return "id"  
+    else
+      return "id"
     end
 
-  end 
+  end
 
   def get_building_sort_attribute_name(col_number)
 
@@ -147,8 +147,8 @@ class Admin::SchoolsController < ApplicationController
     when 3
       return "zip_code"
     else
-      return "state"      
+      return "state"
     end
   end
-    
+
 end

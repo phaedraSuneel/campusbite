@@ -2,7 +2,6 @@ Ordering::Application.routes.draw do
 
   resources :subscribes
 
-
   namespace :admin do
 
     get '/admin', to: 'admin#index'
@@ -13,6 +12,7 @@ Ordering::Application.routes.draw do
         get 'delete'
       end
     end
+    resources :careers
     resources :banners
     resources :subscriber_forms
     resources :contact_us_forms

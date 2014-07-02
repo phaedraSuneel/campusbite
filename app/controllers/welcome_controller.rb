@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
-  
+
   def index
     @banners = Banner.where(:image_type => "Slider Image")
     @subscribe = Subscribe.new
@@ -23,7 +23,7 @@ class WelcomeController < ApplicationController
       @query = params[:keyword]
     else
       @restaurants = Restaurant.all
-    end   
+    end
  	end
 
  	def menu
@@ -38,17 +38,17 @@ class WelcomeController < ApplicationController
   def restaurant_search
     if !params[:category_id].blank?
       @restaurants = Restaurant.search params[:keyword], :with => {:restaurant_category_ids =>  [params[:category_id].to_i] }
-    else 
+    else
       @restaurants = Restaurant.search params[:keyword]
-    end  
+    end
     if params[:input]
       if params[:input] == "best_match"
         @restaurants = Restaurant.search params[:keyword]
       elsif params[:input] == "delivery_free"
         @restaurants = @restaurants.search :conditions => {:delivery_charges =>  0.0}
       elsif params[:input] == "delivery_mini"
-        @restaurants = @restaurants.search :sort_mode => :expr, :order => :min_order 
-      elsif params[:input] == "delivery_eta"  
+        @restaurants = @restaurants.search :sort_mode => :expr, :order => :min_order
+      elsif params[:input] == "delivery_eta"
         @restaurants = @restaurants.search :sort_mode => :desc, :order => :delivery_eta
       elsif params[:input] == "sort_name"
         @restaurants = @restaurants.search :order => :restaurant_name
@@ -56,13 +56,13 @@ class WelcomeController < ApplicationController
         @restaurants = @restaurants.search  :sort_mode => :extended, :order => 'rating DESC'
       else
         @restaurants = @restaurants.search :conditions => {:restaurant_name =>  params[:input]}
-      end  
+      end
     end
     render :partial => 'restaurant', collection: @restaurants
-  end 
+  end
 
   def contact_us
-    @contact_us = ContactUs.new 
+    @contact_us = ContactUs.new
   end
 
   def contact_us_save
@@ -71,16 +71,16 @@ class WelcomeController < ApplicationController
 
     if @contact_us.save
       UserMailer.contact_us(@contact_us).deliver
-      flash[:notice] = "Successfully email sent" 
+      flash[:notice] = "Successfully email sent"
       redirect_to :back
     else
-      flash[:warning] = "Fail to submit your request" 
+      flash[:warning] = "Fail to submit your request"
       render :action => 'contact_us'
-    end 
+    end
   end
 
   def restaurant_owners
-    @join_us = JoinUs.new 
+    @join_us = JoinUs.new
   end
 
   def join_us
@@ -92,8 +92,8 @@ class WelcomeController < ApplicationController
       redirect_to :back
     else
       flash[:warning] = "Joining request failed"
-      render :action => 'restaurant_owners' 
-    end 
+      render :action => 'restaurant_owners'
+    end
   end
 
   def add_restaurant
@@ -108,7 +108,7 @@ class WelcomeController < ApplicationController
       redirect_to :back
     else
       flash[:warning] = "suggestion request failed"
-      render :action => 'add_restaurant' 
+      render :action => 'add_restaurant'
     end
   end
   def add_campus
@@ -123,7 +123,11 @@ class WelcomeController < ApplicationController
       redirect_to :back
     else
       flash[:warning] = "suggestion request failed"
-      render :action => 'add_campus' 
+      render :action => 'add_campus'
     end
+  end
+
+  def careers
+    @careers = Career.all
   end
 end

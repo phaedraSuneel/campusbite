@@ -1,0 +1,42 @@
+<div class="portlet-body form">
+  <%= form_for(@career, :url => set_career_url(@career)) do |f| %>
+    <div class="form-body">
+      <% if @career.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@career.errors.count, "error") %> prohibited this career from being saved:</h2>
+
+          <ul>
+          <% @career.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row form-group">
+        <%= f.label :title ,:class => "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_field :title, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="row form-group">
+        <%= f.label :location ,:class => "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_field :location, :class => "form-control" %>
+        </div>
+      </div>
+      <div class="row form-group">
+        <%= f.label :responsibilities ,:class => "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_area :responsibilities, :class => "form-control" %>
+        </div>
+      </div>
+    </div>
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_careers_path,:class => "btn default "%>
+      </div>
+    </div>
+  <% end %>
+</div>
