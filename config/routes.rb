@@ -328,6 +328,11 @@ Ordering::Application.routes.draw do
       get 'restaurant_suggestion'
       get 'campus_suggestion'
       get 'careers'
+      get 'privacy_policy'
+      get 'term_of_service'
+      get 'merchant_term_of_service'
+      get 'unsubscribe'
+      post 'remove_subscriber'
     end
     member do
       get "menu"
@@ -342,7 +347,11 @@ Ordering::Application.routes.draw do
   match 'contact_us' => 'welcome#contact_us', :as => :contact_us
   match 'contact_us_save' => 'welcome#contact_us_save', :as => :contact_us_save
   match 'careers' => 'welcome#careers', :as => :careers
+  match 'unsubscribe' => 'welcome#unsubscribe', :as => :unsubscribe
   match 'add_restaurant' => 'welcome#add_restaurant', :as => :add_restaurant
+  match 'privacy_policy' => 'welcome#privacy_policy', :as => :privacy_policy
+  match 'term_of_service' => 'welcome#term_of_service', :as => :term_of_service
+  match 'merchant_term_of_service' => 'welcome#merchant_term_of_service', :as => :merchant_term_of_service
 
   match 'add_campus' => 'welcome#add_campus', :as => :add_campus
   match 'how_it_works' => 'welcome#how_it_works', :as => :how_it_works

@@ -130,4 +130,21 @@ class WelcomeController < ApplicationController
   def careers
     @careers = Career.all
   end
+
+  def remove_subscriber
+    if params[:subscriber][:email].present?
+      @subscriber = Subscribe.where(email: params[:subscriber][:email]).first
+      unless @subscriber.nil?
+        @subscriber.destroy
+        flash[:notice] = "Successfully unsubscribe from our site"
+        redirect_to '/'
+      else
+        flash[:warning] = "This email owner is not subscribe for our site"
+        render :action => "unsubscribe"
+      end
+    else
+      flash[:warning] = "Please insert email address"
+      render :action => "unsubscribe"
+    end
+  end
 end
