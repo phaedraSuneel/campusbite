@@ -6,7 +6,6 @@ $(document).ready(function(){
       remote: '/schools/search.json?keyword=%QUERY'
     }
   ]);
-  $(".add.pull-right")[0].click();
 
   $(".tt-dropdown-menu").click(function(){
     $(this).parent().parent().parent().submit();
