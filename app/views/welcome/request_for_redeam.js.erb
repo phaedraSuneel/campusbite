@@ -1,5 +1,5 @@
-<% if @error.present? %>
-  $('.redeam_form_'+'<%= @redeam.id.to_s %>' + '.error-message').html('<%= @error %>');
+<% if @error %>
+  $('.redeam_'+ '<%= @redeam.id.to_s %>').html("<%= j render :partial => '/welcome/reward_error_message' %>");
 <% else %>
   $('.redeam_'+ '<%= @redeam.id.to_s %>').html("<%= j render :partial => '/welcome/reward_thanks_message' %>");
 <% end %>

@@ -1,0 +1,20 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header error-title">
+      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+      <h4 class="modal-title" id="myModalLabel">Sorry</h4>
+    </div>
+    <div class="modal-body modal-body-container">
+      <div class="row">
+        <div class="col-md-12 adress-container">
+          <P class="thanks error">You can not make redeam resquest for this Item Please Check your reward points or select another item for request .. So click Try Again button </P>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="col-md-8 col-md-offset-2 checkout-btn">
+          <%= link_to raw("<button>Try Again</button>"), reward_points_path, :class => "checkout-btn-link" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

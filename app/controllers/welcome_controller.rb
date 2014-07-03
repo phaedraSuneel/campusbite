@@ -159,15 +159,15 @@ class WelcomeController < ApplicationController
         @redeam_request = RedeamRequest.new(params[:redeam])
         if @redeam_request.save
           UserMailer.redeam_request(params[:redeam]).deliver
-          @success = "Thank You"
+          @error = false
         else
-          @error = "Sorry you can not make redeam resquest for this Item Please Check your reward points"
+          @error = true
         end
       else
-        @error = "Sorry you can not make redeam resquest for this Item Please Check your reward points"
+        @error = true
       end
     else
-      @error = "Invalid Eamil address"
+      @error = true
     end
     respond_to do |format|
       format.js
