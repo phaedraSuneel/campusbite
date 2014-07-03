@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="format-detection" content="telephone=no">
   <title>Ordering</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
@@ -9,7 +12,7 @@
 <body>
   <div class="main-body">
     <div class="ordering_header">
-      <%= render :partial => "welcome/header" %> 
+      <%= render :partial => "welcome/header" %>
     </div>
     <div class="flash row margin-auto">
       <% flash_message = current_user.blank? ? "flash-msg" : "signed-in-flash-msg" %>
@@ -30,11 +33,11 @@
           <% end %>
         <% end %>
       </div>
-    </div>  
+    </div>
     <%= yield %>
     <div class="ordering_footer">
-      <%= render :partial => "welcome/footer" %> 
-    </div>  
-  </div>  
+      <%= render :partial => "welcome/footer" %>
+    </div>
+  </div>
 </body>
 </html>
