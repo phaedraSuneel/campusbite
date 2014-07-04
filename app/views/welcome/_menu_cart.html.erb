@@ -15,12 +15,12 @@
           </div>
           <div class="col-md-4 delivery-type">
             <div class="delivery-btn order-delivery-btn" data-cart="<%= cart.id %>">
-              <%= f.check_box :order_type, {:class => "order_type", :checked => "#{'checked'unless cart.order_type=='pickup'}"}, "delivery"%> Delivery
+              <%= f.check_box :order_type, {:class => "order_type", :checked => "#{'checked'unless (cart.order_type=='pickup') }"}, "delivery"%> Delivery
             </div>
           </div>
           <div class="col-md-4 pickup-type">
             <div class="pick-btn order-pick-btn" data-cart="<%= cart.id %>">
-              <%= f.check_box :order_type, {:class => "order_type", :checked => "#{'checked'unless cart.order_type=='delivery'}"}, "pickup" %> Pickup
+              <%= f.check_box :order_type, {:class => "order_type", :checked => "#{'checked'unless cart.order_type=='delivery' or (cart.order_type.nil?)}"}, "pickup" %> Pickup
             </div>
           </div>
           <div class="col-md-12 request-order">
@@ -37,15 +37,15 @@
                   <% cart.group_items.each do |group_item| %>
                     <% cart_extra_charges += group_item.price %>
                     <label class="details"><%= group_item.name %><span>$<%= group_item.price %></span></label>
-                  <% end %>  
+                  <% end %>
                 <% end %>
                 <label class="details">Instructions:  <%= cart.instruction %></label>
                 <label class="total-amount"><img class="line-1" alt="Smiley face" src="/assets/t-line.png" /><span class="item-total" id="cart_menu_item_<%=cart.id%>">$ <%= (cart.menu_item.price + cart_extra_charges) * cart.quantity %></span></label>
                 <label class="qty-amount">QTY:<span><%= link_to '-', 'javascript:void(0)', :class => "minus-quantiy", :remote => true %></span><span class="quantity" data-cart = "<%= cart.id %>"><%= cart.quantity %></span><%= link_to '+', 'javascript:void(0)', :class => "plus-quantiy", :remote => true%></label>
               </div>
             </div>
-            
-          <% end %>  
+
+          <% end %>
           <%= hidden_field_tag :restaurant_id , @restaurant.id, :class => "restaurant" %>
           <div class="col-md-12 subtotal-container">
             <div class="subtotal-head">
@@ -66,13 +66,13 @@
             <%= link_to raw("<button>CHECKOUT</button>"), "#", :class => "checkout-btn-link", :remote => true %>
           </div>
         </div>
-      <% end %>  
+      <% end %>
       <% cart.cart_menu_items.each do |item| %>
         <%= render :partial => "edit_menu_item_popup", :locals => {:item => item.menu_item , :restaurant => @restaurant, :cart => item } %>
       <% end %>
     <% else %>
       <div class="text-center"> Your Cart is Empty</div>
-    <% end %>    
+    <% end %>
   </div>
 </div>
 
