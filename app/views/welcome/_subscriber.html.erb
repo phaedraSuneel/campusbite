@@ -3,7 +3,7 @@
     <div class="col-md-4 Subscribe">
       <div class="Sub-button-1"><button>Subscribe</button></div>
       <% if current_user.blank? %>
-        <%= form_for(@subscribe) do |f| %>
+        <%= form_for(@subscribe, :html => {:class => "subscribe-form"}) do |f| %>
 
           <span>Your Name</span><%= f.text_field :name %>
           <span>Your E-mail</span><%= f.text_field :email %>
@@ -14,7 +14,7 @@
         <% if current_user.is_subscribe? %>
           <%= link_to raw("<button class='sub-button-bottom'>Unsubscribe</button>"), unsubscribe_path %>
         <% else %>
-          <%= form_for(@subscribe) do |f| %>
+          <%= form_for(@subscribe, :html => {:class => "subscribe-form"}) do |f| %>
             <span>Your Name</span><%= f.text_field :name %>
             <span>Your E-mail</span><%= f.text_field :email %>
             <span>School Name</span><%= f.text_field :school_name %>
