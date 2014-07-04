@@ -57,7 +57,7 @@
               </div>
             </div>
           </div>
-        </div> 
+        </div>
         <div class="col-md-7 signup-container">
           <div class="row signup-field">
             <div class="sign-btn">
@@ -76,12 +76,12 @@
                   <label><span>School:</span><%= f.text_field :school_name, :autofocus => true, :placeholder => "School", :class => "search-keyword" %></label>
                   <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
                 </div>
-                <p class="service">By clicking Sign Up you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+                <p class="service">By clicking Sign Up you agree to the <a href="<%= term_of_service_path %>">Terms of Service</a> and <a href="<%= privacy_policy_path %>">Privacy Policy</a></p>
               </div>
               <div class="col-md-12 signup-button">
                 <button>Sign UP</button>
               </div>
-            <% end %>  
+            <% end %>
           </div>
         </div>
       </div>
