@@ -517,7 +517,7 @@ border-radius: 4px;
 
 .carousel-indicators {
   position: absolute;
-  bottom: 2px !important;
+  bottom: -2px !important;
   left: 0;
   z-index: 15;
   width: 100%;
@@ -5784,6 +5784,9 @@ span.icon-reject
 }
 
 @media screen and (max-width: 991px){
+  .add-side img{
+    width:100% !important;
+  }
   .RewardsPoints .screen1 {
     padding: 0px !important;
     text-align: center;
@@ -5843,5 +5846,5 @@ span.icon-reject
 .carousel {
   position: relative;
   height: 360px !important;
-  margin-bottom: 30px !important;
+  margin-bottom: 40px !important;
 }
