@@ -739,6 +739,11 @@ border-radius: 4px;
 .result-page .comment-images{
   position: relative;
   padding-right: 0px;
+  width: 14%;
+}
+.result-page .menu-block
+{
+  width: 86%;
 }
 .result-page .comment-images button{
    background: url("/assets/feature.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
@@ -959,7 +964,7 @@ border-radius: 4px;
   color: #555555;
 }
 .menupage .collapse-container{
-  background-color: #fff;
+  background-color: #fffaf2;
   border-radius: 5px;
   border: 1px solid #eac689;
 }
@@ -971,6 +976,7 @@ border-radius: 4px;
 }
 .menupage .form-control{
   width: 60% !important;
+  background-color: #e7e7e7;
 }
 .menupage .food-price-panel h4{
   background-color: #fff3db;
@@ -1066,6 +1072,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   float: left;
   width: 100%;
   padding: 5px 10px 5px 10px;
+  background-color: #fffaf1;
 }
 .menupage .color-even-pink{
   background-color: #fff5e2;
@@ -1087,7 +1094,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   padding-left: 0px;
 }
 .menupage .note-line p{
-  background-color: #fff;
+  background-color: #fffaf2;
   border-radius: 5px;
   border: 1px solid #eac689;
   padding: 10px 10px;
@@ -1096,7 +1103,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   font-family: 'PT Sans';
 }
 .menupage .cart-container{
-  background-color: #fff;
+  background-color: #fffaf2;
   border: 1px solid #eac689;
   border-radius: 5px;
   margin-top: 30px;
@@ -1227,8 +1234,9 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   text-align: right;
 }
 .menupage .Qty-container label.total-amount img{
-  margin-right: 15px;
-  width: 83%;
+  width: 80%;
+  float: left;
+  margin-top: 10px;
 }
 .menupage .Qty-container label.total-amount span{
   font-size: 16px;
@@ -5849,4 +5857,13 @@ span.icon-reject
   position: relative;
   height: 360px !important;
   margin-bottom: 40px !important;
+}
+
+.empty-cart-message
+{
+  padding: 15px;
+  min-height: 200px;
+  color: #fd5227;
+  font-size: 14px;
+  font-family: PT sans;
 }

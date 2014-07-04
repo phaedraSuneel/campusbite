@@ -1,6 +1,6 @@
 <div class="col-md-4 cart-container">
   <div class="cart-recored">
-    <div class="cart-btn">Your cart</div>
+    <div class="cart-btn">YOUR CART</div>
     <% if user_signed_in? %>
       <% cart=current_user.carts.find_by_restaurant_id(params[:id]) %>
     <% else %>
@@ -30,7 +30,7 @@
           <% cart.cart_menu_items.each do |cart| %>
             <div class="col-md-12 Qty-container" id= "cart_<%= cart.id%>">
               <div class="back-border">
-                <label class="edit-cloes" data-cart="<%= cart.id %>"> <a href="#" data-toggle = "modal" data-target= "#edit_menu_item_<%= cart.id %>">Eidt</a><span><a class="cloesing remove-cart-item-link" href="javascript:void(0)">X</a></span></label>
+                <label class="edit-cloes" data-cart="<%= cart.id %>"> <a href="#" data-toggle = "modal" data-target= "#edit_menu_item_<%= cart.id %>">Edit</a><span><a class="cloesing remove-cart-item-link" href="javascript:void(0)">X</a></span></label>
                 <label class="dolor-heading"><%= cart.menu_item.item_name %><span>$<%= cart.menu_item.price %></span></label>
                 <% cart_extra_charges = 0 %>
                 <% if cart.group_items %>
@@ -71,7 +71,13 @@
         <%= render :partial => "edit_menu_item_popup", :locals => {:item => item.menu_item , :restaurant => @restaurant, :cart => item } %>
       <% end %>
     <% else %>
-      <div class="text-center"> Your Cart is Empty</div>
+      <div class="empty-cart-message">
+        <% if @restaurant.open? %>
+           Your Cart is Empty</div>
+        <% else %>
+          This restaurant does not currently accept online orders
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

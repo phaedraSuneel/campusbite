@@ -5,23 +5,23 @@
     <p class="steakhouse"><label class="contenr-head">Address: </label><span class="content-info"><%= @restaurant.contact_info.restaurant_street_address %></span></p>
     <p class="steakhouse"><label class="contenr-head">Telephone:</label><span class="content-info"> <%= @restaurant.contact_info.restaurant_phone %></span></p>
     <p class="steakhouse"><label class="contenr-head">Type of Food:</label>
-      <span class="content-info"> 
+      <span class="content-info">
         <% @restaurant.restaurant_categories.each do |category| %>
           <%= category.category_name %>
-        <% end %> 
+        <% end %>
       </span>
-    </p> 
+    </p>
     <p class="steakhouse"><label class="contenr-head">Delivery Fee: </label><span class="content-info">
       <% if @restaurant.delivery_info.delivery_charges == 0.00 %>
         free
       <% else %>
         $<%= @restaurant.delivery_info.delivery_charges %>
       <% end %>
-    </span></p> 
-    <p class="steakhouse"><label class="contenr-head">Delivery Minimum:</label><span class="content-info">$ <%= @restaurant.restaurant_info.min_order %></span></p> 
-    <p class="steakhouse"><label class="contenr-head">Estimated Time:</label><span class="content-info"> <%= @restaurant.delivery_info.delivery_estimated_time %></span></p> 
+    </span></p>
+    <p class="steakhouse"><label class="contenr-head">Delivery Minimum:</label><span class="content-info">$ <%= @restaurant.restaurant_info.min_order %></span></p>
+    <p class="steakhouse"><label class="contenr-head">Estimated Time:</label><span class="content-info"> <%= @restaurant.delivery_info.delivery_estimated_time %></span></p>
     <p class="steakhouse"><label class="contenr-head">Delivery:</label><span class="content-info"><%= @restaurant.delivery_info.is_delivery ? "Yes" : "No"%></span></p>
-    <p class="steakhouse"><label class="contenr-head">Pickup:</label><span class="content-info"><%= @restaurant.restaurant_info.is_pick_up ? "Yes" : "No" %></span></p>  
+    <p class="steakhouse"><label class="contenr-head">Pickup:</label><span class="content-info"><%= @restaurant.restaurant_info.is_pick_up ? "Yes" : "No" %></span></p>
     <p class="steakhouse"><label class="contenr-head">Delivery Area:</label><span class="content-info">Biola University,Hempstead</span></p>
   </div>
   <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
@@ -39,9 +39,9 @@
           <% unless sechedule.break_schedule.blank? %>
             <div class="day-items <%= index%2 == 0 ? 'day-items-even' : 'day-items-odd' %>">
               <label class="days-head">Break</label><span class="closing"><%= sechedule.break_schedule.opening_time.strftime("%I:%M%p")%></span><span class="dash-word">-</span><span class="closing"><%= sechedule.break_schedule.closing_time.strftime("%I:%M%p") %></span>
-            </div>  
+            </div>
           <% end %>
-        <% end %>  
+        <% end %>
       </div>
       <img class="info-shadow" src="/assets/shadow.png" alt="Smiley face">
     </div>
@@ -55,7 +55,7 @@
           <% unless sechedule.break_schedule.blank? %>
             <div class="day-items <%= index%2 == 0 ? 'day-items-even' : 'day-items-odd' %>">
               <label class="days-head">Break</label><span class="closing"><%= sechedule.break_schedule.opening_time.strftime("%I:%M%p")%></span><span class="dash-word">-</span><span class="closing"><%= sechedule.break_schedule.closing_time.strftime("%I:%M%p") %></span>
-            </div>  
+            </div>
           <% end %>
         <% end %>
       </div>
@@ -67,6 +67,4 @@
   <label>Map</label>
 
   <%= image_tag(@restaurant.contact_info.map_photo(:large) , class: "info-shadow", :alt => "Smiley face" ) %>
-
-  <a href="#">Get Directions</a>
 </div>

@@ -16,13 +16,13 @@
         <div class="col-md-4 heading-favorite">
           <div class="pic-delivery star-display">
             <form class="star-line">
-              <input name="rating" type="radio" class="star-read" value="1" <%= 'checked' if review.rating ==1  %> /> 
-              <input name="rating" type="radio" class="star-read" value="2" <%= 'checked' if review.rating ==2  %> /> 
-              <input name="rating" type="radio" class="star-read" value="3" <%= 'checked' if review.rating ==3  %> /> 
-              <input name="rating" type="radio" class="star-read" value="4" <%= 'checked' if review.rating ==4  %> /> 
+              <input name="rating" type="radio" class="star-read" value="1" <%= 'checked' if review.rating ==1  %> />
+              <input name="rating" type="radio" class="star-read" value="2" <%= 'checked' if review.rating ==2  %> />
+              <input name="rating" type="radio" class="star-read" value="3" <%= 'checked' if review.rating ==3  %> />
+              <input name="rating" type="radio" class="star-read" value="4" <%= 'checked' if review.rating ==4  %> />
               <input name="rating" type="radio" class="star-read" value="5" <%= 'checked' if review.rating ==5  %> />
             </form>
-            
+
           </div>
           <div class="pic-delivery reviews-description-margin"><p class="pull-left"><%= review.description %></p> </div>
         </div>
@@ -36,20 +36,11 @@
         </div>
         <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
       </div>
-    <% end %>  
-    <%= paginate @reviews, :params => {:controller => 'dashboard', :action => 'account', :hash => "review"} %>
-    <!-- <div class="row pagination-container">
+    <% end %>
+    <div class="row pagination-container">
       <div class="col-md-8 col-md-offset-4">
-        <ul class="pagination">
-          <li><a href="#">PREVIOUS</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">4</a></li>
-          <li><a href="#">5</a></li>
-          <li><a href="#">next</a></li>
-        </ul>
+        <%= paginate @reviews, :params => {:controller => 'dashboard', :action => 'account', :hash => "review"} %>
       </div>
-    </div> -->
+    </div>
   </div>
 </div>
