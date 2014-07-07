@@ -947,7 +947,8 @@ border-radius: 4px;
 }
 .menupage .menu-tab-opitons li:hover,
 .menupage .menu-tab-opitons li:focus,
-.menupage .menu-tab-opitons li:active
+.menupage .menu-tab-opitons li:active,
+.menupage .menu-tab-opitons li.active
 {
   background: url("/assets/active-tab.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
   width: 141px;
@@ -1528,9 +1529,8 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 }
 .name-field-container img{
   position: relative;
-  top: 0px;
+  top: -7px;
   width: 100%;
-  margin-bottom: 5px;
 }
 .name-restarant input.your-mail{
   background-color: #fff;
@@ -5866,4 +5866,27 @@ span.icon-reject
   color: #fd5227;
   font-size: 14px;
   font-family: PT sans;
+}
+
+.menu-tabs{
+
+  #restaurant-tab {
+    position: relative;
+    z-index: 1;
+    height: 28px;
+  }
+
+  #restaurant-tab-content
+  {
+    z-index: 0;
+  }
+}
+
+.empty-message p {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'PT Sans';
+  color: #555;
+  padding: 15px 0px;
+  margin: 0px;
 }

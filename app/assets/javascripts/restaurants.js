@@ -1,8 +1,8 @@
 $(document).ready(function(){
 
-  $('.star').rating(); 
+  $('.star').rating();
   $('.star-read').rating({readOnly: true});
-  
+
 	$(".add_more_property_link").click(function(e){
 		e.preventDefault();
 		parent = $(this).parent().parent().find(".property-field");
@@ -53,7 +53,7 @@ $(document).ready(function(){
         category_content.html(data);
       }
     });
-  });  
+  });
 
   $(".add_sub_addon").click(function(e){
     sub_add_content = $(this).parent().find(".sub-addon");
@@ -69,34 +69,25 @@ $(document).ready(function(){
     });
   });
 
-  $(".quantity-field").change(function(){ 
+  $(".quantity-field").change(function(){
       quantity =  parseInt($(this).val());
       price = ($(this).parent().parent().parent().find("span").data("price"));
-      new_price = price * quantity; 
-      text =  "$" + new_price 
+      new_price = price * quantity;
+      text =  "$" + new_price
       $(this).parent().parent().parent().find("span").text(text);
   });
 
-  $(".category-selector select").change(function(e){ 
-    value = $(this).val();
-    if(value == "all")
-    {  
-      $(".daily-special-container").find(".panel-collapse").each(function(){ 
-        $(this).addClass("in");
-      });
-    }
-    else 
-    {
-      $(".daily-special-container").find(".panel-collapse").each(function(){ 
-        $(this).removeClass("in");
-      });
-      $(".daily-special-container").find("#" + value).addClass("in");
-    }
-    change_collapse_sign();
+  $(".category-selector select").change(function(e){
+    window.location.hash = $(this).val();
   });
 
   $(".collaper").click(function(e) {
-    change_collapse_sign();
+    collapse = $(this).parent().parent().parent().find(".panel-collapse");
+    console.log(collapse);
+    if(collapse.hasClass("in") == false )
+      $(this).text("-");
+    else
+      $(this).text("+");
   });
 
   $(".main-search-form input").change(function(){
@@ -104,10 +95,10 @@ $(document).ready(function(){
     parent = $(this).parent();
     if(child){
       parent.addClass("checked");
-    }  
+    }
     else{
       parent.removeClass("checked");
-    }  
+    }
   });
 
   $(".main-search-form input").each(function(){
@@ -115,10 +106,10 @@ $(document).ready(function(){
     parent = $(this).parent();
     if(child){
       parent.addClass("checked");
-    }  
+    }
     else{
       parent.removeClass("checked");
-    }  
+    }
   });
 
   $(".delivery, .pickup").click(function(){
@@ -127,12 +118,12 @@ $(document).ready(function(){
     {
       input.prop('checked', false);
       $(this).removeClass("checked");
-    }  
+    }
     else
     {
       input.prop('checked', true);
       $(this).addClass("checked");
-    }  
+    }
   });
 
   $(".restaurant-category a").click(function()
@@ -167,7 +158,7 @@ $(document).ready(function(){
           {
             $(this).removeClass("active");
           });
-          $(".chooses li.all").addClass("active"); 
+          $(".chooses li.all").addClass("active");
           $(".restaurants-result").html(data);
           $(this).checked = false;
         }
@@ -200,7 +191,7 @@ $(document).ready(function(){
       id = quantity_area.data("cart");
       restaurant_id = $("#restaurant_id").val();
       quantity = parseFloat(quantity_area.text());
-      quantity ++;  
+      quantity ++;
       quantity_area.text(quantity);
       $.ajax ({
         url:  '/carts/update_cart_item_quantity',
@@ -218,7 +209,7 @@ $(document).ready(function(){
       restaurant_id = $("#restaurant_id").val();
       quantity = parseFloat(quantity_area.text());
       if(quantity!=1)
-        quantity --;  
+        quantity --;
       $.ajax ({
         url:  '/carts/update_cart_item_quantity',
         data: {id: id, quantity: quantity, restaurant_id: restaurant_id },
@@ -242,18 +233,8 @@ $(document).ready(function(){
     $(".review-submit-btn").click(function(){
       $(".review-form").submit();
     });
-  
+
     $(".resturant-heading .flash-link").click(function(){
       $(".resturant-heading .flash-message").addClass("hide");
     });
 });
-
-function change_collapse_sign(){
-  $(".collaper").each(function(){
-    collapse = $(this).parent().parent().parent().find(".panel-collapse");
-    if(collapse.hasClass("in") == false )
-      $(this).text("-");
-    else
-      $(this).text("+");
-  });
-}

@@ -5,34 +5,31 @@
     </div>
   <% end -%>
 <% end %>
-<% @restaurant.reviews.each do |review|%>
-  <%p review.rating %>
-  <div class="col-md-12 star-container">
-    <div class="border-arround-star">
-      <div class="stars-line-container">
-          <form class="star-line">
-            <input name="rating" type="radio" class="star-read" value="1" <%= 'checked' if review.rating ==1  %> /> 
-            <input name="rating" type="radio" class="star-read" value="2" <%= 'checked' if review.rating ==2  %> /> 
-            <input name="rating" type="radio" class="star-read" value="3" <%= 'checked' if review.rating ==3  %> /> 
-            <input name="rating" type="radio" class="star-read" value="4" <%= 'checked' if review.rating ==4  %> /> 
-            <input name="rating" type="radio" class="star-read" value="5" <%= 'checked' if review.rating ==5  %> />
-          </form>  
-      </div>  
-      <p><%= review.description %> </p>
-      <label><%= review.user.name %>,<%= review.user.school_name %> </label>          
+<% unless @reviews.blank? %>
+  <% @reviews.each do |review|%>
+    <div class="col-md-12 star-container">
+      <div class="border-arround-star">
+        <div class="stars-line-container">
+            <form class="star-line">
+              <input name="rating" type="radio" class="star-read" value="1" <%= 'checked' if review.rating ==1  %> />
+              <input name="rating" type="radio" class="star-read" value="2" <%= 'checked' if review.rating ==2  %> />
+              <input name="rating" type="radio" class="star-read" value="3" <%= 'checked' if review.rating ==3  %> />
+              <input name="rating" type="radio" class="star-read" value="4" <%= 'checked' if review.rating ==4  %> />
+              <input name="rating" type="radio" class="star-read" value="5" <%= 'checked' if review.rating ==5  %> />
+            </form>
+        </div>
+        <p><%= review.description %> </p>
+        <label><%= review.user.name %>,<%= review.user.school_name %> </label>
+      </div>
+      <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
     </div>
-    <img class="star-block-shadow" src="/assets/shadow.png" alt="Smiley face">
+  <% end %>
+<% else %>
+  <div class="col-md-12 star-container">
+    <div class="empty-message">
+      <p> None reviewed this restaurant </p>
+    </div>
   </div>
-<% end %>  
-<!-- <div class="col-md-6 col-md-offset-3 pagination-container">
-  <ul class="pagination">
-    <li><a href="#">PREVIOUS</a></li>
-    <li><a href="#">1</a></li>
-    <li><a href="#">2</a></li>
-    <li><a href="#">3</a></li>
-    <li><a href="#">4</a></li>
-    <li><a href="#">5</a></li>
-    <li><a href="#">next</a></li>
-  </ul>
-</div> -->
+<% end -%>
+
 <%= render :partial => "new_review_modal" %>

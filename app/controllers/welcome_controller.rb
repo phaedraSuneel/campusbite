@@ -29,6 +29,7 @@ class WelcomeController < ApplicationController
  	def menu
  		@restaurant =  Restaurant.find(params[:id])
  		@menu = @restaurant.menu
+    @reviews = @restaurant.reviews
  	end
 
   def order
