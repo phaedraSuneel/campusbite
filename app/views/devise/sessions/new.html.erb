@@ -12,7 +12,7 @@
               <img class="single-ring" alt="Smiley face" src="/assets/single-ring.png">
             </div>
             <div class="sign-btn">
-              <p><%= link_to raw("<button class='sign-in-btn'>Sign in</button>"), new_session_path(resource_name) %></p>
+              <p><%= link_to raw("<button class='sign-in-btn active'>Sign in</button>"), new_session_path(resource_name) %></p>
               <p><%= link_to raw("<button class='sign-in-btn'>Sign up</button>"), new_registration_path(resource_name)%></p>
             </div>
             <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>

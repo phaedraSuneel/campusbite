@@ -3,18 +3,18 @@
       <div class="search-botton">
         <% unless params[:search].blank? %>
           <% unless params[:search][:is_delivery].blank? %>
-            <div class="delivery"><%= check_box_tag 'search[is_delivery]', '', :checked => (params[:search][:is_delivery] ? 'checked' : '') %>DELIVERY</div>
+            <div class="delivery"><%= f.check_box :is_delivery, :checked => (params[:search][:is_delivery] ? 'checked' : '') %>DELIVERY</div>
           <% else %>
-            <div class="delivery"><%= check_box_tag 'search[is_delivery]' %>DELIVERY</div>
+            <div class="delivery"><%= f.check_box_tag :is_delivery %>DELIVERY</div>
           <% end -%>
           <% unless params[:search][:is_pick_up].blank? %>
-            <div class="pickup"><%= check_box_tag 'search[is_pick_up]', '', :checked => (params[:search][:is_pick_up] ? 'checked' : '')  %>PICKUP</div>
+            <div class="pickup"><%= f.check_box :is_pick_up, :checked => (params[:search][:is_pick_up] ? 'checked' : '')  %>PICKUP</div>
           <% else %>
-            <div class="pickup"><%= check_box_tag 'search[is_pick_up]'%>PICKUP</div>
+            <div class="pickup"><%= f.check_box :is_pick_up%>PICKUP</div>
           <% end -%>
         <% else %>
-          <div class="delivery"><%= check_box_tag 'search[is_delivery]' %>DELIVERY</div>
-          <div class="pickup"><%= check_box_tag 'search[is_pick_up]'%>PICKUP</div>
+          <div class="delivery"><%= f.check_box :is_delivery %>DELIVERY</div>
+          <div class="pickup"><%= f.check_box :is_pick_up %>PICKUP</div>
         <% end %>
       </div>
     <div class="search-field">
