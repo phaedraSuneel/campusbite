@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
   $('.star').rating();
   $('.star-read').rating({readOnly: true});
 
