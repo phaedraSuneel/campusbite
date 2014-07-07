@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140702200320) do
+ActiveRecord::Schema.define(:version => 20140707070928) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -304,6 +304,16 @@ ActiveRecord::Schema.define(:version => 20140702200320) do
     t.string   "status",        :default => "completed"
     t.time     "opening_time"
     t.time     "closing_time"
+  end
+
+  create_table "menu_errors", :force => true do |t|
+    t.string   "email"
+    t.string   "restaurant_name"
+    t.string   "school_name"
+    t.text     "note"
+    t.boolean  "is_viewed",       :default => false
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "menu_item_orders", :force => true do |t|

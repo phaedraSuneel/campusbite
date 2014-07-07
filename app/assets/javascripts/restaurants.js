@@ -237,4 +237,8 @@ $(document).ready(function(){
     $(".resturant-heading .flash-link").click(function(){
       $(".resturant-heading .flash-message").addClass("hide");
     });
+
+    $(".menu-error-sumbit").click(function(e){
+      $(".menu-error-form").submit();
+    });
 });

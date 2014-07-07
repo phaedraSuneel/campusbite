@@ -175,4 +175,17 @@ class WelcomeController < ApplicationController
     end
   end
 
+  def menu_error_request
+    @menu_error = MenuError.new(params[:menu_error])
+    if @menu_error.save
+      if UserMailer.menu_error_request(params[:menu_error]).deliver
+        flash[:notice] = "Your menu error request Successfully sent to our support team"
+      else
+        flash[:warning] = "Sorry your error request couldn't send to our support team please try again"
+      end
+    else
+      flash[:warning] = "Sorry your error request couldn't send to our support team please try again"
+    end
+    redirect_to :back
+  end
 end

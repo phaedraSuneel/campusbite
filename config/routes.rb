@@ -339,6 +339,7 @@ Ordering::Application.routes.draw do
       get 'reward_point_rules'
       post 'remove_subscriber'
       post 'request_for_redeam'
+      post 'menu_error_request'
     end
     member do
       get "menu"
@@ -363,6 +364,7 @@ Ordering::Application.routes.draw do
   match 'add_campus' => 'welcome#add_campus', :as => :add_campus
   match 'how_it_works' => 'welcome#how_it_works', :as => :how_it_works
   match 'request_for_redeam' => 'welcome#request_for_redeam', :as => :request_for_redeam
+  match 'menu_error_request' => 'welcome#menu_error_request', :as => :menu_error_request
 
   match 'join_us' => 'welcome#join_us', :as => :join_us
   match 'restaurant_suggestion' => 'welcome#restaurant_suggestion', :as => :restaurant_suggestion

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  email: MyString
+  restaurant_name: MyString
+  school_name: MyString
+  note: MyText
+  is_viewed: false
+
+two:
+  email: MyString
+  restaurant_name: MyString
+  school_name: MyString
+  note: MyText
+  is_viewed: false

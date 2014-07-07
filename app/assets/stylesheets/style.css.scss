@@ -757,7 +757,7 @@ border-radius: 4px;
 }
 .result-page .comment-images img{
   margin: 10px 0;
-  width: 75%;
+  width: 86%;
 }
 .result-page .view-menu button{
   background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
@@ -787,7 +787,7 @@ border-radius: 4px;
   padding: 0px 7px;
   width: 18% !important;
   border-right: 1px solid #bbbbbb;
-  height: 70px;
+  min-height: 75px;
 }
 .result-page .delivery-field label{
   color:#52a902;
@@ -805,7 +805,7 @@ border-radius: 4px;
   padding: 0px 8px;
   width: 10% !important;
   border-right: 1px solid #bbbbbb;
-  height: 70px;
+  min-height: 75px;
 }
 .result-page .delivery-field-img img{
   margin-top: 15px;
@@ -975,10 +975,14 @@ border-radius: 4px;
 .menupage .select-bar-menu{
   margin: 20px 15px;
 }
-.menupage .form-control{
+/*.menupage .form-control{
   width: 60% !important;
   background-color: #e7e7e7;
 }
+.error-modal .form-control{
+  width:100% !important;
+  background:transparent !important;
+}*/
 .menupage .food-price-panel h4{
   background-color: #fff3db;
   padding: 10px 10px;
@@ -1122,6 +1126,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   position: absolute;
   top: -26px;
   width: 165px;
+  color: #333333;
 }
 .menupage .cart-recored{
   position: relative;

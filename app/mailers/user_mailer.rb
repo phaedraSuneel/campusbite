@@ -40,4 +40,9 @@ class UserMailer < ActionMailer::Base
   def order_confirmation(email)
     mail(to: email, from: "support@campusbite.com", subject: "Order Confirm", message: "Thank you for order. Your order has been confirmed by restaurant," )
   end
+
+  def menu_error_request(error)
+    @error = error
+    mail(to: 'admin@ordering.com', from: @error["email"], subject: "Menu Error Resquest")
+  end
 end
