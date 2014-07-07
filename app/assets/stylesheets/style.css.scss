@@ -983,7 +983,7 @@ border-radius: 4px;
   width:100% !important;
   background:transparent !important;
 }*/
-.menupage .food-price-panel h4{
+.menupage .food-price-panel h4.panel-title{
   background-color: #fff3db;
   padding: 10px 10px;
   color: #4ea502;
@@ -1487,6 +1487,8 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 .modal-footer{
   text-align: center;
 }
+
+
 .submit-md{
   background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
   border: 1px solid #919191;
@@ -1505,6 +1507,26 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 .submit-md:focus,{
   background: linear-gradient(to bottom, #57AF0A 0%, #79CF33 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
+
+.add-item-poppover .submit-md
+{
+  font-family: 'bignoodletitlingregular' !important;
+  height: 45px;
+  line-height: 50px;
+  padding: 0 25px;
+  font-weight: normal !important;
+}
+
+.add-item-poppover .name-field-container
+{
+  margin-bottom: 20px !important;
+}
+
+.add-item-poppover .area-text{
+  text-transform: none;
+  font-weight: normal;
+}
+
 .name-restarant{
   text-align: center;
 }

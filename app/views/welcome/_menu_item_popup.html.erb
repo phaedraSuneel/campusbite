@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="menu_item_<%= item.id %>" class="menu-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade add-item-poppover" id="menu_item_<%= item.id %>" class="menu-item-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <%= form_for "cart" , :url => add_item_carts_path, :method => :get, :html => {:class => "order-form"} do |f|%>
       <div class="modal-content">
@@ -8,7 +8,7 @@
             <div class="col-md-7 left-side-items">
               <label class="cafe-latte"><%= item.item_name %> <span class="item-price" data-price= "<%= item.price %>">$<%= item.price%></span></label>
             </div>
-            
+
             <div class="col-md-5 Right-side-items">
               <label>Quantity:<%= f.number_field :quantity , :min => "1", :placeholder => "1" , :value => 1, :class => "quantity-field"%>
                 <%= f.hidden_field :menu_item_id, :value => item.id %>
@@ -25,7 +25,6 @@
                 <p class="description"><%= item.description %></p>
               </div>
             </div>
-            <img class="shadow-modal-img" alt="Smiley face" src="<%= '/assets/shadow.png' %>" />
           </div>
           <% item.groups.each_with_index do |group,index| %>
             <div class="name-field-container">
@@ -47,12 +46,11 @@
                         <% end -%>
                         <%= group_item.name %> $<%= group_item.price %>
                       </label>
-                    </div>  
+                    </div>
                   <% end %>
                 </div>
               </div>
-              <img class="shadow-modal-img" alt="Smiley face" src="<%= '/assets/shadow.png' %>" />
-            </div>      
+            </div>
           <% end %>
           <div class="name-field-container">
             <div class="row res-name-field">
@@ -66,13 +64,12 @@
                 <textarea class="area-text" placeholder="Example: Please no cheese on the burger." name= "cart[instruction]"></textarea>
               </div>
             </div>
-            <img class="shadow-modal-img" alt="Smiley face" src="<%= '/assets/shadow.png' %>" />
-          </div>  
+          </div>
         </div>
 
         <div class="modal-footer order-item">
           <% if restaurant.open? %>
-            <%= f.submit "Add item to your order", :class => "btn btn-primary submit-md" %>
+            <%= f.submit "ADD ITEM TO YOUR ORDER", :class => "btn btn-primary submit-md" %>
           <% end %>
         </div>
       </div>

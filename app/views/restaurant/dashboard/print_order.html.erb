@@ -133,7 +133,7 @@
   }
   .tabel-container table h3{
     margin-top: 0px;
-    margin-bottom: 10px;  
+    margin-bottom: 10px;
     font-size: 17px;
   }
   .tabel-container table th{
@@ -157,7 +157,7 @@
   .tabel-container table td.border-am-b p{
     text-align: left;
   }
- 
+
   .tabel-container table td.border-am-b p.small:last-child,
   .tabel-container table td.border-am p.small:last-child{
     border-bottom: 0px;
@@ -183,7 +183,7 @@
     margin-bottom: 30px;
   }
   .border-am-b p:last-child{
-    border-bottom: 0px !important; 
+    border-bottom: 0px !important;
   }
 
   .order-action {
@@ -240,28 +240,19 @@
             <div class="order-pic">
               <ul>
                 <li><label>Order#</label> <span><%= @order.id %></span></li>
-                <li><label>Delivery or Pickup:</label> <span><%= @order.order_type %></span></li>
+                <li><label>Delivery or Pickup:</label> <span><%= @order.order_type.upcase %></span></li>
                 <li><label>Order send at:</label> <span><%= @order.created_at.strftime('%e %B, %Y %I:%M%p')%></span></li>
                 <li><label>Order request for:</label> <span><%= @order.request_time %></span></li>
-                <li><label>Payment:</label> <span><%= @order.method_type %></span></li>
+                <li><label>Payment:</label> <span>PAID</span></li>
               </ul>
             </div>
           </div>
           <div class="col-md-6">
             <div class="order-pic">
               <ul>
-                <li><label>Address:</label> 
-                  <% unless @order.order_type == 'delivery'%>
-                    <span>Costumer will pickup order</span>
-                  <% else %>  
-                      <%= @order.address.address_type %>
-                      <% if @order.address.address_type == "On Campus" %>
-                       <%= @order.address.school.school_name %> <%= @order.address.room_number %> <%= @order.address.building.try(:street_adress) %></span>
-                     <% else %>
-                       <%= @order.address.room_number %> <%= @order.address.street_adress %>
-                     <% end %>  
-                    </label>
-                  <% end %>
+                <li><label>Address:</label>
+                  <%= @order.get_address_type %>
+                  <%= @order.get_address %>
                 </li>
               </ul>
             </div>
@@ -281,7 +272,7 @@
                     <h3><%= item.menu_item.item_name %></h3>
                     <% extra = 0 %>
                     <% unless item.group_item_ids.blank? %>
-                      <label> Extra: 
+                      <label> Extra:
                         <% item.group_items.each do |group_item| %>
                           <%= group_item.name + " " %>
                           <% extra += group_item.price %>
@@ -297,7 +288,7 @@
               <tr class="odd">
                 <td>
                   <div class="intruction">
-                    <span>Special Intructions:</span><%= @order.delivery_instruction %>
+                    <span>Special Instructions:</span><%= @order.delivery_instruction %>
                   </div>
                   <label class="sig">Customer Signature:________________________________________</label>
                 </td>
@@ -320,17 +311,17 @@
                   <p>$<%= @order.total_after_discount %></p>
                 </td>
               </tr>
-            </table>  
+            </table>
             <div class="support-help">
-              For support or helps please contact us:Email:restaurant@campusbite or Phone:1-866-000-000
+              For support or help please contact us: Email:restaurant@campusbite or Phone:1-866-000-000
             </div>
           </div>
-        </div>   
-      </div> 
-    </div> 
-  </div>   
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
     window.print();
-</script> 
+</script>

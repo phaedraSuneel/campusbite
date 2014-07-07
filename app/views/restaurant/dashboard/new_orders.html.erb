@@ -16,7 +16,7 @@
       <li>
         <%= link_to "New Orders",new_orders_restaurant_dashboard_index_path %>
       </li>
-    </ul>  
+    </ul>
   </div>
 </div>
 <div class="row">
@@ -31,7 +31,7 @@
           <audio>
             <source src="/assets/beep.wav">
           </audio>
-        </div>  
+        </div>
       </div>
       <div class="portlet-body">
         <div class="row new-orders">
@@ -70,28 +70,19 @@
                     <div class="order-pic">
                       <ul>
                         <li><label>Order#</label> <span><%= order.id %></span></li>
-                        <li><label>Delivery or Pickup:</label> <span><%= order.order_type %></span></li>
+                        <li><label>Delivery or Pickup:</label> <span><%= order.order_type.upcase %></span></li>
                         <li><label>Order send at:</label> <span><%= order.created_at.strftime('%e %B, %Y %I:%M%p')%></span></li>
                         <li><label>Order request for:</label> <span><%= order.request_time %></span></li>
-                        <li><label>Payment:</label> <span><%= order.method_type %></span></li>
+                        <li><label>Payment:</label> <span> PAID </span></li>
                       </ul>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="order-pic">
                       <ul>
-                        <li><label>Address:</label> 
-                          <% unless order.order_type == 'delivery'%>
-                            <span>Costumer will pickup order</span>
-                          <% else %> 
-                              <%= order.address.address_type %>
-                              <% if order.address.address_type == "On Campus" %>
-                               <%= order.address.school.school_name %> <%= order.address.room_number %> <%= order.address.building.try(:street_adress) %></span>
-                             <% else %>
-                               <%= order.address.room_number %> <%= order.address.street_adress %>
-                             <% end %>  
-                            </label>
-                          <% end %>
+                        <li><label>Address:</label>
+                          <%= order.get_address_type %>
+                          <%= order.get_address %>
                         </li>
                       </ul>
                     </div>
@@ -111,13 +102,13 @@
                             <h3><%= item.menu_item.item_name %></h3>
                             <% extra = 0 %>
                             <% unless item.group_item_ids.blank? %>
-                              <label> Extra: 
+                              <label> Extra:
                                 <% item.group_items.each do |group_item| %>
                                   <%= group_item.name + " " %>
                                   <% extra += group_item.price %>
                                 <% end %>
                               </label>
-                            <% end %>  
+                            <% end %>
                             <p>Instructions: <%= item.instruction %></p>
                           </td>
                           <td class="first text-center"><%= item.quantity %></td>
@@ -127,7 +118,7 @@
                       <tr class="odd">
                         <td>
                           <div class="intruction">
-                            <span>Special Intructions:</span><%= order.delivery_instruction %>
+                            <span>Special Instructions:</span><%= order.delivery_instruction %>
                           </div>
                           <label class="sig">Customer Signature:________________________________________</label>
                         </td>
@@ -150,14 +141,14 @@
                           <p>$<%= order.total_after_discount %></p>
                         </td>
                       </tr>
-                    </table>  
+                    </table>
                     <div class="support-help">
-                      For support or helps please contact us:Email:restaurant@campusbite or Phone:1-866-000-000
+                      For support or help please contact us: Email:restaurant@campusbite or Phone:1-866-000-000
                     </div>
                   </div>
-                </div>   
-              </div> 
-              <div class="row order-action order-detail hide order_<%= order.id %>"> 
+                </div>
+              </div>
+              <div class="row order-action order-detail hide order_<%= order.id %>">
                 <div class="col-md-3"></div>
                 <div class="col-md-3">
                   <%= link_to "Confirm", confirm_order_restaurant_dashboard_path(order), :class => "btn btn-lg green"%>
@@ -167,33 +158,33 @@
                 </div>
                 <div class="col-md-3">
                   <%= link_to "Cancel", cancel_order_restaurant_dashboard_path(order), :class => "btn btn-lg red"%>
-                </div>  
-              </div>  
+                </div>
+              </div>
             <% end %>
-          </div>   
+          </div>
         </div>
       </div>
-    </div>    
-  </div>  
+    </div>
+  </div>
 </div>
 
 <%= subscribe_to "/restaurant/new_orders" %>
 
 <script type="text/javascript">
-  
+
   function new_order_alert(id)
   {
-    
+
     restaurant_id = "<%= current_user.restaurant.id %>"
 
     if (restaurant_id == id)
-    { 
+    {
       alert = $(".toggle-alert").attr('alert');
       if(alert=="true")
       {
         var audio = $("audio")[0]
         audio.play();
       }
-    }  
+    }
   }
 </script>
