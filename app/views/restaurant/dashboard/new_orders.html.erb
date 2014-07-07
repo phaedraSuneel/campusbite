@@ -29,7 +29,7 @@
         <div class="sound-portion">
           <%=  link_to image_tag(current_user.mute? ? '/assets/mute.png' : '/assets/un-mute.png', :class => "sound-img-icon"), "javascript:;", :class => "toggle-alert", "alert" => "#{current_user.mute? ? false : true }" %>
           <audio>
-            <source src="/assets/beep.wav">
+            <source src="/assets/RestaurantAlert.mp3">
           </audio>
         </div>
       </div>

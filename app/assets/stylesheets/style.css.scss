@@ -2121,7 +2121,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 }
 .SignUpBeforeCheckout .deals-category h5,
 .signup-page .deals-category h5{
-  font-size: 12px;
+  font-size: 14px;
   font-family: 'PT Sans';
   color: #4b9b02;
   font-weight: bold;
@@ -2175,7 +2175,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   float: left;
 }
 .signup-page .signup-form label span{
-  width: 20%;
+  width: 35%;
   float: left;
   padding-top: 5px;
   font-size: 15px;
@@ -2187,7 +2187,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   margin-right: 5%;
 }
 .signup-page .signup-form label input{
-  width: 70%;
+  width: 60%;
   float: left;
   border-radius: 3px;
   border: 1px solid #eac689;
@@ -2219,6 +2219,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 .signup-page .signup-form-container p.service a{
   color: #52a902;
   margin: 0 5px;
+  text-decoration: underline;
 }
 .signup-page .signup-button{
   float: left;
@@ -2564,7 +2565,8 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 /********** Typeahead css for sign-up********************/
   .signup-form{
     .twitter-typeahead {
-      width: 69.7% !important
+      width: 60% !important;
+      margin: 0 !important;
     }
     .twitter-typeahead .tt-query,
     .twitter-typeahead .tt-hint {
@@ -3668,6 +3670,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   .account-setting-page .reward-point p a,
   .location-container .reward-point p a{
     color: #6ca101;
+    text-decoration: underline;
   }
 
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<account-setting-page>>>>>>>>>>>>>>>>>>>>>>>>>>*/
@@ -3963,6 +3966,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     width: 100%;
     display: block;
     color: #57ae0a;
+    text-decoration: underline;
   }
   .favorite-Restaurant-page .heading-favorite button.order-again{
     background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
@@ -5926,4 +5930,9 @@ span.icon-reject
   color: #555;
   padding: 15px 0px;
   margin: 0px;
+}
+
+.my_account_menu_link{
+  background-color: #66863b !important;
+  opacity: 0.9 !important;
 }

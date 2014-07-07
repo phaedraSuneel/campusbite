@@ -6,6 +6,7 @@
       <div class="col-md-2 heading-favorite"><label>Actions</label></div>
       <div class="col-md-2 heading-favorite"><label>Order Again</label></div>
     </div>
+
     <% @favorites_restaurants.each do |favorite|%>
       <div class="row favorite-order">
         <div class="col-md-4 heading-favorite"><h3><%= link_to favorite.restaurant.restaurant_name, menu_welcome_path(favorite.restaurant)%></h3></div>
@@ -15,15 +16,25 @@
             <p>Pickup: <%= favorite.restaurant.phone_order? == true ? "Yes" : "None" %></p>
           </div>
         </div>
+          <% review = is_review_exist(current_user, favorite.restaurant) %>
 
           <div class="col-md-2 heading-favorite">
             <div class="pic-delivery">
-               <% if !current_user.can_review?(favorite.restaurant) %>
-                  <% unless Review.all.blank? %>
-                    <% review = Review.select{|a| a.restaurant.id = favorite.restaurant.id and a.user_id = current_user.id}.first%>
-                    <p><%= link_to "Rate Remove", remove_review_dashboard_path(review)  unless review.nil? %></p>
+               <% if current_user.can_review?(favorite.restaurant) %>
+                  <p><%= link_to "Rate","#", "data-toggle" => "modal", "data-target" => "#review_#{favorite.restaurant.id}" %></p>
+                <% else %>
+                  <% if review %>
+                    <p><%= link_to "Edit Rating","#", "data-toggle" => "modal", "data-target" => "#edit_review_modal_#{favorite.restaurant.id}" %></p>
+                  <% end -%>
+                <% end %>
+                <% if current_user.can_review?(favorite.restaurant) %>
+                  <%= render :partial => "/dashboard/review_new_modal", :locals => {:@restaurant => favorite.restaurant} %>
+                <% else %>
+                  <% if review %>
+                    <%= render :partial => "/dashboard/edit_review_modal", :locals => {:@review => review, :@restaurant => favorite.restaurant } %>
                   <% end %>
                 <% end %>
+                <p><%= link_to "Remove", remove_favorite_restaurant_dashboard_path(favorite.restaurant) %></p>
             </div>
           </div>
 

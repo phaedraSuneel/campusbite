@@ -1,5 +1,5 @@
 class Restaurant::DashboardController < ApplicationController
-  
+
   def index
     @restaurant = current_user.restaurant
     @orders = @restaurant.orders.order("created_at desc")
@@ -24,10 +24,10 @@ class Restaurant::DashboardController < ApplicationController
   end
 
   def print_order
-    @order = Order.find(params[:id]) 
+    @order = Order.find(params[:id])
     respond_to do |format|
-      format.html { render "print_order", :layout => false  }  
-    end  
+      format.html { render "print_order", :layout => false  }
+    end
   end
 
   def new_orders
@@ -46,7 +46,7 @@ class Restaurant::DashboardController < ApplicationController
     authorize! :read, Order
     @restaurant = current_user.restaurant
     @orders = @restaurant.orders.order("created_at desc")
-  end  
+  end
 
   def allOrders
     @restaurant = current_user.restaurant
@@ -75,7 +75,7 @@ class Restaurant::DashboardController < ApplicationController
     else
       flash[:warning] = "Order Failed Confirmed"
       redirect_to :back
-    end  
+    end
   end
 
   def cancel_order
@@ -86,7 +86,7 @@ class Restaurant::DashboardController < ApplicationController
     else
       flash[:warning] = "Order Fail Cancel"
       redirect_to :back
-    end  
+    end
   end
 
   def support
@@ -124,7 +124,7 @@ class Restaurant::DashboardController < ApplicationController
       UserMailer.restaurant_admin(@user,params[:contactus]).deliver
       flash[:notice] = "Successfully email sent"
       redirect_to support_restaurant_dashboard_index_path(:anchor => "sent")
-   else 
+   else
       flash[:warning] = "Failed to send you email"
       redirect_to :back
    end
@@ -141,4 +141,5 @@ class Restaurant::DashboardController < ApplicationController
     user.save
     render :text => !user.mute
   end
+
 end

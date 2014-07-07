@@ -211,10 +211,12 @@ Ordering::Application.routes.draw do
       get 'delete_review'
       get 'delete_card'
       post 'add_user_card'
+
     end
     member do
       post "edit_user_address"
       get 'remove_review'
+      get "remove_favorite_restaurant"
     end
   end
 

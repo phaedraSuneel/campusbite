@@ -1,5 +1,5 @@
 class DashboardController < ApplicationController
-	
+
 	def account
 		@favorites_restaurants = current_user.favorites.order("created_at desc").page(params[:page]).per(5)
 		@orders = current_user.orders.order("created_at desc").page(params[:page]).per(5)
@@ -10,16 +10,14 @@ class DashboardController < ApplicationController
       redirect_to account_dashboard_index_path(:anchor => "order_history", :page=> params[:page])
     elsif params[:hash] == "review"
       redirect_to account_dashboard_index_path(:anchor => "review", :page=> params[:page])
-    elsif params[:hash] == "favorite"  
-      redirect_to account_dashboard_index_path(:anchor => "favorite", :page=> params[:page])  
+    elsif params[:hash] == "favorite"
+      redirect_to account_dashboard_index_path(:anchor => "favorite", :page=> params[:page])
     end
-    
+
 	end
 
   def restaurant
     @restaurant = current_user.restaurant
-    p @restaurant
-    #@restaurant = Restaurant.first
     @orders = @restaurant.orders.order("created_at desc")
     @customers = (@restaurant.customers).uniq.sort {|a,b| b.total_order(@restaurant) <=> a.total_order(@restaurant)}
     @last_week_orders = @restaurant.last_week_orders
@@ -32,7 +30,7 @@ class DashboardController < ApplicationController
     if  UserMailer.restaurant_admin(params[:contactus]).deliver
       flash[:notice] = "Successfully email sent"
       redirect_to restaurant_dashboard_index_path(:anchor => "sent")
-   else 
+   else
       flash[:warning] = "Failed to send you email"
       redirect_to :back
    end
@@ -71,7 +69,7 @@ class DashboardController < ApplicationController
 			flash[:warning] = "Something wrong address not created"
 			redirect_to :back
 		end
-	end 
+	end
 
 
 
@@ -96,7 +94,7 @@ class DashboardController < ApplicationController
   		flash[:warning] = "Something wrong address not updated"
 			redirect_to :back
   	end
-  end 
+  end
 
   def delete_review
   	@review = Review.find(params[:id])
@@ -120,9 +118,9 @@ class DashboardController < ApplicationController
     @card.destroy
     render :text => 'successfully'
   end
-  
+
   def add_user_card
-  	
+
     Braintree::Configuration.environment = :sandbox
     Braintree::Configuration.merchant_id = "6q6zvwjk33nr2wh6"
     Braintree::Configuration.public_key = "z8wb4mz95s5hj74g"
@@ -133,7 +131,7 @@ class DashboardController < ApplicationController
       :expiration_year => params[:card]["expiration_date(1i)"],
       :expiration_month => params[:card]["expiration_date(2i)"]
     )
-    if @result.success? 
+    if @result.success?
       @card = Card.new(params[:card])
       @card.user_id = current_user.id
       @card.masked_number = @result.credit_card.masked_number
@@ -153,6 +151,16 @@ class DashboardController < ApplicationController
     	flash[:notice] = 'Invalid Card data'
       redirect_to :back
     end
+  end
 
+  def remove_favorite_restaurant
+    restaurant = Restaurant.where(id: params[:id]).first
+    favorite = Favorite.where(:user_id => current_user.id, :restaurant_id => restaurant.id).first
+    if favorite.destroy
+      flash[:notice] = "Successfully remove restaurant from you favorite restaurant list"
+    else
+      flash[:warning] = "Sorry could not remove restaurant from your favorite restaurant list"
+    end
+    redirect_to :back
   end
 end

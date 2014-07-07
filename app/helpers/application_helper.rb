@@ -35,4 +35,7 @@ module ApplicationHelper
     User.where(is_viewed: false).count
   end
 
+  def is_review_exist(user,restaurant)
+    Review.where(:restaurant_id => restaurant.id, :user_id => user.id ).first
+  end
 end
