@@ -1,0 +1,2 @@
+module MenuDifferenceFormsHelper
+end

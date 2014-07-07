@@ -27,7 +27,7 @@
 			<%= link_to raw('<i class="fa fa-cogs"></i><span class="title">Content Management</span>'), admin_banners_path %>
 		</li>
 
-		<li class="<%= 'active' if (params[:controller] == 'admin/subscriber_forms') or (params[:controller] == 'admin/contact_us_forms') or (params[:controller] == 'admin/restaurant_owner_forms') or (params[:controller] == 'admin/restaurant_suggestion_forms') or (params[:controller] == 'admin/campus_suggestion_forms') or (params[:controller] == 'admin/support_forms') or (params[:controller] == 'admin/redeam_request_forms') %>">
+		<li class="<%= 'active' if (params[:controller] == 'admin/subscriber_forms') or (params[:controller] == 'admin/contact_us_forms') or (params[:controller] == 'admin/restaurant_owner_forms') or (params[:controller] == 'admin/restaurant_suggestion_forms') or (params[:controller] == 'admin/campus_suggestion_forms') or (params[:controller] == 'admin/support_forms') or (params[:controller] == 'admin/redeam_request_forms') or (params[:controller] == 'admin/menu_difference_forms') %> ">
 			<a href="javascript:;">
 				<i class="fa fa-envelope-o"></i>
 				<span class="title">
@@ -59,6 +59,10 @@
         <li class= "<%= 'active' if params[:controller] == 'admin/redeam_request_forms' %>">
           <%= link_to "Redeam Request Forms", admin_redeam_request_forms_path %>
         </li>
+        <li class= "<%= 'active' if params[:controller] == 'admin/menu_difference_forms' %>">
+          <%= link_to "Menu Difference Request Forms", admin_menu_difference_forms_path %>
+        </li>
+
 			</ul>
 		</li>
     <li class="<%= 'active' if params[:controller] == 'admin/reward_points' %>">

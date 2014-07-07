@@ -23,11 +23,13 @@ Ordering::Application.routes.draw do
     resources :campus_suggestion_forms
     resources :support_forms
     resources :redeam_request_forms
+    resources :menu_difference_forms
     resources :reward_points do
       member do
         post 'update_reward_points'
       end
     end
+
     resources :customers do
       resources :notes
     end
