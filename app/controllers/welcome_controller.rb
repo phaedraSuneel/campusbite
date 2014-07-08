@@ -7,8 +7,8 @@ class WelcomeController < ApplicationController
 
  	def result
     if !params[:search].blank?
-      pick_up = params[:search][:is_pick_up] == "0" ? 1 : params[:search][:is_pick_up]
-      delivery = params[:search][:is_delivery] == "0" ? 1 : params[:search][:is_delivery]
+      pick_up = params[:search][:is_pick_up] == '1' ?  1 : nil
+      delivery = params[:search][:is_delivery] == '1' ?  1 : nil
       if params[:keyword].blank?
         @restaurants = Restaurant.search :with => {:pick_up => pick_up } unless pick_up.nil?
         @restaurants = Restaurant.search :with => {:delivery => delivery } unless delivery.nil?

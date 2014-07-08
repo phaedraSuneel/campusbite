@@ -37,19 +37,21 @@
     </div>
     <div class="stored-card-portion">
       <div class="row">
-        <div class="col-md-12 req-field select-bg">
-          <div class="row req-field-items">
-            <div class="col-md-11">
-              <%= select_tag 'card_id', options_for_select(current_user.cards.all.collect{ |u| [u.masked_number, u.id] }) %>
+        <div class="col-md-12">
+          <div class="req-field select-bg">
+            <div class="row req-field-items">
+              <div class="col-md-11">
+                <%= select_tag 'card_id', options_for_select(current_user.cards.all.collect{ |u| [u.masked_number, u.id] }) %>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>  
+    </div>
     <div class="new-card-portion hide">
-      <div class="row select-bg">
+      <div class="row">
         <div class="col-md-12">
-          <div class="row">
+          <div class="row select-bg bottom-padding">
             <div class="col-md-6 req-field">
               <div class="req-field-items">
                 <label>Card Number *</label>
@@ -60,37 +62,32 @@
               <label class="expiration">Expiration Date: *</label>
                 <%= date_select("card_info", "expiration_date", discard_day: true)%>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-6 req-field">
-              <div class="req-field-items">
-                <label class="number expiration">CVV Code *<span>(What is this?)</span></label>
-                <input class="required billing" type="text" name = "cvv_code" />
+            <div class="row">
+              <div class="col-md-6 req-field">
+                <div class="req-field-items">
+                  <label class="number expiration">CVV Code *<span>(What is this?)</span></label>
+                  <input class="required billing" type="text" name = "cvv_code" />
+                </div>
+              </div>
+              <div class="col-md-6 req-field">
+                <label class="number expiration">Billing Zipcode</label>
+                <input class="required billing" type="text" name = "billing_zipcode"/>
               </div>
             </div>
-            <div class="col-md-6 req-field">
-              <label class="number expiration">Billing Zipcode</label>
-              <input class="required billing" type="text" name = "billing_zipcode"/>
-            </div>
           </div>
-        </div>  
-      </div>  
-    </div>  
+        </div>
+      </div>
+    </div>
   </div>
-  
+
   <div class="paypal-portion hide">
     <label class="text-center">When you click "Submit Order" you will be taken to Paypal payment site. After the transactoin is processed, you will be returned to the Campus Bite website to view you rececipt and etc"</label>
-
-
-    <%#= link_to "Do Payment", @cart.paypal_url(root_url) %>
-
-
-  </div>  
+  </div>
 </div>
 
 
 <script type="text/javascript">
-  $(document).ready(function(){   
+  $(document).ready(function(){
 
     $(".credit-cart-option input[type=radio]").prop("checked", true);
     $(".stored-card-option input[type=radio]").prop("checked", true);
@@ -101,8 +98,8 @@
        $(".credit-card-portion").removeClass("hide");
        $(".credit-cart-option").addClass("active");
        $(".paypal-option").removeClass("active");
-       $(".paypal-option input[type=radio]").prop("checked", false); 
-       $(".credit-cart-option input[type=radio]").prop("checked", true); 
+       $(".paypal-option input[type=radio]").prop("checked", false);
+       $(".credit-cart-option input[type=radio]").prop("checked", true);
     });
 
     $(".paypal-option").click(function(){
@@ -110,9 +107,9 @@
        $(".paypal-portion").removeClass("hide");
        $(".paypal-option").addClass("active");
        $(".credit-cart-option").removeClass("active");
-       $(".credit-cart-option input[type=radio]").prop("checked", false); 
-       $(".paypal-option input[type=radio]").prop("checked", true); 
-       
+       $(".credit-cart-option input[type=radio]").prop("checked", false);
+       $(".paypal-option input[type=radio]").prop("checked", true);
+
     });
 
     $(".stored-card-option").click(function(){
@@ -120,8 +117,8 @@
        $(".stored-card-portion").removeClass("hide");
        $(".stored-card-option").addClass("active");
        $(".new-card-option").removeClass("active");
-       $(".new-card-option input[type=radio]").prop("checked", false); 
-       $(".stored-card-option input[type=radio]").prop("checked", true); 
+       $(".new-card-option input[type=radio]").prop("checked", false);
+       $(".stored-card-option input[type=radio]").prop("checked", true);
     });
 
     $(".new-card-option").click(function(){
@@ -129,10 +126,10 @@
        $(".new-card-portion").removeClass("hide");
        $(".new-card-option").addClass("active");
        $(".stored-card-option").removeClass("active");
-       $(".stored-card-option input[type=radio]").prop("checked", false); 
-       $(".new-card-option input[type=radio]").prop("checked", true); 
-       
-    }); 
+       $(".stored-card-option input[type=radio]").prop("checked", false);
+       $(".new-card-option input[type=radio]").prop("checked", true);
+
+    });
 
   });
 </script>

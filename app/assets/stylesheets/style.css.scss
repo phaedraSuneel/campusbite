@@ -1293,7 +1293,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 .menupage .grandtotal-container label span{
   margin-left: 10px;
 }
-.menupage .checkout-btn button{
+.menupage .checkout-btn button.checked-btn{
   background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
   border: 1px solid #919191;
   border-radius: 5px;
@@ -1310,11 +1310,11 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   height: 52px;
   text-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
 }
-.menupage .checkout-btn button:hover{
+.menupage .checkout-btn button.checked-btn:hover{
   background: linear-gradient(to bottom, #57AF0A 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
-.menupage .checkout-btn button:active,
-.menupage .checkout-btn button:focus
+.menupage .checkout-btn button.checked-btn:active,
+.menupage .checkout-btn button.checked-btn:focus
 {
   background: linear-gradient(to bottom, #57AF0A 0%, #79CF33 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
@@ -3252,7 +3252,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     border: 1px solid #eac689;
     height: 35px;
     padding-left: 10px;
-    color: #939393;
+    color: #000;
     box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
     -moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
     -webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
@@ -3354,6 +3354,9 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     float: left;
   }
   .location-container .detail-req .req-field .campus-on:hover{
+    background-color: #cae5b1;
+  }
+  .location-container .detail-req .req-field .campus-on.active{
     background-color: #cae5b1;
   }
   .location-container .detail-req .req-field .campus-on a.credit-card{
@@ -3542,11 +3545,17 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     border-top: 0px;
     border-radius: 0px 0px 3px 3px;
   }
-  .location-container #office-job-1{
-    margin-bottom: 0px;
-    border-radius: 3px 3px 0px 0px;
-    border-bottom: 0px;
+  .location-container .address-div{
+    margin-top: 0px !important;
+    border-top: 0px !important;
+    border-radius: 0px !important;
   }
+  .location-container .first-address-div{
+    margin-bottom: 0px !important;
+    border-bottom: 0px !important;
+    border-top:1px solid #edcd97 !important;
+  }
+
   .location-container .req-field .stored-campus{
     font-size: 14px !important;
     font-family: 'PT Sans';
@@ -3598,6 +3607,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     padding: 0px !important;
     float: left;
     width: 100%;
+    margin-bottom: 30px;
   }
   .account-setting-page .reward-point,
   .location-container .reward-point{
@@ -4118,7 +4128,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   }
   .account-modal .camp-left,
   .account-modal .camp-right{
-    padding: 5px !important;
+    margin: 7px 0 !important;
   }
   .account-modal .camp-left select.Select-Campus{
     width: 100%;
@@ -5935,4 +5945,35 @@ span.icon-reject
 .my_account_menu_link{
   background-color: #66863b !important;
   opacity: 0.9 !important;
+}
+
+.mini-delivery-message
+{
+  font-size: 14px;
+  font-family: 'PT Sans';
+  color: red;
+}
+
+.disable-btn
+{
+  background: linear-gradient(to bottom, #eeeeee 0%, #dedede 100%) repeat scroll 0 0 transparent;
+  border: 1px solid #bbbbbb;
+  border-radius: 5px;
+  color: #555555;
+  font-family: 'bignoodletitlingregular';
+  font-size: 40px;
+  line-height: 60px;
+  padding: 2px 5px;
+  text-transform: uppercase;
+  margin: 10px 0px 20px 0px;
+  text-align: center;
+  width: 100%;
+  float: left;
+  height: 52px;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.bottom-padding
+{
+  padding-bottom: 20px !important;
 }

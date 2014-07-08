@@ -1,5 +1,5 @@
-<div class="col-md-4 cart-container">
-  <div class="cart-recored">
+<div class="col-md-4 ">
+  <div class="cart-recored cart-container">
     <div class="cart-btn">YOUR CART</div>
     <% if user_signed_in? %>
       <% cart=current_user.carts.find_by_restaurant_id(params[:id]) %>
@@ -62,8 +62,14 @@
           <div class="col-md-12 grandtotal-container">
             <label>TOTAL:<span class="total-bill">$<%= cart.total_bill(@restaurant) %></span></label>
           </div>
+
           <div class="col-md-8 col-md-offset-2 checkout-btn">
-            <%= link_to raw("<button>CHECKOUT</button>"), "#", :class => "checkout-btn-link", :remote => true %>
+            <div class="mini-delivery-message"> * Delivery Minimum  is $<%= @restaurant.min_delivery %></div>
+            <% if @restaurant.min_delivery <= cart.total_bill(@restaurant) %>
+              <%= link_to raw("<button class='checked-btn'>CHECKOUT</button>"), "#", :class => "checkout-btn-link", :remote => true %>
+            <% else %>
+              <%= link_to raw("<button class='disable-btn' disabled >CHECKOUT</button>"), "#"%>
+            <% end %>
           </div>
         </div>
       <% end %>
@@ -73,12 +79,25 @@
     <% else %>
       <div class="empty-cart-message">
         <% if @restaurant.open? %>
-           Your Cart is Empty</div>
+           Your Cart is Empty
         <% else %>
           This restaurant does not currently accept online orders
         <% end %>
       </div>
     <% end %>
   </div>
+  <% unless cart.blank? %>
+    <div class="row">
+      <div class="col-md-12 reward-point-cart">
+        <div class="reward-point">
+          <span class="reward-img"></span>
+          <label class="heading-point">Reward Points</label>
+          <label class="points">This order will get you:</label>
+          <h1><span>+<%= cart.sub_total.floor*5 %></span>Rewards Points</h1>
+          <p>To learn more reward points <a href="<%= reward_points_path %>">click here</a> </p>
+        </div>
+      </div>
+    </div>
+  <% end %>
 </div>
 

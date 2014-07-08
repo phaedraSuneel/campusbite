@@ -5,7 +5,7 @@
       <p>Enter Your Code</p>
     </div>
     <div class="col-md-4 tip-items">
-      <input class="required-first code-field" type="text" placeholder="Promo Code" />
+      <input class="required-first code-field" type="text" placeholder="Coupon Code" />
     </div>
     <%= hidden_field_tag "order[coupon_id]" , nil, :class => 'coupon_id' %>
     <%= hidden_field_tag "order[coupon_off]" , nil, :class => 'coupon_off' %>
@@ -17,7 +17,7 @@
 </div>
 
 <script type="text/javascript">
-  
+
   $(document).ready(function(){
     $(".coupon-verification").click(function(){
       restaurant_id = $(".coupon-area").data("restaurant");

@@ -1,9 +1,9 @@
 <div class="col-md-8 menu-tabs">
-  <%= form_for "order", :url => create_order_carts_path, :method => :get, :html => {:class => "new-order-form"} do |f|%>    
-    <div class="col-md-12">
-      <div class="row location-container">
+  <%= form_for "order", :url => create_order_carts_path, :method => :get, :html => {:class => "new-order-form"} do |f|%>
+    <div class="row location-container">
+      <div class="col-md-12">
         <div class="save-location">Review & Submit YOUR Order</div>
-        
+
         <%= f.hidden_field :order_type, :value => @cart.order_type %>
         <%= f.hidden_field :request_time,  :class => "request_time" %>
         <%= hidden_field_tag "restaurant_id" , nil, :class => "restaurant_order" %>
@@ -11,39 +11,37 @@
         <%= render :partial => "welcome/order_user_info"%>
         <% if @cart.order_type == "delivery" %>
           <%= render :partial => "welcome/order_delivery_info" %>
-        <% end -%>  
+        <% end -%>
 
         <%= render :partial => "welcome/order_payment_info" %>
-        
+
         <%= render :partial => "welcome/order_tip_info" %>
         <% if @restaurant.coupon_avaible? %>
           <%= render :partial => "welcome/coupon_info"%>
-        <% end %>  
-        
-        <%= render :partial => "welcome/order_promo_code_info" %>      
+        <% end %>
+
+        <%= render :partial => "welcome/order_promo_code_info" %>
       </div>
     </div>
-    
-    
     <div class="row t-location">
       <h4>TOTAL: <span class="total" data-total="<%= @cart.total_bill(@restaurant) %>"></span></h4>
       <p>By clicking "Submit Order" you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
       <div class="col-md-6 col-md-offset-3 submit-location-page">
         <button class="sumbit-order-btn">Submit Order</button>
       </div>
-    </div>  
-  <% end %>  
+    </div>
+  <% end %>
 </div>
 
 <script type="text/javascript">
   $(".total").text($(".total-bill").text());
-  
+
   $(document).ready(function(){
-    
+
     $(".sumbit-order-btn").click(function(){
       $(".new-order-form").submit();
     });
-    
+
     request_time = $(".hidden_field_request_time").val();
     restaurant = $(".restaurant").val();
     $(".request_time").val(request_time);

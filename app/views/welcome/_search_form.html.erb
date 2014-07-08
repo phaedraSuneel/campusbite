@@ -7,7 +7,7 @@
       </div>
     <% else %>
       <div class="search-botton">
-        <div class="delivery"><%= f.check_box :is_delivery %>DELIVERY</div>
+        <div class="delivery"><%= f.check_box :is_delivery, :checked => "checked" %>DELIVERY</div>
         <div class="pickup"><%= f.check_box :is_pick_up %>PICKUP</div>
       </div>
     <% end %>
