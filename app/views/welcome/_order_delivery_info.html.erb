@@ -54,7 +54,7 @@
     <div class="row">
       <div class="col-md-12 req-field">
         <div class="req-field-items">
-          <label><span><input type="checkbox"></span>Save this address for future use.</label>
+          <label><span><input type="checkbox" checked="checked"></span>Save this address for future use.</label>
         </div>
       </div>
     </div>
@@ -71,6 +71,8 @@
       else
         $(this).parent().parent().removeClass("active");
     });
+
+    $(".address-div").last().addClass("active");
 
 
     $(".stored-address-btn input[type=radio]").prop("checked", true);

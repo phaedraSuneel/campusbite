@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require private_pub
+//= require jquery.form
 //= require jquery.rating
 //= require jquery.printpage
 //= require typeahead

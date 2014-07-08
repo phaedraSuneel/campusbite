@@ -1,7 +1,7 @@
 <div class="col-md-8 menu-tabs">
   <div class="row checkout-container">
     <div class="account-sign">Sign in into your account</div>
-    
+
     <ul class="nav nav-pills user-information-tab" data-tabs="tabs">
       <li class="sign-in active">
         <a href="#sign-in" data-toggle="tab">
@@ -11,7 +11,7 @@
             </div>
           </div>
         </a>
-      </li> 
+      </li>
       <li class="sign-up">
         <a href="#sign-up" data-toggle="tab">
           <div class="col-md-4">
@@ -29,7 +29,7 @@
             </div>
           </div>
         </a>
-      </li> 
+      </li>
     </ul>
 
     <div id="user-tab-content" class="tab-content info-page menupage review-page">
@@ -44,5 +44,14 @@
         <%= render :partial => "welcome/guest_checkout_content"%>
       </div>
     </div>
-  </div>    
+  </div>
 </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".singin-radio-btn").click(function(e){
+      $(this).find('input[type=radio]').prop('checked', true);
+    });
+  });
+</script>

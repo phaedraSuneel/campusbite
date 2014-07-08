@@ -28,7 +28,7 @@
     </div>
     <div class="col-md-12 submit-button" id="singn-in-btn">
       <button>Sign up</button>
-    </div> 
+    </div>
     <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
   <% end -%>
 </div>
@@ -96,7 +96,7 @@
       e.preventDefault(); // prevent native submit
       $(this).ajaxSubmit({
           target: '#confirmation',
-          dataType: 'html', 
+          dataType: 'html',
           success: function(result) {
             $(".checkout-btn-link").click();
           },

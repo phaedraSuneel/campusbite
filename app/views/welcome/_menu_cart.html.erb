@@ -64,10 +64,11 @@
           </div>
 
           <div class="col-md-8 col-md-offset-2 checkout-btn">
-            <div class="mini-delivery-message"> * Delivery Minimum  is $<%= @restaurant.min_delivery %></div>
+
             <% if @restaurant.min_delivery <= cart.total_bill(@restaurant) %>
               <%= link_to raw("<button class='checked-btn'>CHECKOUT</button>"), "#", :class => "checkout-btn-link", :remote => true %>
             <% else %>
+            <div class="mini-delivery-message"> * Delivery Minimum  is $<%= @restaurant.min_delivery %></div>
               <%= link_to raw("<button class='disable-btn' disabled >CHECKOUT</button>"), "#"%>
             <% end %>
           </div>

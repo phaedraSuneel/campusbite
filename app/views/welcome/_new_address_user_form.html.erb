@@ -45,11 +45,11 @@
           <div class="row">
             <div class="col-md-6 camp-left">
               <label>Street Address *</label>
-              <input class="requried" type="text" name="f1" placeholder="Street Address">
+              <%= f.text_field :street_adress, :placeholder => "Street Address", :class => "requried" %>
             </div>
             <div class="col-md-6 camp-left">
               <label>Room/Apartment *</label>
-              <input class="requried" type="text" name="f1" placeholder="Room/Apartment">
+              <%= f.text_field :room_number, :placeholder => "Room/Apartment", :class => "requried" %>
             </div>
           </div>
           <div class="row">
@@ -59,7 +59,7 @@
             </div>
             <div class="col-md-3 camp-left">
               <label>State *</label>
-              <%= f.text_field :state, :placeholder => "state", :class => "requried" %>
+              <%= f.select :state, us_states, {},{:class => "requried form-control"} %>
             </div>
             <div class="col-md-3 camp-left">
               <label>Zip Code *</label>

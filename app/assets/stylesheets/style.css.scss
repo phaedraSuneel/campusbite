@@ -2082,7 +2082,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 .signup-page .compus-content-container .compus-content-odd p.green-heading,
 .signup-page .compus-content-container .compus-content-even p.green-heading{
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   font-family: 'PT Sans';
   color: #4b9b02;
   font-weight: bold;
@@ -3321,7 +3321,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     border: 1px solid #eac689;
     min-height: 100px;
     padding-left: 10px;
-    color: #939393;
+    color: #000;
     box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
     -moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
     -webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
@@ -3546,13 +3546,10 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     border-radius: 0px 0px 3px 3px;
   }
   .location-container .address-div{
-    margin-top: 0px !important;
-    border-top: 0px !important;
-    border-radius: 0px !important;
+    margin-bottom: 0px !important;
   }
   .location-container .first-address-div{
     margin-bottom: 0px !important;
-    border-bottom: 0px !important;
     border-top:1px solid #edcd97 !important;
   }
 
@@ -4148,7 +4145,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
     border: 1px solid #eac689;
     height: 35px;
     padding-left: 10px;
-    color: #939393;
+    color: #000;
     box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
     -moz-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
     -webkit-box-shadow: inset 0px 0px 10px 0px rgba(119, 119, 119, 0.14);
@@ -5976,4 +5973,17 @@ span.icon-reject
 .bottom-padding
 {
   padding-bottom: 20px !important;
+}
+
+.checkout-container .user-information-tab li.active .singin-radio-btn
+{
+  margin-top: 10px;
+  margin-bottom: 0px;
+  height: 55px;
+  border-bottom: 0px;
+  position: absolute;
+  width: 88%;
+  z-index: 100;
+  background-color: #fff;
+  border-radius: 5px 5px 0 0;
 }

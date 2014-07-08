@@ -1,5 +1,6 @@
-<div id="confirmation"></div>
+
 <div class="singup-second padding-bottom-category">
+  <div id="confirmation"></div>
   <%= form_for("user", :url => user_session_path, :html => {:id => "sign_in", :class => "sign-in-form"}) do |f| %>
     <div class="col-md-6 checkout-field">
       <label>Email:</label>
@@ -13,8 +14,8 @@
       <button>Sign in</button>
       <p><%= link_to "Forgot your password?", new_password_path('user') %></p>
       <p><a class="facebook-icon" href="/users/auth/facebook"></a></p>
-    </div> 
-  <% end -%>  
+    </div>
+  <% end -%>
   <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
 </div>
 
@@ -22,9 +23,9 @@
   $(document).ready(function(){
     $(".sign-in-form").on('submit', function(e) {
       e.preventDefault(); // prevent native submit
-      $(this).ajaxSubmit({
+      $(".sign-in-form").ajaxSubmit({
           target: '#confirmation',
-          dataType: 'html', 
+          dataType: 'html',
           success: function(result) {
             $(".checkout-btn-link").click();
           },
