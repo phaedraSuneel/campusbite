@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
 	rescue_from CanCan::AccessDenied do |exception|
 	  redirect_to restaurant_dashboard_index_path , :notice => "You are not authorize for this action"
-	end	
+	end
 	protect_from_forgery
 
 	def change_layout
@@ -13,22 +13,22 @@ class ApplicationController < ActionController::Base
       current_user.admin_restaurant? ? 'admin_restaurant' : (current_user.user_admin? ? 'super_admin' : 'application')
     else
       'application'
-    end  
+    end
   end
 
   def check_admin
     unless current_user.blank?
   		if params[:controller] == 'welcome'
         if current_user.admin_restaurant?
-          return redirect_to restaurant_dashboard_index_path  
+          return redirect_to restaurant_dashboard_index_path
         end
         if current_user.user_admin?
-          return redirect_to admin_dashboard_index_path  
+          return redirect_to admin_dashboard_index_path
         end
       end
     end
 	end
-	
+
   def check_status
     if user_signed_in? && !cookies[:cart_token].blank?
       @cookie_cart=Cart.find_by_token(cookies[:cart_token])
@@ -40,6 +40,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
+
     if resource.admin_restaurant?
       restaurant_dashboard_index_path
     elsif resource.user_admin?
@@ -48,5 +49,13 @@ class ApplicationController < ActionController::Base
       "/"
     end
   end
-  
+
+  def after_sign_out_path_for(resource)
+    remove_cart
+    '/'
+  end
+
+  def remove_cart
+    current_user.carts.destroy_all
+  end
 end
