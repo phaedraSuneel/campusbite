@@ -1,22 +1,16 @@
 <div class="main-search-bar">
   <%= form_for "search", :url => result_welcome_index_path, :method => 'get', :html => { :class => "main-search-form" } do |f| %>
+    <% unless params[:search].blank? %>
       <div class="search-botton">
-        <% unless params[:search].blank? %>
-          <% unless params[:search][:is_delivery].blank? %>
-            <div class="delivery"><%= f.check_box :is_delivery, :checked => (params[:search][:is_delivery] ? 'checked' : '') %>DELIVERY</div>
-          <% else %>
-            <div class="delivery"><%= f.check_box_tag :is_delivery %>DELIVERY</div>
-          <% end -%>
-          <% unless params[:search][:is_pick_up].blank? %>
-            <div class="pickup"><%= f.check_box :is_pick_up, :checked => (params[:search][:is_pick_up] ? 'checked' : '')  %>PICKUP</div>
-          <% else %>
-            <div class="pickup"><%= f.check_box :is_pick_up%>PICKUP</div>
-          <% end -%>
-        <% else %>
-          <div class="delivery"><%= f.check_box :is_delivery %>DELIVERY</div>
-          <div class="pickup"><%= f.check_box :is_pick_up %>PICKUP</div>
-        <% end %>
+        <div class="delivery"><%= f.check_box :is_delivery, :checked => (params[:search][:is_delivery] == '1') ? 'checked' : '' %>DELIVERY</div>
+        <div class="pickup"><%= f.check_box :is_pick_up, :checked => (params[:search][:is_pick_up] == '1') ? 'checked' : '' %>PICKUP</div>
       </div>
+    <% else %>
+      <div class="search-botton">
+        <div class="delivery"><%= f.check_box :is_delivery %>DELIVERY</div>
+        <div class="pickup"><%= f.check_box :is_pick_up %>PICKUP</div>
+      </div>
+    <% end %>
     <div class="search-field">
       <input type="text" name = "keyword",  placeholder="School Name or Campus", class = "search-keyword", value = <%= params[:keyword] %> >
     </div>
@@ -25,24 +19,3 @@
     </div>
   <% end -%>
 </div>
-
-<script type="text/javascript">
-  $(document).ready(function(){
-    $(".search-botton .delivery").click(function(e){
-      e.preventDefault();
-      $(this).addClass("checked");
-      $(".search-botton .pickup").removeClass("checked");
-      $(this).find("input[type=checkbox]").prop("checked", true);
-      $(".search-botton .pickup").find("input[type=checkbox]").prop("checked", false)
-    });
-
-    $(".search-botton .pickup").click(function(e){
-      e.preventDefault();
-      $(this).addClass("checked");
-      $(".search-botton .delivery").removeClass("checked");
-      $(this).find("input[type=checkbox]").prop("checked", true);
-      $(".search-botton .delivery").find("input[type=checkbox]").prop("checked", false)
-    });
-
-  });
-</script>

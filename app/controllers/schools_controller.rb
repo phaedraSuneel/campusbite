@@ -2,22 +2,22 @@ class SchoolsController < ApplicationController
 
   def index
     authorize! :read, School
-    @schools = School.all 
+    @schools = School.all
   end
 
   def search
-    @restaurants = Restaurant.search(params[:keyword])
-    @schools =  @restaurants.collect(&:school)
+    @schools = School.search(params[:keyword])
+    @buildings = @schools.collect(&:buildings).flatten
     respond_to do |format|
-      format.json { render :json => @schools.map {|a| a.school_name + " (" +  a.branch_name + ")" }    }  
-    end                          
+      format.json { render :json => @buildings.map{|a| [a.school.school_name, a.building_name].join('')} }
+    end
   end
 
   def show
     authorize! :read, School
     @school = School.find(params[:id])
   end
-  
+
   def new
     authorize! :create, School
     @school = School.new
@@ -72,7 +72,7 @@ class SchoolsController < ApplicationController
     else
       flash[:notice] = "Building was not created"
       redirect_to school_path(@school)
-    end  
+    end
   end
 
   def buildings

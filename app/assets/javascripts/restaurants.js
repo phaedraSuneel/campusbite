@@ -113,18 +113,18 @@ $(document).ready(function(){
     }
   });
 
-  $(".delivery, .pickup").click(function(){
-    input =  $(this).find("input[type=checkbox]");
-    if(input.is(':checked'))
-    {
-      input.prop('checked', false);
-      $(this).removeClass("checked");
-    }
-    else
-    {
-      input.prop('checked', true);
-      $(this).addClass("checked");
-    }
+  $(".search-botton .delivery").click(function(e){
+    $(this).addClass("checked");
+    $(".search-botton .pickup").removeClass("checked");
+    $(this).find("input[type=checkbox]").prop("checked", true);
+    $(".search-botton .pickup").find("input[type=checkbox]").prop("checked", false)
+  });
+
+  $(".search-botton .pickup").click(function(e){
+    $(this).addClass("checked");
+    $(".search-botton .delivery").removeClass("checked");
+    $(this).find("input[type=checkbox]").prop("checked", true);
+    $(".search-botton .delivery").find("input[type=checkbox]").prop("checked", false)
   });
 
   $(".restaurant-category a").click(function()
