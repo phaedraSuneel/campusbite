@@ -23,9 +23,36 @@
 			<%= link_to raw('<i class="fa fa-home"></i><span class="title">Dashboard</span>'), admin_dashboard_index_path %>
 		</li>
 
-		<li class="<%= 'active' if params[:controller] == 'admin/banners' %>">
-			<%= link_to raw('<i class="fa fa-cogs"></i><span class="title">Content Management</span>'), admin_banners_path %>
-		</li>
+    <li class="<%= 'active' if (params[:controller] == 'admin/banners') or (params[:controller] == 'admin/careers') or (params[:controller] == 'admin/faqs') or (params[:controller] == 'admin/reciept_pages') or (params[:controller] == 'admin/user_pages') or (params[:controller] == 'admin/term_of_service_pages') %>" >
+      <a href="javascript:;">
+        <i class="fa fa-cogs"></i>
+        <span class="title">
+          Content Management
+        </span>
+        <span class="arrow">
+        </span>
+      </a>
+      <ul class="sub-menu">
+        <li class="<%= 'active' if params[:controller] == 'admin/banners' %>">
+          <%= link_to raw('<span class="title">Home Page Banners</span>'), admin_banners_path %>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'admin/careers' %>">
+          <%= link_to raw('<span class="title">Careers</span>'), admin_careers_path %>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'admin/faqs' %>">
+          <%= link_to raw('<span class="title">FAQs</span>'), admin_faqs_path %>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'admin/reciept_pages' %>">
+          <%= link_to raw('<span class="title">Change Receipt Quote</span>'), admin_reciept_pages_path %>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'admin/user_pages' %>">
+          <%= link_to raw('<span class="title">Change User Admin Page </span>'), admin_user_pages_path %>
+        </li>
+        <li class="<%= 'active' if params[:controller] == 'admin/term_of_service_pages' %>">
+          <%= link_to raw('<span class="title">Term Of Services Page </span>'), admin_term_of_service_pages_path %>
+        </li>
+      </ul>
+    </li>
 
 		<li class="<%= 'active' if (params[:controller] == 'admin/subscriber_forms') or (params[:controller] == 'admin/contact_us_forms') or (params[:controller] == 'admin/restaurant_owner_forms') or (params[:controller] == 'admin/restaurant_suggestion_forms') or (params[:controller] == 'admin/campus_suggestion_forms') or (params[:controller] == 'admin/support_forms') or (params[:controller] == 'admin/redeam_request_forms') or (params[:controller] == 'admin/menu_difference_forms') %> ">
 			<a href="javascript:;">
@@ -116,21 +143,6 @@
     </li>
     <li class="<%= 'active' if params[:controller] == 'admin/permission' %>">
       <%= link_to raw('<i class="fa fa-lock"></i><span class="title">Permissions</span>'), admin_permissions_path %>
-    </li>
-    <li class="<%= 'active' if params[:controller] == 'admin/careers' %>">
-      <%= link_to raw('<i class="fa fa-briefcase"></i><span class="title">Careers</span>'), admin_careers_path %>
-    </li>
-    <li class="<%= 'active' if params[:controller] == 'admin/faqs' %>">
-      <%= link_to raw('<i class="fa fa-briefcase"></i><span class="title">FAQs</span>'), admin_faqs_path %>
-    </li>
-    <li class="<%= 'active' if params[:controller] == 'admin/reciept_pages' %>">
-      <%= link_to raw('<i class="fa fa-briefcase"></i><span class="title">Change Receipt Quote</span>'), admin_reciept_pages_path %>
-    </li>
-    <li class="<%= 'active' if params[:controller] == 'admin/user_pages' %>">
-      <%= link_to raw('<i class="fa fa-briefcase"></i><span class="title">Change User Admin Page </span>'), admin_user_pages_path %>
-    </li>
-    <li class="<%= 'active' if params[:controller] == 'admin/term_of_service_pages' %>">
-      <%= link_to raw('<i class="fa fa-briefcase"></i><span class="title">Term Of Services Page </span>'), admin_term_of_service_pages_path %>
     </li>
     <li class="<%= 'active' if params[:controller] == 'admin/redeams' %>">
       <%= link_to raw('<i class="fa fa-gift"></i><span class="title">Redeam Items</span>'), admin_redeams_path %>
