@@ -33,7 +33,7 @@
                       <div class="col-md-3">
                         <label>Name: *</label>
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-9">
                         <%= f.text_field :name %>
                       </div>
                     </div>
@@ -41,7 +41,7 @@
                       <div class="col-md-3">
                         <label>Email: *</label>
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-9">
                          <%= f.email_field :email %>
                       </div>
                     </div>
@@ -49,7 +49,7 @@
                       <div class="col-md-3">
                         <label>Subject: *</label>
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-9">
                         <%= f.text_field :subject %>
                       </div>
                     </div>
@@ -57,7 +57,7 @@
                       <div class="col-md-3">
                         <label>Message:</label>
                       </div>
-                      <div class="col-md-8">
+                      <div class="col-md-9">
                         <%= f.text_area :message %>
                       </div>
                     </div>
@@ -69,12 +69,12 @@
                         <button class="submit-btn">Submit</button>
                       </div>
                     </div>
-                  <% end %>  
+                  <% end %>
                 </div>
                 <div class="conecting-container-inner hide" id="thanks">
                   <h1>Thank You For Contacting Us</h1>
                   <h2>We will get in touch with you shortly</h2>
-                </div>  
+                </div>
               </div>
             </div>
           </div>
@@ -131,7 +131,7 @@
             <div class="col-md-10">
               <h3>careers</h3>
               <p>Looking for a job or internship?</p>
-              <p><a href="#">Click here to view openings</a></p>
+              <p><a href="<%= careers_path %>">Click here to view openings</a></p>
             </div>
           </div>
         </div>
@@ -172,10 +172,10 @@
     if(hash){
       $("#conecting-container-inner-1").addClass("hide");
       $("#thanks").removeClass("hide");
-    }  
+    }
     else{
       $("#conecting-container-inner-1").removeClass("hide");
       $("#thanks").addClass("hide");
-    }  
+    }
   });
 </script>

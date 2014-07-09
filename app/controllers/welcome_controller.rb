@@ -34,6 +34,9 @@ class WelcomeController < ApplicationController
 
   def order
     @order = Order.find params[:id]
+    if cookies[:guest_token].present?
+      cookies.delete :guest_token
+    end
   end
 
   def restaurant_search
@@ -187,5 +190,20 @@ class WelcomeController < ApplicationController
       flash[:warning] = "Sorry your error request couldn't send to our support team please try again"
     end
     redirect_to :back
+  end
+
+
+  def guest_registration
+    @guest = Guest.new(params[:guest])
+    cookies[:guest_token] = SecureRandom.urlsafe_base64(nil, false)
+    @guest.save
+    @cookie_cart=Cart.find_by_token(cookies[:cart_token])
+    @cookie_cart.guest_id = @guest.id
+    @cookie_cart.token = nil
+    @cookie_cart.save
+    cookies.delete :cart_token
+    respond_to do |format|
+      format.js
+    end
   end
 end

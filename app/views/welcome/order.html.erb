@@ -6,7 +6,7 @@
     <div class="col-md-9 add-side">
       <img class="liner-3" alt="Smiley face" src="/assets/liner-4.png" />
     </div>
-    
+
     <div class="col-md-12 order-complete-container">
       <div class="row">
         <div class="col-md-1 green-tick">
@@ -42,19 +42,17 @@
       <div class="row">
         <div class="col-md-6 order-detail your-detail">
           <h3>Your Details</h3>
-          <label><span>Name:</span><span class="value"><%= @order.user.name %></span></label>
+          <label><span>Name:</span><span class="value"><%= @order.customer_name %></span></label>
           <label><span>Telephone:</span><span class="value">(718)-419-2143</span></label>
-          <label><span>Email:</span><span class="value"><%= @order.user.email %></span></label>
+          <label><span>Email:</span><span class="value"><%= @order.customer_email %></span></label>
           <% unless @order.order_type == "pickup" %>
-            <label><span>Address:</span><span class="value">
-              <%= @order.address.address_type %>
-              <% if @order.address.address_type == "On Campus" %>
-               <%= @order.address.school.school_name %> <%= @order.address.room_number %> <%= @order.address.building.try(:street_adress) %></span>
-             <% else %>
-               <%= @order.address.room_number %> <%= @order.address.street_adress %>
-             <% end %>  
+            <label><span>Address:</span>
+              <span class="value">
+              <%= @order.get_address_type %>
+              <%= @order.get_address %>
+              </span>
             </label>
-          <% end %>  
+          <% end %>
         </div>
         <div class="col-md-6 campusbite-container">
           <div class="row about-fnd">
@@ -111,21 +109,13 @@
         </div>
         <div class="col-md-3 col-md-offset-1 order-detail">
           <label>You</label>
-          <label><%= @order.user.name %></label>
-          <label><%= @order.user.email %></label>
+          <label><%= @order.customer_name %></label>
+          <label><%= @order.customer_email %></label>
           <% unless @order.order_type == "pickup" %>
             <label><%= @order.address.phone_number %></label>
             <label><%= @order.address.address_type %></label>
-            <% if @order.address.address_type == "On Campus" %>
-              <label> <%= @order.address.school.school_name %></label>
-              <label><%= @order.address.building.try(:building_name) %></label>
-              <label><%= @order.address.room_number %></label>
-              <label><%= @order.address.building.try(:street_adress) %></label>
-            <% else %>  
-              <label><%= @order.address.room_number %>  </label>
-              <label><%= @order.address.street_adress %> </label>
-            <% end %>
-          <% end -%>  
+            <label><%= @order.get_address %></label>
+          <% end -%>
 
         </div>
         <div class="row receipt-table">
@@ -143,7 +133,7 @@
                     <h3><%= item.menu_item.item_name %></h3>
                     <% extra = 0 %>
                     <% unless item.group_item_ids.blank? %>
-                      <label> Extra: 
+                      <label> Extra:
                         <% item.group_items.each do |group_item| %>
                           <%= group_item.name + " " %>
                           <% extra += group_item.price %>
@@ -171,9 +161,9 @@
             <label><span>Tax:</span><span class="value">$<%= @order.sale_tax %></span></label>
             <% if @order.order_type == "delivery" %>
               <label><span>Delivery Fee:</span><span class="value">$<%= @order.delivery_charges %></span></label>
-            <% end %> 
+            <% end %>
               <label><span>Tip:</span><span class="value">$<%= @order.tip_charges %></span></label>
-             
+
             <label class="larg-size"><span>Total:</span><span class="value">$<%= @order.total_after_discount %></span></label>
           </div>
         </div>

@@ -1,0 +1,48 @@
+<div class="singup-second">
+  <div id="confirmation"></div>
+  <%= form_for("guest", :url => guest_registration_path, :html => {:id => "guest_sign_up", :class => "guest-sign-up-form"}) do |f| %>
+
+    <div class="col-md-6 checkout-field">
+      <label>First Name:</label>
+      <%= f.text_field :first_name, :autofocus => true, :placeholder => "First Name" %>
+    </div>
+
+    <div class="col-md-6 checkout-field">
+      <label>Last Name:</label>
+      <%= f.text_field :last_name, :autofocus => true, :placeholder => "Last Name" %>
+    </div>
+      <div class="col-md-6 checkout-field">
+      <label>Email:</label>
+      <%= f.email_field :email, :autofocus => true, :placeholder => "Email" %>
+    </div>
+    <div class="col-md-12 checkout-field">
+      <p class="text-center">By clicking Sign Up you agree to the <a href="<%= term_of_service_path %>">Terms of Service</a> and <a href="<%= privacy_policy_path %>">Privacy Policy</a></p>
+    </div>
+    <div class="col-md-12 submit-button" id="singn-in-btn">
+      <button>Sign up</button>
+    </div>
+    <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
+  <% end %>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $(".guest-sign-up-form").on('submit', function(e) {
+      e.preventDefault(); // prevent native submit
+      $(this).ajaxSubmit({
+          target: '#confirmation',
+          dataType: 'html',
+          success: function(result) {
+           console.log(result);
+           $(".checkout-btn-link").click();
+          },
+          error: function(jqxhr) {
+            $("#confirmation").html("<div class='alert'>" +jqxhr.responseText+"</div>");
+            $("#confirmation").hide();
+            $("#confirmation").fadeIn(500);
+          }
+      });
+    });
+  });
+</script>

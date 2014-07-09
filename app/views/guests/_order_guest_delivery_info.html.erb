@@ -1,0 +1,69 @@
+<%= javascript_include_tag "application" %>
+<div class="detail-req detail-req-node">
+  <h3>Delivery Details<span>* Required fields</span></h3>
+  <div class="row">
+    <div class="col-md-6 req-field">
+      <div class="campus-on new-address-btn address-option">
+        <span><input type="radio" name="address_type" checked ="checked" value = "new-address"></span>Enter New Address
+      </div>
+    </div>
+  </div>
+  <div class="new-address">
+    <%= render :partial => "welcome/new_address_user_form"%>
+  </div>
+  <div class="row">
+    <div class="col-md-12 req-field">
+      <div class="req-field-items">
+        <label>Delivery Instructions:</label>
+        <textarea palceholder="E.g. I need extra napkins, etc" name= "order[delivery_instruction]"></textarea>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".address-div input[type=radio]").each(function(){
+      checked = $(this).is(':checked');
+      if(checked)
+        $(this).parent().parent().addClass("active");
+      else
+        $(this).parent().parent().removeClass("active");
+    });
+
+    $(".address-div").last().addClass("active");
+
+
+    $(".stored-address-btn input[type=radio]").prop("checked", true);
+    $(".address-div").find("input[type=radio]").prop("checked", true);
+
+    $(".address-div").click(function(){
+      $(this).find("input[type=radio]").prop("checked", true);
+      $(".address-div").each(function(){
+        $(this).removeClass("active");
+      });
+      $(this).addClass("active");
+    });
+
+    $(".stored-address-btn").click(function(){
+      $(".new-address").addClass("hide");
+      $(".stored-address").removeClass("hide");
+      $(".stored-address-btn").addClass("active");
+      $(".new-address-btn").removeClass("active");
+      $(".new-address-btn input[type=radio]").prop("checked", false);
+      $(".stored-address-btn input[type=radio]").prop("checked", true);
+      $(".address-div").find("input[type=radio]").prop("checked", true);
+    });
+
+    $(".new-address-btn").click(function(){
+      $(".stored-address").addClass("hide");
+      $(".new-address").removeClass("hide");
+      $(".new-address-btn").addClass("active");
+      $(".stored-address-btn").removeClass("active");
+      $(".stored-address-btn input[type=radio]").prop("checked", false);
+      $(".new-address-btn input[type=radio]").prop("checked", true);
+    });
+
+  });
+</script>

@@ -1,0 +1,23 @@
+<div class="detail-req">
+	<h3>Your Details<span>* Required fields</span></h3>
+	<div class="row">
+	  <div class="col-md-6 req-field">
+	    <div class="req-field-items">
+	      <label>First Name *</label>
+	      <input class="required" type="text" placeholder="First Name" value = "<%= @guest.first_name %>"  />
+	    </div>
+	  </div>
+	  <div class="col-md-6 req-field">
+	    <label>Last Name *</label>
+	    <input class="required" type="text" placeholder="Last Name" value = "<%= @guest.last_name %>" />
+	  </div>
+	</div>
+	<div class="row">
+	  <div class="col-md-6 req-field">
+	    <label>Email *</label>
+	    <input class="required" type="text" placeholder="Email" value = "<%= @guest.email %>"/>
+	  </div>
+	  <div class="col-md-6 req-field">
+	  </div>
+	</div>
+</div>

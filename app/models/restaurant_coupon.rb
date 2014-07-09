@@ -7,10 +7,11 @@ class RestaurantCoupon < ActiveRecord::Base
                         :thumb => "75x75#",
                         :small_thumb => "27x27#",
                         :small => "150x150#",
-                        :medium => "500x500>"
+                        :medium => "500x500>",
+                        :large  => "635x220"
                     },
                     :default_url => '/assets/default.png'
-  validates_attachment_content_type :coupon_image, :content_type => /\Aimage\/.*\Z/ 
+  validates_attachment_content_type :coupon_image, :content_type => /\Aimage\/.*\Z/
 
   def limit_avaible?
     max_use == 0 ?  false : true

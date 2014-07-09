@@ -88,17 +88,19 @@
     <% end %>
   </div>
   <% unless cart.blank? %>
-    <div class="row">
-      <div class="col-md-12 reward-point-cart">
-        <div class="reward-point">
-          <span class="reward-img"></span>
-          <label class="heading-point">Reward Points</label>
-          <label class="points">This order will get you:</label>
-          <h1><span>+<%= cart.sub_total.floor*5 %></span>Rewards Points</h1>
-          <p>To learn more reward points <a href="<%= reward_points_path %>">click here</a> </p>
+    <% unless current_user.blank? %>
+      <div class="row">
+        <div class="col-md-12 reward-point-cart">
+          <div class="reward-point">
+            <span class="reward-img"></span>
+            <label class="heading-point">Reward Points</label>
+            <label class="points">This order will get you:</label>
+            <h1><span>+<%= cart.sub_total.floor*5 %></span>Rewards Points</h1>
+            <p>To learn more reward points <a href="<%= reward_points_path %>">click here</a> </p>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
 

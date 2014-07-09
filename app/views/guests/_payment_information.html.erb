@@ -7,18 +7,12 @@
         <%= f.hidden_field :request_time,  :class => "request_time" %>
         <%= hidden_field_tag "restaurant_id" , nil, :class => "restaurant_order" %>
 
-        <%= render :partial => "welcome/order_guest_info"%>
+        <%= render :partial => "guests/order_guest_info"%>
         <% if @cart.order_type == "delivery" %>
-          <%= render :partial => "welcome/order_delivery_info" %>
+          <%= render :partial => "guests/order_guest_delivery_info" %>
         <% end -%>
-
-        <%= render :partial => "welcome/order_payment_info" %>
-
+        <%= render :partial => "guests/order_guest_payment_info" %>
         <%= render :partial => "welcome/order_tip_info" %>
-          <% if @restaurant.coupon_avaible? %>
-            <%= render :partial => "welcome/coupon_info"%>
-        <% end %>
-
         <%= render :partial => "welcome/order_promo_code_info" %>
       </div>
     </div>

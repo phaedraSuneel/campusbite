@@ -1,5 +1,5 @@
-<div id="confirmation"></div>
 <div class="singup-second">
+  <div id="confirmation"></div>
   <%= form_for("user", :url => user_registration_path, :html => {:id => "sign_up", :class => "sign-up-form"}) do |f| %>
     <div class="col-md-6 checkout-field">
       <label>First Name:</label>
@@ -24,7 +24,10 @@
     <div class="col-md-6 checkout-field">
       <label>Your School:</label>
       <%= f.text_field :school_name, :autofocus => true, :placeholder => "Your School", :class => "search-keyword" %>
-      <p>By clicking Sign Up you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></p>
+
+    </div>
+    <div class="col-md-12 checkout-field">
+      <p class="text-center">By clicking Sign Up you agree to the <a href="<%= term_of_service_path %>">Terms of Service</a> and <a href="<%= privacy_policy_path %>">Privacy Policy</a></p>
     </div>
     <div class="col-md-12 submit-button" id="singn-in-btn">
       <button>Sign up</button>

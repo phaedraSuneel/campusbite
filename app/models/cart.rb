@@ -1,10 +1,11 @@
 class Cart < ActiveRecord::Base
-  
+
   has_many :menu_items , through: :cart_menu_items
   has_many :cart_menu_items
   belongs_to :user
+  belongs_to :guest
   belongs_to :restaurant
-  attr_accessible :token, :user_id, :order_type, :restaurant_id
+  attr_accessible :token, :user_id, :guest_id, :order_type, :restaurant_id
 
   after_destroy :remove_associations
 
@@ -20,7 +21,7 @@ class Cart < ActiveRecord::Base
         item.group_items.each do |group_item|
   			 extra += group_item.price
         end
-  	  end		
+  	  end
   		price += (item.menu_item.price + extra) * item.quantity
   	end
   	return price
@@ -45,7 +46,7 @@ class Cart < ActiveRecord::Base
     else
       self.sub_total + self.sale_tax(restaurant)
     end
-      
+
 	end
 
   def paypal_url(return_url,total_bill)

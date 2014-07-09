@@ -944,6 +944,7 @@ border-radius: 4px;
 }
 .menupage .menu-tab-opitons li a:active{
   background-color: transparent;
+  color: #555;
 }
 .menupage .menu-tab-opitons li:hover,
 .menupage .menu-tab-opitons li:focus,
@@ -952,6 +953,10 @@ border-radius: 4px;
 {
   background: url("/assets/active-tab.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);
   width: 141px;
+  color: #555 !important;
+}
+.menupage .menu-tab-opitons li.active a{
+  color: #555 !important;
 }
 .menupage .menu-tab-opitons li a:hover{
   background-color: transparent;
@@ -1158,10 +1163,13 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   margin-top: 5px;
   text-align: center;
   padding: 2px 5px;
+  cursor: pointer !important;
 }
 .menupage .pick-btn input,
 .menupage .delivery-btn input{
-  margin-right: 5px;
+  margin-right: 5px 3px;
+  float: left;
+  cursor: pointer !important;
 }
 .menupage .pick-btn{
   background: linear-gradient(to bottom, #eeeeee 0%, #dedede 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
@@ -1176,6 +1184,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   text-transform: uppercase;
   margin-top: 5px;
   text-align: center;
+  cursor: pointer !important;
 }
 .menupage .request-order{
   margin-top: 10px;
@@ -1864,9 +1873,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 }
 
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<<<<Review>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
-.review-page .writing-container{
-  margin-bottom: 50px;
-}
+
 .review-page .writing-container .review-btn-1{
   background: linear-gradient(to bottom, #79CF33 0%, #57AF0A 100%) repeat scroll 0 0 rgba(0, 0, 0, 0);
   border: 1px solid #919191;
@@ -2169,6 +2176,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   border-radius: 5px;
   margin: 30px 10px;
   position: relative;
+  margin-bottom: 0px !important;
 }
 .signup-page .signup-form label{
   width: 100%;
@@ -2203,11 +2211,11 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   width: 100%;
 }
 .signup-page .form-shadow{
-  bottom: -10px;
-  left: 5px;
+  bottom: -9px;
+  left: 34px;
   opacity: 0.5;
   position: absolute;
-  width: 100%;
+  width: 90%;
 }
 .signup-page .signup-form-container p.service{
   font-size: 15px;
@@ -2215,6 +2223,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
   text-align: center;
   float: left;
   width: 100%;
+  margin-top:50px;
 }
 .signup-page .signup-form-container p.service a{
   color: #52a902;
@@ -2514,6 +2523,7 @@ box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.25);
 /*<<<<<<<<<<<<<<<<<<<<<<<<<<SignInBeforeCheckOut>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>*/
 .checkout-page .facebook-button p a{
   color: #555555;
+  text-decoration: underline;
 }
 .checkout-page .checkout-field p{
   text-align: center;
@@ -5986,4 +5996,13 @@ span.icon-reject
   z-index: 100;
   background-color: #fff;
   border-radius: 5px 5px 0 0;
+}
+
+.top-margin-input
+{
+  margin-top: 15px !important;
+}
+
+.signup-page .submit-button{
+  margin-top: 35px !important;
 }

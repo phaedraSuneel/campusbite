@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
   belongs_to :user
+  belongs_to :guest
   belongs_to :restaurant
   belongs_to :address
   belongs_to :card
@@ -8,13 +9,32 @@ class Order < ActiveRecord::Base
   has_many :menu_item_orders
   has_many :comments, :dependent => :destroy
 
-  attr_accessible :user_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip, :secure_code, :flag, :coupon_id, :coupon_off
+  attr_accessible :user_id, :guest_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip, :secure_code, :flag, :coupon_id, :coupon_off
 
   scope :with_user, lambda {|user| where(user_id: user.id ) }
-  
+
   after_destroy :remove_associations
   after_save :decrease_coupon_limit
 
+
+  def customer_name
+    if self.user.nil?
+      [self.guest.first_name, self.guest.last_name].join(' ')
+    else
+      self.user.name
+    end
+  end
+
+  def customer_email
+    if self.user.nil?
+      self.guest.email
+    else
+      self.user.email
+    end
+  end
+
+  def customer_phone
+  end
 
   def decrease_coupon_limit
     if self.coupon_id?
@@ -22,7 +42,7 @@ class Order < ActiveRecord::Base
         RestaurantCoupon.where(id: self.coupon_id).first.descrease_limit
       else
         Coupon.where(id: self.coupon_id).first.descrease_limit
-      end 
+      end
     end
   end
 
@@ -51,7 +71,7 @@ class Order < ActiveRecord::Base
         item.group_items.each do |group_item|
           extra += group_item.price
         end
-      end 	
+      end
   		price += (item.menu_item.price + extra) * item.quantity
   	end
   	return price
@@ -74,7 +94,7 @@ class Order < ActiveRecord::Base
       total = self.sub_total + self.sale_tax + self.delivery_charges
     else
       total = self.sub_total + self.sale_tax
-    end  
+    end
     (total * self.tip) / 100
   end
 
@@ -83,7 +103,7 @@ class Order < ActiveRecord::Base
       detect_restaurant_coupon_charges
     else
       detect_school_coupon_charges
-    end  
+    end
   end
 
   def detect_school_coupon_charges
@@ -93,11 +113,11 @@ class Order < ActiveRecord::Base
       if unit == "$ off"
         coupon.amount
       else
-        (self.sub_total * coupon.amount) / 100  
+        (self.sub_total * coupon.amount) / 100
       end
     else
       0.0
-    end  
+    end
   end
 
   def detect_restaurant_coupon_charges
@@ -112,9 +132,9 @@ class Order < ActiveRecord::Base
 	def total_bill
     if self.order_type == "delivery"
 		  self.sub_total + self.sale_tax + self.delivery_charges + self.tip_charges
-    else   
+    else
       self.sub_total + self.sale_tax + self.tip_charges
-    end  
+    end
 	end
 
   def restaurant_name
@@ -122,7 +142,7 @@ class Order < ActiveRecord::Base
   end
 
   def self.schedule_orders
-    week_last_day = Time.now.beginning_of_week - 1.day 
+    week_last_day = Time.now.beginning_of_week - 1.day
     week_first_day = week_last_day.beginning_of_week
     where(:created_at => week_first_day..week_last_day).order("created_at desc")
   end
@@ -134,12 +154,12 @@ class Order < ActiveRecord::Base
   def get_address
     address_type = get_address_type
     if address_type == "On Campus"
-      [address.room_number, address.building.try(:street_adress), address.school.school_name ].join(' ')
+      [address.room_number, address.building.try(:street_adress), address.school.try(:school_name) ].join(' ')
     elsif address_type == "Off Campus"
       [address.try(:room_number), address.building.try(:street_adress), address.building.try(:city), address.building.try(:state), address.building.try(:zip_code) ].join(" ")
     elsif address_type.nil?
       ""
-    end  
+    end
   end
 
   def get_telephone_number
@@ -165,5 +185,5 @@ class Order < ActiveRecord::Base
   def flag_value
     flag? ? "Unflag Order" : "Flag Order"
   end
-  
+
 end
