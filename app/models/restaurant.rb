@@ -32,6 +32,8 @@ class Restaurant < ActiveRecord::Base
   accepts_nested_attributes_for :reviews
   accepts_nested_attributes_for :user
   accepts_nested_attributes_for :restaurant_coupons
+
+
   before_create :create_menu
   after_create :assign_role_admin
   before_destroy :remove_restaurant_admin_role

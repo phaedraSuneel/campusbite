@@ -9,7 +9,7 @@ class SchoolsController < ApplicationController
     @schools = School.search(params[:keyword])
     @buildings = @schools.collect(&:buildings).flatten
     respond_to do |format|
-      format.json { render :json => @buildings.map{|a| [a.school.school_name, a.building_name].join('')} }
+      format.json { render :json => @buildings.map{|a| [a.school.school_name, a.building_name].join('(') + ')'} }
     end
   end
 

@@ -1,5 +1,5 @@
 ThinkingSphinx::Index.define :restaurant, :with => :active_record, :delta => ThinkingSphinx::Deltas::DelayedDelta do
-  
+
   indexes school(:school_name), :sortable => true, :as => :school_name
   indexes school(:branch_name), :sortable => true, :as => :branch_name
   indexes school(:delta) => ThinkingSphinx::Deltas::DelayedDelta
@@ -10,8 +10,10 @@ ThinkingSphinx::Index.define :restaurant, :with => :active_record, :delta => Thi
 
   indexes delivery_info(:delivery_charges), :as => :delivery_charges
 
+  has school(:id), :as => :school_id, :facet => true
+
   has restaurant_categories(:id), :as => :restaurant_category_ids, :facet => true
-  
+
   has restaurant_info(:min_order), :as => :min_order, :type => :float, :sortable => true
 
   has avg_rating, :as => :rating, :type => :integer, :sortable => true

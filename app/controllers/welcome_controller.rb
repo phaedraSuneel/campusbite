@@ -13,7 +13,11 @@ class WelcomeController < ApplicationController
         @restaurants = Restaurant.search :with => {:pick_up => pick_up } unless pick_up.nil?
         @restaurants = Restaurant.search :with => {:delivery => delivery } unless delivery.nil?
       elsif !params[:keyword].blank?
-        @restaurants = Restaurant.search params[:keyword]
+        p params[:keyword]
+        @schools = School.search(params[:keyword])
+        school_ids = @schools.collect(&:id).flatten
+        @restaurants = Restaurant.search :with => {:school_id =>  school_ids }
+        @restaurants = Restaurant.search params[:keyword] if school_ids.blank?
         @restaurants = @restaurants.search :with => {:pick_up => pick_up } unless pick_up.nil?
         @restaurants = @restaurants.search :with => {:delivery => delivery } unless delivery.nil?
         @query = params[:keyword]
