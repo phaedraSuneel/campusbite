@@ -17,7 +17,9 @@
           <%= form_for(@subscribe, :html => {:class => "subscribe-form"}) do |f| %>
             <span>Your Name</span><%= f.text_field :name %>
             <span>Your E-mail</span><%= f.text_field :email %>
-            <span>School Name</span><%= f.text_field :school_name %>
+            <div class="subscribe-schools">
+              <span>School Name</span><%= f.text_field :school_name, :class => "search-keyword" %>
+            </div>
             <button class="sub-button-bottom">Subscribe</button>
           <% end %>
         <% end -%>
