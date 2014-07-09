@@ -59,7 +59,7 @@
             <th width="15%">
               Date
             </th>
-            
+
             <th width="5%">
               Time
             </th>
@@ -108,8 +108,8 @@
             <th width="5%">
               Total After Coupons
             </th>
-          </tr>  
-        </thead>  
+          </tr>
+        </thead>
         <tbody>
           <% sub_total = tax = delivery_charges = tip = total = promo_code = discount = total_bill = 0 %>
           <% @orders.each do |order| %>
@@ -123,12 +123,12 @@
                 <%= order.status %></span></td>
               <td><%if order.restaurant.can_fax? %>
                 FAX
-               <% end %> 
+               <% end %>
               </td>
               <td><%= order.method_type %></td>
               <td><%= order.order_type %></td>
               <td><%= order.request_time %></td>
-              <td><%= order.user.name %></td>
+              <td><%= order.customer_name %></td>
               <% sub_total += order.sub_total %>
               <td><%= order.sub_total %></td>
               <% tax += order.sale_tax %>
@@ -165,12 +165,12 @@
         <td><%= discount.round(3)%></td>
         <td><%= total_bill.round(3) %></td>
       </tr>
-        </tbody>  
-      </table>  
+        </tbody>
+      </table>
     </div>
   </div>
-</div>    
+</div>
 
 <script type="text/javascript">
   window.print();
-</script> 
+</script>

@@ -15,7 +15,7 @@
     <div class="col-md-4 block-a block-b">
       <div class="inner-order-block inner-order-block-b">
         <h1>Customer Information</h1>
-        <div class="content-field"><label class="left">Name:</label><label class="right"><%= @order.user.name %></label> </div>
+        <div class="content-field"><label class="left">Name:</label><label class="right"><%= @order.customer_name %></label> </div>
             <% unless @order.order_type == "pickup" %>
             <div class="content-field"><label class="left">Adress:</label>
               <%= @order.address.address_type %>
@@ -25,10 +25,10 @@
              <% else %>
               <label class="right">
                <%= @order.address.room_number %> <%= @order.address.street_adress %>
-              </label> 
-             <% end %>  
+              </label>
+             <% end %>
             </div>
-          <% end %> 
+          <% end %>
           <div class="content-field"><label class="left">Telephone:</label><label class="right">718-456-7894</label></div>
       </div>
     </div>

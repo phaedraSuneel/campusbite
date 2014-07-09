@@ -55,9 +55,9 @@
             Total After Coupons
           </th>
         </tr>
-    </thead>  
+    </thead>
     <tbody>
-      <% sub_total = 0 
+      <% sub_total = 0
       tax = 0
       delivery_charges =0
       tip = 0
@@ -71,7 +71,7 @@
           <td><%= order.id %></td>
           <td><%if order.restaurant.can_fax? %>
             FAX
-           <% end %> 
+           <% end %>
           </td>
           <td><%= order.updated_at.strftime('%e %B, %Y')%></td>
           <td><%= order.updated_at.strftime('%I:%M%p')%></td>
@@ -79,7 +79,7 @@
           <td><%= order.method_type %></td>
           <td><%= order.order_type %></td>
           <td><%= order.request_time %></td>
-          <td><%= order.user.name %></td>
+          <td><%= order.customer_name %></td>
           <% sub_total += order.sub_total %>
           <td><%= order.sub_total %></td>
           <% tax += order.sale_tax %>
@@ -115,6 +115,6 @@
         <td><%= discount%></td>
         <td><%= total_bill %></td>
       </tr>
-    </tbody>  
-  </table>  
+    </tbody>
+  </table>
 </div>

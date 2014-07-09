@@ -16,7 +16,7 @@
       <li>
         Order
       </li>
-    </ul>  
+    </ul>
   </div>
 </div>
 <div class="admin-page">
@@ -31,14 +31,14 @@
         <div class="content-field"><label class="left">Order Send at:</label><label class="right"><%= @order.created_at.strftime("%m/%d/%Y %H:%M %p") %></label></div>
         <% if @order.status == "confirm" %>
           <div class="content-field"><label class="left">Confirmed at:</label><label class="right"><%= @order.updated_at.strftime("%m/%d/%Y %H:%M %p") %></label></div>
-        <% end %>  
+        <% end %>
         <div class="content-field"><label class="left">Time Required:</label><label class="right"><%= @order.request_time %></label></div>
       </div>
     </div>
     <div class="col-md-4 block-a block-b">
       <div class="inner-order-block inner-order-block-b">
         <h1>Customer Information</h1>
-        <div class="content-field"><label class="left">Name:</label><label class="right"><%= @order.user.name %></label> </div>
+        <div class="content-field"><label class="left">Name:</label><label class="right"><%= @order.customer_name %></label> </div>
           <div class="content-field"><label class="left">Adress:</label>
             <label class="right"><%= @order.get_address %></label>
           </div>
@@ -49,7 +49,7 @@
       <div class="inner-order-block inner-order-block-c">
         <h1>Admin Tool</h1>
         <p><%=  link_to "Fax order restaurant", fax_receipt_admin_order_path(@order) %></p>
-        <p><%=  link_to "Email Customer Receipt", email_receipt_admin_order_path(@order) %></p>  
+        <p><%=  link_to "Email Customer Receipt", email_receipt_admin_order_path(@order) %></p>
         <p><%=  link_to @order.flag_value, toggle_flag_admin_order_path(@order) %></p>
         <p><%= link_to "Download Order", print_admin_order_path(@order) %></p>
       </div>
@@ -86,7 +86,7 @@
         <P><%= @order.last_comment %></P>
         <% if @order.comments.count > 1 %>
           <p class="pull-right"><%= link_to "view more", admin_order_comments_path(@order) %></p>
-        <% end %>  
+        <% end %>
       </div>
     </div>
   </div>
@@ -127,10 +127,10 @@
         <div class="col-md-6">
           <div class="order-pic">
             <ul>
-              <li><label>Address:</label> 
+              <li><label>Address:</label>
                 <% unless @order.order_type == 'delivery'%>
                   <span>Costumer will pickup order</span>
-                <% else %>  
+                <% else %>
                     <span><%= @order.get_address %> <span>
                 <% end %>
               </li>
@@ -152,7 +152,7 @@
                   <h3><%= item.menu_item.item_name %></h3>
                   <% extra = 0 %>
                   <% unless item.group_item_ids.blank? %>
-                    <label> Extra: 
+                    <label> Extra:
                       <% item.group_items.each do |group_item| %>
                         <%= group_item.name + " " %>
                         <% extra += group_item.price %>
@@ -191,14 +191,14 @@
                 <p>$<%= @order.total_after_discount %></p>
               </td>
             </tr>
-          </table>  
+          </table>
           <div class="support-help">
             For support or helps please contact us:Email:restaurant@campusbite or Phone:1-866-000-000
           </div>
         </div>
-      </div>   
-    </div> 
-    <div class="row order-action order-detail hide order_<%= @order.id %>"> 
+      </div>
+    </div>
+    <div class="row order-action order-detail hide order_<%= @order.id %>">
       <div class="col-md-3"></div>
       <div class="col-md-3">
         <%= link_to "Confirm", confirm_order_restaurant_dashboard_path(@order), :class => "btn btn-lg green"%>
@@ -208,7 +208,7 @@
       </div>
       <div class="col-md-3">
         <%= link_to "Cancel", cancel_order_restaurant_dashboard_path(@order), :class => "btn btn-lg red"%>
-      </div>  
-    </div>  
+      </div>
+    </div>
   </div>
 </div>

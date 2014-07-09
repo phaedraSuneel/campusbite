@@ -16,7 +16,7 @@
       <li>
         <%= link_to "Reports",reports_restaurant_dashboard_index_path %>
       </li>
-    </ul>  
+    </ul>
   </div>
 </div>
 <div class="row">
@@ -28,7 +28,7 @@
         </div>
         <div class="pull-right">
           <%= link_to raw("<i class='fa fa-print'></i>"), general_report_restaurant_dashboard_index_path, :class => "btn btn-default", :target => "_blank" %>
-        </div>  
+        </div>
       </div>
       <div class="portlet-body">
         <div class="table-container">
@@ -41,7 +41,7 @@
                 <th width="15%">
                   Date
                 </th>
-                
+
                 <th width="5%">
                   Time
                 </th>
@@ -119,7 +119,7 @@
                     <option value="delivery">Delivery</option>
                   </select>
                 </td>
-                
+
                 <td class='input_filter'> <input type="text" class="form-control form-filter input-sm search_init"> </td>
                 <td class='input_filter'> <input type="text" class="form-control form-filter input-sm search_init"> </td>
                 <td class='input_filter'> <input type="text" class="form-control form-filter input-sm search_init"> </td>
@@ -135,8 +135,8 @@
                   </div>
                   <input type="text" class="form-control  range-filter form-filter input-sm" id="order_total_to" name="order_total_to" placeholder="To"/>
                 </td>
-              </tr>  
-            </thead>  
+              </tr>
+            </thead>
             <tbody>
                <% @orders.each do |order| %>
                 <tr>
@@ -145,12 +145,12 @@
                   <td><%= order.updated_at.strftime('%I:%M%p')%></td>
                   <td><%if order.restaurant.can_fax? %>
                     FAX
-                   <% end %> 
+                   <% end %>
                   </td>
                   <td><%= order.method_type %></td>
                   <td><%= order.order_type %></td>
                   <td><%= order.request_time %></td>
-                  <td><%= order.user.name %></td>
+                  <td><%= order.customer_name %></td>
                   <td><%= order.sub_total %></td>
                   <td><%= order.sale_tax %></td>
                   <td><%= order.restaurant.delivery_charges %></td>
@@ -161,12 +161,12 @@
                   <td><%= order.total_after_discount %></td>
                 </tr>
               <% end %>
-            </tbody>  
-          </table>  
+            </tbody>
+          </table>
         </div>
-      </div>  
-    </div>    
-  </div>  
+      </div>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">

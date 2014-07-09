@@ -40,7 +40,7 @@
               <div class="tabs <%= index%2==0 ? 'even' : 'odd'%> <%= index==0 ? 'first' : 'next'%> " data-order="<%=order.id%>">
                 <label>Order#:<%= order.id %></label>
                 <label>Time:<%= order.created_at.strftime('%e %B, %Y %I:%M%p')%></label>
-                <label>Customer:<%= order.user.name %></label>
+                <label>Customer:<%= order.customer_name %></label>
               </div>
             <% end %>
           </div>
