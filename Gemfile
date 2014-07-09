@@ -6,7 +6,7 @@ gem 'rails', '3.2.11'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
-gem 'omniauth' 
+gem 'omniauth'
 gem 'devise'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
@@ -34,6 +34,8 @@ gem 'thinking-sphinx', '3.1.0'
 gem 'ts-delayed-delta', '~> 2.0.2'
 gem 'progress_bar'
 
+gem 'tinymce-rails'
+
 gem 'kaminari'
 
 gem "braintree"
@@ -43,6 +45,7 @@ gem 'pdfkit'
 
 gem 'twilio-ruby'
 gem 'phaxio', '0.4.0'
+
 
 gem "authorize-net"
 

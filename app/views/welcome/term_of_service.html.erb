@@ -15,7 +15,7 @@
         <div class="col-md-12 about-heading">
           <div class="merchant">
             <h5>Last Updated: <span><%= @term_of_service.updated_at.strftime("%Y")%></span><span>April 19, 2014</span></h5>
-            <p><%= @term_of_service.content %></p>
+            <%= raw(@term_of_service.content) %>
             <div class="height"></div>
           </div>
         </div>

@@ -28,6 +28,7 @@
 //= require jquery.flot.resize
 //= require jquery.flot.categories
 //= require jquery.validate
+//= require tinymce
 //= require additional-methods.min
 //= require jquery.bootstrap.wizard.min
 //= require multi-step-form

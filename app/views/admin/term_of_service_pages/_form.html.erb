@@ -14,9 +14,10 @@
       <% end %>
 
       <div class="row form-group">
-        <%= f.label :content,:class => "col-md-3 control-label" %>
-        <div class="col-md-9">
-          <%= f.text_area :content, :cols => "60", :rows => "10"  %>
+        <%= f.label :content,:class => "col-md-2 control-label" %>
+        <div class="col-md-10">
+          <%= f.text_area :content, :class => "tinymce", :rows => 40, :cols => 60 %>
+          <%= tinymce %>
         </div>
       </div>
 
