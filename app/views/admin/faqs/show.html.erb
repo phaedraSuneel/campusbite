@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-md-12">
+    <h3 class="page-title">
+      FAQ- <%= @faq.question %>
+    </h3>
+    <ul class="page-breadcrumb breadcrumb">
+      <li>
+        <i class="fa fa-home"></i>
+        <%= link_to "Home", admin_dashboard_index_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= link_to "FAQs", admin_faqs_path %>
+        <i class="fa fa-angle-right"></i>
+      </li>
+      <li>
+        <%= @faq.question %>
+      </li>
+    </ul>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="portlet box yellow">
+      <div class="portlet-title">
+        <div class="caption">
+          <i class="fa fa-thumb-tack"></i>About
+        </div>
+        <div class="actions">
+          <%= link_to raw("<i class='fa fa-pencil'></i> Edit"), edit_admin_faq_path(@faq), :class => "btn default btn-sm"%>
+          <%= link_to raw("<i class='fa fa-angle-left'></i> Back"), admin_faqs_path, :class => "btn default btn-sm"%>
+        </div>
+      </div>
+      <div class="portlet-body">
+        <ul class="feeds">
+          <li>
+            <div class="col-md-3"> <label> Question </label></div>
+            <div class="col-md-9"> <label> <%= @faq.question %> </label></div>
+          </li>
+          <li>
+            <div class="col-md-3"> <label> Answer </label></div>
+            <div class="col-md-9"> <label> <%= @faq.answer %> </label></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

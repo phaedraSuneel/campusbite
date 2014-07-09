@@ -15,6 +15,7 @@ Ordering::Application.routes.draw do
 
     resources :redeams
     resources :careers
+    resources :faqs
     resources :banners
     resources :subscriber_forms
     resources :contact_us_forms

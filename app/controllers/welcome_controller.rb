@@ -13,7 +13,6 @@ class WelcomeController < ApplicationController
         @restaurants = Restaurant.search :with => {:pick_up => pick_up } unless pick_up.nil?
         @restaurants = Restaurant.search :with => {:delivery => delivery } unless delivery.nil?
       elsif !params[:keyword].blank?
-        p params[:keyword]
         @schools = School.search(params[:keyword])
         school_ids = @schools.collect(&:id).flatten
         @restaurants = Restaurant.search :with => {:school_id =>  school_ids }
@@ -137,6 +136,10 @@ class WelcomeController < ApplicationController
 
   def careers
     @careers = Career.all
+  end
+
+  def faqs
+    @faqs = Faq.all
   end
 
   def remove_subscriber

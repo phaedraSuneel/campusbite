@@ -18,42 +18,12 @@
         <div class="col-md-12 main-fram-canvus">
           <div class="row">
             <div class="col-md-12 about-heading faqpage-questions">
-              <div class="faq-question">
-                <h2>How much does it cost to use CampusBite.com?</h2>
-                <p>Our service is completely FREE of charge for any registered user. You simply login, create your order and pay the restaurant's usual takeout or delivery prices. MyPizza.com does not charge any additional fees.</p>
-              </div>
-              <div class="faq-question">
-                <h2>How much does it cost to use CampusBite.com?</h2>
-                <p>Our service is completely FREE of charge for any registered user. You simply login, create your order and pay the restaurant's usual takeout or delivery prices. MyPizza.com does not charge any additional fees.</p>
-              </div>
-              <div class="faq-question">
-                <h2>How much does it cost to use CampusBite.com?</h2>
-                <p>Our service is completely FREE of charge for any registered user. You simply login, create your order and pay the restaurant's usual takeout or delivery prices. MyPizza.com does not charge any additional fees.</p>
-              </div>
-              <div class="faq-question">
-                <h2>How much does it cost to use CampusBite.com?</h2>
-                <p>Our service is completely FREE of charge for any registered user. You simply login, create your order and pay the restaurant's usual takeout or delivery prices. MyPizza.com does not charge any additional fees.</p>
-              </div>
-              <div class="faq-question">
-                <h2>How much does it cost to use CampusBite.com?</h2>
-                <p>Our service is completely FREE of charge for any registered user. You simply login, create your order and pay the restaurant's usual takeout or delivery prices. MyPizza.com does not charge any additional fees.</p>
-              </div>
-              <div class="faq-question">
-                <h2>How much does it cost to use CampusBite.com?</h2>
-                <p>Our service is completely FREE of charge for any registered user. You simply login, create your order and pay the restaurant's usual takeout or delivery prices. MyPizza.com does not charge any additional fees.</p>
-              </div>
-              <div class="faq-question">
-                <h2>How much does it cost to use CampusBite.com?</h2>
-                <p>Our service is completely FREE of charge for any registered user. You simply login, create your order and pay the restaurant's usual takeout or delivery prices. MyPizza.com does not charge any additional fees.</p>
-              </div>
-              <div class="faq-question">
-                <h2>How much does it cost to use CampusBite.com?</h2>
-                <p>Our service is completely FREE of charge for any registered user. You simply login, create your order and pay the restaurant's usual takeout or delivery prices. MyPizza.com does not charge any additional fees.</p>
-              </div>
-              <div class="faq-question">
-                <h2>How much does it cost to use CampusBite.com?</h2>
-                <p>Our service is completely FREE of charge for any registered user. You simply login, create your order and pay the restaurant's usual takeout or delivery prices. MyPizza.com does not charge any additional fees.</p>
-              </div>
+              <% @faqs.each do |f| %>
+                <div class="faq-question">
+                  <h2><%= f.question %></h2>
+                  <p> <%= f.answer %></p>
+                </div>
+              <% end -%>
             </div>
           </div>
         </div>

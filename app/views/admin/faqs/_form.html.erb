@@ -1,0 +1,35 @@
+<div class="portlet-body form">
+<%= form_for(@faq, :url => set_faq_url(@faq)) do |f| %>
+ <div class="form-body">
+    <% if @faq.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@faq.errors.count, "error") %> prohibited this faq from being saved:</h2>
+
+        <ul>
+        <% @faq.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="row form-group">
+      <%= f.label :question, :class => "col-md-3 control-label" %>
+      <div class="col-md-9">
+        <%= f.text_field :question, :class => "form-control" %>
+      </div>
+    </div>
+    <div class="row form-group">
+      <%= f.label :answer, :class => "col-md-3 control-label" %>
+      <div class="col-md-9">
+        <%= f.text_area :answer, :class => "form-control" %>
+      </div>
+    </div>
+  </div>
+  <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_faqs_path,:class => "btn default "%>
+      </div>
+    </div>
+<% end %>
+</div>
