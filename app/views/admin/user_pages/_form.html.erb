@@ -1,0 +1,32 @@
+<div class="portlet-body form">
+  <%= form_for(@user_page, :url => set_user_page_url(@user_page)) do |f| %>
+    <div class="form-body">
+      <% if @user_page.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@user_page.errors.count, "error") %> prohibited this user_page from being saved:</h2>
+
+          <ul>
+          <% @user_page.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row form-group">
+        <%= f.label :content,:class => "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_area :content, :cols => "60", :rows => "10"  %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_user_pages_path,:class => "btn default "%>
+      </div>
+    </div>
+  <% end %>
+</div>

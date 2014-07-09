@@ -1,5 +1,6 @@
 Ordering::Application.routes.draw do
 
+
   resources :subscribes
 
   namespace :admin do
@@ -13,6 +14,7 @@ Ordering::Application.routes.draw do
       end
     end
 
+    resources :user_pages
     resources :redeams
     resources :careers
     resources :reciept_pages
