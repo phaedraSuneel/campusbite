@@ -432,11 +432,13 @@ border-radius: 4px;
   padding: 6px 8px;
   font-family: 'PT Sans';
   text-align: left;
+  cursor: pointer !important;
 }
 .pickup input,
 .delivery input{
   margin: 5px;
   float: left;
+  cursor: pointer !important;
 }
 .main-search-bar .search-botton .pickup{
   background-color: #dddddd;
@@ -448,6 +450,7 @@ border-radius: 4px;
   margin-top: 7px;
   font-family: 'PT Sans';
   text-align: left;
+  cursor: pointer !important;
 }
 
 .main-search-bar .search-botton .checked{

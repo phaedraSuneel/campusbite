@@ -7,7 +7,7 @@
         <%= f.hidden_field :request_time,  :class => "request_time" %>
         <%= hidden_field_tag "restaurant_id" , nil, :class => "restaurant_order" %>
 
-        <%= render :partial => "welcome/order_guest_info"%>
+        <%= render :partial => "welcome/order_user_info"%>
         <% if @cart.order_type == "delivery" %>
           <%= render :partial => "welcome/order_delivery_info" %>
         <% end -%>
