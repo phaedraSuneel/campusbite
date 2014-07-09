@@ -1,0 +1,32 @@
+<div class="portlet-body form">
+  <%= form_for(@reciept_page, :url => set_reciept_page_url(@reciept_page)) do |f| %>
+    <div class="form-body">
+      <% if @reciept_page.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@reciept_page.errors.count, "error") %> prohibited this reciept_page from being saved:</h2>
+
+          <ul>
+          <% @reciept_page.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="row form-group">
+        <%= f.label :content,:class => "col-md-3 control-label" %>
+        <div class="col-md-9">
+          <%= f.text_area :content, :cols => "60", :rows => "10"  %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="form-actions fluid">
+      <div class="col-md-offset-4 col-md-4">
+        <%= f.submit "Save", :class => "btn green" %>
+        <%= link_to "Cancel", admin_reciept_pages_path,:class => "btn default "%>
+      </div>
+    </div>
+  <% end %>
+</div>

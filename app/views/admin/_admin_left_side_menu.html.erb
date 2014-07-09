@@ -123,6 +123,9 @@
     <li class="<%= 'active' if params[:controller] == 'admin/faqs' %>">
       <%= link_to raw('<i class="fa fa-briefcase"></i><span class="title">FAQs</span>'), admin_faqs_path %>
     </li>
+    <li class="<%= 'active' if params[:controller] == 'admin/reciept_pages' %>">
+      <%= link_to raw('<i class="fa fa-briefcase"></i><span class="title">Change Receipt Quote</span>'), admin_reciept_pages_path %>
+    </li>
     <li class="<%= 'active' if params[:controller] == 'admin/redeams' %>">
       <%= link_to raw('<i class="fa fa-gift"></i><span class="title">Redeam Items</span>'), admin_redeams_path %>
     </li>
