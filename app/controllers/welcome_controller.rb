@@ -142,6 +142,10 @@ class WelcomeController < ApplicationController
     @faqs = Faq.all
   end
 
+  def term_of_service
+    @term_of_service = TermOfServicePage.last
+  end
+
   def remove_subscriber
     if params[:subscriber][:email].present?
       @subscriber = Subscribe.where(email: params[:subscriber][:email]).first

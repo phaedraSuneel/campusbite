@@ -129,6 +129,9 @@
     <li class="<%= 'active' if params[:controller] == 'admin/user_pages' %>">
       <%= link_to raw('<i class="fa fa-briefcase"></i><span class="title">Change User Admin Page </span>'), admin_user_pages_path %>
     </li>
+    <li class="<%= 'active' if params[:controller] == 'admin/term_of_service_pages' %>">
+      <%= link_to raw('<i class="fa fa-briefcase"></i><span class="title">Term Of Services Page </span>'), admin_term_of_service_pages_path %>
+    </li>
     <li class="<%= 'active' if params[:controller] == 'admin/redeams' %>">
       <%= link_to raw('<i class="fa fa-gift"></i><span class="title">Redeam Items</span>'), admin_redeams_path %>
     </li>
