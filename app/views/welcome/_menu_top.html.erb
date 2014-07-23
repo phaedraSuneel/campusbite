@@ -13,8 +13,8 @@
       </div>
       <% unless @restaurant.open? %>
         <div class="col-md-9 flash-message">
-          <div class="error-mesg">
-            <p>This restaurant is current closed and will taking orders at <%= @restaurant.opening_time %></p>
+          <div class="error-mesg alert alert-danger ">
+            <p> <b>Alert!</b> This restaurant is current closed and will begin taking orders at <%= @restaurant.opening_time %></p>
             <a href="javascript:;" class="flash-link"><span class="cross">x</span></a>
           </div>
         </div>
