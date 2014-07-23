@@ -6041,18 +6041,29 @@ span.icon-reject
   }
 }
 
-#new_user label input.error
+.sign-up-form label input.error
 {
   border: 1px solid red !important;
 }
-
-#new_user label.error
+.sign-up-form label.error
 {
   float: left;
   padding-left: 218px;
   width: auto;
   color: red !important;
   padding-top: 10px;
+  font-family: 'PT Sans';
+  font-size: 14px;
+}
+.sign-in-form input.error
+{
+  border: 1px solid red !important;
+}
+.sign-in-form label.error
+{
+  text-align: center;
+  padding-left: 35px;
+  color: red !important;
   font-family: 'PT Sans';
   font-size: 14px;
 }
