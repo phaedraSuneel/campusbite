@@ -24,7 +24,7 @@
     <div class="portlet box yellow">
       <div class="portlet-title">
         <div class="caption">
-          <i class="fa fa-thumb-tack"></i>About <%= @user.name %> 
+          <i class="fa fa-thumb-tack"></i>About <%= @user.name %>
         </div>
         <div class="tools">
           <a href="javascript:;" class="collapse">
@@ -40,7 +40,7 @@
           <li>
             <div class="col-md-6"> <label>Full Name </label></div>
             <div class="col-md-6"> <label><%= @user.name %> </label></div>
-          </li>  
+          </li>
           <li>
           <li>
             <div class="col-md-6"> <label>Email Address </label></div>
@@ -51,23 +51,32 @@
             <div class="col-md-6"> <label><%= @user.addresses.first.try(:phone_number) %> </label> </div>
           </li>
           <li>
-            <div class="col-md-6"> <label> Total Orders </label></div>            
+            <div class="col-md-6"> <label> Total Orders </label></div>
             <div class="col-md-6"> <label> <%= @user.orders.count %> </label></div>
           </li>
           <li>
-            <div class="col-md-6"> <label> Total Reward Points </label></div>            
+            <div class="col-md-6"> <label> Total Reward Points </label></div>
             <div class="col-md-6"> <label> <%= @user.points %> </label> <%= link_to raw("<span class='label label-sm label-default'> Edit </span>") ,"#edit-review-point", "data-toggle"=> "modal" %>
             </div>
-          </li>          
-        </ul>  
+          </li>
+          <li>
+            <div class="col-md-6"> <label> Addresses </label></div>
+            <div class="col-md-6">
+              <% @addresses.each do |address| %>
+                <div> <%= address.address_type %> </div>
+                <div><label> <%= address.get_address %></label>
+              <% end %>
+            </div>
+          </li>
+        </ul>
       </div>
-    </div>      
+    </div>
   </div>
   <div class="col-md-7">
     <div class="portlet box green">
       <div class="portlet-title">
         <div class="caption">
-          <i class="fa fa-thumb-tack"></i><%= @user.name %> notes 
+          <i class="fa fa-thumb-tack"></i><%= @user.name %> notes
         </div>
         <div class="tools">
           <div class="btn-group pull-right">
@@ -75,7 +84,7 @@
           </div>
         </div>
       </div>
-      <div class="portlet-body">  
+      <div class="portlet-body">
         <ul class="feeds">
           <% @notes.each do |note| %>
             <li>
@@ -85,11 +94,11 @@
             </li>
           <% end %>
         </ul>
-      </div>  
-    </div>  
+      </div>
+    </div>
   </div>
 
-</div>  
+</div>
 
 <div class="row">
   <div class="col-md-12">
@@ -119,10 +128,10 @@
               </tr>
             </thead>
           </table>
-        </div>  
+        </div>
       </div>
     </div>
-  </div> 
+  </div>
 </div>
 <div class="modal fade" id="edit-review-point" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -138,14 +147,14 @@
               <label class="form-label col-md-3"> Points </label>
               <div class="col-md-6">
                 <%= text_field_tag :points, @user.points, :class => "form-control" %>
-              </div>  
-            </div> 
-          </div>  
+              </div>
+            </div>
+          </div>
         <div class="modal-footer">
           <button type="submit" class="btn blue">Save changes</button>
           <button type="button" class="btn default" data-dismiss="modal">Close</button>
         </div>
-      <% end %>  
+      <% end %>
     </div>
     <!-- /.modal-content -->
   </div>

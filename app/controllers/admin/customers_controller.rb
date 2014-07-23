@@ -18,40 +18,41 @@ class Admin::CustomersController < ApplicationController
       @customers = User.apply_search_all_filter(@customers, params[:search][:value])
     end
     respond_to do |format|
-      format.json do 
-        return render :json =>  {draw: page,  recordsTotal: User.count,  recordsFiltered: User.count , :data => @customers.collect{|a| ["<a src='#{admin_customer_url(a)}'>#{a.first_name}</a>",a.last_name, a.phone_number, a.email]} }
+      format.json do
+        return render :json =>  {draw: page,  recordsTotal: User.count,  recordsFiltered: User.count , :data => @customers.collect{|a| [a.first_name,a.last_name, a.phone_number, a.email, "<a src='#{admin_customer_url(a)}'><span class='label label-sm label-success'> Show </a>"]} }
       end
       format.html
     end
 
-  end  
-  
+  end
+
   def show
   	@user = User.find params[:id]
-  	@notes = @user.notes.order("created_at desc")
+  	@notes = @user.notes.order("created_at desc").last(10)
+    @addresses = @user.addresses
   end
 
   def set_view_all
     User.where(is_viewed: false).each do |s|
      s.is_viewed = true
-     s.save 
+     s.save
     end
   end
 
  	private
 
   def get_sort_attribute_name(column_number)
-  
+
     case column_number
     when 0
       return "first_name"
     when 1
     	return "last_name"
     when 2
-    	return "phone_number"	  
+    	return "phone_number"
     else
       return "email"
     end
-  end	
+  end
 
 end
