@@ -6040,3 +6040,19 @@ span.icon-reject
     text-align: left !important;
   }
 }
+
+#new_user label input.error
+{
+  border: 1px solid red !important;
+}
+
+#new_user label.error
+{
+  float: left;
+  padding-left: 218px;
+  width: auto;
+  color: red !important;
+  padding-top: 10px;
+  font-family: 'PT Sans';
+  font-size: 14px;
+}

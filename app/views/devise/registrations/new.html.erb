@@ -64,15 +64,14 @@
               <p><%= link_to raw("<button class='sign-in-btn'>Sign in</button>"), new_session_path(resource_name) %></p>
               <p><%= link_to raw("<button class='sign-in-btn active'>Sign up</button>"), new_registration_path(resource_name)%></p>
             </div>
-            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-              <%= devise_error_messages! %>
+            <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => "sign-up-form" }) do |f| %>
               <div class="col-md-12 signup-form-container">
                 <div class="signup-form">
-                  <label><span>First Name:</span><%= f.text_field :first_name, :autofocus => true, :placeholder => "First Name" %></label>
-                  <label><span>Last Name:</span><%= f.text_field :last_name, :autofocus => true, :placeholder => "Last Name" %></label>
-                  <label><span>Email:</span><%= f.email_field :email, :autofocus => true, :placeholder => "Email" %></label>
-                  <label><span>Password:</span><%= f.password_field :password, :placeholder => "Password" %></label>
-                  <label><span>Password Confirmation:</span><%= f.password_field :password_confirmation, :placeholder => "Password Confirmation" %></label>
+                  <label><span>First Name:</span><%= f.text_field :first_name, :autofocus => true, :placeholder => "First Name", :class => "required" %></label>
+                  <label><span>Last Name:</span><%= f.text_field :last_name, :autofocus => true, :placeholder => "Last Name", :class => "required" %></label>
+                  <label><span>Email:</span><%= f.email_field :email, :autofocus => true, :placeholder => "Email", :class => "required" %></label>
+                  <label><span>Password:</span><%= f.password_field :password, :placeholder => "Password" ,:class => "required"%></label>
+                  <label><span>Password Confirmation:</span><%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", :class => "required" %></label>
                   <label><span>School:</span><%= f.text_field :school_name, :autofocus => true, :placeholder => "School", :class => "search-keyword" %></label>
                   <img class="form-shadow" alt="Smiley face" src="/assets/shadow.png">
                 </div>
@@ -88,3 +87,49 @@
     </div>
   </div>
 </div>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $(".sign-up-form").validate({
+      rules: {
+        user_first_name: "required",
+        user_last_name: "required",
+        user_password: {
+          required: true,
+          minlength: 5
+        },
+        user_password_confirmation: {
+          required: true,
+          minlength: 5,
+          equalTo: "#user_password"
+        },
+        user_email: {
+          required: true,
+          email: true
+        }
+      },
+      messages: {
+        user_first_name: {
+          required: "Please enter your First Name"
+        },
+        user_last_name:
+        {
+          required: "Please enter your Last Name"
+        },
+        user_password: {
+          required: "Please provide a password",
+          minlength: "Your password must be at least 5 characters long"
+        },
+        user_password_confirmation: {
+          required: "Please provide a password",
+          minlength: "Your password must be at least 5 characters long",
+          equalTo: "Please enter the same password as above"
+        },
+        user_email: {
+          required: "Please enter a valid email address"
+        }
+      }
+    });
+  });
+</script>

@@ -26,7 +26,7 @@
                     <label><%= item.item_name%></label>
                     <p><%= item.short_description%></p>
                   </div>
-                  <div class="rupees-in">$<%= item.price%></div>
+                  <div class="rupees-in">$<%= number_with_precision(item.price, precision: 2)%></div>
                   <div class="add-button"><button>+</button></div>
                 </div>
               </a>
