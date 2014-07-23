@@ -7,7 +7,10 @@ var restaurant_owner_Records = function() {
     "ajax": {
         "url": "/admin/restaurant_owner_forms",
         "type": "GET"
-    } 
+    }
   });
 
+  $(document).on('click', '#restaurant-owner-table tbody a', function(){
+    window.location=$(this).attr('src');
+  });
 }

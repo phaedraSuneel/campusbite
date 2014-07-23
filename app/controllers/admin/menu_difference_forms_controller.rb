@@ -19,7 +19,7 @@ class Admin::MenuDifferenceFormsController < ApplicationController
     end
     respond_to do |format|
       format.json do
-        return render :json =>  {draw: page,  recordsTotal: MenuError.count,  recordsFiltered: MenuError.count , :data =>@menu_requests.collect{|a| [a.restaurant_name,a.email,a.school_name, a.note]} }
+        return render :json =>  {draw: page,  recordsTotal: MenuError.count,  recordsFiltered: MenuError.count , :data =>@menu_requests.collect{|a| [a.restaurant_name,a.email,a.school_name, a.note, a.created_at_date, a.created_at_time, "<a src='#{delete_admin_menu_difference_form_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </span> </a>"]} }
       end
       format.html
     end
@@ -30,6 +30,11 @@ class Admin::MenuDifferenceFormsController < ApplicationController
      s.is_viewed = true
      s.save
     end
+  end
+
+  def delete
+    MenuError.where(id: params[:id]).first.destroy
+    redirect_to :back
   end
 
   private

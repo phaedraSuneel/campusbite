@@ -17,8 +17,8 @@ class Admin::CampusSuggestionFormsController < ApplicationController
       @campus_requests = CampusSuggestion.apply_search_filter(@campus_requests, params[:search][:value])
     end
     respond_to do |format|
-			format.json do 
-				return render :json =>  {draw: page,  recordsTotal: CampusSuggestion.count,  recordsFiltered: CampusSuggestion.count , :data => @campus_requests.collect{|a| [a.first_name, a.last_name, a.email, a.campus_name, a.street_address,a.city, a.state,a.zip_code, a.comment]} }
+			format.json do
+				return render :json =>  {draw: page,  recordsTotal: CampusSuggestion.count,  recordsFiltered: CampusSuggestion.count , :data => @campus_requests.collect{|a| [a.first_name, a.last_name, a.email, a.campus_name, a.street_address,a.city, a.state,a.zip_code, a.comment, a.created_at_date, a.created_at_time, "<a src='#{delete_admin_campus_suggestion_form_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </span> </a>"]} }
 			end
 			format.html
 		end
@@ -27,14 +27,19 @@ class Admin::CampusSuggestionFormsController < ApplicationController
   def set_view_all
     CampusSuggestion.where(is_viewed: false).each do |s|
      s.is_viewed = true
-     s.save 
+     s.save
     end
+  end
+
+  def delete
+    CampusSuggestion.where(id: params[:id]).first.destroy
+    redirect_to :back
   end
 
 	private
 
   def get_sort_attribute_name(column_number)
-  
+
     case column_number
     when 0
       return "first_name"
@@ -51,7 +56,7 @@ class Admin::CampusSuggestionFormsController < ApplicationController
     when 6
     	return "state"
     when 7
-			return "zip_code"         	      	      	      
+			return "zip_code"
     else
       return "comment"
     end

@@ -17,8 +17,8 @@ class Admin::ContactUsFormsController < ApplicationController
       @contact_requests = ContactUs.apply_search_filter(@contact_requests, params[:search][:value])
     end
     respond_to do |format|
-			format.json do 
-				return render :json =>  {draw: page,  recordsTotal: ContactUs.count,  recordsFiltered: ContactUs.count , :data => @contact_requests.collect{|a| [a.name,a.email,a.subject,a.message]} }
+			format.json do
+				return render :json =>  {draw: page,  recordsTotal: ContactUs.count,  recordsFiltered: ContactUs.count , :data => @contact_requests.collect{|a| [a.name,a.email,a.subject,a.message, a.created_at_date, a.created_at_time, "<a src='#{delete_admin_contact_us_form_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </span> </a>" ]} }
 			end
 			format.html
 		end
@@ -27,14 +27,19 @@ class Admin::ContactUsFormsController < ApplicationController
   def set_view_all
     ContactUs.where(is_viewed: false).each do |s|
      s.is_viewed = true
-     s.save 
+     s.save
     end
   end
-  
+
+  def delete
+    ContactUs.where(id: params[:id]).first.destroy
+    redirect_to :back
+  end
+
 	private
 
   def get_sort_attribute_name(column_number)
-  
+
     case column_number
     when 0
       return "name"
@@ -43,7 +48,7 @@ class Admin::ContactUsFormsController < ApplicationController
     when 2
       return "subject"
     else
-    	return "message"   
+    	return "message"
     end
 
   end

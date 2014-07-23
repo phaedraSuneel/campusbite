@@ -4,39 +4,44 @@ class Admin::RestaurantOwnerFormsController < ApplicationController
 		page = params[:draw].nil? ? 1 : params[:draw].to_i
 		limit = params[:length].to_i
 		offset = params[:start].to_i
-    
+
 		unless params[:order].nil?
       col_number = params[:order]["0"]["column"].to_i
       order_by_type  = params[:order]["0"]["dir"]
     end
     attribute_name = get_sort_attribute_name(col_number)
     sorting_query = [attribute_name,order_by_type].join(' ')
-		
+
 		@restaurant_requests = JoinUs.offset(offset).limit(limit)
-    
+
     unless params[:search].nil?
       @restaurant_requests = JoinUs.apply_search_filter(@restaurant_requests, params[:search][:value])
     end
-    
+
 		respond_to do |format|
-			format.json do 
-				return render :json =>  {draw: page,  recordsTotal: JoinUs.count,  recordsFiltered: JoinUs.count , :data => @restaurant_requests.collect{|a| [a.first_name, a.last_name, a.restaurant_name, a.email, a.phone_number,a.zip_code, a.comment]} }
+			format.json do
+				return render :json =>  {draw: page,  recordsTotal: JoinUs.count,  recordsFiltered: JoinUs.count , :data => @restaurant_requests.collect{|a| [a.first_name, a.last_name, a.restaurant_name, a.email, a.phone_number,a.zip_code, a.comment,a.created_at_date, a.created_at_time, "<a src='#{delete_admin_restaurant_owner_form_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </span> </a>"]} }
 			end
 			format.html
 		end
 	end
 
+  def delete
+    JoinUs.where(id: params[:id]).first.destroy
+    redirect_to :back
+  end
+
   def set_view_all
     JoinUs.where(is_viewed: false).each do |s|
      s.is_viewed = true
-     s.save 
+     s.save
     end
   end
 
 	private
 
   def get_sort_attribute_name(column_number)
-  
+
     case column_number
     when 0
       return "first_name"
@@ -47,7 +52,7 @@ class Admin::RestaurantOwnerFormsController < ApplicationController
     when 3
       return "email"
     when 4
-      return "phone_number"    
+      return "phone_number"
     else
       return "comment"
     end

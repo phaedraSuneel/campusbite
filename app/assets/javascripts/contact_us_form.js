@@ -6,7 +6,10 @@ var contactus_Records = function() {
     "ajax": {
         "url": "/admin/contact_us_forms",
         "type": "GET"
-    } 
+    }
   });
 
+  $(document).on('click', '#contactus-table tbody a', function(){
+    window.location=$(this).attr('src');
+  });
 }

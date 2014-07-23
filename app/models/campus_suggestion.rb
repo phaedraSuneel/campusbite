@@ -7,4 +7,12 @@ class CampusSuggestion < ActiveRecord::Base
     return data.where('first_name like ? OR last_name like ? OR campus_name like ? OR state like ? OR zip_code like ? OR city like ? OR comment like ? OR email like ? ', search_keyword, search_keyword, search_keyword, search_keyword, search_keyword, search_keyword, search_keyword, search_keyword)
   end
 
+  def created_at_date
+    self.created_at.strftime('%e %B, %Y')
+  end
+
+  def created_at_time
+    self.created_at.strftime('%I:%M%p')
+  end
+
 end

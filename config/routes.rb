@@ -20,14 +20,46 @@ Ordering::Application.routes.draw do
     resources :term_of_service_pages
     resources :faqs
     resources :banners
-    resources :subscriber_forms
-    resources :contact_us_forms
-    resources :restaurant_owner_forms
-    resources :restaurant_suggestion_forms
-    resources :campus_suggestion_forms
-    resources :support_forms
-    resources :redeam_request_forms
-    resources :menu_difference_forms
+    resources :subscriber_forms do
+      member do
+        get 'delete'
+      end
+    end
+    resources :contact_us_forms do
+      member do
+        get 'delete'
+      end
+    end
+    resources :restaurant_owner_forms do
+      member do
+        get 'delete'
+      end
+    end
+    resources :restaurant_suggestion_forms do
+      member do
+        get 'delete'
+      end
+    end
+    resources :campus_suggestion_forms do
+      member do
+        get 'delete'
+      end
+    end
+    resources :support_forms do
+      member do
+        get 'delete'
+      end
+    end
+    resources :redeam_request_forms do
+      member do
+        get 'delete'
+      end
+    end
+    resources :menu_difference_forms do
+      member do
+        get 'delete'
+      end
+    end
     resources :reward_points do
       member do
         post 'update_reward_points'

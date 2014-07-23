@@ -19,7 +19,7 @@ class Admin::RedeamRequestFormsController < ApplicationController
     end
     respond_to do |format|
       format.json do
-        return render :json =>  {draw: page,  recordsTotal: RedeamRequest.count,  recordsFiltered: RedeamRequest.count , :data =>@redeam_requests.collect{|a| [a.first_name,a.last_name,a.email, a.item_id]} }
+        return render :json =>  {draw: page,  recordsTotal: RedeamRequest.count,  recordsFiltered: RedeamRequest.count , :data =>@redeam_requests.collect{|a| [a.first_name,a.last_name,a.email, a.item_id, a.created_at_date, a.created_at_time, "<a src='#{delete_admin_redeam_request_form_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </span> </a>"]} }
       end
       format.html
     end
@@ -30,6 +30,11 @@ class Admin::RedeamRequestFormsController < ApplicationController
      s.is_viewed = true
      s.save
     end
+  end
+
+  def delete
+    RedeamRequest.where(id: params[:id]).first.destroy
+    redirect_to :back
   end
 
   private

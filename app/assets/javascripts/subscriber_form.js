@@ -6,6 +6,10 @@ var subscribers_Records = function() {
     "ajax": {
         "url": "/admin/subscriber_forms",
         "type": "GET"
-    }   
+    }
+  });
+
+  $(document).on('click', '#subscriber-table tbody a', function(){
+    window.location=$(this).attr('src');
   });
 }

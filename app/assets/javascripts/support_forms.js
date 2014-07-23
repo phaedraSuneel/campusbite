@@ -6,6 +6,10 @@ var supports_Records = function() {
     "ajax": {
         "url": "/admin/support_forms",
         "type": "GET"
-    }   
+    }
+  });
+
+  $(document).on('click', '#supports-table tbody a', function(){
+    window.location=$(this).attr('src');
   });
 }

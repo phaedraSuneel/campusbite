@@ -7,7 +7,10 @@ var restaurant_suggestion_Records = function() {
     "ajax": {
         "url": "/admin/restaurant_suggestion_forms",
         "type": "GET"
-    } 
+    }
   });
 
+  $(document).on('click', '#restaurant-suggestion-table tbody a', function(){
+    window.location=$(this).attr('src');
+  });
 }

@@ -6,4 +6,13 @@ class JoinUs < ActiveRecord::Base
     search_keyword = ["%",key_word,"%"].join('')
     return data.where('first_name like ? OR last_name like ? OR restaurant_name like ? OR phone_number like ? OR zip_code like ? OR email like ? OR comment like ? ', search_keyword, search_keyword, search_keyword, search_keyword, search_keyword, search_keyword, search_keyword)
   end
+
+  def created_at_date
+    self.created_at.strftime('%e %B, %Y')
+  end
+
+  def created_at_time
+    self.created_at.strftime('%I:%M%p')
+  end
+
 end

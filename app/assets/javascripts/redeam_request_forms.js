@@ -8,4 +8,8 @@ var redeam_requests_Records = function() {
         "type": "GET"
     }
   });
+
+  $(document).on('click', '#redeam_requests-table tbody a', function(){
+    window.location=$(this).attr('src');
+  });
 }

@@ -13,4 +13,13 @@ class RedeamRequest < ActiveRecord::Base
     search_keyword = ["%",key_word,"%"].join('')
     return data.where('first_name like ? OR last_name like ? OR email like ? OR item_id like ?', search_keyword, search_keyword, search_keyword, search_keyword)
   end
+
+  def created_at_date
+    self.created_at.strftime('%e %B, %Y')
+  end
+
+  def created_at_time
+    self.created_at.strftime('%I:%M%p')
+  end
+
 end

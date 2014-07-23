@@ -7,4 +7,12 @@ class RestaurantSuggestion < ActiveRecord::Base
     return data.where('first_name like ? OR last_name like ? OR campus_name like ? OR email like ? OR restaurant_name_1 like ? OR restaurant_name_2 like ? OR restaurant_name_3 like ? OR phone_number_1 like ? OR phone_number_2 like ? OR phone_number_3 like ?', search_keyword, search_keyword, search_keyword, search_keyword, search_keyword, search_keyword, search_keyword, search_keyword, search_keyword, search_keyword)
   end
 
+  def created_at_date
+    self.created_at.strftime('%e %B, %Y')
+  end
+
+  def created_at_time
+    self.created_at.strftime('%I:%M%p')
+  end
+
 end
