@@ -6,7 +6,7 @@
         <div class="modal-header error-title">
           <div class="row Quantity-head">
             <div class="col-md-7 left-side-items">
-              <label class="cafe-latte"><%= item.item_name %> <span class="item-price" data-price= "<%= item.price %>">$<%= item.price%></span></label>
+              <label class="cafe-latte"><%= item.item_name %> <span class="item-price" data-price= "<%= item.price %>"><%= number_with_precision(item.price, precision: 2)%></span></label>
             </div>
 
             <div class="col-md-5 Right-side-items">

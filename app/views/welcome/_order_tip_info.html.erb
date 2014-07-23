@@ -2,7 +2,7 @@
   <h2>Tip</h2>
   <div class="row">
     <div class="col-md-2 tip-items">
-      <div class="cards"><span><input type="radio" name="order[tip]" value = "0" checked="checked"></span>0%</div>
+      <div class="cards active"><span><input type="radio" name="order[tip]" value = "0" checked="checked"></span>0%</div>
     </div>
     <div class="col-md-2 tip-items">
       <div class="cards"><span><input type="radio" name="order[tip]" value = "10"></span>10%</div>
@@ -23,6 +23,10 @@
 <script type="text/javascript">
   $(document).ready(function(){
     $(".cards").click(function(){
+      $(".cards").each(function(){
+        $(this).removeClass("active");
+      });
+      $(this).addClass("active");
       total_bil = $(".total").data("total");
       $(this).find("input[type=radio]").prop("checked", true);
       tip = $(this).find("input[type=radio]").val();

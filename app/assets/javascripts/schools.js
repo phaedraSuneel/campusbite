@@ -28,6 +28,14 @@ $(document).ready(function(){
 
   });
 
+  $(".order-type-btn").each(function(){
+    if($(this).find("input[type=checkbox]").is(':checked'))
+    {
+      $(this).addClass("delivery-btn");
+      $(this).removeClass("pick-btn");
+    }
+  });
+
   $(".order-delivery-btn").click(function(){
     $(this).addClass("delivery-btn");
     $(this).removeClass("pick-btn");
@@ -48,6 +56,8 @@ $(document).ready(function(){
       }
     });
   });
+
+
 
   $(".order-pick-btn").click(function(){
     $(this).addClass("delivery-btn");

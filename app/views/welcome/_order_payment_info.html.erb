@@ -25,17 +25,17 @@
   <div class="credit-card-portion">
     <div class="row">
       <div class="col-md-5 req-field stored-field">
-        <div class="campus-on stored-campus active stored-card-option">
-          <span><input type="radio" name="card" value ="stored"></span>Stored Credit Card
-        </div>
-      </div>
-      <div class="col-md-5 req-field stored-field">
-        <div class="campus-on stored-campus new-card-option">
+        <div class="campus-on stored-campus active new-card-option">
           <span><input type="radio" name="card" value ="new" ></span>Enter A New Card
         </div>
       </div>
+      <div class="col-md-5 req-field stored-field">
+        <div class="campus-on stored-campus stored-card-option">
+          <span><input type="radio" name="card" value ="stored"></span>Stored Credit Card
+        </div>
+      </div>
     </div>
-    <div class="stored-card-portion">
+    <div class="stored-card-portion hide">
       <div class="row">
         <div class="col-md-12">
           <div class="req-field select-bg">
@@ -48,7 +48,7 @@
         </div>
       </div>
     </div>
-    <div class="new-card-portion hide">
+    <div class="new-card-portion">
       <div class="row">
         <div class="col-md-12">
           <div class="row select-bg bottom-padding">
@@ -90,9 +90,7 @@
   $(document).ready(function(){
 
     $(".credit-cart-option input[type=radio]").prop("checked", true);
-    $(".stored-card-option input[type=radio]").prop("checked", true);
-
-
+    $(".new-card-option input[type=radio]").prop("checked", true);
     $(".credit-cart-option").click(function(){
        $(".paypal-portion").addClass("hide");
        $(".credit-card-portion").removeClass("hide");

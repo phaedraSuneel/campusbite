@@ -6,9 +6,9 @@
         <div class="modal-header error-title">
           <div class="row Quantity-head">
             <div class="col-md-7 left-side-items">
-              <label class="cafe-latte"><%= item.item_name %> <span class="item-price" data-price= "<%= item.price %>">$<%= item.price%></span></label>
+              <label class="cafe-latte"><%= item.item_name %> <span class="item-price" data-price= "<%= item.price %>">$<%= number_with_precision(item.price, precision: 2)%></span></label>
             </div>
-            
+
             <div class="col-md-5 Right-side-items">
               <label>Quantity:<%= f.number_field :quantity , :min => "1", :placeholder => "1" , :value => 1, :class => "quantity-field"%>
                 <%= f.hidden_field :menu_item_id, :value => item.id %>
@@ -47,12 +47,12 @@
                           <% end -%>
                           <%= group_item.name %> $<%= group_item.price %>
                         </label>
-                      </div>  
+                      </div>
                     <% end %>
                   </div>
                 </div>
                 <img class="shadow-modal-img" alt="Smiley face" src="<%= '/assets/shadow.png' %>" />
-              </div>      
+              </div>
             <% end %>
           <div class="name-field-container">
             <div class="row res-name-field">
@@ -73,7 +73,6 @@
         <div class="modal-footer order-item">
           <% if restaurant.open? %>
             <%= link_to "Update item in your cart", "#",:class => "btn btn-primary submit-md edit-item-submit", :data => {:cart => cart.id} %>
-            <!-- <button class="btn btn-primary submit-md update-cart_item">Update item in you cart</button> -->
           <% end %>
         </div>
       </div>

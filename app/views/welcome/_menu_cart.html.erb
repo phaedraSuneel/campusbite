@@ -14,12 +14,12 @@
             Order type:
           </div>
           <div class="col-md-4 delivery-type">
-            <div class="delivery-btn order-delivery-btn" data-cart="<%= cart.id %>">
+            <div class="pick-btn order-delivery-btn order-type-btn" data-cart="<%= cart.id %>">
               <%= f.check_box :order_type, {:class => "order_type", :checked => "#{'checked'unless (cart.order_type=='pickup') }"}, "delivery"%> Delivery
             </div>
           </div>
           <div class="col-md-4 pickup-type">
-            <div class="pick-btn order-pick-btn" data-cart="<%= cart.id %>">
+            <div class="pick-btn order-pick-btn order-type-btn" data-cart="<%= cart.id %>">
               <%= f.check_box :order_type, {:class => "order_type", :checked => "#{'checked'unless cart.order_type=='delivery' or (cart.order_type.nil?)}"}, "pickup" %> Pickup
             </div>
           </div>
@@ -31,16 +31,16 @@
             <div class="col-md-12 Qty-container" id= "cart_<%= cart.id%>">
               <div class="back-border">
                 <label class="edit-cloes" data-cart="<%= cart.id %>"> <a href="#" data-toggle = "modal" data-target= "#edit_menu_item_<%= cart.id %>">Edit</a><span><a class="cloesing remove-cart-item-link" href="javascript:void(0)">X</a></span></label>
-                <label class="dolor-heading"><%= cart.menu_item.item_name %><span>$<%= cart.menu_item.price %></span></label>
+                <label class="dolor-heading"><%= cart.menu_item.item_name %><span>$<%= number_with_precision(cart.menu_item.price, precision: 2) %></span></label>
                 <% cart_extra_charges = 0 %>
                 <% if cart.group_items %>
                   <% cart.group_items.each do |group_item| %>
                     <% cart_extra_charges += group_item.price %>
-                    <label class="details"><%= group_item.name %><span>$<%= group_item.price %></span></label>
+                    <label class="details"><%= group_item.name %><span>$<%= number_with_precision(group_item.price, precision: 2) %></span></label>
                   <% end %>
                 <% end %>
                 <label class="details">Instructions:  <%= cart.instruction %></label>
-                <label class="total-amount"><img class="line-1" alt="Smiley face" src="/assets/t-line.png" /><span class="item-total" id="cart_menu_item_<%=cart.id%>">$ <%= (cart.menu_item.price + cart_extra_charges) * cart.quantity %></span></label>
+                <label class="total-amount"><img class="line-1" alt="Smiley face" src="/assets/t-line.png" /><span class="item-total" id="cart_menu_item_<%=cart.id%>">$ <%= number_with_precision( (cart.menu_item.price + cart_extra_charges) * cart.quantity, precision: 2) %></span></label>
                 <label class="qty-amount">QTY:<span><%= link_to '-', 'javascript:void(0)', :class => "minus-quantiy", :remote => true %></span><span class="quantity" data-cart = "<%= cart.id %>"><%= cart.quantity %></span><%= link_to '+', 'javascript:void(0)', :class => "plus-quantiy", :remote => true%></label>
               </div>
             </div>
@@ -54,13 +54,13 @@
               <label class="delivery-label  <%= 'hide' unless cart.order_type == 'delivery'%>">Delivery Fee:</label>
             </div>
             <div class="subtotal-amount">
-              <label class="sub-total">$<%= cart.sub_total %></label>
-              <label class="sale-tax">$<%= cart.sale_tax(@restaurant) %></label>
-              <label class="delivery-charges <%= 'hide' unless cart.order_type == 'delivery'%>">$<%= cart.delivery_charges(@restaurant) %></label>
+              <label class="sub-total">$<%= number_with_precision(cart.sub_total, precision: 2) %></label>
+              <label class="sale-tax">$<%= number_with_precision(cart.sale_tax(@restaurant), precision: 2) %></label>
+              <label class="delivery-charges <%= 'hide' unless cart.order_type == 'delivery'%>">$<%= number_with_precision(cart.delivery_charges(@restaurant), precision: 2) %></label>
             </div>
           </div>
           <div class="col-md-12 grandtotal-container">
-            <label>TOTAL:<span class="total-bill">$<%= cart.total_bill(@restaurant) %></span></label>
+            <label>TOTAL:<span class="total-bill">$<%= number_with_precision(cart.total_bill(@restaurant), precision: 2) %></span></label>
           </div>
 
           <div class="col-md-8 col-md-offset-2 checkout-btn">
@@ -68,7 +68,7 @@
             <% if @restaurant.min_delivery <= cart.total_bill(@restaurant) %>
               <%= link_to raw("<button class='checked-btn'>CHECKOUT</button>"), "#", :class => "checkout-btn-link", :remote => true %>
             <% else %>
-            <div class="mini-delivery-message"> * Delivery Minimum  is $<%= @restaurant.min_delivery %></div>
+            <div class="mini-delivery-message"> * Delivery Minimum  is $<%= number_with_precision(@restaurant.min_delivery, precision: 2) %></div>
               <%= link_to raw("<button class='disable-btn' disabled >CHECKOUT</button>"), "#"%>
             <% end %>
           </div>

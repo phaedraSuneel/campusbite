@@ -1,15 +1,15 @@
-<% extra =  0 
-if @cart_menu_item.group_items.present? 
+<% extra =  0
+if @cart_menu_item.group_items.present?
 	@cart_menu_item.group_items.each do |group_item|
   	extra += group_item.price
-  end 	
-end %>	
+  end
+end %>
 
-price = "$" +  parseFloat(<%= (@cart_menu_item.menu_item.price + extra ) * @cart_menu_item.quantity   %>)
- 
+price = "$" +  (<%= number_with_precision( (@cart_menu_item.menu_item.price + extra ) * @cart_menu_item.quantity, precision: 2)   %>)
+
 $("#cart_menu_item_<%= @cart_menu_item.id%>").text(price);
 
-$(".sub-total").text("$" + <%= @sub_total %>);
-$(".sale-tax").text("$" + <%= @sale_tax %>);
-$(".total-bill").text("$" + <%= @total_bill%>)
-$(".total").text("$" + <%= @total_bill%>)
+$(".sub-total").text("$" + <%= number_with_precision(@sub_total, precision: 2)  %>);
+$(".sale-tax").text("$" + <%= number_with_precision(@sale_tax, precision: 2) %>);
+$(".total-bill").text("$" + <%= number_with_precision(@total_bill, precision: 2)%>)
+$(".total").text("$" + <%= number_with_precision(@total_bill, precision: 2) %>)
