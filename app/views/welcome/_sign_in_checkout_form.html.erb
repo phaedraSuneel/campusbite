@@ -3,11 +3,11 @@
   <%= form_for("user", :url => user_session_path, :html => {:id => "sign_in", :class => "sign-in-form"}) do |f| %>
     <div class="col-md-6 checkout-field">
       <label>Email:</label>
-      <%= f.text_field :email , :class=> "email-input pass-input", :placeholder=>"Email" %>
+      <%= f.text_field :email , :class=> "email-input pass-input required", :placeholder=>"Email" %>
     </div>
     <div class="col-md-6 checkout-field">
       <label>Password:</label>
-      <%= f.password_field :password, :class=> "email-input pass-input", :placeholder=> "Password" %>
+      <%= f.password_field :password, :class=> "email-input pass-input required", :placeholder=> "Password" %>
     </div>
     <div class="col-md-12 submit-button facebook-button">
       <button>Sign in</button>
@@ -20,7 +20,10 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
+    $(".sign-in-form").validate();
     $(".sign-in-form").on('submit', function(e) {
+      $("#sign-in").addClass("active");
+      $(".user-information-tab li.sign-in").addClass("active");
       e.preventDefault(); // prevent native submit
       $(".sign-in-form").ajaxSubmit({
           target: '#confirmation',
@@ -29,7 +32,7 @@
             $(".checkout-btn-link").click();
           },
           error: function(jqxhr) {
-            $("#confirmation").html("<div class='alert'>" +jqxhr.responseText+"</div>");
+            $("#confirmation").html("<div class='alert alert-danger'><a class='close' data-dismiss='alert'>&#215;</a>" +jqxhr.responseText+"</div> ");
             $("#confirmation").hide();
             $("#confirmation").fadeIn(500);
           }

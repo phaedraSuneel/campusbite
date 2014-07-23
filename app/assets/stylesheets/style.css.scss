@@ -6039,7 +6039,10 @@ span.icon-reject
   }
 }
 
-.sign-up-form label input.error
+.sign-up-form label input.error,
+.guest-sign-up-form input.error,
+.sign-in-form input.error,
+.sign-up-form-checkout label input.error
 {
   border: 1px solid red !important;
 }
@@ -6053,10 +6056,19 @@ span.icon-reject
   font-family: 'PT Sans';
   font-size: 14px;
 }
-.sign-in-form input.error
+
+.sign-up-form-checkout label.error,
+.guest-sign-up-form label.error
 {
-  border: 1px solid red !important;
+  float: left;
+  width: auto;
+  color: red !important;
+  padding-top: 10px;
+  font-family: 'PT Sans';
+  font-size: 14px;
 }
+
+
 .sign-in-form label.error
 {
   text-align: center;

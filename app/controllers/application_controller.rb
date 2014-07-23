@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 	protect_from_forgery
 
 	def change_layout
+    #cookies.delete :guest_token
     if current_user
       current_user.admin_restaurant? ? 'admin_restaurant' : (current_user.user_admin? ? 'super_admin' : 'application')
     else
