@@ -82,7 +82,11 @@
             </div>
           </div>
           <div class="col-md-3 view-menu">
-            <%= link_to "+ Add to favorites", add_favorite_restaurant_path(@restaurant), :class => "btn view-button" %>
+            <% if current_user %>
+              <%= link_to "+ Add to favorites", add_favorite_restaurant_path(@restaurant), :class => "btn view-button" %>
+            <% else %>
+              <%= link_to "+ Add to favorites", 'javascript:;' , :class => "btn view-button favorite_btn", "data-toggle" => "popover", :title => "Message", "data-content" => "You must be signed in" %>
+            <% end %>
           </div>
         </div>
       </div>
