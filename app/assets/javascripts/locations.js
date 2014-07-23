@@ -9,7 +9,7 @@ $(document).ready(function(){
     "ajax": {
       "url": "/admin/schools",
       "type": "GET"
-    } 
+    }
   });
 
   $('#buildings-table').dataTable( {
@@ -18,11 +18,14 @@ $(document).ready(function(){
     "ajax": {
       "url": "/admin/schools/"+id,
       "type": "GET"
-    } 
+    }
   });
 
   $(document).on('click', '#locations-table tbody a', function(){
-    window.location=$(this).attr('src'); 
+    window.location=$(this).attr('src');
   });
-  
+
+  $(document).on('click', '#buildings-table tbody a', function(){
+    window.location=$(this).attr('src');
+  });
 });

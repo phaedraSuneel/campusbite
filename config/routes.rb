@@ -122,6 +122,9 @@ Ordering::Application.routes.draw do
       end
       member do
         get "new_building"
+        get "edit_building"
+        put "update_building"
+        get "delete_building"
         get "buildings"
         get "delete"
       end

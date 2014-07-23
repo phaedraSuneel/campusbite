@@ -48,7 +48,7 @@ class Admin::SchoolsController < ApplicationController
     end
     respond_to do |format|
       format.json do
-        return render :json =>  {draw: page,  recordsTotal: @school.buildings.count,  recordsFiltered: @school.buildings.count , :data => @buildings.collect{|a| [a.building_name, a.street_adress, a.city, a.zip_code, a.state]} }
+        return render :json =>  {draw: page,  recordsTotal: @school.buildings.count,  recordsFiltered: @school.buildings.count , :data => @buildings.collect{|a| [a.building_name, a.street_adress, a.city, a.zip_code, a.state, "<a src='#{edit_building_admin_school_url(a)}'><span class='label label-sm label-default'> edit </span> </a>", "<a src='#{delete_building_admin_school_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </span> </a>",]} }
       end
       format.html
     end
@@ -114,6 +114,25 @@ class Admin::SchoolsController < ApplicationController
       flash[:notice] = "Building was not created"
       redirect_to admin_school_path(@school)
     end
+  end
+
+  def edit_building
+    @building = Building.find(params[:id])
+    @school = @building.school
+  end
+
+  def update_building
+    @building = Building.find(params[:id])
+    @school = @building.school
+    @building.update_attributes(params[:building])
+    redirect_to admin_school_path(@school)
+  end
+
+  def delete_building
+    @building = Building.find(params[:id])
+    @school = @building.school
+    @building.destroy
+    redirect_to :back
   end
 
   def buildings
