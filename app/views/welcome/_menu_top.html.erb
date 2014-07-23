@@ -8,7 +8,8 @@
   <div class="col-md-12 resturant-heading">
     <div class="row error-line">
       <div class="col-md-3">
-        <%= link_to raw("<h2>Back To All Restaurants</h2>"), result_welcome_index_path %>
+        <% result_welcome_index_path %>
+        <%= link_to raw("<h2>Back To All Restaurants</h2>"), "#", "data-toggle" => "popover", :title => "Message", "data-content" => "Your cart will be cleared when you leave this. <a href='/welcome/result?clear=true' title='test add link'> Confirm </a>", :class => "back-restaurant-link" %>
       </div>
       <% unless @restaurant.open? %>
         <div class="col-md-9 flash-message">
@@ -17,8 +18,8 @@
             <a href="javascript:;" class="flash-link"><span class="cross">x</span></a>
           </div>
         </div>
-      <% end -%>   
-    </div>  
+      <% end -%>
+    </div>
   </div>
   <div class="comment-main-container">
     <div class="row comment-block odd">
@@ -34,7 +35,7 @@
           <div class="col-md-6 online-orders">
               <% if !@restaurant.offer.blank? %>
                 <h3><%= "#{@restaurant.offer.offer_percentage}" + "%  " + "#{@restaurant.offer.description}" %></h3>
-              <% end -%>  
+              <% end -%>
             </div>
         </div>
         <div class="row">
@@ -43,7 +44,7 @@
               <div class="col-md-2 delivery-field-img">
                <% if @restaurant.open? %>
                     <img class="open" alt="Smiley face" src="/assets/open.png" />
-                  <% else %>  
+                  <% else %>
                     <img class="open" alt="Smiley face" src="/assets/close.png" />
                     <span class="open-time"> Opens at <%= @restaurant.opening_time %></span>
                   <% end %>
@@ -63,7 +64,7 @@
                     free
                   <% else %>
                     $<%= @restaurant.delivery_info.delivery_charges %>
-                  <% end %> 
+                  <% end %>
                 </p>
               </div>
               <div class="col-md-2 delivery-field">
@@ -76,9 +77,9 @@
               </div>
               <div class="col-md-2 delivery-field">
                 <label class="del-yes">DELIVERY:</label><a class="yes-no" href="#"><%= @restaurant.delivery_info.is_delivery ? "Yes" : "No"%></a>
-                <label class="pic-no">PICKUP:</label><a class="yes-no" href="#"><%= @restaurant.restaurant_info.is_pick_up ? "Yes" : "No" %></a>   
+                <label class="pic-no">PICKUP:</label><a class="yes-no" href="#"><%= @restaurant.restaurant_info.is_pick_up ? "Yes" : "No" %></a>
               </div>
-            </div>                        
+            </div>
           </div>
           <div class="col-md-3 view-menu">
             <%= link_to "+ Add to favorites", add_favorite_restaurant_path(@restaurant), :class => "btn view-button" %>

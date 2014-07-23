@@ -14,14 +14,14 @@ class CartsController < ApplicationController
 
       @cart_menu_item.restaurant_id = restaurant.id
       if @cart_menu_item.save
-          flash[:notice] = 'Item was successfully added to cart.'
+          #flash[:notice] = 'Item was successfully added to cart.'
           redirect_to :back
       else
-        flash[:notice] = 'Something going wrong  to add item into cart.'
+        #flash[:notice] = 'Something going wrong  to add item into cart.'
         redirect_to :back
       end
     else
-      flash[:notice] = 'This Restaurant is closed now so you couldnot order'
+      #flash[:notice] = 'This Restaurant is closed now so you couldnot order'
       redirect_to :back
     end
 
@@ -162,7 +162,7 @@ class CartsController < ApplicationController
             format.js
           end
         else
-          flash[:warning] = "Invalid card information"
+          #flash[:warning] = "Invalid card information"
           redirect_to :back
         end
       else

@@ -6,6 +6,17 @@ class WelcomeController < ApplicationController
   end
 
  	def result
+    if params[:clear]
+      if current_user
+        current_user.carts.destroy_all
+      else
+        if !cookies[:cart_token].blank?
+          Cart.find_by_token(cookies[:cart_token]).destroy
+          cookies.delete :cart_token
+        end
+      end
+    end
+
     if !params[:search].blank?
       pick_up = params[:search][:is_pick_up] == '1' ?  1 : nil
       delivery = params[:search][:is_delivery] == '1' ?  1 : nil

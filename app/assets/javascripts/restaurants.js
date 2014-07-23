@@ -4,6 +4,11 @@ $(document).ready(function(){
   $('.star').rating();
   $('.star-read').rating({readOnly: true});
 
+  $(".back-restaurant-link").popover({
+    placement: 'top',
+    html: true
+  })
+
 	$(".add_more_property_link").click(function(e){
 		e.preventDefault();
 		parent = $(this).parent().parent().find(".property-field");
