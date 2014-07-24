@@ -156,7 +156,9 @@
           </div>
           <div class="col-md-6 subtotal">
             <label><span>Subtotal:</span><span class="value">$<%= @order.sub_total%></span></label>
-            <label class="green"><span>Online Discount(10% off):</span><span class="value">- $0</span></label>
+            <% if @order.restaurant.online_discount? %>
+              <label class="green"><span>Online Discount(<%= @order.restaurant.online_discount%> % off):</span><span class="value">- $<%= @order.online_discount %></span></label>
+            <% end %>
             <label class="green"><span>Coupon Charges:</span><span class="value">-$<%= @order.detect_coupon_charges %></span></label>
             <label><span>Tax:</span><span class="value">$<%= @order.sale_tax %></span></label>
             <% if @order.order_type == "delivery" %>
@@ -164,7 +166,7 @@
             <% end %>
               <label><span>Tip:</span><span class="value">$<%= @order.tip_charges %></span></label>
 
-            <label class="larg-size"><span>Total:</span><span class="value">$<%= @order.total_after_discount %></span></label>
+            <label class="larg-size"><span>Total:</span><span class="value">$<%= @order.total_after_discount.round(3) %></span></label>
           </div>
         </div>
       </div>

@@ -217,6 +217,14 @@
                 <%= f.number_field :ranking, :class => "form-control required", :min => "1", :placeholder => "1"%>
               </div>
             </div>
+
+            <div class="form-group">
+              <%= f.label :online_discount, :class => "control-label col-md-3"%>
+              <div class="col-md-9">
+                <%= f.text_field :online_discount, :class => "form-control", :placeholder => "% discount"%>
+              </div>
+            </div>
+
             <%= f.fields_for :restaurant_info do |f| %>
               <div class="form-group">
                 <%= f.label :logo, "Restaurant logo", :class => "control-label col-md-3" %>
@@ -329,40 +337,8 @@
           <div class="tab-pane" id="tab4">
             <h3 class="block">Ordering Information </h3>
             <%= f.fields_for :order_info do |f| %>
+              <span class="checked display-none"><%= f.radio_button :info_way, "fax", :checked => true %></span>
 
-              <div class="form-group">
-
-                <%= f.label :info_way, " Please select way of get order information.. ", :class => "control-label col-md-3" %>
-                <div class="col-md-9">
-                  <div class="radio-list">
-                    <label>
-                      <div class="radio">
-                        <span ><%= f.radio_button :info_way, "email" %></span>
-                      </div> Email
-                    </label>
-                    <label>
-                      <div class="radio">
-                        <span class="checked"><%= f.radio_button :info_way, "fax", :checked => true %></span>
-                      </div>Fax
-                    </label>
-                    <label>
-                      <div class="radio">
-                        <span><%= f.radio_button :info_way, "GPRS" %></span>
-                      </div>GPRS
-                    </label>
-                    <label>
-                      <div class="radio">
-                        <span><%= f.radio_button :info_way, "POS" %></span>
-                      </div>POS
-                    </label>
-                    <label>
-                      <div class="radio">
-                        <span><%= f.radio_button :info_way, "SMS" %></span>
-                      </div>SMS
-                    </label>
-                  </div>
-                </div>
-              </div>
 
               <div class="form-group">
                 <%= f.label :email_order, :class => "control-label col-md-3" %>
@@ -374,56 +350,6 @@
                 <%= f.label :fax_number, "Restaurant Fax No." , :class => "control-label col-md-3" %>
                 <div class="col-md-9">
                   <%= f.text_field :fax_number, :class => "form-control required" %>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <%= f.label :gprs, "GPRS Option", :class => "control-label col-md-3" %>
-                <div class="col-md-9">
-                  <div class="radio-list">
-                   <label>
-                      <div class="radio">
-                        <span ><%= f.radio_button :gprs, true %></span>
-                      </div> Yes
-                    </label>
-                    <label>
-                      <div class="radio">
-                        <span ><%= f.radio_button :gprs, false, :checked => true %></span>
-                      </div> No
-                    </label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <%= f.label :cloud_printer_email, :class => "control-label col-md-3" %>
-                <div class="col-md-9">
-                  <%= f.email_field :cloud_printer_email, :class => "form-control required" %>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <%= f.label :cloud_printer_password, :class => "control-label col-md-3" %>
-                <div class="col-md-9">
-                  <%= f.password_field :cloud_printer_password, :class => "form-control required" %>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <%= f.label :sms_option, "Sms Option", :class => "control-label col-md-3" %>
-                <div class="col-md-9">
-                  <div class="radio-list">
-                   <label>
-                      <div class="radio">
-                        <span ><%= f.radio_button :sms_option, true %></span>
-                      </div> Yes
-                    </label>
-                    <label>
-                      <div class="radio">
-                        <span ><%= f.radio_button :sms_option, false, :checked => true %></span>
-                      </div> No
-                    </label>
-                  </div>
                 </div>
               </div>
             <% end -%>

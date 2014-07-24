@@ -79,7 +79,12 @@ class Order < ActiveRecord::Base
       end
   		price += (item.menu_item.price + extra) * item.quantity
   	end
-  	return price
+    return price
+  end
+
+  def online_discount
+    return (sub_total*self.restaurant.online_discount)/100 if self.restaurant.online_discount?
+    return 0.0
   end
 
   def sale_tax
@@ -131,7 +136,7 @@ class Order < ActiveRecord::Base
   end
 
   def total_after_discount
-    self.total_bill - self.detect_coupon_charges
+    self.total_bill - self.detect_coupon_charges - self.online_discount
   end
 
 	def total_bill

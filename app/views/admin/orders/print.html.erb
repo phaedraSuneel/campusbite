@@ -133,7 +133,7 @@
   }
   .tabel-container table h3{
     margin-top: 0px;
-    margin-bottom: 10px;  
+    margin-bottom: 10px;
     font-size: 17px;
   }
   .tabel-container table th{
@@ -157,7 +157,7 @@
   .tabel-container table td.border-am-b p{
     text-align: left;
   }
- 
+
   .tabel-container table td.border-am-b p.small:last-child,
   .tabel-container table td.border-am p.small:last-child{
     border-bottom: 0px;
@@ -183,7 +183,7 @@
     margin-bottom: 30px;
   }
   .border-am-b p:last-child{
-    border-bottom: 0px !important; 
+    border-bottom: 0px !important;
   }
 
   .order-action {
@@ -250,16 +250,16 @@
           <div class="col-md-6">
             <div class="order-pic">
               <ul>
-                <li><label>Address:</label> 
+                <li><label>Address:</label>
                   <% unless @order.order_type == 'delivery'%>
                     <span>Costumer will pickup order</span>
-                  <% else %>  
+                  <% else %>
                       <%= @order.address.address_type %>
                       <% if @order.address.address_type == "On Campus" %>
                        <%= @order.address.school.school_name %> <%= @order.address.room_number %> <%= @order.address.building.try(:street_adress) %></span>
                      <% else %>
                        <%= @order.address.room_number %> <%= @order.address.street_adress %>
-                     <% end %>  
+                     <% end %>
                     </label>
                   <% end %>
                 </li>
@@ -281,13 +281,13 @@
                     <h3><%= item.menu_item.item_name %></h3>
                     <% extra = 0 %>
                     <% unless item.group_item_ids.blank? %>
-                      <label> Extra: 
+                      <label> Extra:
                         <% item.group_items.each do |group_item| %>
                           <%= group_item.name + " " %>
                           <% extra += group_item.price %>
                         <% end %>
                       </label>
-                    <% end %> 
+                    <% end %>
                     <p>Instructions: <%= item.instruction %></p>
                   </td>
                   <td class="first text-center"><%= item.quantity %></td>
@@ -316,21 +316,21 @@
                   <p>$<%= @order.delivery_charges %></p>
                   <p>$<%= @order.tip_charges %></p>
                   <p><b>$<%= @order.total_bill %></b></p>
-                  <p>-$<%= @order.coupon_charges %></p>
+                  <p>-$<%= @order.coupon_charges + @order.online_discount %></p>
                   <p>$<%= @order.total_after_discount %></p>
                 </td>
               </tr>
-            </table>  
+            </table>
             <div class="support-help">
               For support or helps please contact us:Email:restaurant@campusbite or Phone:1-866-000-000
             </div>
           </div>
-        </div>   
-      </div> 
-    </div> 
-  </div>   
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript">
     window.print();
-</script> 
+</script>

@@ -26,7 +26,7 @@ class Restaurant < ActiveRecord::Base
   has_one :operation, :dependent => :destroy
 
   attr_accessible :school_id, :restaurant_category_ids, :contact_info_attributes, :restaurant_info_attributes, :delivery_info_attributes, :order_info_attributes, :bank_info_attributes,
-                  :operation_attributes, :delivery_attributes, :pick_up_attributes, :avg_rating, :user_id, :user_attributes, :delta, :restaurant_coupons_attributes, :ranking, :school_ids
+                  :operation_attributes, :delivery_attributes, :pick_up_attributes, :avg_rating, :user_id, :user_attributes, :delta, :restaurant_coupons_attributes, :ranking, :school_ids, :online_discount
 
   #accepts_nested_attributes_for :schools
   accepts_nested_attributes_for :restaurant_categories
@@ -44,6 +44,10 @@ class Restaurant < ActiveRecord::Base
  	def create_menu
  	  self.build_menu
  	end
+
+  def online_discount_messsage
+    [online_discount,"% discount"].join() if self.online_discount?
+  end
 
   def self.apply_search_filter(data,key_word)
     search_keyword = ["%",key_word,"%"].join('')
@@ -312,7 +316,13 @@ class Restaurant < ActiveRecord::Base
   end
 
   def un_expire_school_coupons(code)
-    self.school.coupons.where('start_date <= ? and end_date >= ?', Time.now.to_date, Time.now.to_date)
+    coupon = []
+    unless self.schools.blank?
+      self.schools.each do |school|
+        coupon.push(school.coupons.where('start_date <= ? and end_date >= ?', Time.now.to_date, Time.now.to_date))
+      end
+    end
+    return coupon
   end
 
 end

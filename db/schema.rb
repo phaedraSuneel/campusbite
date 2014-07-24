@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140724101321) do
+ActiveRecord::Schema.define(:version => 20140724111519) do
 
   create_table "addon_subcategories", :force => true do |t|
     t.string   "name"
@@ -547,14 +547,15 @@ ActiveRecord::Schema.define(:version => 20140724101321) do
   end
 
   create_table "restaurants", :force => true do |t|
-    t.datetime "created_at",                          :null => false
-    t.datetime "updated_at",                          :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
     t.integer  "school_id"
-    t.integer  "avg_rating", :default => 0
+    t.integer  "avg_rating",      :default => 0
     t.integer  "user_id"
-    t.string   "status",     :default => "completed"
-    t.boolean  "delta",      :default => true,        :null => false
-    t.integer  "ranking",    :default => 0
+    t.string   "status",          :default => "completed"
+    t.boolean  "delta",           :default => true,        :null => false
+    t.integer  "ranking",         :default => 0
+    t.integer  "online_discount"
   end
 
   add_index "restaurants", ["delta"], :name => "index_restaurants_on_delta"

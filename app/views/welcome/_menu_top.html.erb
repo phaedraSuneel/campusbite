@@ -33,10 +33,10 @@
             <p><%= @restaurant.contact_info.restaurant_street_address%></p>
           </div>
           <div class="col-md-6 online-orders">
-              <% if !@restaurant.offer.blank? %>
-                <h3><%= "#{@restaurant.offer.offer_percentage}" + "%  " + "#{@restaurant.offer.description}" %></h3>
-              <% end -%>
-            </div>
+            <% if @restaurant.online_discount? %>
+              <h3><%= @restaurant.online_discount_messsage %></h3>
+            <% end -%>
+          </div>
         </div>
         <div class="row">
           <div class="col-md-9 food-block">

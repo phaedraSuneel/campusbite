@@ -184,16 +184,18 @@
                   <td><%= order.tip %></td>
                   <td><%= order.total_bill %></td>
                   <td>0</td>
-                  <td>0</td>
+                  <td><%= order.online_discount %></td>
                   <td><%= order.total_after_discount %></td>
                   <td class="order_action">
                     <%= link_to "View", admin_order_path(order), :class => "btn default btn-xs green-stripe" %>
                   </td>
+                  <% total_bill += order.total_after_discount %>
                   <% tip += order.tip%>
                   <% sub_total += order.sub_total %>
                   <% tax += order.sale_tax %>
                   <% delivery_charges += order.restaurant.delivery_charges %>
                   <% total += order.total_bill %>
+                  <% discount += order.online_discount %>
                 </tr>
               <% end %>
 
@@ -284,7 +286,7 @@
                   <td><%= total.round(3) %></td>
                   <td><%= promo_code.round(3) %></td>
                   <td><%= discount.round(3)%></td>
-                  <td><%= total.round(3) %></td>
+                  <td><%= total_bill.round(3) %></td>
                   <td></td>
                 </tr>
               </tbody>
