@@ -5,6 +5,7 @@ $.fn.dataTableExt.afnFiltering.push(
     var iMin = document.getElementById('order_total_from').value.replace("$", "") * 1;
     var iMax = document.getElementById('order_total_to').value.replace("$", "") * 1;
     index = $('#order_total_to').parent().index();
+
     var iVersion = aData[index] == "-" ? 0 : aData[index].replace("$", "")*1;
 
    if ( iMin == "" && iMax == "" )
@@ -35,7 +36,8 @@ $.fn.dataTableExt.afnFiltering.push(
     var iFfin = $('#order_to_date').val();
     imin = iFini=="" ? "" : Date.parse(iFini);
     imax = iFfin=="" ? "" : Date.parse(iFfin);
-    var idate = Date.parse(aData[1]);
+    index = $('#order_from_date').parent().parent().index();
+    var idate = Date.parse(aData[index]);
 
     if ( imin == "" && imax == "" )
     {
@@ -77,7 +79,7 @@ var init_order_table = function() {
   });
 
   $( oTableTools.fnContainer()).insertBefore('div.dataTables_wrapper');
-   
+
   $("thead tr.filter .select_filter").each( function ( i ) {
     var i = $(this).index();
     $(this).find('select').change( function () {
@@ -107,7 +109,7 @@ var init_order_table = function() {
     var i = $(this).index();
     asInitVals[i] = $(this).find('input').val();
   });
-   
+
   $("thead tr.filter input.search_init").focus( function () {
     if ( this.className == "search_init" )
     {
@@ -115,7 +117,7 @@ var init_order_table = function() {
       this.value = "";
     }
   });
-     
+
   $("thead tr.filter input.search_init").blur( function (i) {
     if ( this.value == "" )
     {
@@ -125,7 +127,7 @@ var init_order_table = function() {
   });
 
   $(".filter-cancel").click(function(){
-    
+
     $("#all_orders_data input, #all_orders_data select").each(function(){
       $(this).val("");
       var i = $(this).parent().index();
