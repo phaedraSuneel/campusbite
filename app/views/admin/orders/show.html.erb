@@ -39,6 +39,7 @@
       <div class="inner-order-block inner-order-block-b">
         <h1>Customer Information</h1>
         <div class="content-field"><label class="left">Name:</label><label class="right"><%= @order.customer_name %></label> </div>
+        <div class="content-field"><label class="left">Email Address:</label><label class="right"><%= @order.customer_email %></label> </div>
           <div class="content-field"><label class="left">Adress:</label>
             <label class="right"><%= @order.get_address %></label>
           </div>
@@ -52,6 +53,9 @@
         <p><%=  link_to "Email Customer Receipt", email_receipt_admin_order_path(@order) %></p>
         <p><%=  link_to @order.flag_value, toggle_flag_admin_order_path(@order) %></p>
         <p><%= link_to "Download Order", print_admin_order_path(@order) %></p>
+        <p><%= link_to "Confirm Order", confirm_admin_order_path(@order) %></p>
+        <p><%= link_to "Cancel Order", cancel_admin_order_path(@order) %></p>
+        <p><%= link_to "Delete Order", delete_admin_order_path(@order), "data-confirm" => "are you sure?" %></p>
       </div>
     </div>
   </div>

@@ -94,6 +94,7 @@ Ordering::Application.routes.draw do
       member do
         get 'confirm'
         get 'cancel'
+        get 'delete'
         get 'print'
         get 'toggle_flag'
         get 'email_receipt'

@@ -44,10 +44,10 @@ class Admin::OrdersController < ApplicationController
     order = Order.find(params[:id])
     if order.update_attributes(:status => "confirm")
       flash[:notice] = "Order Successfully Confirmed"
-      redirect_to :back
+      redirect_to admin_orders_path
     else
       flash[:warning] = "Order Failed Confirmed"
-      redirect_to :back
+      redirect_to admin_orders_path
     end
   end
 
@@ -55,10 +55,21 @@ class Admin::OrdersController < ApplicationController
     order = Order.find(params[:id])
     if order.update_attributes(:status => "reject")
       flash[:notice] = "Order Successfully Cancel"
-      redirect_to :back
+      redirect_to admin_orders_path
     else
       flash[:warning] = "Order Fail Cancel"
-      redirect_to :back
+      redirect_to admin_orders_path
+    end
+  end
+
+  def delete
+    order = Order.find(params[:id])
+    if order.destroy
+      flash[:notice] = "Order Successfully deleted"
+      redirect_to admin_orders_path
+    else
+      flash[:warning] = "Order Failed to delete"
+      redirect_to admin_orders_path
     end
   end
 
