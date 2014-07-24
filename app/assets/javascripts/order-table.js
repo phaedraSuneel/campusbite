@@ -67,6 +67,7 @@ var init_order_table = function() {
   });
 
   var oTable = $('#all_orders_data').dataTable({
+    "lengthMenu": [[10, 100, 500,1000, 5000, 10000, -1], [10, 100, 500,1000, 5000, 10000, "All"]],
     "aaSorting": [[ 1, "asc" ]],
     "bSortCellsTop": true,
   });

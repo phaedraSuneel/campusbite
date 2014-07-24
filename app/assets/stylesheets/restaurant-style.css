@@ -4757,3 +4757,9 @@ a:hover{
 {
   text-align: center!important;
 }
+
+.scroll-x-tabel
+{
+  width: 100%;
+  overflow-x: scroll;
+}

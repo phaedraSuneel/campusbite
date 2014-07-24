@@ -129,20 +129,20 @@
               <td><%= order.order_type %></td>
               <td><%= order.request_time %></td>
               <td><%= order.customer_name %></td>
-              <% sub_total += order.sub_total %>
               <td><%= order.sub_total %></td>
-              <% tax += order.sale_tax %>
               <td><%= order.sale_tax %></td>
-              <% delivery_charges += order.restaurant.delivery_charges %>
               <td><%= order.restaurant.delivery_charges %></td>
-              <% tip += order.tip%>
               <td><%= order.tip %></td>
-              <% total += order.total_bill %>
               <td><%= order.total_bill %></td>
               <td>0</td>
               <td>0</td>
               <% total_bill += order.total_after_discount %>
               <td><%= order.total_after_discount %></td>
+              <% tip += order.tip%>
+              <% sub_total += order.sub_total %>
+              <% tax += order.sale_tax %>
+              <% delivery_charges += order.restaurant.delivery_charges %>
+              <% total += order.total_bill %>
             </tr>
           <% end %>
           <tr>
