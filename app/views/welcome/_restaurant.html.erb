@@ -3,7 +3,7 @@
     <div class="col-md-2 comment-images">
       <% if restaurant.restaurant_info.is_featured? %>
         <button class="feature">Featured</button>
-      <% end %>  
+      <% end %>
       <img class="logo-image" alt="Smiley face" src="/assets/lunch.png" />
     </div>
     <div class="col-md-10 menu-block">
@@ -15,7 +15,7 @@
         <div class="col-md-6 online-orders">
           <% if !restaurant.offer.blank? %>
             <h3><%= "#{restaurant.offer.offer_percentage}" + "%  " + "#{restaurant.offer.description}" %></h3>
-          <% end -%>  
+          <% end -%>
         </div>
         <% if restaurant.phone_order? %>
           <div class="col-md-6 online-orders-gray">
@@ -29,7 +29,7 @@
             <div class="col-md-2 delivery-field-img">
               <% if restaurant.open? %>
                 <img class="open" alt="Smiley face" src="/assets/open.png" />
-              <% else %>  
+              <% else %>
                 <img class="open" alt="Smiley face" src="/assets/close.png" />
                 <span class="open-time"> Opens at <%= restaurant.opening_time %></span>
               <% end %>
@@ -40,7 +40,7 @@
                 <% restaurant.restaurant_categories.each do |category| %>
                   <%= category.category_name %>
                 <% end %>
-              </p>    
+              </p>
             </div>
             <div class="col-md-2 delivery-field">
               <label>DELIVERY FEE:</label>
@@ -49,7 +49,7 @@
                   free
                 <% else %>
                   $<%= restaurant.delivery_info.delivery_charges %>
-                <% end %>  
+                <% end %>
               </p>
             </div>
             <div class="col-md-2 delivery-field">
@@ -61,23 +61,23 @@
               <p><%= restaurant.delivery_info.delivery_estimated_time  %> minute</p>
             </div>
             <div class="col-md-2 delivery-field">
-              <label>REVIEWS:</label>
+              <label>REVIEWS: </label>
                 <div>
                   <form class="star-line">
-                    <input name="rating" type="radio" class="star-read" value="1" <%= 'checked' if restaurant.avarage_rating ==1  %> /> 
-                    <input name="rating" type="radio" class="star-read" value="2" <%= 'checked' if restaurant.avarage_rating ==2  %> /> 
-                    <input name="rating" type="radio" class="star-read" value="3" <%= 'checked' if restaurant.avarage_rating ==3  %> /> 
-                    <input name="rating" type="radio" class="star-read" value="4" <%= 'checked' if restaurant.avarage_rating ==4  %> /> 
+                    <input name="rating" type="radio" class="star-read" value="1" <%= 'checked' if restaurant.avarage_rating ==1  %> />
+                    <input name="rating" type="radio" class="star-read" value="2" <%= 'checked' if restaurant.avarage_rating ==2  %> />
+                    <input name="rating" type="radio" class="star-read" value="3" <%= 'checked' if restaurant.avarage_rating ==3  %> />
+                    <input name="rating" type="radio" class="star-read" value="4" <%= 'checked' if restaurant.avarage_rating ==4  %> />
                     <input name="rating" type="radio" class="star-read" value="5" <%= 'checked' if restaurant.avarage_rating ==5  %> />
                   </form>
                 </div>
             </div>
-          </div>                        
+          </div>
         </div>
         <div class="col-md-2 view-menu">
           <% if restaurant.open? and !restaurant.phone_order? %>
             <%= link_to "VIEW MENU", menu_welcome_path(restaurant), :class => "view-button btn" %>
-          <% else %>  
+          <% else %>
             <%= link_to "VIEW MENU", menu_welcome_path(restaurant), :class => "view-button-red btn" %>
           <% end %>
         </div>
@@ -89,7 +89,7 @@
 
 <script type="text/javascript">
   $(document).ready(function(){
-    $('.star').rating(); 
+    $('.star').rating();
     $('.star-read').rating({readOnly: true});
   });
 </script>

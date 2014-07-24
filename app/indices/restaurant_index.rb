@@ -17,6 +17,7 @@ ThinkingSphinx::Index.define :restaurant, :with => :active_record, :delta => Thi
   has restaurant_info(:min_order), :as => :min_order, :type => :float, :sortable => true
 
   has avg_rating, :as => :rating, :type => :integer, :sortable => true
+  has ranking, :as => :ranking, :type => :integer, :sortable => true
 
   has delivery_info(:delivery_estimated_time), :as => :delivery_eta, :type => :integer, :sortable => true
 

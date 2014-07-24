@@ -6,8 +6,8 @@
       <li class="restaurant-category active all"><a href="#" data-id = "">All categories(<%= RestaurantCategory.count%>)</a></li>
       <% RestaurantCategory.all.each do |category|%>
         <li class="restaurant-category"><a href="javascript:;" data-id = "<%= category.id %>" remote = "true"><%= category.category_name %></a></li>
-        
-      <% end %>  
+
+      <% end %>
       <%= hidden_field_tag :keyword, params[:keyword], :class => "query" %>
     </ul>
   </div>
@@ -22,9 +22,10 @@
         <li><label class="normal-font-weight"><%= f.radio_button :sort, 'delivery_free' %>Delivery Fee</label></li>
         <li><label class="normal-font-weight"><%= f.radio_button :sort, 'delivery_mini'%>Delivery Minimum</label></li>
         <li><label class="normal-font-weight"><%= f.radio_button :sort, 'ratings'%>Ratings</label></li>
+        <li><label class="normal-font-weight"><%= f.radio_button :sort, 'ranking'%>Rankings</label></li>
         <li><label class="normal-font-weight"><%= f.radio_button :sort, 'delivery_eta' %>Estimated Time</label></li>
         <li><label class="normal-font-weight"><%= f.radio_button :sort, 'sort_name' %>Restaurant Name</label></li>
-      </ul>  
+      </ul>
     </div>
   </div>
   <div class="category-search">
