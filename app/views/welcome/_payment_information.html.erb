@@ -4,7 +4,7 @@
       <div class="col-md-12">
         <div class="save-location">Review & Submit YOUR Order</div>
         <%= f.hidden_field :order_type, :value => @cart.order_type %>
-        <%= f.hidden_field :request_time,  :class => "request_time" %>
+        <%= f.hidden_field :order_date_time,  :class => "request_time" %>
         <%= hidden_field_tag "restaurant_id" , nil, :class => "restaurant_order" %>
 
         <%= render :partial => "welcome/order_user_info"%>

@@ -24,8 +24,8 @@
             </div>
           </div>
           <div class="col-md-12 request-order">
-            <%= f.hidden_field :request_time, :value => "ASAP" , :class => "hidden_field_request_time"%>
-            <label>Order Requested For:<span><%= f.text_field :request_time, :value => "ASAP",  :disabled => "disabled", :class => "order_request_field" %></span><a href="javascript:void(0)" class="edit-order-link" >Edit</a></label>
+            <label>Order Requested For:<span class="asap-text">ASAP</span><span>
+              <%= f.text_field :order_date_time,  :disabled => "disabled", "data-format"=>"dd/MM/yyyy hh:mm:ss", :class => "order_request_field hidden_field_request_time" %></span><a href="javascript:void(0)" class="edit-order-link" >Edit</a></label>
           </div>
           <% cart.cart_menu_items.each do |cart| %>
             <div class="col-md-12 Qty-container" id= "cart_<%= cart.id%>">

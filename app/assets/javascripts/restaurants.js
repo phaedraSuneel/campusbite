@@ -1,5 +1,10 @@
 $(document).ready(function(){
 
+  var nowDate = new Date();
+  var today = new Date(nowDate.getFullYear(), nowDate.getMonth(), nowDate.getDate(), 0, 0, 0, 0);
+  $(".order_request_field").datetimepicker({
+    startDate: today
+  });
 
   $('.star').rating();
   $('.star-read').rating({readOnly: true});
@@ -186,11 +191,10 @@ $(document).ready(function(){
         }
       });
     });
-
     $(".edit-order-link").click(function(){
+      $(".asap-text").remove();
       $(".order_request_field").attr("disabled", false);
       $(".order_request_field").css("border", "2px inset");
-      $(".hidden_field_request_time").remove();
     });
 
     $(".plus-quantiy").click(function(){

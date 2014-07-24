@@ -9,7 +9,7 @@ class Admin::OrdersController < ApplicationController
 	end
 
   def new_orders
-    @orders = Order.where(:status => "pending").order("created_at desc")
+    @orders = Order.where(:status => "pending", :order_date_time => nil).order("created_at desc")
   end
 
   def schedule_orders

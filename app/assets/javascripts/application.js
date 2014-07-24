@@ -19,6 +19,8 @@
 //= require jquery.printpage
 //= require typeahead
 //= require bootstrap
+//= require moment
+//= require bootstrap-datetimepicker
 //= require dropdown
 //= require schools
 //= require restaurants

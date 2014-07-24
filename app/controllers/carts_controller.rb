@@ -132,7 +132,6 @@ class CartsController < ApplicationController
             p "Invalid new card information"
           end
         end
-
         if @result.success?
           @order = Order.new params[:order]
           @order.user_id = current_user.id unless current_user.blank?
@@ -169,9 +168,9 @@ class CartsController < ApplicationController
       unless params[:order][:order_type] == "pickup"
         params[:order][:coupon_id] = params[:order][:coupon_id].nil? ? '' : params[:order][:coupon_id]
         params[:order][:coupon_off] = params[:order][:coupon_off].nil? ? '' : params[:order][:coupon_off]
-        result = @cart.paypal_url(APP_CONFIG["domain"]+'carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s+'&coupon_id='+params[:order][:coupon_id]+'&coupon_off='+params[:order][:coupon_off] ,total_bill)
+        result = @cart.paypal_url(APP_CONFIG["domain"]+'carts/paypal_order_create?cart_id='+@cart.id.to_s+'&address_id='+address.id.to_s+'&delivery_instruction='+params[:order][:delivery_instruction].to_s+'&order_date_time='+params[:order][:order_date_time].to_s+'&tip='+params[:order][:tip].to_s+'&coupon_id='+params[:order][:coupon_id]+'&coupon_off='+params[:order][:coupon_off] ,total_bill)
       else
-        result = @cart.paypal_url(APP_CONFIG["domain"]+'carts/paypal_order_create?cart_id='+@cart.id.to_s+'&request_time='+params[:order][:request_time].to_s+'&tip='+params[:order][:tip].to_s+'&coupon_id='+params[:order][:coupon_id]+'&coupon_off='+params[:order][:coupon_off] ,total_bill)
+        result = @cart.paypal_url(APP_CONFIG["domain"]+'carts/paypal_order_create?cart_id='+@cart.id.to_s+'&order_date_time='+params[:order][:order_date_time].to_s+'&tip='+params[:order][:tip].to_s+'&coupon_id='+params[:order][:coupon_id]+'&coupon_off='+params[:order][:coupon_off] ,total_bill)
       end
       redirect_to result
       end
@@ -223,9 +222,9 @@ class CartsController < ApplicationController
     @cart = Cart.find(params[:cart_id].to_i)
     p params
     if @cart.order_type == "pickup"
-      @order = Order.new(:order_type => 'pickup', :request_time => params[:request_time], :method_type => 'Paypal', :tip => params[:tip].to_f,:coupon_id => params[:coupon_id].to_i, :coupon_off => params[:coupon_off])
+      @order = Order.new(:order_type => 'pickup', :order_date_time => params[:order_date_time], :method_type => 'Paypal', :tip => params[:tip].to_f,:coupon_id => params[:coupon_id].to_i, :coupon_off => params[:coupon_off])
     else
-      @order = Order.new(:address_id => params[:address_id].to_i, :order_type => 'delivery', :request_time => params[:request_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal', :tip => params[:tip].to_f, :coupon_id => params[:coupon_id].to_i, :coupon_off => params[:coupon_off])
+      @order = Order.new(:address_id => params[:address_id].to_i, :order_type => 'delivery', :order_date_time => params[:order_date_time], :delivery_instruction => params[:delivery_instruction], :method_type => 'Paypal', :tip => params[:tip].to_f, :coupon_id => params[:coupon_id].to_i, :coupon_off => params[:coupon_off])
     end
     @order.user_id = current_user.id unless current_user.blank?
     @order.guest_id = @cart.guest.id if current_user.blank?

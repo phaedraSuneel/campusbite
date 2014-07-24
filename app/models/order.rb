@@ -9,13 +9,18 @@ class Order < ActiveRecord::Base
   has_many :menu_item_orders
   has_many :comments, :dependent => :destroy
 
-  attr_accessible :user_id, :guest_id, :delievery_address, :order_type, :request_time, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip, :secure_code, :flag, :coupon_id, :coupon_off
+  attr_accessible :user_id, :guest_id, :delievery_address, :order_type, :status, :restaurants_id, :card_id, :address_id, :delivery_instruction, :method_type, :payment_id, :tip, :secure_code, :flag, :coupon_id, :coupon_off, :order_date_time
 
   scope :with_user, lambda {|user| where(user_id: user.id ) }
 
   after_destroy :remove_associations
   after_save :decrease_coupon_limit
 
+
+  def request_time
+    return self.order_date_time.strftime("%e %B, %Y %I:%M%p") unless self.order_date_time.nil?
+    "ASAP"
+  end
 
   def customer_name
     if self.user.nil?
@@ -142,9 +147,10 @@ class Order < ActiveRecord::Base
   end
 
   def self.schedule_orders
-    week_last_day = Time.now.beginning_of_week - 1.day
-    week_first_day = week_last_day.beginning_of_week
-    where(:created_at => week_first_day..week_last_day).order("created_at desc")
+    #week_last_day = Time.now.beginning_of_week - 1.day
+    #week_first_day = week_last_day.beginning_of_week
+    #where(:created_at => week_first_day..week_last_day).order("created_at desc")
+    where("status =? AND order_date_time not in (?)", "pending", '')
   end
 
   def get_address_type
