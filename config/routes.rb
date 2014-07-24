@@ -337,6 +337,14 @@ Ordering::Application.routes.draw do
   #       get 'sold'
   #     end
   #   end
+
+  devise_scope :user do
+    get "vendor",  to: "devise/sessions#new"
+    get "Vendor", to: "devise/sessions#new"
+    get "Campusbiteadmin", to: "devise/sessions#new"
+  end
+
+
   resources :admin do
     collection do
       get 'user'
@@ -415,6 +423,7 @@ Ordering::Application.routes.draw do
   match 'join_us' => 'welcome#join_us', :as => :join_us
   match 'restaurant_suggestion' => 'welcome#restaurant_suggestion', :as => :restaurant_suggestion
   match 'campus_suggestion' => 'welcome#campus_suggestion', :as => :campus_suggestion
+
 
 
   match '/payments/payment', :to => 'payments#payment', :as => 'paymentspayment', :via => [:get]
