@@ -1,6 +1,6 @@
 <div class="portlet-body form">
   <%= form_for([@school, @restaurant], :url => set_restaurant_url(@school, @restaurant) , :html => { :multipart => true, :class => "form-horizontal restaurant-form", :id => "submit_form"}) do |f| %>
-    
+
     <div class="form-wizard">
       <div class="form-body">
         <ul class="nav nav-pills nav-justified steps">
@@ -121,18 +121,18 @@
             <button class="close" data-dismiss="alert"></button>
             Your form validation is successful!
           </div>
-          
+
           <div class="tab-pane active" id="tab1">
             <h3 class="block">Restaurant Contact Information</h3>
             <%= f.fields_for :contact_info do |f| %>
-              
+
               <div class="form-group">
                 <%= f.label :restaurant_name, :class => "col-md-3 control-label" %>
                 <div class="col-md-9">
                   <%= f.text_field :restaurant_name, :class => "form-control required" %>
-                </div>  
+                </div>
               </div>
-              
+
               <div class="form-group">
                 <%= f.label :restaurant_phone, :class => "col-md-3 control-label" %>
                 <div class="col-md-9">
@@ -151,7 +151,7 @@
                 <%= f.label :restaurant_street_address, :class => "col-md-3 control-label" %>
                 <div class="col-md-9">
                   <%= f.text_field :restaurant_street_address, :class => "form-control required" %>
-                </div>  
+                </div>
               </div>
 
               <div class="form-group">
@@ -159,45 +159,45 @@
                 <div class="col-md-9">
                   <%= f.text_field :state, :class => "form-control required" %>
                 </div>
-              </div>  
+              </div>
 
               <div class="form-group">
                 <%= f.label :city, :class => "col-md-3 control-label" %>
                 <div class="col-md-9">
                   <%= f.text_field :city, :class => "form-control required" %>
-                </div> 
+                </div>
               </div>
 
               <div class="form-group">
                 <%= f.label :zip_code, :class => "col-md-3 control-label" %>
                 <div class="col-md-9">
                   <%= f.text_field :zip_code, :class => "form-control required" %>
-                </div>  
+                </div>
               </div>
 
               <div class="form-group">
                 <%= f.label :map_photo, "Restaurant Map Picture", :class => "col-md-3 control-label" %>
                 <div class="col-md-9">
                   <%= f.file_field :map_photo, :class => "form-control" %>
-                </div>  
+                </div>
               </div>
 
               <div class="form-group">
                 <%= f.label :contact_name, :class => "col-md-3 control-label" %>
                 <div class="col-md-9">
                   <%= f.text_field :contact_name, :class => "form-control required"%>
-                </div>  
+                </div>
               </div>
 
               <div class="form-group">
                 <%= f.label :contact_email, :class => "col-md-3 control-label" %>
                 <div class="col-md-9">
                   <%= f.email_field :contact_email, :class => "form-control required" %>
-                </div>  
+                </div>
               </div>
             <% end %>
           </div>
-          
+
           <div class="tab-pane" id="tab2">
             <h3 class="block">Restaurant Information</h3>
             <% unless @school.present? %>
@@ -207,20 +207,26 @@
                   <%= f.collection_select :school_id, School.all,:id,:school_name, {include_blank: true}, {:class => 'required form-control'} %>
                 </div>
               </div>
-            <% end %>    
+            <% end %>
+            <div class="form-group">
+              <%= f.label :ranking, :class => "control-label col-md-3"%>
+              <div class="col-md-9">
+                <%= f.number_field :ranking, :class => "form-control required", :min => "1", :placeholder => "1"%>
+              </div>
+            </div>
             <%= f.fields_for :restaurant_info do |f| %>
               <div class="form-group">
                 <%= f.label :logo, "Restaurant logo", :class => "control-label col-md-3" %>
                 <div class="col-md-9">
                   <%= f.file_field :logo, :class => 'form-control'%>
-                </div>  
+                </div>
               </div>
               <div class="form-group">
                 <%= f.label :about_restaurant, :class => "control-label col-md-3"  %>
                 <div class="col-md-9">
                   <%= f.text_area :about_restaurant , :cols => 40, :rows => 4, :class => 'form-control required' %>
                 </div>
-              </div> 
+              </div>
 
               <div class="form-group">
                 <%= f.label :is_pick_up, "Pick Up", :class => "control-label col-md-3" %>
@@ -229,16 +235,16 @@
                     <label>
                       <div class="radio">
                         <span class="checked"><%= f.radio_button :is_pick_up, true, :checked => true %></span>
-                      </div>Yes 
+                      </div>Yes
                     </label>
                     <label>
                       <div class="radio">
                         <span><%= f.radio_button :is_pick_up, false %></span>
                       </div>No
                     </label>
-                  </div>  
+                  </div>
                 </div>
-              </div> 
+              </div>
               <div class="form-group">
                 <%= f.label :is_featured, "Feature", :class => "control-label col-md-3" %>
                 <div class="col-md-9">
@@ -246,21 +252,21 @@
                     <label>
                       <div class="radio">
                         <span class="checked"><%= f.radio_button :is_featured, true, :checked => true %></span>
-                      </div>Yes 
+                      </div>Yes
                     </label>
                     <label>
                       <div class="radio">
                         <span><%= f.radio_button :is_featured, false %></span>
                       </div>No
                     </label>
-                  </div>  
+                  </div>
                 </div>
-              </div> 
+              </div>
               <div class="form-group">
                 <%= f.label :min_order, :class => "control-label col-md-3" %>
                 <div class="col-md-9">
                   <%= f.text_field :min_order, :class => "form-control required" %>
-                </div>  
+                </div>
               </div>
 
               <div class="form-group">
@@ -268,14 +274,14 @@
                 <div class="col-md-9">
                   <%= f.text_field :sale_tax, :class => "form-control required col-md-9" %>
                 </div>
-              </div>  
+              </div>
             <% end %>
           </div>
 
           <div class="tab-pane" id="tab3">
             <h3 class="block"> Delivery Information </h3>
             <%= f.fields_for :delivery_info do |f| %>
-              
+
               <div class="form-group">
                 <%= f.label :is_delivery, "Delivery", :class => "control-label col-md-3" %>
                 <div class="col-md-9">
@@ -283,29 +289,29 @@
                     <label>
                       <div class="radio">
                         <span class="checked"><%= f.radio_button :is_delivery, true, :checked => true %></span>
-                      </div>Yes 
+                      </div>Yes
                     </label>
                     <label>
                       <div class="radio">
                         <span><%= f.radio_button :is_delivery, false %></span>
                       </div>No
                     </label>
-                  </div>  
+                  </div>
                 </div>
-              </div> 
-        
+              </div>
+
               <div class="form-group">
                 <%= f.label :delivery_estimated_time, "Restaurant delivery estimated time (mintus)", :class => "control-label col-md-3" %>
                 <div class="col-md-9">
                   <%= f.number_field  :delivery_estimated_time, :min => 0 , :class => "form-control required" %>
                 </div>
-              </div>  
+              </div>
 
               <div class="form-group">
                 <%= f.label :delivery_charges, :class => "control-label col-md-3" %>
                 <div class="col-md-9">
                   <%= f.text_field :delivery_charges, :class => "form-control required" %>
-                </div>  
+                </div>
               </div>
 
               <div class="form-group">
@@ -313,7 +319,7 @@
                 <div class="col-md-9">
                   <%= f.text_field :delivery_distance, :class => "form-control required" %>
                 </div>
-              </div>  
+              </div>
             <% end -%>
           </div>
 
@@ -329,7 +335,7 @@
                     <label>
                       <div class="radio">
                         <span ><%= f.radio_button :info_way, "email" %></span>
-                      </div> Email 
+                      </div> Email
                     </label>
                     <label>
                       <div class="radio">
@@ -351,10 +357,10 @@
                         <span><%= f.radio_button :info_way, "SMS" %></span>
                       </div>SMS
                     </label>
-                  </div>  
+                  </div>
                 </div>
-              </div> 
-             
+              </div>
+
               <div class="form-group">
                 <%= f.label :email_order, :class => "control-label col-md-3" %>
                 <div class="col-md-9">
@@ -367,7 +373,7 @@
                   <%= f.text_field :fax_number, :class => "form-control required" %>
                 </div>
               </div>
-              
+
               <div class="form-group">
                 <%= f.label :gprs, "GPRS Option", :class => "control-label col-md-3" %>
                 <div class="col-md-9">
@@ -375,29 +381,29 @@
                    <label>
                       <div class="radio">
                         <span ><%= f.radio_button :gprs, true %></span>
-                      </div> Yes 
-                    </label> 
+                      </div> Yes
+                    </label>
                     <label>
                       <div class="radio">
                         <span ><%= f.radio_button :gprs, false, :checked => true %></span>
-                      </div> No 
-                    </label> 
+                      </div> No
+                    </label>
                   </div>
-                </div>  
+                </div>
               </div>
-              
+
               <div class="form-group">
                 <%= f.label :cloud_printer_email, :class => "control-label col-md-3" %>
                 <div class="col-md-9">
                   <%= f.email_field :cloud_printer_email, :class => "form-control required" %>
-                </div>  
+                </div>
               </div>
 
               <div class="form-group">
                 <%= f.label :cloud_printer_password, :class => "control-label col-md-3" %>
                 <div class="col-md-9">
                   <%= f.password_field :cloud_printer_password, :class => "form-control required" %>
-                </div>  
+                </div>
               </div>
 
               <div class="form-group">
@@ -407,15 +413,15 @@
                    <label>
                       <div class="radio">
                         <span ><%= f.radio_button :sms_option, true %></span>
-                      </div> Yes 
-                    </label> 
+                      </div> Yes
+                    </label>
                     <label>
                       <div class="radio">
                         <span ><%= f.radio_button :sms_option, false, :checked => true %></span>
-                      </div> No 
-                    </label> 
+                      </div> No
+                    </label>
                   </div>
-                </div>  
+                </div>
               </div>
             <% end -%>
           </div>
@@ -449,9 +455,9 @@
             <% end -%>
           </div>
           <div class="tab-pane" id="tab6">
-            
+
             <h3 class="block">Business hours </h3>
-            
+
             <div class="row time-headings">
               <div class="col-md-4"> Day </div>
               <div class="col-md-4"> Opening Time</div>
@@ -463,8 +469,8 @@
                 <div class="form-group">
                   <div class="col-md-2">
                     <label class="control-label"> <%= f.object.day %> <%= f.hidden_field :day,  :readonly => true, :class => "convert-label" %></label>
-                  </div>  
-                
+                  </div>
+
                   <div class="col-md-4">
                     <div class="input-group">
                       <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
@@ -480,14 +486,14 @@
                         <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
                       </span>
                     </div>
-                  </div> 
+                  </div>
                 </div>
                 <%= f.fields_for :break_schedule do |f| %>
                   <div class="form-group">
                     <div class="col-md-2">
                       <label class="control-label"> Apply break time </label>
-                    </div>  
-                  
+                    </div>
+
                     <div class="col-md-4">
                       <div class="input-group">
                         <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
@@ -503,12 +509,12 @@
                           <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
                         </span>
                       </div>
-                    </div> 
+                    </div>
                   </div>
-                <% end %>  
+                <% end %>
               <% end %>
             <% end %>
-          
+
             <h3 class="block"> Restaurant Order Pick Time </h3>
             <div class="row time-headings">
               <div class="col-md-4"> Day </div>
@@ -521,8 +527,8 @@
                 <div class="form-group">
                   <div class="col-md-2">
                     <label class="control-label"> <%= f.object.day %> <%= f.hidden_field :day,  :readonly => true, :class => "convert-label" %></label>
-                  </div>  
-                
+                  </div>
+
                   <div class="col-md-4">
                     <div class="input-group">
                       <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
@@ -538,14 +544,14 @@
                         <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
                       </span>
                     </div>
-                  </div> 
+                  </div>
                 </div>
                 <%= f.fields_for :break_schedule do |f| %>
                   <div class="form-group">
                     <div class="col-md-2">
                       <label class="control-label"> Apply break time </label>
-                    </div>  
-                  
+                    </div>
+
                     <div class="col-md-4">
                       <div class="input-group">
                         <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
@@ -561,10 +567,10 @@
                           <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
                         </span>
                       </div>
-                    </div> 
+                    </div>
                   </div>
                 <% end %>
-              <% end %>  
+              <% end %>
             <% end %>
 
             <h3 class="block"> Restarant Order Deliver Time </h3>
@@ -579,8 +585,8 @@
                 <div class="form-group">
                   <div class="col-md-2">
                     <label class="control-label"><%= f.object.day %> <%= f.hidden_field :day,  :readonly => true, :class => "convert-label" %> </label>
-                  </div>  
-                
+                  </div>
+
                   <div class="col-md-4">
                     <div class="input-group">
                       <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
@@ -596,14 +602,14 @@
                         <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
                       </span>
                     </div>
-                  </div> 
+                  </div>
                 </div>
                 <%= f.fields_for :break_schedule do |f| %>
                   <div class="form-group">
                     <div class="col-md-2">
                       <label class="control-label"> Apply break time </label>
-                    </div>  
-                  
+                    </div>
+
                     <div class="col-md-4">
                       <div class="input-group">
                         <%= f.text_field :opening_time, :class => "form-control required timepicker timepicker-no-seconds" %>
@@ -619,10 +625,10 @@
                           <button class="btn default" type="button"><i class="fa fa-clock-o"></i></button>
                         </span>
                       </div>
-                    </div> 
+                    </div>
                   </div>
-                <% end %> 
-              <% end %>  
+                <% end %>
+              <% end %>
             <% end %>
           </div>
           <div class="tab-pane" id="tab7">
@@ -632,7 +638,7 @@
                 <% RestaurantCategory.all.each do |cat| %>
                   <label><%= check_box_tag "restaurant[restaurant_category_ids][]", cat.id, @restaurant.restaurant_category_ids.include?(cat.id), id: dom_id(cat), :class => 'checkbox-inline' %>
                     <%= cat.category_name %>
-                  </label>    
+                  </label>
                 <% end %>
               </div>
             </div>
@@ -668,10 +674,10 @@
                 <%= f.label :expiration_date, :class => "control-label col-md-3" %>
                 <div class="col-md-9">
                   <%= f.datetime_select :expiration_date, :class => "form-control" %>
-                </div>  
-              </div>  
+                </div>
+              </div>
             <% end %>
-          </div>  
+          </div>
           <div class="tab-pane" id="tab9">
               <h3 class="block"> Restaurant Admin Information </h3>
               <%= f.fields_for :user do |f| %>
@@ -709,11 +715,11 @@
                       <%= f.password_field :password_confirmation , :class => "form-control required"%>
                     </div>
                   </div>
-                <% end %>  
+                <% end %>
 
               <% end %>
           </div>
-        </div>  
+        </div>
       </div>
       <div class="form-actions fluid">
         <div class="row">
@@ -732,6 +738,6 @@
           </div>
         </div>
       </div>
-    </div>  
+    </div>
   <% end %>
 </div>
