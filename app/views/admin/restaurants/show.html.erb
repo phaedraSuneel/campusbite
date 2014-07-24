@@ -14,7 +14,7 @@
       </li>
       <li><%= @restaurant.restaurant_name %> </li>
       <li class="pull-right"> <%= link_to "View Menu" , admin_menu_path(@restaurant.menu) %>   </li>
-    </ul>  
+    </ul>
   </div>
 </div>
 
@@ -42,7 +42,11 @@
           </li>
           <li>
             <div class="col-md-6"><label>School Name </label></div>
-            <div class="col-md-6"><label><%= @restaurant.school_name %></label></div>
+            <div class="col-md-6">
+              <% @restaurant.schools.each do |school| %>
+                <label><%= school.school_name %></label>
+              <% end %>
+            </div>
           </li>
           <li>
             <div class="col-md-6"><label>About Restaurant</label></div>
@@ -76,7 +80,7 @@
             <div class="col-md-6"><label>Sale Tax</label></div>
             <div class="col-md-6"><label><%= @restaurant.sale_tax %></label></div>
           </li>
-        </ul>  
+        </ul>
       </div>
     </div>
   </div>
@@ -125,7 +129,7 @@
             <div class="col-md-6"><label>Zip Code</label></div>
             <div class="col-md-6"><label><%= @restaurant.zip_code %></label></div>
           </li>
-        </ul>  
+        </ul>
       </div>
     </div>
   </div>
@@ -162,10 +166,10 @@
                 <div class="col-md-6"><label>Fax Number </label></div>
                 <div class="col-md-6"><label><%= @restaurant.fax_number %></label></div>
               </li>
-            <% end %>  
+            <% end %>
           </ul>
-        </div>  
-    </div>  
+        </div>
+    </div>
   </div>
   <div class="col-md-6">
     <div class="portlet box blue">
@@ -201,9 +205,9 @@
               <div class="col-md-6"><label><%= @restaurant.swift_code %></label></div>
             </li>
           </ul>
-        </div>  
+        </div>
     </div>
-  </div>  
+  </div>
 </div>
 
 <div class="row">
@@ -241,10 +245,10 @@
                 <div class="col-md-4"> <label> <%= schedule.break_schedule.opening_time.strftime("%I:%M%p")  %> </label></div>
                 <div class="col-md-4"> <label> <%= schedule.break_schedule.closing_time.strftime("%I:%M%p")  %> </label> </div>
               </li>
-            <% end -%>  
+            <% end -%>
           <% end %>
-        </ul>  
-      </div>  
+        </ul>
+      </div>
     </div>
   </div>
   <div class="col-md-4">
@@ -281,10 +285,10 @@
                 <div class="col-md-4"> <label> <%= schedule.break_schedule.opening_time.strftime("%I:%M%p")  %> </label></div>
                 <div class="col-md-4"> <label> <%= schedule.break_schedule.closing_time.strftime("%I:%M%p")  %> </label> </div>
               </li>
-            <% end %>  
-          <% end %>  
-        </ul>  
-      </div>  
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
     </div>
   </div>
   <div class="col-md-4">
@@ -321,12 +325,12 @@
                 <div class="col-md-4"> <label> <%= schedule.break_schedule.opening_time.strftime("%I:%M%p")  %> </label></div>
                 <div class="col-md-4"> <label> <%= schedule.break_schedule.closing_time.strftime("%I:%M%p")  %> </label> </div>
               </li>
-            <% end %>  
-          <% end %>  
-        </ul>  
-      </div>  
+            <% end %>
+          <% end %>
+        </ul>
+      </div>
     </div>
-  </div>  
+  </div>
 </div>
 
 <div class="row">
@@ -334,7 +338,7 @@
     <div class="portlet box blue">
       <div class="portlet-title">
         <div class="caption">
-          <i class="fa fa-thumb-tack"></i> Food Categories 
+          <i class="fa fa-thumb-tack"></i> Food Categories
         </div>
         <div class="tools">
           <a href="javascript:;" class="collapse">
@@ -352,8 +356,8 @@
               <%= category.category_name %>
             </li>
           <% end %>
-        </ul>  
-      </div>  
+        </ul>
+      </div>
     </div>
   </div>
   <div class="col-md-6">
@@ -385,8 +389,8 @@
             <div class="col-md-6">Email Address</div>
             <div class="col-md-6"><%= @restaurant.user.email %></div>
           <li>
-        </ul>  
-      </div>  
+        </ul>
+      </div>
     </div>
   </div>
 </div>

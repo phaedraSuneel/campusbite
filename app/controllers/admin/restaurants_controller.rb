@@ -1,7 +1,7 @@
 class Admin::RestaurantsController < ApplicationController
 
   after_filter :rollback_if_not_admin, :only => [:update]
-  
+
   def rollback_if_not_admin
     unless current_user.user_admin?
       version = @restaurant.versions.count
@@ -9,7 +9,7 @@ class Admin::RestaurantsController < ApplicationController
       @restaurant.status = "pending"
       flash[:notice] = "Your changes will be reflected once an admin has reviewed them"
     end
-  end  
+  end
 
   def index
     page = params[:draw].nil? ? 1 : params[:draw].to_i
@@ -21,27 +21,27 @@ class Admin::RestaurantsController < ApplicationController
       @restaurants = @school.restaurants.offset(offset).limit(limit)
     else
       @restaurants = Restaurant.offset(offset).limit(limit)
-    end  
+    end
 
     unless params[:order].nil?
       col_number = params[:order]["0"]["column"].to_i
       order_by_type  = params[:order]["0"]["dir"]
       attribute_name = get_all_sort_attribute_name(col_number)
-      sorting_query = [attribute_name,order_by_type].join(' ') 
+      sorting_query = [attribute_name,order_by_type].join(' ')
       @restaurants  = Restaurant.apply_order_filter_with_school(@restaurants , sorting_query)
     end
 
     unless params[:search].nil?
-      @restaurants  = Restaurant.apply_search_filter_with_school(@restaurants , params[:search][:value])
+      @restaurants  = Restaurant.apply_search_filter_new(@restaurants , params[:search][:value])
     end
 
     respond_to do |format|
-      format.json do 
-        return render :json =>  {draw: page,  recordsTotal: @restaurants.count,  recordsFiltered: @restaurants.count , :data => @restaurants.collect{|a| [a.restaurant_name, a.school.school_name, a.school.branch_name , "<a src='#{admin_restaurant_url(a)}'><span class='label label-sm label-success'> show </a>", "<a src='#{edit_admin_restaurant_url(a)}'><span class='label label-sm label-default'> edit </a>", "<a src='#{delete_admin_restaurant_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </a>" ]} }
+      format.json do
+        return render :json =>  {draw: page,  recordsTotal: @restaurants.count,  recordsFiltered: @restaurants.count , :data => @restaurants.collect{|a| [a.restaurant_name, a.ranking, "<a src='#{admin_restaurant_url(a)}'><span class='label label-sm label-success'> show </a>", "<a src='#{edit_admin_restaurant_url(a)}'><span class='label label-sm label-default'> edit </a>", "<a src='#{delete_admin_restaurant_url(a)}' data-confirm='Are you sure?' data-method = 'delete' rel='nofollow'><span class='label label-sm label-danger'> delete </a>" ]} }
       end
       format.html
     end
-    
+
   end
 
   def show
@@ -70,7 +70,7 @@ class Admin::RestaurantsController < ApplicationController
     operation = @restaurant.build_operation
     pick_up = @restaurant.build_pick_up
     delivery = @restaurant.build_delivery
-    
+
     schedule =  operation.sechedules.build :day => "Monday"
     schedule.build_break_schedule
     schedule =  operation.sechedules.build :day => "Tuesday"
@@ -130,6 +130,7 @@ class Admin::RestaurantsController < ApplicationController
   def create
     unless params[:school_id].blank?
       @school = School.find(params[:school_id])
+
       @restaurant = @school.restaurants.build(params[:restaurant])
       if @restaurant.save
       flash[:notice] = 'Restaurant was successfully created.'
@@ -137,7 +138,7 @@ class Admin::RestaurantsController < ApplicationController
       else
         render action: "new"
       end
-    else 
+    else
       @restaurant = Restaurant.new(params[:restaurant])
       @restaurant.delivery_eta = params[:from_eta] + "-" +  params[:to_eta] + "Minutes" unless params[:from_eta].blank? and params[:to_eta].blank?
       if @restaurant.save
@@ -145,8 +146,8 @@ class Admin::RestaurantsController < ApplicationController
         redirect_to admin_restaurant_path(@restaurant)
       else
         render action: "new"
-      end  
-    end  
+      end
+    end
   end
 
   def update
@@ -167,7 +168,7 @@ class Admin::RestaurantsController < ApplicationController
       else
         render action: "edit"
       end
-    end  
+    end
   end
 
   def destroy
@@ -221,18 +222,16 @@ class Admin::RestaurantsController < ApplicationController
   private
 
   def get_all_sort_attribute_name(column_number)
-  
+
     case column_number
     when 0
       return "restaurant_name"
     when 1
-       return "school_name"   
-    when 2
-      return "branch_name"
-    else 
-      return "id"  
+       return "ranking"
+    else
+      return "id"
     end
 
-  end 
+  end
 
 end

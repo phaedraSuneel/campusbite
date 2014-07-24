@@ -2,9 +2,11 @@ class Restaurant < ActiveRecord::Base
 
   versioned
 
-  belongs_to :school
+  #belongs_to :school
   belongs_to :user
   has_many  :restaurant_categories
+  has_many  :schools, through: :restaurant_schools
+  has_many  :restaurant_schools, :dependent => :destroy
   has_many :addons, :dependent => :destroy
   has_many :restaurant_offers, :dependent => :destroy
   has_many :favorites, :dependent => :destroy
@@ -24,8 +26,9 @@ class Restaurant < ActiveRecord::Base
   has_one :operation, :dependent => :destroy
 
   attr_accessible :school_id, :restaurant_category_ids, :contact_info_attributes, :restaurant_info_attributes, :delivery_info_attributes, :order_info_attributes, :bank_info_attributes,
-                  :operation_attributes, :delivery_attributes, :pick_up_attributes, :avg_rating, :user_id, :user_attributes, :delta, :restaurant_coupons_attributes, :ranking
+                  :operation_attributes, :delivery_attributes, :pick_up_attributes, :avg_rating, :user_id, :user_attributes, :delta, :restaurant_coupons_attributes, :ranking, :school_ids
 
+  #accepts_nested_attributes_for :schools
   accepts_nested_attributes_for :restaurant_categories
   accepts_nested_attributes_for :favorites
   accepts_nested_attributes_for :contact_info, :restaurant_info, :delivery_info, :order_info, :bank_info, :operation, :delivery, :pick_up
@@ -53,7 +56,12 @@ class Restaurant < ActiveRecord::Base
 
   def self.apply_search_filter_with_school(data,key_word)
     search_keyword = ["%",key_word,"%"].join('')
-    return data.joins("LEFT OUTER JOIN schools ON schools.id = restaurants.school_id").joins(:contact_info).joins(:contact_info).where('restaurant_name like ? OR school_name like ? OR branch_name like ?' ,search_keyword, search_keyword, search_keyword)
+    return data.joins("LEFT OUTER JOIN schools ON schools.id = restaurants.school_id").joins(:contact_info).where('restaurant_name like ? OR school_name like ? OR branch_name like ?' ,search_keyword, search_keyword, search_keyword)
+  end
+
+  def self.apply_search_filter_new(data,key_word)
+    search_keyword = ["%",key_word,"%"].join('')
+    return data.joins(:contact_info).where('restaurant_name like ? OR ranking like ? ' ,search_keyword, search_keyword)
   end
 
    def self.apply_order_filter_with_school(data, sorting_query)
