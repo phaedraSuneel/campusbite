@@ -409,6 +409,7 @@ ActiveRecord::Schema.define(:version => 20140724111519) do
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
     t.string   "delievery_address"
+    t.string   "order_type"
     t.string   "status"
     t.integer  "restaurant_id"
     t.integer  "address_id"
@@ -424,7 +425,6 @@ ActiveRecord::Schema.define(:version => 20140724111519) do
     t.string   "coupon_off"
     t.integer  "guest_id"
     t.datetime "order_date_time"
-    t.string   "order_type"
   end
 
   create_table "payments", :force => true do |t|
@@ -596,8 +596,6 @@ ActiveRecord::Schema.define(:version => 20140724111519) do
     t.datetime "updated_at",                       :null => false
     t.boolean  "delta",          :default => true, :null => false
   end
-
-  add_index "schools", ["delta"], :name => "index_schools_on_delta"
 
   create_table "sechedules", :force => true do |t|
     t.string   "day"
